@@ -32,7 +32,7 @@ window.addGround = function() {
         'h' : 8,
         'w' : 8
     };
-    var ground = BABYLON.Mesh.CreateTiledGround("Tiled Ground", 0, 0, groundBoundaryLength, groundBoundaryLength, subdivisions, precision, scene, false);
+    var ground = BABYLON.Mesh.CreateTiledGround("Tiled Ground", -groundBoundaryLength, -groundBoundaryLength, groundBoundaryLength, groundBoundaryLength, subdivisions, precision, scene, false);
     ground.checkCollisions = true;
     ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: .9 }, scene);
     return ground;
@@ -51,7 +51,7 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     var camera = new BABYLON.FreeCamera('camera1', playerPosition, scene);
     camera.setTarget(BABYLON.Vector3.Zero());
     camera.rotation = new BABYLON.Vector3(0, 1.6, 0);
-    camera.speed = 3;
+    camera.speed = 10;
     camera.inertia = 0.3;
     camera.attachControl(canvas, true);
     console.log('add Player : ', camera.inputs);
@@ -144,12 +144,21 @@ window.addBox = function(x, z, type) {
 
 window.buildBoundaryWalls = function(boxLength, scene) {
     var type = 'boundaryWalls';
-    for ( var i = -boxLength; i < groundBoundaryLength ; i += boxLength ) {
-        var box = addBox(i+boxLength, groundBoundaryLength+boxLength/2, type);    
-        var box = addBox(i+boxLength, -boxLength/2, type);
-        var box = addBox(groundBoundaryLength+boxLength/2, i+boxLength, type);
-        var box = addBox(-boxLength/2, i+boxLength, type);
+    var dimensions = boundaryWalls[mazeSize];
+    for ( var i = dimensions[0] - boxLength * 2; i < dimensions[0] + boxLength * 2; i += boxLength ) {
+        addBox(i, dimensions[1], type);
     }
+    var dimensions = boundaryWalls[1];
+    for ( var i = dimensions[1]; i > dimensions[1] - boxLength * 5; i -= boxLength ) {
+        addBox(dimensions[0], i, type);
+    }
+
+    // // for ( var i = -boxLength; i < groundBoundaryLength ; i += boxLength ) {
+    //     // var box = addBox(i+boxLength, groundBoundaryLength+boxLength/2, type);    
+    //     // var box = addBox(i+boxLength, -boxLength/2, type);
+    //     // var box = addBox(groundBoundaryLength+boxLength/2, i+boxLength, type);
+    //     // var box = addBox(-boxLength/2, i+boxLength, type);
+    // }
 };
 
 window.generateMaze = function(x,y) {
@@ -216,7 +225,7 @@ window.generateMaze = function(x,y) {
             box.push(line);
             text.push(line.join('')+'\r\n');
         }
-        console.log(box);
+        // console.log(box);
         return box;
     }
     return display(maze(x+2,y));

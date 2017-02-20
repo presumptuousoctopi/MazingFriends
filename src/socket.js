@@ -6,10 +6,15 @@ socket.on('roomName', function(roomName) {
   console.log('Currently in  : ', roomName);
 });
 
+socket.on('serverSendingMaze', function(maze) {
+  console.log('receive a maze from server!');
+  buildSimpleMaze(maze);
+});
+
 socket.on('firstPlayer', function(firstPlayer) {
   console.log('firstPlayer');
-  window.maze = generateMaze(mazeSize,mazeSize);
-  buildSimpleMaze(maze);
+  // window.maze = generateMaze(mazeSize,mazeSize);
+  // buildSimpleMaze(maze);
   window.camera.position = firstPlayerPosition;
 });
 
@@ -27,7 +32,7 @@ socket.on('newPlayerRequestInfo', function() {
 
 socket.on('receiveMaze', function(maze) {
   console.log('Received maze!');
-  buildSimpleMaze(maze);
+  // buildSimpleMaze(maze);
   socket.emit('sendPlayer', window.camera.position);
 });
 
