@@ -8,6 +8,8 @@ html, body {
 
 .Title {
 	text-align: center;
+	font-size: 50px;
+	opacity: 1.0;
 } 
 
 .Home {
@@ -48,7 +50,7 @@ html, body {
 }
 
 .Chat {
- width: 26%; 
+ width: 25%; 
  height: 750px;
  float: right;
  display: inline-block;
@@ -59,8 +61,8 @@ html, body {
 }
 
 #canvas {
- width: 70%; 
- height: 100%;
+ width: 71%; 
+ height: 97%;
  float: left;
  display: inline-block;
 }
