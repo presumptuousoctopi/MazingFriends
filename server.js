@@ -9,7 +9,8 @@ var app = express();
 var http = require('http').Server(app);
 var path = require('path');
 var io = require('socket.io')(http);
-
+var mazes = require('./customMazes');
+// var db = require('./db');
 
 /*eslint no-console:0 */
 
@@ -43,6 +44,7 @@ var io = require('socket.io')(http);
 // });
 
 
+
 /*************************************************************************************************
  Socket.io
 *************************************************************************************************/
@@ -53,6 +55,8 @@ var messages = {};
 var roomCount = 0;
 var newRoom = [];
 var fullRooms = [];
+
+
 
 io.on('connection', function(socket){
   userCount++;
@@ -106,6 +110,7 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     userCount--;
   });
+  socket.emit('serverSendingMaze', mazes.mediumLevelMaze);
 });
 
 /*************************************************************************************************

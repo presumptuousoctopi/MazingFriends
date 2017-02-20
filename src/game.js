@@ -6,15 +6,32 @@ window.engine = new BABYLON.Engine(canvas, true);
 // Declare environment constants
 var numberOfBoxes = 0;
 const boxLength = 4;
-const firstPlayerPosition = new BABYLON.Vector3(boxLength / 2, 2, boxLength / 2);
-const easyLevelMazeSize = 3;
-const mediumLevelMazeSize = 4;
-const mediumLevelSecondPlayerPosition = new BABYLON.Vector3(45, 2, 60);
-const hardLevelMazeSize = 5;
+const firstPlayerPosition = new BABYLON.Vector3(boxLength, 50, boxLength);
+const easyLevelMazeSize = 4;
+const easyLevelSecondPlayerPosition = new BABYLON.Vector3(45, 2, 60);
+const mediumLevelMazeSize = 5;
+const mediumLevelSecondPlayerPosition = new BABYLON.Vector3(52, 2, 77);
+const boundaryWalls = {
+  1: [-4, 16],
+  3: [35, 50],
+  4: [44, 68],
+  5: [52, 83],
+  6: [60, 100],
+  7: [68, 115]
+};
 
+// const hardLevelMazeSize = 5;
+// 1st player = -4, 2, 16 -> -3, 2, 2
 
-const mazeSize = mediumLevelMazeSize;
-const groundBoundaryLength = (boxLength + mazeSize) * (boxLength + mazeSize);
+// 3: 35, 2, 50
+// 4: 44, 2, 68
+// 5: 52, 2, 83
+// 6: 60, 2, 100
+// 7: 68, 2, 115
+
+const mazeSize = 5;
+const groundBoundaryLength = 1000;
+// ( boxLength + mazeSize ) * ( boxLength + mazeSize );
 
 // Create environment
 window.scene = createScene();
@@ -36,7 +53,7 @@ engine.runRenderLoop(function(){
         previousCameraPosition = currentCameraPosition;
         socket.emit('userPositionChanged', camera.position);
     }
-    //console.log(window.camera.position);
+    console.log(window.camera.position);
     // console.log(groundBoundaryLength);
     scene.render();
 });
