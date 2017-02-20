@@ -42,6 +42,8 @@ class Home extends React.Component {
 	      	Room Name:
 	      	<input></input>
 	      	<button className="Play" onClick={this.playButtonClick}>Create Room</button>
+	      	<br/>
+	      	<br/>
 	      	</div>
       	</div>
       	<div className="JoinView">
@@ -50,6 +52,8 @@ class Home extends React.Component {
 	      	Room Name:
 	      	<input></input>
       		<button className="Play" onClick={this.playButtonClick}>Join Room</button>
+      		<br/>
+      		<br/>
 	      	</div>
       	</div>
       </div>

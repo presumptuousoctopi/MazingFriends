@@ -1,22 +1,25 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>React Webpack Template Title</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<script src="http://cdn.babylonjs.com/2-5/babylon.js"></script>
-	<script src="http://cdn.babylonjs.com/2-5/babylon.max.js"></script>
-	<script src="http://cdn.babylonjs.com/2-5/babylon.noworker.js"></script>
-	<script src="http://cdn.babylonjs.com/2-5/babylon.core.js"></script>
-  <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-  <div id="app"></div>
-  <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
-  <script type="text/javascript" src="/assets/app.js"></script>
-  <script src="./babylon.js" ></script>
-  <canvas id="canvas"></canvas>
-</body>
-</html>
+ <head>
+   <meta charset="UTF-8">
+   <title>Mazing Friends</title>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <script src="http://www.babylonjs.com/cannon.js"></script>
+   <script src="http://www.babylonjs.com/oimo.js"></script>
+   <script src="http://www.babylonjs.com/babylon.js"></script>
+   <script src="http://cdn.babylonjs.com/2-4/babylon.max.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.min.js"></script>
+   <link rel="stylesheet" href="./style.css">
+ </head>
+ <body>
+    <div id="app"></div>
+    <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
+    <script type="text/javascript" src="./build/bundle.js"></script>
+    <canvas id="canvas"></canvas>
+    <script src="./util.js"></script>
+    <script src="./game.js" ></script>   
+ </body>
+</html> 
