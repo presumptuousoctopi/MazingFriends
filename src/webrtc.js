@@ -14,7 +14,6 @@ var pcConfig = {
         'url': 'stun:stun.l.google.com:19302'
     }]
 };
-
 // Set up audio and video regardless of what devices are present.
 var sdpConstraints = {
     'mandatory': {
@@ -23,19 +22,12 @@ var sdpConstraints = {
     }
 };
 
-/////////////////////////////////////////////
-
-
 // Could prompt for room name:
-var room = prompt('Enter room name:');
+//var room = prompt('Enter room name:');
 
 var socket = io.connect();
 
 //check the count on the client side
-socket.on("count",function(data){
-    console.log(data);
-})
-
 if (room !== '') {
     socket.emit('create or join', room);
     console.log('Attempted to create or  join room', room);

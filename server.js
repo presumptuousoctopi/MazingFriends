@@ -114,7 +114,7 @@ io.on('connection', function(socket){
 
     } else if (clients[room] === 2) {
       console.log('Client ID ' + socket.id + ' joined room ' + room);
-      io.sockets.in(room).emit('join', room);
+      io.in(room).emit('join', room);
       socket.join(room);
       console.log(room);
       socket.emit('joined', room, socket.id);
