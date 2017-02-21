@@ -2,53 +2,50 @@
  Sockets to Server
 *******************************************************/
 
-socket.on('roomName', function(roomName) {
-  console.log('Currently in  : ', roomName);
-});
-
-socket.on('serverSendingMaze', function(maze) {
-  console.log('receive a maze from server!');
-  buildSimpleMaze(maze);
-});
-
+// Notify whether user is first or second player and update user position
 socket.on('firstPlayer', function(firstPlayer) {
-  console.log('firstPlayer');
-  // window.maze = generateMaze(mazeSize,mazeSize);
-  // buildSimpleMaze(maze);
   window.camera.position = firstPlayerPosition;
+  console.log('You are first player');
 });
 
 socket.on('secondPlayer', function(secondPlayer) {
-  console.log('secondPlayer');
   window.playerType = secondPlayer;
   window.camera.position = mediumLevelSecondPlayerPosition;
-});
-
-socket.on('newPlayerRequestInfo', function() {
-  console.log('New player joined!');
-  socket.emit('sendMaze', window.maze);
+  // Send player position to other player
   socket.emit('sendPlayer', window.camera.position);
+  console.log('secondPlayer');
 });
 
-socket.on('receiveMaze', function(maze) {
-  console.log('Received maze!');
-  // buildSimpleMaze(maze);
-  socket.emit('sendPlayer', window.camera.position);
-});
-
+// Receive other player's position and render it
 socket.on('receivePlayer', function(playerCamera) {
-  console.log('Received playerCamera!', playerCamera);
   window.otherPlayer = addSphere();
   window.otherPlayer.position = playerCamera;
+  console.log('Received playerCamera!', playerCamera);
 });
 
+// Receive the room information
+socket.on('roomName', function(roomName) {
+  console.log('Room name : ', roomName);
+});
+
+// Receive a custom map from server and build the maze
+socket.on('serverSendingMaze', function(maze) {
+  buildSimpleMaze(maze);
+  console.log('Received a maze from server');
+});
+
+// Send player position to newly joined player(s)
+socket.on('newPlayerRequestInfo', function() {
+  socket.emit('sendPlayer', window.camera.position);
+  console.log('New player joined!');
+});
+
+// Update all other users' positions
 socket.on('receiveUserPosition', function(userPosition) {
-  console.log('inside userPositionChanged');
   if ( window.otherPlayer ) {
-    console.log(userPosition);
-    console.log(window.camera.position);
     var p1 = window.camera.position;
     var p2 = userPosition;
+    // Calculate distance between two users
     var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
     if ( distanceBetweenUsers < 1 ) {
       window.finishGame();
@@ -57,8 +54,8 @@ socket.on('receiveUserPosition', function(userPosition) {
   }
 });
 
+// Update all other bullets' positions
 socket.on('incomingShot', function(shooter) {
-  console.log('inside incomingShot');
   // This only works for two players
   if ( window.otherPlayer ) {
     shootBullet(shooter, true, true);
@@ -74,5 +71,7 @@ var mousePosition = {
   previousY: null
 };
 
+// Event listener for shooting bullets
 window.addEventListener("click", shootBullet.bind(this, window.camera));
+// Event listener for mouse movement
 window.addEventListener("mousemove", window.mouseControl.bind(this, window.camera, mousePosition));
