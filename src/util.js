@@ -23,6 +23,7 @@ window.addSkyBox = function() {
     skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
 };
 
+// Need to fix this function
 window.addGround = function() {
     var precision = {
         "w" : 2,
@@ -50,26 +51,27 @@ window.addPointLight = function() {
 window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     var camera = new BABYLON.FreeCamera('camera1', playerPosition, scene);
     camera.setTarget(BABYLON.Vector3.Zero());
-    camera.rotation = new BABYLON.Vector3(0, 1.6, 0);
-    camera.speed = 10;
-    camera.inertia = 0.3;
     camera.attachControl(canvas, true);
-    console.log('add Player : ', camera.inputs);
-    // camera.inputs.attached.mouse.camera.noRotationConstraint = true;
     camera.inputs.remove(camera.inputs.attached.mouse);
-    camera.inputs.mouse
-    // camera.inputs.attached.mouse.camera = false;
-    console.log("inside addPlayer : ", camera);
-    // camera.rotation.y;s
-    // camera.cameraRotation.x;
-    camera.checkCollisions = true;
-    camera.applyGravity = true;
     camera.keysUp.push(87);
     camera.keysDown.push(83); 
     camera.keysLeft.push(65); 
     camera.keysRight.push(68);
-    console.log('camera angularSensibility : ', camera.angularSensibility);
+    camera.speed = 10;
+    camera.inertia = 0.3;
     camera.angularSensibility = 500;
+    camera.checkCollisions = true;
+    camera.applyGravity = true;
+    // camera.rotation = new BABYLON.Vector3(0, 1.6, 0);
+    // console.log("inside addPlayer : ", camera);
+    // console.log('add Player : ', camera.inputs);
+    // camera.inputs.attached.mouse.camera.noRotationConstraint = true;
+    // camera.inputs.attached.mouse.camera = false;
+    // camera.rotation.y;s
+    // camera.cameraRotation.x;
+    // console.log('camera angularSensibility : ', camera.angularSensibility);
+
+    // Need to fix jump bug
     var cameraJump = function() {
         camera.animations = [];        
         var animations = new BABYLON.Animation("a", "position.y", 20, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
@@ -88,17 +90,10 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     }; 
     window.addEventListener("keydown", onKeyDown);
     function onKeyDown(event) {  
-        if ( event.keyCode === 32 ) {
-            console.log('jump!');
-            cameraJump();
-        }  
-        // if ( event.keyCode === 81 ) {
-        //   if (engine.isPointerLock == false){
-        //       engine.isPointerLock = true;
-        //   } else if (engine.isPointerLock == true){
-        //       engine.isPointerLock = false;
-        //   }
-        // }
+      if ( event.keyCode === 32 ) {
+        console.log('jump!');
+        cameraJump();
+      }  
     }
     return camera;
 };
@@ -136,7 +131,6 @@ window.addBox = function(x, z, type) {
     }
     box.material = material;
     box.position = new BABYLON.Vector3(x, 2, z);
-    // box.physicsImpostor = new BABYLON.PhysicsImpostor(box, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 10000, restitution: 0 }, scene);
     box.applyGravity = true;
     box.checkCollisions = true;
     return box;
@@ -152,13 +146,6 @@ window.buildBoundaryWalls = function(boxLength, scene) {
     for ( var i = dimensions[1]; i > dimensions[1] - boxLength * 5; i -= boxLength ) {
         addBox(dimensions[0], i, type);
     }
-
-    // // for ( var i = -boxLength; i < groundBoundaryLength ; i += boxLength ) {
-    //     // var box = addBox(i+boxLength, groundBoundaryLength+boxLength/2, type);    
-    //     // var box = addBox(i+boxLength, -boxLength/2, type);
-    //     // var box = addBox(groundBoundaryLength+boxLength/2, i+boxLength, type);
-    //     // var box = addBox(-boxLength/2, i+boxLength, type);
-    // }
 };
 
 window.generateMaze = function(x,y) {
@@ -289,7 +276,7 @@ window.mouseControl = function(camera, mousePosition, e) {
 
     if ( dy > 2 ) {
         camera.cameraRotation.x += sensitivity;
-    } else if ( dy < -2) {
+    } else if ( dy < -2 ) {
         camera.cameraRotation.x -= sensitivity;
     }        
 
@@ -297,71 +284,72 @@ window.mouseControl = function(camera, mousePosition, e) {
     mousePosition.y = mouseY;
 };
 
-var robotPaths = function(n) {
-  var makeBoard = function(n) {
-    var board = [];
-    for (var i = 0; i < n; i++) {
-      board.push([]);
-      for (var j = 0; j < n; j++) {
-        board[i].push(false);
-      }
-    }
-    return board;
-  };
-  var togglePiece = function(board, i, j) {
-    board[i][j] = !board[i][j];
-  };
-  var hasBeenVisited = function(board, i, j) {
-    return !!board[i][j];
-  };
+// To be used to find the solution for the maze:
 
-  var board = makeBoard(n);
-  var possiblePaths = 0;
+// var robotPaths = function(n) {
+//   var makeBoard = function(n) {
+//     var board = [];
+//     for (var i = 0; i < n; i++) {
+//       board.push([]);
+//       for (var j = 0; j < n; j++) {
+//         board[i].push(false);
+//       }
+//     }
+//     return board;
+//   };
+//   var togglePiece = function(board, i, j) {
+//     board[i][j] = !board[i][j];
+//   };
+//   var hasBeenVisited = function(board, i, j) {
+//     return !!board[i][j];
+//   };
 
-  var findPath = function(newBoard, i = 0, j = 0, count = 0) {
-    togglePiece(newBoard,i,j);
-    if ( i === n-1 && j === n-1 ) {
-      return possiblePaths++;
-    } 
+//   var board = makeBoard(n);
+//   var possiblePaths = 0;
 
-    if ( i+1 < n ) {
-      if ( !hasBeenVisited(newBoard, i+1, j) ) {
-        findPath(newBoard, i+1, j, count);
-        togglePiece(newBoard,i+1,j);      
-      }
-    }
+//   var findPath = function(newBoard, i = 0, j = 0, count = 0) {
+//     togglePiece(newBoard,i,j);
+//     if ( i === n-1 && j === n-1 ) {
+//       return possiblePaths++;
+//     } 
 
-    if ( i-1 >= 0 ) {
-      if ( !hasBeenVisited(newBoard, i-1, j) ) {
-        findPath(newBoard, i-1, j, count);  
-        togglePiece(newBoard,i-1,j);          
-      }
-    }
+//     if ( i+1 < n ) {
+//       if ( !hasBeenVisited(newBoard, i+1, j) ) {
+//         findPath(newBoard, i+1, j, count);
+//         togglePiece(newBoard,i+1,j);      
+//       }
+//     }
 
-    if ( j+1 < n ) {
-      if ( !hasBeenVisited(newBoard, i, j+1) ) {
-        findPath(newBoard, i, j+1, count);
-        togglePiece(newBoard,i,j+1);
-      }
-    }
+//     if ( i-1 >= 0 ) {
+//       if ( !hasBeenVisited(newBoard, i-1, j) ) {
+//         findPath(newBoard, i-1, j, count);  
+//         togglePiece(newBoard,i-1,j);          
+//       }
+//     }
+
+//     if ( j+1 < n ) {
+//       if ( !hasBeenVisited(newBoard, i, j+1) ) {
+//         findPath(newBoard, i, j+1, count);
+//         togglePiece(newBoard,i,j+1);
+//       }
+//     }
     
-    if ( j-1 >= 0 ) {
-      if ( !hasBeenVisited(newBoard, i, j-1) ) {
-        findPath(newBoard, i, j-1, count);    
-        togglePiece(newBoard,i,j-1);        
-      }
-    }
-  };
-  findPath(board);
-  return possiblePaths;
-};
+//     if ( j-1 >= 0 ) {
+//       if ( !hasBeenVisited(newBoard, i, j-1) ) {
+//         findPath(newBoard, i, j-1, count);    
+//         togglePiece(newBoard,i,j-1);        
+//       }
+//     }
+//   };
+//   findPath(board);
+//   return possiblePaths;
+// };
 
 /*******************************************************
  Game Flow / Etc.
 *******************************************************/
 
 window.calculateDistance = function(x1, y1, z1, x2, y2, z2) {
-  // console.log(x1, y1, z1, x2, y2, z2);
   return Math.pow((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)+(z1-z2)*(z1-z2), 1/2);
 };
 
