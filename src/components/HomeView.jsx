@@ -1,5 +1,5 @@
 import React from 'react';
-import Title from './TitleView.js'
+import Title from './TitleView.jsx'
 
 class Home extends React.Component {
 	constructor() {
