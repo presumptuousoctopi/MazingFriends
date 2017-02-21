@@ -25,7 +25,7 @@ class Chat extends React.Component {
   }
   sendMessage(e) {
     e.preventDefault();
-    this.state.socket.emit('sendMessage', this.state.message);
+    window.socket.emit('sendMessage', this.state.message);
   }
 
   updateInput(e) {
