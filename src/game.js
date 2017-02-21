@@ -53,7 +53,7 @@ engine.runRenderLoop(function(){
         previousCameraPosition = currentCameraPosition;
         socket.emit('userPositionChanged', camera.position);
     }
-    console.log(window.camera.position);
+    //console.log(window.camera.position);
     // console.log(groundBoundaryLength);
     scene.render();
 });

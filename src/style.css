@@ -67,8 +67,20 @@ html, body {
  display: inline-block;
 }
 
-.videoChat {
+/*.videoChat {*/
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*right: 0;*/
+/*}*/
+#videos {
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+#localVideo {
+     width: 50px;
+ }
+#remoteVideo {
+    width: 50px;
 }

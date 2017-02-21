@@ -21,13 +21,16 @@ var sdpConstraints = {
         'OfferToReceiveVideo': true
     }
 };
-
-// Could prompt for room name:
-//var room = prompt('Enter room name:');
+var room;
 
 var socket = io.connect();
 
+socket.on('roomName', function(roomName) {
+    room = roomName;
+    console.log('Currently in  : ', roomName);
+});
 //check the count on the client side
+
 if (room !== '') {
     socket.emit('create or join', room);
     console.log('Attempted to create or  join room', room);
@@ -35,13 +38,29 @@ if (room !== '') {
 
 socket.on('created', function(room) {
     console.log('Created room ' + room);
-    isInitiator = true;
+    //isInitiator = true;
+
 });
+
+//socket.on('firstPlayer', function(firstPlayer) {
+//    console.log('firstPlayer');
+//    // window.maze = generateMaze(mazeSize,mazeSize);
+//    // buildSimpleMaze(maze);
+//    isInitiator = true;
+//    window.camera.position = firstPlayerPosition;
+//});
 
 //once the second person joins, set channel to true
 socket.on('join', function (room){
     console.log('Another peer made a request to join room ' + room);
     isChannelReady = true;
+});
+
+socket.on('secondPlayer', function(secondPlayer) {
+    console.log('secondPlayer');
+    isChannelReady = true;
+    window.playerType = secondPlayer;
+    window.camera.position = mediumLevelSecondPlayerPosition;
 });
 
 socket.on('joined', function(room) {
