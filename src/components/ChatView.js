@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Chat extends React.Component {
+class VideoChat extends React.Component {
   constructor() {
     super();
     this.state = {
