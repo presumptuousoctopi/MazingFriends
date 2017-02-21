@@ -11,7 +11,7 @@ var mazes = require('./customMazes');
 
 /*************************************************************************************************
  Socket.io
-*************************************************************************************************/
+ *************************************************************************************************/
 
 var userCount = 0;
 var rooms = {};
@@ -31,7 +31,7 @@ io.on('connection', function(socket){
     // If no empty room exists, make a new room and put user into it
     if ( !rooms[roomName] ) {
       // Create/save room and increment room count
-      rooms[roomName] = 1; 
+      rooms[roomName] = 1;
       roomCount++;
       // Associate room name to user's socket id
       playerRoom[socket.id] = roomName;
@@ -88,7 +88,7 @@ io.on('connection', function(socket){
 
   // Receive initial location of bullet that was fired and send it to all other players in the room
   socket.on('shotFired', function(shooter) {
-   socket.broadcast.to(playerRoom[socket.id]).emit('incomingShot', shooter );    
+    socket.broadcast.to(playerRoom[socket.id]).emit('incomingShot', shooter );
   });
 
   // Receive a user's message and return all messages posted in the room
@@ -96,7 +96,7 @@ io.on('connection', function(socket){
     var roomName = playerRoom[socket.id];
     var roomMessages = messages[roomName] || [];
     // Add new message and userId to messages array
-    roomMessages.push({ 
+    roomMessages.push({
       userId: socket.id,
       message: message
     });
@@ -123,7 +123,7 @@ io.on('connection', function(socket){
 
 /*************************************************************************************************
  Node & Express
-*************************************************************************************************/
+ *************************************************************************************************/
 
 app.use( function(req, res, next) {
   console.log('current serving ', req.method, ' @ ', req.url);
