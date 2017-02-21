@@ -10,7 +10,9 @@
     "lint": "eslint ./src",
     "start": "nodemon server.js",
     "test": "karma start",
-    "test:watch": "karma start --autoWatch=true --singleRun=false"
+    "test:watch": "karma start --autoWatch=true --singleRun=false",
+    "dev": "webpack -d --watch",
+    "build" : "webpack -p"
   },
   "repository": "",
   "keywords": [],

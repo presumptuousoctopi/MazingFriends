@@ -4,11 +4,13 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
 const open = require('open');
+var os = require('os');
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var path = require('path');
 var io = require('socket.io')(http);
+var port = process.env.PORT || 3000;
 var mazes = require('./customMazes');
 // var db = require('./db');
 
@@ -55,9 +57,21 @@ var messages = {};
 var roomCount = 0;
 var newRoom = [];
 var fullRooms = [];
+var clients = {};
 
-
-
+//'use strict';
+//
+//var socketIO = require('socket.io');
+//var port = process.env.PORT || 8080;
+//var server = http.createServer(app);
+//server.listen(port);
+//var fileServer = new nodeStatic.Server(__dirname + '/client');
+//var app = http.createServer(function(req, res) {
+//    fileServer.serve(req, res);
+//}).listen(port);
+//store client data to ensure that there are only two people in the same room
+//var clients = {};
+//app.use(express.static(__dirname + '/client'));
 io.on('connection', function(socket){
   userCount++;
   console.log('a user connected', userCount);
@@ -77,6 +91,57 @@ io.on('connection', function(socket){
     socket.emit('firstPlayer', 'firstPlayer');
     console.log('Creating a new room and joining it : ', newRoom[0]);
   }
+  socket.on('message', function(message) {
+    // for a real app, would be room-only (not broadcast)
+    socket.broadcast.emit('message', message);
+  });
+
+  socket.on('create or join', function(room) {
+    //increment the counter
+    socket.room = room;
+    if(!clients[room]){
+      clients[room] = 1;
+    }
+    else {
+      clients[room] += 1;
+    }
+    //if it's the first person, emit the created event
+    //else it's the second person
+    if (clients[room] === 1) {
+      socket.join(room);
+      socket.emit('created', room, socket.id);
+      console.log(clients);
+
+    } else if (clients[room] === 2) {
+      console.log('Client ID ' + socket.id + ' joined room ' + room);
+      io.sockets.in(room).emit('join', room);
+      socket.join(room);
+      console.log(room);
+      socket.emit('joined', room, socket.id);
+      io.sockets.in(room).emit('ready');
+    }
+    else {
+      socket.emit('full', room);
+    }
+  });
+
+  socket.on('disconnect',function(){
+    console.log('user disconnected');
+    clients[socket.room]--;
+    console.log(socket.room, clients[socket.room]);
+  });
+
+
+  socket.on('ipaddr', function() {
+    var ifaces = os.networkInterfaces();
+    for (var dev in ifaces) {
+      ifaces[dev].forEach(function(details) {
+        if (details.family === 'IPv4' && details.address !== '127.0.0.1') {
+          socket.emit('ipaddr', details.address);
+        }
+      });
+    }
+  });
 
   socket.on('sendMaze', function(maze) {
     console.log('in sendMaze');
