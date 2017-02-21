@@ -34,7 +34,7 @@ io.on('connection', function(socket){
     socket.join(newRoom.pop());
     socket.emit('secondPlayer', 'secondPlayer');
     socket.broadcast.to(rooms[socket.id]).emit('newPlayerRequestInfo');
-    console.log('Joining curretnly existing room!');
+    console.log('Joining currently existing room!');
   } else {
     newRoom.push('room' + roomCount);
     roomCount++;
@@ -45,6 +45,7 @@ io.on('connection', function(socket){
     console.log('Creating a new room and joining it : ', newRoom[0]);
   }
 
+  
   socket.on('sendMaze', function(maze) {
     console.log('in sendMaze');
     socket.broadcast.to(rooms[socket.id]).emit('receiveMaze', maze);
@@ -55,6 +56,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('userPositionChanged', function(userPosition) {
+    console.log('user position changed!');
     socket.broadcast.to(rooms[socket.id]).emit('receiveUserPosition', userPosition);
   });
 
@@ -76,7 +78,9 @@ io.on('connection', function(socket){
 
   socket.on('disconnect', function(){
     userCount--;
+    console.log('user disconnected! Current user count : ', userCount);
   });
+
   socket.emit('serverSendingMaze', mazes.mediumLevelMaze);
 });
 
@@ -90,10 +94,6 @@ app.use( function(req, res, next) {
 });
 
 app.use('/', express.static(path.join(__dirname, '/src')));
-
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, './src'));
-})
 
 http.listen(3000, function () {
   console.log('Example app listening on port 3000!');
