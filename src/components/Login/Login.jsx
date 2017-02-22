@@ -28,7 +28,7 @@ class Login extends React.Component {
       password: this.refs.password.value
     };
     console.log('attempt to sign in!');
-    this.state.socket.emit('signin', user);
+    window.socket.emit('signin', user);
   }
 
   render() {
