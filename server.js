@@ -6,7 +6,7 @@ var app = express();
 var http = require('http').Server(app);
 var path = require('path');
 var io = require('socket.io')(http);
-var mazes = require('./customMazes');
+var mazes = require('./src/customMazes');
 // var db = require('./db');
 
 /*************************************************************************************************
