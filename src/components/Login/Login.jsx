@@ -39,7 +39,7 @@ class Login extends React.Component {
       <br/>
       <br/>
     	Password:
-    	<input ref="password" required="true"/>
+    	<input type="password" ref="password" required="true"/>
       <br/>
       <br/>
       <button type="submit">Log in</button>
