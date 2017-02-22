@@ -1,11 +1,21 @@
 /*******************************************************
- Sockets to Server
+ Game Sockets
 *******************************************************/
 
 // Notify whether user is first or second player and update user position
 socket.on('firstPlayer', function(firstPlayer) {
   window.camera.position = firstPlayerPosition;
   console.log('You are first player');
+  engine.runRenderLoop(function(){
+    var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
+    if ( currentCameraPosition !== previousCameraPosition ) {
+        previousCameraPosition = currentCameraPosition;
+        socket.emit('userPositionChanged', camera.position);
+    }
+    console.log(window.camera.rotation);
+    scene.render();
+  });
+
 });
 
 socket.on('secondPlayer', function(secondPlayer) {
@@ -14,6 +24,16 @@ socket.on('secondPlayer', function(secondPlayer) {
   // Send player position to other player
   socket.emit('sendPlayer', window.camera.position);
   console.log('secondPlayer');
+  engine.runRenderLoop(function(){
+    var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
+    if ( currentCameraPosition !== previousCameraPosition ) {
+        previousCameraPosition = currentCameraPosition;
+        socket.emit('userPositionChanged', camera.position);
+    }
+    console.log(window.camera.rotation);
+    scene.render();
+  });
+
 });
 
 // Receive other player's position and render it
@@ -61,6 +81,7 @@ socket.on('incomingShot', function(shooter) {
     shootBullet(shooter, true, true);
   }
 });
+
 
 /*******************************************************
  User Control Event Listeners

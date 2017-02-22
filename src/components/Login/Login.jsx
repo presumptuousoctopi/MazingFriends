@@ -1,19 +1,48 @@
 import React from 'react'; 
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 
 class Login extends React.Component {
+  constructor() {
+    super();
+  }
+
+  componentDidMount() {
+    var socket = window.socket;
+    var context = this;
+    socket.on('signinResponse', function(message) {
+      if ( message ) {
+        alert(message);      
+      } else {
+        browserHistory.push({ pathname: '/home'});
+      }
+    });
+    this.setState({
+      socket: socket
+    });
+  }
+
+  signIn(e) {
+    e.preventDefault();
+    var user = {
+      username: this.refs.username.value,
+      password: this.refs.password.value
+    };
+    console.log('attempt to sign in!');
+    this.state.socket.emit('signin', user);
+  }
+
   render() {
     return (
-		<form>
+		<form onSubmit={this.signIn.bind(this)}>
     	Username:
-    	<input required="true"/>
+    	<input ref="username" required="true"/>
       <br/>
       <br/>
     	Password:
-    	<input required="true"/>
+    	<input ref="password" required="true"/>
       <br/>
       <br/>
-    	<Link to="/home"><button>Log in</button></Link>
+      <button type="submit">Log in</button>
     </form>
     );
   }
