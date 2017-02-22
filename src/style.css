@@ -1,4 +1,6 @@
 html, body {
+	background-image: url(maze-background.jpg);
+	background-size: cover;
 	overflow: hidden;
 	height: 100%;
 	width: 100%;
@@ -13,10 +15,10 @@ html, body {
 } 
 
 .Home, .Login {
+	opacity: 0.9;
   width: 1150px;
   height: 650px;
   background-color: darkred;
-  opacity: 0.75;
   position: absolute;
   top:0;
   bottom: 0;
@@ -57,6 +59,8 @@ html, body {
  margin-right: 15px;
  margin-bottom: 15px;
  padding: 10px;
+ background-color: darkred;
+ opacity: 0.9;
  border: solid 5px darkred;
 }
 
