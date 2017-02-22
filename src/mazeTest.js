@@ -1,4 +1,4 @@
-
+// This file is for creating mazes with different size
 generateMaze = function(x,y) {
     function maze(x,y) {
         var n=x*y-1;
@@ -69,4 +69,4 @@ generateMaze = function(x,y) {
     return display(maze(x+2,y));
 }
 
-generateMaze(4,4);
+generateMaze(20,20);

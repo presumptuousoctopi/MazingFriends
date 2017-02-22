@@ -1,7 +1,7 @@
 import React from 'react';
 import VideoChat from './VideoChat.js';
 
-class Chat extends React.Component {
+class VideoChat extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -26,7 +26,7 @@ class Chat extends React.Component {
   }
   sendMessage(e) {
     e.preventDefault();
-    this.state.socket.emit('sendMessage', this.state.message);
+    window.socket.emit('sendMessage', this.state.message);
   }
 
   updateInput(e) {

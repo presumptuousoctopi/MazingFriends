@@ -1,6 +1,6 @@
 import React from 'react';
-import Chat from './ChatView.js';
-import Home from './HomeView.js'
+import Chat from './ChatView.jsx';
+import Home from './HomeView.jsx'
 
 class App extends React.Component {
   render() {
