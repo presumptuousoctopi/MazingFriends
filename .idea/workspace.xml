@@ -2,123 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d5e261e-c9b1-4037-a6a8-f719ca933c1e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Game/GameView.jsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Home/JoinGame.jsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Login/Login.jsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Login/LoginView.jsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Home/NewGame.jsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Game/Options.jsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/components/ReactComponentsTest.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Login/Signup.jsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Game/TextChat.jsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Game/Timer.jsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Home/UserStats.jsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/js/babylon.max.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/js/cannon.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/js/oimo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/js/socket.io.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/static/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.0050a5766392caa9caec.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.06a160f1b0eeb2582bb5.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.09d8b5bf01cdfee3a3fc.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.17a11267e7afa94427ae.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.1a3cc794ecbe7895c0d0.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.1b873d59b9ddd0cef494.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.28070d7df264ea5512fc.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.2c81cdf3ef4aa2008b9e.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.322f40a3543e50bc8451.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.385e774b7c569ae7e01e.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.5cd6f02335e7b8496273.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.6760555129f217a290fc.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.71e5fe0decc8a9487ebf.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.77bdb251511f09ddcc1d.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.7c76ccd6f99c658f03b9.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.80f40328cadbb305b19d.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.82edea76ee0286d89d87.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.85828a30047911e47a9d.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.8e414832803eac2aa40a.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.9a41b4efe03b3d39ca1d.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.9b362a9fdc0c472a70b8.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.9fa7d9a777f57c20b124.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.a669733bda1dda912e12.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.ad9ae679b201c1a3dedc.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.b9d1246b9f6e67268a49.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c59ed7b736a58b497d0a.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.cc50eaee11829af48ab9.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.cc8173fef44a74bb692d.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.cf47ac75ee3bc30712ee.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.d1460ad553e9070ac8a5.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.d26c7463d63d5935eda8.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.d426b9da5ad2e0ad9f1f.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.d49e53d16685dfa3a44e.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.dbab3eb4bd632f215b17.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.e5b373fcd1119b6c1dc0.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.fd8b0ac511fb376d1186.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.fff0397a956e9a7c43fc.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0050a5766392caa9caec.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/06a160f1b0eeb2582bb5.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/09d8b5bf01cdfee3a3fc.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/17a11267e7afa94427ae.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/1a3cc794ecbe7895c0d0.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/1b873d59b9ddd0cef494.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/28070d7df264ea5512fc.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/2c81cdf3ef4aa2008b9e.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/322f40a3543e50bc8451.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/385e774b7c569ae7e01e.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/5cd6f02335e7b8496273.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/6760555129f217a290fc.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/71e5fe0decc8a9487ebf.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/77bdb251511f09ddcc1d.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/7c76ccd6f99c658f03b9.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/80f40328cadbb305b19d.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/82edea76ee0286d89d87.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/85828a30047911e47a9d.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/8e414832803eac2aa40a.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/9a41b4efe03b3d39ca1d.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/9b362a9fdc0c472a70b8.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/9fa7d9a777f57c20b124.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/a669733bda1dda912e12.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/ad9ae679b201c1a3dedc.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/b9d1246b9f6e67268a49.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/c59ed7b736a58b497d0a.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/cc50eaee11829af48ab9.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/cc8173fef44a74bb692d.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/cf47ac75ee3bc30712ee.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/d1460ad553e9070ac8a5.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/d26c7463d63d5935eda8.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/d426b9da5ad2e0ad9f1f.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/d49e53d16685dfa3a44e.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/dbab3eb4bd632f215b17.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/e5b373fcd1119b6c1dc0.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/fd8b0ac511fb376d1186.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/fff0397a956e9a7c43fc.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/App.jsx" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/customMazes.js" afterPath="$PROJECT_DIR$/src/customMazes.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/npm-debug.log.2329266021" afterPath="$PROJECT_DIR$/npm-debug.log.1203624937" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/ChatView.jsx" afterPath="$PROJECT_DIR$/src/components/Game/ChatView.jsx" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/GameOverView.jsx" afterPath="$PROJECT_DIR$/src/components/Game/GameOverView.jsx" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/HomeView.jsx" afterPath="$PROJECT_DIR$/src/components/Home/HomeView.jsx" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/LeaderboardVIew.jsx" afterPath="$PROJECT_DIR$/src/components/Home/Leaderboard.jsx" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/VideoChat.js" afterPath="$PROJECT_DIR$/src/components/Game/VideoChat.jsx" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/socket.js" afterPath="$PROJECT_DIR$/src/gameSocket.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/components/MainTest.js" afterPath="$PROJECT_DIR$/test/components/ServerGameSocketTest.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/config/ConfigTest.js" afterPath="$PROJECT_DIR$/test/config/ConfigTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/babylon.js" afterPath="$PROJECT_DIR$/src/js/babylon.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/GameView.jsx" afterPath="$PROJECT_DIR$/src/components/Game/GameView.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/HomeView.jsx" afterPath="$PROJECT_DIR$/src/components/Home/HomeView.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/build/bundle.js.map" afterPath="$PROJECT_DIR$/src/build/bundle.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/build/bundle.js" afterPath="$PROJECT_DIR$/src/build/bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.js" afterPath="$PROJECT_DIR$/db.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game.js" afterPath="$PROJECT_DIR$/src/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/PhantomJS 2.1.1 (Windows 8 0.0.0)/index.html" afterPath="$PROJECT_DIR$/coverage/PhantomJS 2.1.1 (Windows 8 0.0.0)/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameSocket.js" afterPath="$PROJECT_DIR$/src/gameSocket.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/style.css" afterPath="$PROJECT_DIR$/src/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util.js" afterPath="$PROJECT_DIR$/src/util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.config.js" afterPath="$PROJECT_DIR$/webpack.config.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MazingFriends.iws" />
@@ -140,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48181817">
-              <caret line="28" column="53" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
+            <state vertical-scroll-proportion="-15.555555">
+              <caret line="28" column="48" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -154,17 +45,7 @@
         <entry file="file://$PROJECT_DIR$/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-15.625">
-              <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HomeView.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Home/HomeView.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -174,27 +55,47 @@
         <entry file="file://$PROJECT_DIR$/src/components/Login/Signup.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
+              <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginView.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Login/LoginView.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db.js">
+      <file leaf-file-name="HomeView.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Home/HomeView.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="3" selection-start-line="32" selection-start-column="3" selection-end-line="32" selection-end-column="3" />
+            <state vertical-scroll-proportion="-20.148148">
+              <caret line="83" column="113" selection-start-line="83" selection-start-column="113" selection-end-line="83" selection-end-column="113" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="game.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/game.js">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.05199307">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Login.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Login/Login.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="87" selection-start-line="38" selection-start-column="87" selection-end-line="38" selection-end-column="87" />
+              <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -203,10 +104,10 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-6.6666665">
+              <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
               <folding>
-                <marker date="1487785161000" expanded="true" signature="301:470" placeholder="&lt;xml/&gt;" />
+                <marker date="1487800822000" expanded="true" signature="301:470" placeholder="&lt;xml/&gt;" />
               </folding>
             </state>
           </provider>
@@ -236,13 +137,20 @@
         <option value="$PROJECT_DIR$/src/components/ChatView.jsx" />
         <option value="$PROJECT_DIR$/src/webrtc.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/components/Game/ChatView.jsx" />
         <option value="$PROJECT_DIR$/db.js" />
         <option value="$PROJECT_DIR$/src/game.js" />
-        <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/components/Game/VideoChat.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Login/Login.jsx" />
+        <option value="$PROJECT_DIR$/src/gameSocket.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/index.html" />
+        <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/src/components/Game/GameView.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Login/Signup.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Home/HomeView.jsx" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -328,6 +236,90 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Login" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -604,34 +596,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.025996534">
-          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Game/Options.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/GameView.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/ChatView.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -652,45 +620,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="87" selection-start-line="38" selection-start-column="87" selection-end-line="38" selection-end-column="87" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home/HomeView.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Login/Signup.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Game/VideoChat.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="360" column="45" selection-start-line="360" selection-start-column="45" selection-end-line="360" selection-end-column="45" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1487785161000" expanded="true" signature="301:470" placeholder="&lt;xml/&gt;" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -702,18 +636,132 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.html">
+    <entry file="file://$PROJECT_DIR$/src/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.625">
-          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="87" selection-start-line="38" selection-start-column="87" selection-end-line="38" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameSocket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7268212">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/ChatView.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.589404">
+          <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/TitleView.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37251654">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48181817">
-          <caret line="28" column="53" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
+        <state vertical-scroll-proportion="-15.555555">
+          <caret line="28" column="48" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/GameView.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18197574">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.625">
+          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.6666665">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding>
+            <marker date="1487800822000" expanded="true" signature="301:470" placeholder="&lt;xml/&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Login/Login.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Login/Signup.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home/JoinGame.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home/NewGame.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Login/LoginView.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home/HomeView.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.148148">
+          <caret line="83" column="113" selection-start-line="83" selection-start-column="113" selection-end-line="83" selection-end-column="113" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.05199307">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>

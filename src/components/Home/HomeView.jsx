@@ -81,7 +81,7 @@ class Home extends React.Component {
 	      	<div className={this.state.join}>
 	      	Room Name:
 	      	<input onChange={this.handleChange} name="joinRoomName"></input>
-      		<button className="Play" onClick={this.joinRoomButton}>Join Room</button>
+				<Link to="/game"><button className="Play" onClick={this.joinRoomButton}>Join Room</button></Link>
       		<br/>
       		<br/>
 	      	</div>
