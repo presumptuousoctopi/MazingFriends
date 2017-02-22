@@ -35,8 +35,7 @@ class TextChat extends React.Component {
 
   render() {
     return (
-      <div className="Chat">
-        <h1> Chat </h1>
+      <div >
         <form onSubmit={this.sendMessage.bind(this)}> 
           <input type="text" value={this.state.message} onChange={this.updateInput.bind(this)} />
           <input type="submit" value="Submit" />

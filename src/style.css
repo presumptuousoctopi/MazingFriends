@@ -64,6 +64,10 @@ html, body {
  border: solid 5px darkred;
 }
 
+.Options {
+	text-align: center;;
+}
+
 #canvas {
  width: 71%; 
  height: 97%;
@@ -71,20 +75,16 @@ html, body {
  display: inline-block;
 }
 
-/*.videoChat {*/
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*right: 0;*/
-/*}*/
 #videos {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+	padding: 15px;
+	margin: 15px;
 }
 
 #localVideo {
-     width: 50px;
+     width: 300px;
+     float: center;
  }
 #remoteVideo {
-    width: 50px;
+    width: 300px;
+    float: center;
 }
