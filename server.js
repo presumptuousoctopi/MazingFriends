@@ -1,13 +1,33 @@
 const webpack = require('webpack');
 const config = require('./webpack.config');
 const open = require('open');
+var os = require('os');
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var path = require('path');
 var io = require('socket.io')(http);
+var port = process.env.PORT || 3000;
 var mazes = require('./customMazes');
 // var db = require('./db');
+/*************************************************************************************************
+ Node & Express
+ *************************************************************************************************/
+
+app.use( function(req, res, next) {
+  console.log('current serving ', req.method, ' @ ', req.url);
+  next();
+});
+
+app.use('/', express.static(path.join(__dirname, '/src')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, './src'));
+})
+
+http.listen(port, function () {
+  console.log('Example app listening on port 3000!');
+})
 
 /*************************************************************************************************
  Socket.io
@@ -19,7 +39,7 @@ var playerRoom = {};
 var messages = {};
 var roomCount = 0;
 var newRoom = [];
-
+var clients = {};
 
 // Start socket.io server
 io.on('connection', function(socket){
@@ -76,6 +96,59 @@ io.on('connection', function(socket){
     }
   });
 
+  socket.on('message', function(message) {
+    // for a real app, would be room-only (not broadcast)
+    socket.broadcast.emit('message', message);
+  });
+
+  socket.on('create or join', function(room) {
+    //increment the counter
+    socket.room = room;
+    if(!clients[room]){
+      clients[room] = 1;
+    }
+    else {
+      clients[room] += 1;
+    }
+    console.log(clients);
+    //if it's the first person, emit the created event
+    //else it's the second person
+    if (clients[room] === 1) {
+      socket.join(room);
+      socket.emit('created', room, socket.id);
+      console.log(clients);
+
+    } else if (clients[room] === 2) {
+      console.log('Client ID ' + socket.id + ' joined room ' + room);
+      io.in(room).emit('join', room);
+      socket.join(room);
+      console.log(room);
+      socket.emit('joined', room, socket.id);
+      io.sockets.in(room).emit('ready');
+    }
+    else {
+      socket.emit('full', room);
+    }
+  });
+
+  //socket.on('disconnect',function(){
+  //  console.log('user disconnected');
+  //  clients[socket.room]--;
+  //  console.log(socket.room, clients[socket.room]);
+  //});
+
+
+  socket.on('ipaddr', function() {
+    var ifaces = os.networkInterfaces();
+    for (var dev in ifaces) {
+      ifaces[dev].forEach(function(details) {
+        if (details.family === 'IPv4' && details.address !== '127.0.0.1') {
+          socket.emit('ipaddr', details.address);
+        }
+      });
+    }
+  });
+
   // Receive a user's initial position and send it to all other players in the room
   socket.on('sendPlayer', function(playerCamera) {
     socket.broadcast.to(playerRoom[socket.id]).emit('receivePlayer', playerCamera);
@@ -92,46 +165,32 @@ io.on('connection', function(socket){
   });
 
   // Receive a user's message and return all messages posted in the room
-  socket.on('sendMessage', function(message) {
-    var roomName = playerRoom[socket.id];
-    var roomMessages = messages[roomName] || [];
-    // Add new message and userId to messages array
-    roomMessages.push({
-      userId: socket.id,
-      message: message
-    });
-    // Save the update messages array
-    messages[roomName] = roomMessages;
-    // Send back ten newest messages to all users in the room
-    var lastTenMessages = roomMessages.slice(roomMessages.length-10);
-    io.to(roomName).emit('receiveMessage', lastTenMessages);
+socket.on('sendMessage', function(message) {
+  var roomName = playerRoom[socket.id];
+  var roomMessages = messages[roomName] || [];
+  // Add new message and userId to messages array
+  roomMessages.push({
+    userId: socket.id,
+    message: message
   });
-
-  // Decerement user count when a user leaves the game
-  socket.on('disconnect', function(){
-    userCount--;
-    rooms[playerRoom[socket.id]]--;
-    console.log('user disconnected! Current user count : ', userCount);
-  });
-
-  // Send back number of users in the server
-  socket.on('numberOfUsers', function() {
-    socket.emit('receiveNumberOfUsers', userCount);
-  });
-
+  // Save the update messages array
+  messages[roomName] = roomMessages;
+  // Send back ten newest messages to all users in the room
+  var lastTenMessages = roomMessages.slice(roomMessages.length-10);
+  io.to(roomName).emit('receiveMessage', lastTenMessages);
 });
 
-/*************************************************************************************************
- Node & Express
- *************************************************************************************************/
-
-app.use( function(req, res, next) {
-  console.log('current serving ', req.method, ' @ ', req.url);
-  next();
+// Decerement user count when a user leaves the game
+socket.on('disconnect', function(){
+  userCount--;
+  rooms[playerRoom[socket.id]]--;
+  console.log('user disconnected! Current user count : ', userCount);
 });
 
-app.use('/', express.static(path.join(__dirname, './src')));
-
-http.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+// Send back number of users in the server
+socket.on('numberOfUsers', function() {
+  socket.emit('receiveNumberOfUsers', userCount);
 });
+});
+
+
