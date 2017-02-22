@@ -1,4 +1,5 @@
 import React from 'react';
+import VideoChat from './VideoChat.jsx';
 
 class Chat extends React.Component {
   constructor() {
@@ -49,6 +50,7 @@ class Chat extends React.Component {
             </div>
           ))}
         </div>
+        <VideoChat></VideoChat>
       </div>
     );
   }

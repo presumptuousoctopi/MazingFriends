@@ -10,7 +10,9 @@
     "lint": "eslint ./src",
     "start": "webpack --watch | nodemon server.js",
     "test": "karma start",
-    "test:watch": "karma start --autoWatch=true --singleRun=false"
+    "test:watch": "karma start --autoWatch=true --singleRun=false",
+    "dev": "webpack -d --progress --colors --watch",
+    "build" : "webpack -p"
   },
   "repository": "",
   "keywords": [],
@@ -60,6 +62,7 @@
     "bcryptjs": "^2.4.3",
     "child_process": "^1.0.2",
     "core-js": "^2.0.0",
+    "express": "^4.14.1",
     "enzyme": "^2.7.1",
     "fs": "0.0.1-security",
     "mysql": "^2.13.0",

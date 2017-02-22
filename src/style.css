@@ -66,3 +66,21 @@ html, body {
  float: left;
  display: inline-block;
 }
+
+/*.videoChat {*/
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*right: 0;*/
+/*}*/
+#videos {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#localVideo {
+     width: 50px;
+ }
+#remoteVideo {
+    width: 50px;
+}
