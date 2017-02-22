@@ -12,9 +12,9 @@ socket.on('firstPlayer', function(firstPlayer) {
         previousCameraPosition = currentCameraPosition;
         socket.emit('userPositionChanged', camera.position);
     }
-    // console.log(window.camera.rotation);
+    console.log(window.camera.rotation);
     scene.render();
-});
+  });
 
 });
 
@@ -30,9 +30,9 @@ socket.on('secondPlayer', function(secondPlayer) {
         previousCameraPosition = currentCameraPosition;
         socket.emit('userPositionChanged', camera.position);
     }
-    // console.log(window.camera.rotation);
+    console.log(window.camera.rotation);
     scene.render();
-});
+  });
 
 });
 

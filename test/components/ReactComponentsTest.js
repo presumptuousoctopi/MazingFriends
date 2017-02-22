@@ -2,6 +2,7 @@
 /*global expect */
 /*eslint no-console: 0*/
 'use strict';
+
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';  
 import createComponent from '../helpers/shallowRenderHelper';
@@ -39,7 +40,7 @@ describe('App component', function () {
   it('should be a stateful class component', function() {
     expect(React.Component.isPrototypeOf(App)).to.be.true;
   });
-
+  
 });
 
 describe('ChatView component', function () {
