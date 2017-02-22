@@ -23,15 +23,15 @@ app.use( function(req, res, next) {
   next();
 });
 
-app.use('/', express.static(path.join(__dirname, '/src')));
+app.use(express.static(__dirname + '/src'));
 
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, './src/index.html'));
-})
+app.get('*', function (request, response){
+  response.sendFile(path.join(__dirname, './src/index.html'))
+});
 
 http.listen(port, function () {
   console.log('Example app listening on port 3000!');
-})
+});
 
 /*************************************************************************************************
  Socket.io
