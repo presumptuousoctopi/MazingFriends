@@ -12,7 +12,7 @@ html, body {
 	opacity: 1.0;
 } 
 
-.Home {
+.Home, .Login {
   width: 1150px;
   height: 650px;
   background-color: darkred;

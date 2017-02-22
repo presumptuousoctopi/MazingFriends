@@ -19,7 +19,7 @@ window.addSkyBox = function() {
     skybox.infiniteDistance = true;
     skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
     skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
-    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/skybox", scene);
+    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("./textures/skybox", scene);
     skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
 };
 
@@ -57,7 +57,7 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     camera.keysDown.push(83); 
     camera.keysLeft.push(65); 
     camera.keysRight.push(68);
-    camera.speed = 10;
+    camera.speed = 3;
     camera.inertia = 0.3;
     camera.angularSensibility = 500;
     camera.checkCollisions = true;

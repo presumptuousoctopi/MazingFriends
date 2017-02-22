@@ -1,6 +1,16 @@
-import 'core-js/fn/object/assign';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/App';
+import { render } from 'react-dom';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+import Game from './components/Game/GameView.jsx'
+import Login from './components/Login/LoginView.jsx'
+import Home from './components/Home/HomeView.jsx'
+
+render((
+  <Router history={browserHistory}>
+		<Route path="/" component={Login} />
+    <Route path="/game" component={Game} />
+		<Route path="/home" component={Home} />
+	</Router>
+	), document.getElementById('app')
+);

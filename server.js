@@ -8,8 +8,12 @@ var http = require('http').Server(app);
 var path = require('path');
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
-var mazes = require('./customMazes');
-// var db = require('./db');
+var mazes = require('./src/customMazes');
+var db = require('./db.js');
+var bcrypt = require('bcryptjs');
+
+
+
 /*************************************************************************************************
  Node & Express
  *************************************************************************************************/
@@ -21,8 +25,8 @@ app.use( function(req, res, next) {
 
 app.use('/', express.static(path.join(__dirname, '/src')));
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, './src'));
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, './src/index.html'));
 })
 
 http.listen(port, function () {
@@ -33,6 +37,11 @@ http.listen(port, function () {
  Socket.io
  *************************************************************************************************/
 
+/*************************************************************************************************
+ Game and Webrtc Signal Sockets
+*************************************************************************************************/
+
+
 var userCount = 0;
 var rooms = {};
 var playerRoom = {};
@@ -40,6 +49,9 @@ var messages = {};
 var roomCount = 0;
 var newRoom = [];
 var clients = {};
+var usernames = {};
+
+
 
 // Start socket.io server
 io.on('connection', function(socket){
@@ -130,14 +142,6 @@ io.on('connection', function(socket){
       socket.emit('full', room);
     }
   });
-
-  //socket.on('disconnect',function(){
-  //  console.log('user disconnected');
-  //  clients[socket.room]--;
-  //  console.log(socket.room, clients[socket.room]);
-  //});
-
-
   socket.on('ipaddr', function() {
     var ifaces = os.networkInterfaces();
     for (var dev in ifaces) {
@@ -187,10 +191,83 @@ socket.on('disconnect', function(){
   console.log('user disconnected! Current user count : ', userCount);
 });
 
-// Send back number of users in the server
-socket.on('numberOfUsers', function() {
-  socket.emit('receiveNumberOfUsers', userCount);
-});
-});
+  // Send back number of users in the server
+  socket.on('numberOfUsers', function() {
+    socket.emit('receiveNumberOfUsers', userCount);
+  });
+  
+  /*************************************************************************************************
+   Authentication Sockets
+  *************************************************************************************************/
+  socket.on('signup', function(userInfo) {
+    var username = userInfo.username;
+    var password = userInfo.password;
+    console.log('in signup');
+    // Check whether username already exists
+    db.User
+      .findOne({ 
+        where: { 
+          username: username 
+        }
+      })
+      .then( function(user) {
+        bcrypt.genSalt(10, function(err2, salt) {
+          if (user || err2) {
+            // If user already exists, send an error signal back to user
+            socket.emit('signupResponse', 'Username already exists');
+          } else {
+            bcrypt.hash(password, salt, function(err, hashedPassword) {
+              db.User.create({ 
+                username: username,
+                password: hashedPassword
+              })
+            });
+            usernames[socket.id] = username;
+            socket.emit('signupResponse', null);
+            console.log('User created!');
+          }
+        });
+      });
+  });
 
+  socket.on('signin', function(userInfo) {
+    var username = userInfo.username;
+    var password = userInfo.password;
+    console.log('in signin');
+    // CHeck whether user already exists
+    db.User
+      .findOne({ 
+        where: { 
+          username: username 
+        }
+      })
+      .then( function(user) {
+        // If there is no such user, then check password
+        if ( !user ) {
+          socket.emit('signinResponse', 'user does not exist');
+        } else {
+          bcrypt.compare(password, user.password, function(err, isAuthenticated) {
+            if( err || !isAuthenticated) {
+              console.log(err, password, user.password);
+              socket.emit('signinResponse', 'wrong password');
+            } else {
+              usernames[socket.id] = username;
+              socket.emit('signinResponse', null);
+            }
+          });
+        }
+      })
+  });
+
+});
+// socket.emit('signup', {
+//   username: 'djk',
+//   password: 'hey'
+// });
+// socket.on('signupError', function(msg) {
+//   alert(msg);
+// });
+// socket.on('signinError', function(msg) {
+//   alert(msg);
+// });
 
