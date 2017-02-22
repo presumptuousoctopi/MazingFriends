@@ -2,7 +2,8 @@
 /*global expect */
 /*eslint no-console: 0*/
 'use strict';
-
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';  
 import createComponent from '../helpers/shallowRenderHelper';
 import App from 'components/App';
 import ChatView from 'components/ChatView';
@@ -10,6 +11,17 @@ import GameOverView from 'components/GameOverView';
 import HomeView from 'components/HomeView';
 import LeaderboardView from 'components/LeaderboardView';
 import TitleView from 'components/TitleView';
+import { shallow, mount, render } from 'enzyme';
+const wrapper = shallow(<App />);
+
+var {
+    Simulate,
+    renderIntoDocument,
+    findRenderedDOMComponentWithClass,
+    scryRenderedDOMComponentsWithClass
+  } = TestUtils;
+
+describe('<')
 
 describe('App component', function () {
   beforeEach(function () {
@@ -24,6 +36,9 @@ describe('App component', function () {
     expect(this.App.props.children.length).to.equal(2);
   });
 
+  it('should be a stateful class component', function() {
+    expect(React.Component.isPrototypeOf(App)).to.be.true;
+  });
 
 });
 

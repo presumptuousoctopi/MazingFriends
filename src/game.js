@@ -37,12 +37,3 @@ window.randomSphereInAir = addSphere();
 
 // Update player location to other clients via socket.io
 var previousCameraPosition = camera.position.x + camera.position.y + camera.position.z;
-engine.runRenderLoop(function(){
-    var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
-    if ( currentCameraPosition !== previousCameraPosition ) {
-        previousCameraPosition = currentCameraPosition;
-        socket.emit('userPositionChanged', camera.position);
-    }
-    // console.log(window.camera.rotation);
-    scene.render();
-});

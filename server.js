@@ -7,10 +7,11 @@ var http = require('http').Server(app);
 var path = require('path');
 var io = require('socket.io')(http);
 var mazes = require('./src/customMazes');
-// var db = require('./db');
+var db = require('./db');
+var bcrypt = require('bcryptjs');
 
 /*************************************************************************************************
- Socket.io
+ Game Sockets
 *************************************************************************************************/
 
 var userCount = 0;
@@ -19,6 +20,7 @@ var playerRoom = {};
 var messages = {};
 var roomCount = 0;
 var newRoom = [];
+var usernames = {};
 
 
 // Start socket.io server
@@ -97,7 +99,7 @@ io.on('connection', function(socket){
     var roomMessages = messages[roomName] || [];
     // Add new message and userId to messages array
     roomMessages.push({ 
-      userId: socket.id,
+      userId: usernames[socket.id],
       message: message
     });
     // Save the update messages array
@@ -118,8 +120,70 @@ io.on('connection', function(socket){
   socket.on('numberOfUsers', function() {
     socket.emit('receiveNumberOfUsers', userCount);
   });
+  
+  /*************************************************************************************************
+   Authentication Sockets
+  *************************************************************************************************/
+  socket.on('signup', function(userInfo) {
+    var username = userInfo.username;
+    var password = userInfo.password;
+
+    // Check whether username already exists
+    db.User
+      .findOne({ 
+        where: { 
+          username: username 
+        }
+      })
+      .then( function(user) {
+        bcrypt.genSalt(10, function(err2, salt) {
+          if (user || err2) {
+            // If user already exists, send an error signal back to user
+            socket.emit('signupError', 'Username already exists');
+          } else {
+            bcrypt.hash(password, salt, function(err, hashedPassword) {
+              db.User.create({ 
+                username: username,
+                password: hashedPassword
+              })
+            });
+            usernames[socket.id] = username;
+            console.log('User created!');
+          }
+        });
+      });
+  });
+
+  socket.on('signin', function(userInfo) {
+    var username = userInfo.username;
+    var password = userInfo.password;
+
+    // CHeck whether user already exists
+    db.User
+      .findOne({ 
+        where: { 
+          username: username 
+        }
+      })
+      .then( function(user) {
+        // If there is no such user, then check password
+        bcrypt.compare(password, user.password, function( err, isAuthenticated) {
+          if( err || !isAuthenticated) {
+            console.log(err, password, user.password);
+            socket.emit('signinError', 'wrong password');
+          } else {
+            usernames[socket.id] = username;
+          }
+        });
+      })
+      .catch( function(err) {
+        // If username does not exist, send an error signal back to user
+        socket.emit('signinError', 'User does not exist');
+      });
+  });
 
 });
+
 
 /*************************************************************************************************
  Node & Express
@@ -135,3 +199,15 @@ app.use('/', express.static(path.join(__dirname, './src')));
 http.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 })
+
+
+// socket.emit('signup', {
+//   username: 'djk',
+//   password: 'hey'
+// });
+// socket.on('signupError', function(msg) {
+//   alert(msg);
+// });
+// socket.on('signinError', function(msg) {
+//   alert(msg);
+// });
