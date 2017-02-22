@@ -32,7 +32,7 @@ class Signup extends React.Component {
       password: this.refs.password.value
     };
     console.log('in signup', newUser);
-    this.state.socket.emit('signup', newUser);
+    window.socket.emit('signup', newUser);
   }
 
   render() {
