@@ -1,18 +1,46 @@
 const webpack = require('webpack');
 const config = require('./webpack.config');
 const open = require('open');
+var os = require('os');
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var path = require('path');
 var io = require('socket.io')(http);
+var port = process.env.PORT || 3000;
 var mazes = require('./src/customMazes');
-var db = require('./db');
+var db = require('./db.js');
 var bcrypt = require('bcryptjs');
 
+
+
 /*************************************************************************************************
- Game Sockets
+ Node & Express
+ *************************************************************************************************/
+
+app.use( function(req, res, next) {
+  console.log('current serving ', req.method, ' @ ', req.url);
+  next();
+});
+
+app.use('/', express.static(path.join(__dirname, '/src')));
+
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, './src/index.html'));
+})
+
+http.listen(port, function () {
+  console.log('Example app listening on port 3000!');
+})
+
+/*************************************************************************************************
+ Socket.io
+ *************************************************************************************************/
+
+/*************************************************************************************************
+ Game and Webrtc Signal Sockets
 *************************************************************************************************/
+
 
 var userCount = 0;
 var rooms = {};
@@ -20,7 +48,9 @@ var playerRoom = {};
 var messages = {};
 var roomCount = 0;
 var newRoom = [];
+var clients = {};
 var usernames = {};
+
 
 
 // Start socket.io server
@@ -33,7 +63,7 @@ io.on('connection', function(socket){
     // If no empty room exists, make a new room and put user into it
     if ( !rooms[roomName] ) {
       // Create/save room and increment room count
-      rooms[roomName] = 1; 
+      rooms[roomName] = 1;
       roomCount++;
       // Associate room name to user's socket id
       playerRoom[socket.id] = roomName;
@@ -78,6 +108,51 @@ io.on('connection', function(socket){
     }
   });
 
+  socket.on('message', function(message) {
+    // for a real app, would be room-only (not broadcast)
+    socket.broadcast.emit('message', message);
+  });
+
+  socket.on('create or join', function(room) {
+    //increment the counter
+    socket.room = room;
+    if(!clients[room]){
+      clients[room] = 1;
+    }
+    else {
+      clients[room] += 1;
+    }
+    console.log(clients);
+    //if it's the first person, emit the created event
+    //else it's the second person
+    if (clients[room] === 1) {
+      socket.join(room);
+      socket.emit('created', room, socket.id);
+      console.log(clients);
+
+    } else if (clients[room] === 2) {
+      console.log('Client ID ' + socket.id + ' joined room ' + room);
+      io.in(room).emit('join', room);
+      socket.join(room);
+      console.log(room);
+      socket.emit('joined', room, socket.id);
+      io.sockets.in(room).emit('ready');
+    }
+    else {
+      socket.emit('full', room);
+    }
+  });
+  socket.on('ipaddr', function() {
+    var ifaces = os.networkInterfaces();
+    for (var dev in ifaces) {
+      ifaces[dev].forEach(function(details) {
+        if (details.family === 'IPv4' && details.address !== '127.0.0.1') {
+          socket.emit('ipaddr', details.address);
+        }
+      });
+    }
+  });
+
   // Receive a user's initial position and send it to all other players in the room
   socket.on('sendPlayer', function(playerCamera) {
     socket.broadcast.to(playerRoom[socket.id]).emit('receivePlayer', playerCamera);
@@ -90,31 +165,31 @@ io.on('connection', function(socket){
 
   // Receive initial location of bullet that was fired and send it to all other players in the room
   socket.on('shotFired', function(shooter) {
-   socket.broadcast.to(playerRoom[socket.id]).emit('incomingShot', shooter );    
+    socket.broadcast.to(playerRoom[socket.id]).emit('incomingShot', shooter );
   });
 
   // Receive a user's message and return all messages posted in the room
-  socket.on('sendMessage', function(message) {
-    var roomName = playerRoom[socket.id];
-    var roomMessages = messages[roomName] || [];
-    // Add new message and userId to messages array
-    roomMessages.push({ 
-      userId: usernames[socket.id],
-      message: message
-    });
-    // Save the update messages array
-    messages[roomName] = roomMessages;
-    // Send back ten newest messages to all users in the room
-    var lastTenMessages = roomMessages.slice(roomMessages.length-10);
-    io.to(roomName).emit('receiveMessage', lastTenMessages);
+socket.on('sendMessage', function(message) {
+  var roomName = playerRoom[socket.id];
+  var roomMessages = messages[roomName] || [];
+  // Add new message and userId to messages array
+  roomMessages.push({
+    userId: socket.id,
+    message: message
   });
+  // Save the update messages array
+  messages[roomName] = roomMessages;
+  // Send back ten newest messages to all users in the room
+  var lastTenMessages = roomMessages.slice(roomMessages.length-10);
+  io.to(roomName).emit('receiveMessage', lastTenMessages);
+});
 
-  // Decerement user count when a user leaves the game
-  socket.on('disconnect', function(){
-    userCount--;
-    rooms[playerRoom[socket.id]]--;
-    console.log('user disconnected! Current user count : ', userCount);
-  });
+// Decerement user count when a user leaves the game
+socket.on('disconnect', function(){
+  userCount--;
+  rooms[playerRoom[socket.id]]--;
+  console.log('user disconnected! Current user count : ', userCount);
+});
 
   // Send back number of users in the server
   socket.on('numberOfUsers', function() {
@@ -185,24 +260,6 @@ io.on('connection', function(socket){
   });
 
 });
-
-
-/*************************************************************************************************
- Node & Express
-*************************************************************************************************/
-
-app.use( function(req, res, next) {
-  console.log('current serving ', req.method, ' @ ', req.url);
-  next();
-});
-
-app.use('/', express.static(path.join(__dirname, './src')));
-
-http.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-})
-
-
 // socket.emit('signup', {
 //   username: 'djk',
 //   password: 'hey'
@@ -213,3 +270,4 @@ http.listen(3000, function () {
 // socket.on('signinError', function(msg) {
 //   alert(msg);
 // });
+

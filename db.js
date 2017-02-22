@@ -35,7 +35,7 @@ var Leaderboard = sequelize.define('leaderboard', {
 var Gamestate = sequelize.define('gamestate', {
   playerOnePosition: Sequelize.STRING,
   playerTwoPosition: Sequelize.STRING,
-  level: Sequelize.INTEGER  
+  level: Sequelize.INTEGER
 });
 
 // User.sync({force: true}).then( function() {

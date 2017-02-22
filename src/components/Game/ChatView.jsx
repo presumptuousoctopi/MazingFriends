@@ -1,5 +1,6 @@
 import React from 'react';
 import TextChat from './TextChat.jsx'
+import VideoChat from './VideoChat.jsx';
 
 class Chat extends React.Component {
   constructor() {
