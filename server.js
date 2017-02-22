@@ -110,6 +110,7 @@ io.on('connection', function(socket){
     else {
       clients[room] += 1;
     }
+    console.log(clients);
     //if it's the first person, emit the created event
     //else it's the second person
     if (clients[room] === 1) {

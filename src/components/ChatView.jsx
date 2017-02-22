@@ -1,7 +1,7 @@
 import React from 'react';
 import VideoChat from './VideoChat.js';
 
-class VideoChat extends React.Component {
+class Chat extends React.Component {
   constructor() {
     super();
     this.state = {
