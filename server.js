@@ -127,7 +127,7 @@ io.on('connection', function(socket){
   socket.on('signup', function(userInfo) {
     var username = userInfo.username;
     var password = userInfo.password;
-
+    console.log('in signup');
     // Check whether username already exists
     db.User
       .findOne({ 
@@ -139,7 +139,7 @@ io.on('connection', function(socket){
         bcrypt.genSalt(10, function(err2, salt) {
           if (user || err2) {
             // If user already exists, send an error signal back to user
-            socket.emit('signupError', 'Username already exists');
+            socket.emit('signupResponse', 'Username already exists');
           } else {
             bcrypt.hash(password, salt, function(err, hashedPassword) {
               db.User.create({ 
@@ -148,6 +148,7 @@ io.on('connection', function(socket){
               })
             });
             usernames[socket.id] = username;
+            socket.emit('signupResponse', null);
             console.log('User created!');
           }
         });
@@ -157,7 +158,7 @@ io.on('connection', function(socket){
   socket.on('signin', function(userInfo) {
     var username = userInfo.username;
     var password = userInfo.password;
-
+    console.log('in signin');
     // CHeck whether user already exists
     db.User
       .findOne({ 
@@ -167,19 +168,20 @@ io.on('connection', function(socket){
       })
       .then( function(user) {
         // If there is no such user, then check password
-        bcrypt.compare(password, user.password, function( err, isAuthenticated) {
-          if( err || !isAuthenticated) {
-            console.log(err, password, user.password);
-            socket.emit('signinError', 'wrong password');
-          } else {
-            usernames[socket.id] = username;
-          }
-        });
+        if ( !user ) {
+          socket.emit('signinResponse', 'user does not exist');
+        } else {
+          bcrypt.compare(password, user.password, function(err, isAuthenticated) {
+            if( err || !isAuthenticated) {
+              console.log(err, password, user.password);
+              socket.emit('signinResponse', 'wrong password');
+            } else {
+              usernames[socket.id] = username;
+              socket.emit('signinResponse', null);
+            }
+          });
+        }
       })
-      .catch( function(err) {
-        // If username does not exist, send an error signal back to user
-        socket.emit('signinError', 'User does not exist');
-      });
   });
 
 });
