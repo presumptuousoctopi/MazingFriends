@@ -1,15 +1,27 @@
 var Sequelize = require('Sequelize');
-var sequelize = new Sequelize('mazingFriends', 'root',  'password', {
-  host: 'localhost',
-  dialect: 'mysql',
 
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  },
-
-});
+var sequelize;
+if (process.env.HEROKU_POSTGRESQL_BRONZE_URL) {
+  // the application is executed on Heroku ... use the postgres database
+  sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_BRONZE_URL, {
+    dialect:  'postgres',
+    protocol: 'postgres',
+    port:     match[4],
+    host:     match[3],
+    logging:  true //false
+  })
+} else {
+  // the application is executed on the local machine ... use mysql
+  sequelize = new Sequelize('postgres', 'postgres',  'kim0243', {
+    host: 'localhost',
+    dialect: 'postgres',
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000
+    },
+  });
+}
 
 sequelize
   .authenticate()
