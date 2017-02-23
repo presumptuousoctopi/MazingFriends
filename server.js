@@ -35,7 +35,7 @@ app.get('/favicon.ico', function(request, response) {
 });
 
 app.get('/build/bundle.js', function(request, response) {
-  response.sendFile(path.join(__dirname, './build/bundle.js'));  
+  response.sendFile(path.join(__dirname, './src/build/bundle.js'));  
 });
 
 app.get('/', function (request, response){
