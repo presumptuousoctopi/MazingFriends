@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link, browserHistory } from 'react-router'
+import axios from 'axios'
 import TextChat from './TextChat.jsx'
 import VideoChat from './VideoChat.jsx';
 
@@ -6,15 +8,20 @@ class Chat extends React.Component {
   constructor() {
     super();
     this.state = {
-      text: null
+      text: "video"
     }
+    console.log(this.state.text)
   }
 
   switchChat(value) {
     this.setState({
       text: value
     })
-    console.log(this.state.text)
+  }
+
+  stopGame() {
+    location.reload()
+    (browserHistory.push({ pathname: '/home'}))
   }
 
   render() {
@@ -22,13 +29,15 @@ class Chat extends React.Component {
       <div className="Chat">
         <div className="Options">
           <h1>Mazing Friends</h1>
+          <button className="optionButtons">Controls</button>
+          <button className="optionButtons" onClick={this.stopGame.bind(this)}>Quit Game</button>
           <form>
             <h3>Chat Options</h3>
             <input type="radio" name="chat" value="text" onChange={this.switchChat.bind(this, "text")}/>Text
             <input type="radio" name="chat" value="video" onChange={this.switchChat.bind(this, "video")}/>Video
           </form>
         </div>
-        {this.state.text === "text" ? <TextChat/> : <VideoChat/>}
+        {this.state.text === "video" ? <VideoChat/> : <TextChat/> }
       </div>
     );
   }
