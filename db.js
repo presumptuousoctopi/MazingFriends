@@ -1,4 +1,4 @@
-var Sequelize = require('Sequelize');
+var Sequelize = require('sequelize');
 
 var sequelize;
 if (process.env.HEROKU_POSTGRESQL_BRONZE_URL) {
