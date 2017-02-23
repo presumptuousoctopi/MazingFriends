@@ -32,7 +32,7 @@ class Signup extends React.Component {
       password: this.refs.password.value
     };
     console.log('in signup', newUser);
-    this.state.socket.emit('signup', newUser);
+    window.socket.emit('signup', newUser);
   }
 
   render() {
@@ -43,11 +43,11 @@ class Signup extends React.Component {
       <br/>
       <br/>
     	Password:
-    	<input ref="password" required="true" />
+    	<input type="password" ref="password" required="true" />
       <br/>
       <br/>
       Confirm Password:
-      <input required="true"/>
+      <input type="password" required="true"/>
       <br/>
       <br/>
     	<button type="submit">Sign up</button>

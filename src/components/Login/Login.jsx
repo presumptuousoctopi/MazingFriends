@@ -28,7 +28,7 @@ class Login extends React.Component {
       password: this.refs.password.value
     };
     console.log('attempt to sign in!');
-    this.state.socket.emit('signin', user);
+    window.socket.emit('signin', user);
   }
 
   render() {
@@ -39,7 +39,7 @@ class Login extends React.Component {
       <br/>
       <br/>
     	Password:
-    	<input ref="password" required="true"/>
+    	<input type="password" ref="password" required="true"/>
       <br/>
       <br/>
       <button type="submit">Log in</button>

@@ -14,6 +14,10 @@ module.exports = {
     modulesDirectories: ['node_modules', 'src'],
     extensions: ['', '.js', '.jsx', '.css'],
   },
+  node: {
+    fs: "empty",
+    child_process: "empty"
+  },
   module: {
     loaders: [
       {

@@ -4,92 +4,153 @@
 'use strict';
 
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';  
+import TestUtils from 'react-addons-test-utils';
 import createComponent from '../helpers/shallowRenderHelper';
-import App from 'components/App';
-import ChatView from 'components/ChatView';
-import GameOverView from 'components/GameOverView';
-import HomeView from 'components/HomeView';
-import LeaderboardView from 'components/LeaderboardView';
-import VideoChat from 'components/VideoChat'
-import TitleView from 'components/TitleView';
+
+import TextChat from 'components/Game/TextChat';
+import HomeView from 'components/Home/HomeView';
+import Signup from 'components/Login/Signup';
+import Login from 'components/Login/Login';
+import VideoChat from 'components/Game/VideoChat'
+
 import { shallow, mount, render } from 'enzyme';
-const wrapper = shallow(<App />);
+import { SocketIO, Server } from 'mock-socket';
 
-var {
-    Simulate,
-    renderIntoDocument,
-    findRenderedDOMComponentWithClass,
-    scryRenderedDOMComponentsWithClass
-  } = TestUtils;
-
-describe('<')
-
-describe('App component', function () {
-  beforeEach(function () {
-    this.App = createComponent(App);
+describe('TextChat component', function () {
+  before( function(done) {
+    window.mockServerAddress = 'test'
+    window.mockServer = new Server(mockServerAddress);
+    window.io = SocketIO;
+    window.socket = new window.io(mockServerAddress);
+    window.socket.on('connect', function() {
+      done();
+    });
   });
 
-  it('Should have its component name as \'App\'', function () {
-    expect(this.App.props.className).to.equal('App');
+  it('Should contain sendMessage function that emits message state using socket.io', function(done) {
+    window.mockServer.on('sendMessage', function (message) {
+      expect(message).to.equal('');
+      done();
+    });
+
+    const wrapper = shallow(<TextChat />);
+    var instance = wrapper.instance();
+    instance.sendMessage({
+      preventDefault: () => {}
+    });
+    wrapper.update();
   });
 
-  it('Should have two children components', function () {
-    expect(this.App.props.children.length).to.equal(2);
+  it('Should contain updateInput function that updates message state', function() {
+    const wrapper = shallow(<TextChat />);
+    wrapper.instance().updateInput({
+      target: {
+        value: 10
+      }
+    });
+    wrapper.update();
+    expect(wrapper.state('message')).to.equal(10);
   });
 
-  it('should be a stateful class component', function() {
-    expect(React.Component.isPrototypeOf(App)).to.be.true;
+  after( function() {
+    window.mockServer.stop();
+    window.socket.disconnect();
   });
-  
-});
-
-describe('ChatView component', function () {
-  beforeEach(function () {
-    this.ChatView = createComponent(ChatView);
-  });
-
-  it('Should have its component name as \'ChatView\'', function () {
-    expect(this.ChatView.props.className).to.equal('Chat');
-  });
-
-
-});
-
-describe('GameOverView component', function () {
-  beforeEach(function () {
-    this.GameOverView = createComponent(GameOverView);
-  });
-
-  it('Should have its component name as \'GameOverView\'', function () {
-    expect(this.GameOverView.props.className).to.equal('GameOver');
-  });
-
-
 });
 
 describe('HomeView component', function () {
-  beforeEach(function () {
-    this.HomeView = createComponent(HomeView);
+  before( function(done) {
+    window.mockServerAddress = 'test'
+    window.mockServer = new Server(mockServerAddress);
+    window.io = SocketIO;
+    window.socket = new window.io(mockServerAddress);
+    window.socket.on('connect', function() {
+      done();
+    });
   });
 
-  it('Should have its component name as \'HomeView\'', function () {
-    expect(this.HomeView.props.className).to.equal('Home');
+  it('Should contain createRoomButton function that emits createRoom state using socket.io', function(done) {
+    mockServer.on('createRoom', function (message) {
+      expect(message).to.equal('');
+      done();
+    });
+    const wrapper = shallow(<HomeView />);
+    wrapper.instance().createRoomButton();
+    wrapper.update();
   });
 
+  it('Should contain joinRoomButton function that emits joinRoom state using socket.io', function(done) {
+    mockServer.on('joinRoom', function (message) {
+      expect(message).to.equal('');
+      done();
+    });
+    const wrapper = shallow(<HomeView />);
+    wrapper.instance().joinRoomButton();
+    wrapper.update();
+  });
 
+  it('Should have its view vanished after creating or joining a room', function(done) {
+    mockServer.on('createRoom', function (message) {
+      expect(message).to.equal('');
+    });
+    var wrapper = shallow(<HomeView />);
+    wrapper.instance().createRoomButton();
+    wrapper.update();
+    expect(wrapper.state().view).to.equal('vanish');
+
+    mockServer.on('joinRoom', function (message) {
+      expect(message).to.equal('');
+      done();
+    });
+    var wrapper = shallow(<HomeView />);
+    wrapper.instance().joinRoomButton();
+    wrapper.update();
+    expect(wrapper.state().view).to.equal('vanish');
+  });
+
+  after( function() {
+    window.mockServer.stop();
+    window.socket.disconnect();
+  });
 });
 
-describe('LeaderboardView component', function () {
-  beforeEach(function () {
-    this.LeaderboardView = createComponent(LeaderboardView);
+
+describe('Signup component', function () {
+  before( function(done) {
+    window.mockServerAddress = 'test'
+    window.mockServer = new Server(mockServerAddress);
+    window.io = SocketIO;
+    window.socket = new window.io(mockServerAddress);
+    window.socket.on('connect', function() {
+      done();
+    });
   });
 
-  it('Should have its component name as \'LeaderboardView\'', function () {
-    expect(this.LeaderboardView.props.className).to.equal('Leaderboard');
+  it('Should contain signUp function that sends user information to the server via socket.io', function(done) {
+    mockServer.on('signup', function (newUser) {
+      expect(newUser.username).to.equal('dj');
+      expect(newUser.password).to.equal('kim');
+      done();
+    });
+    var wrapper = shallow(<Signup />);
+    var instance = wrapper.instance();
+    instance.refs = {
+      username: {
+        value: 'dj'
+      },
+      password: {
+        value: 'kim'
+      }
+    };
+    instance.signUp({
+      preventDefault: () => {}
+    });
   });
 
-
+  after( function() {
+    window.mockServer.stop();
+    window.socket.disconnect();
+  });
 });
 describe('VideoChat component', function () {
   beforeEach(function () {
@@ -102,15 +163,46 @@ describe('VideoChat component', function () {
   });
 
 
-});
-describe('TitleView component', function () {
-  beforeEach(function () {
-    this.TitleView = createComponent(TitleView);
+  describe('Login component', function () {
+    before(function (done) {
+      window.mockServerAddress = 'test'
+      window.mockServer = new Server(mockServerAddress);
+      window.io = SocketIO;
+      window.socket = new window.io(mockServerAddress);
+      window.socket.on('connect', function () {
+        done();
+      });
+    });
+
+    it('Should contain signIn function that sends user information to the server via socket.io', function (done) {
+      mockServer.on('signin', function (user) {
+        expect(user.username).to.equal('dj');
+        expect(user.password).to.equal('kim');
+        done();
+      });
+      var wrapper = shallow(<Login />);
+      var instance = wrapper.instance({
+        preventDefault: () => {
+        }
+      });
+      instance.refs = {
+        username: {
+          value: 'dj'
+        },
+        password: {
+          value: 'kim'
+        }
+      };
+      instance.signIn({
+        preventDefault: () => {
+        }
+      });
+      wrapper.update();
+    });
+
+    after(function () {
+      window.mockServer.stop();
+      window.socket.disconnect();
+    });
   });
-
-  it('Should have its component name as \'TitleView\'', function () {
-    expect(this.TitleView.props.className).to.equal('Title');
-  });
-
-
 });

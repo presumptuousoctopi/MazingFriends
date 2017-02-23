@@ -1,4 +1,6 @@
 html, body {
+	background-image: url(maze-background.jpg);
+	background-size: cover;
 	overflow: hidden;
 	height: 100%;
 	width: 100%;
@@ -13,10 +15,10 @@ html, body {
 } 
 
 .Home, .Login {
+	opacity: 0.9;
   width: 1150px;
   height: 650px;
   background-color: darkred;
-  opacity: 0.75;
   position: absolute;
   top:0;
   bottom: 0;
@@ -57,7 +59,13 @@ html, body {
  margin-right: 15px;
  margin-bottom: 15px;
  padding: 10px;
+ background-color: darkred;
+ opacity: 0.9;
  border: solid 5px darkred;
+}
+
+.Options {
+	text-align: center;;
 }
 
 #canvas {
@@ -67,20 +75,16 @@ html, body {
  display: inline-block;
 }
 
-/*.videoChat {*/
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*right: 0;*/
-/*}*/
 #videos {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+	padding: 15px;
+	margin: 15px;
 }
 
 #localVideo {
-     width: 50px;
+     width: 300px;
+     float: center;
  }
 #remoteVideo {
-    width: 50px;
+    width: 300px;
+    float: center;
 }
