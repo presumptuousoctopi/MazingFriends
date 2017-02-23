@@ -39,8 +39,10 @@ window.addGround = function() {
     return ground;
 };
 
-window.addPointLight = function() {
-    var light = new BABYLON.PointLight("pointLight", new BABYLON.Vector3(-1, 5, -1), scene);
+window.addLight = function() {
+    var light = new BABYLON.PointLight("pointLight", new BABYLON.Vector3(-1, 1, -1), scene);
+    light.diffuse = new BABYLON.Color3(1, 0, 0);
+    var light2 = new BABYLON.PointLight("pointLight", new BABYLON.Vector3(-1, 10000, -1), scene);
     light.diffuse = new BABYLON.Color3(1, 0, 0);
 };
 
@@ -57,7 +59,7 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     camera.keysDown.push(83); 
     camera.keysLeft.push(65); 
     camera.keysRight.push(68);
-    camera.speed = 3;
+    camera.speed = 6;
     camera.inertia = 0.3;
     camera.angularSensibility = 500;
     camera.checkCollisions = true;
@@ -106,35 +108,53 @@ window.addPlayerObj = function(camera) {
 /*******************************************************
  Objects
 *******************************************************/
-
+var customSphere = {};
+var numberOfSpheres = 0;
 window.addSphere = function(spherePosition = new BABYLON.Vector3(10, 20, 10)) {
-    var sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene);
+    if (!customSphere['sphere']) {
+        var sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene);
+        var material = new BABYLON.StandardMaterial("texture1" + (++numberOfSpheres), scene);
+        sphere.material = material; 
+        customSphere['sphere'] = sphere;
+    } else {
+        var sphere = customSphere['sphere'].clone('' + (++numberOfSpheres));        
+    }
     sphere.position = spherePosition;
-    var material = new BABYLON.StandardMaterial("texture1" + (++numberOfBoxes), scene);
-    material.specularColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
-    material.specularPower = 32;
-    material.ambientColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());  
-    sphere.material = material; 
+    // material.specularColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
+    // material.specularPower = 32;
+    // material.ambientColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());  
     return sphere;
 };
 
+var customBox = {};
+var mazeBoxes = [];
+var boundaryBoxes = [];
+
 window.addBox = function(x, z, type) {
-    var box = BABYLON.Mesh.CreateBox("Box" + (++numberOfBoxes), boxLength,scene);
-    var material = new BABYLON.StandardMaterial("texture1" + (++numberOfBoxes), scene);
-    if ( type === 'boundaryWalls' ) {
-        material.wireframe= true;        
+    if ( !customBox[type] ) {
+      var box = BABYLON.Mesh.CreateBox("Box" + (++numberOfBoxes), boxLength, scene);
+      var material = new BABYLON.StandardMaterial("texture1" + numberOfBoxes, scene);
+      box.material = material;
+      // box.applyGravity = true;
+      // box.checkCollisions = true;
     } else {
-        material.specularColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
-        material.specularPower = 32;
-        material.ambientColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());  
-        // material.emissiveColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
+      var box = customBox[type].clone('' + (++numberOfBoxes));
     }
-    box.material = material;
+    if ( type === 'boundaryWalls' ) {
+      box.material.wireframe= true;        
+      boundaryBoxes.push(box);
+    } else {
+      mazeBoxes.push(box);
+    }
     box.position = new BABYLON.Vector3(x, 2, z);
-    box.applyGravity = true;
-    box.checkCollisions = true;
+        // material.specularColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
+        // material.specularPower = 32;
+        // material.ambientColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());  
+        // material.emissiveColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
     return box;
 };
+
+
 
 window.buildBoundaryWalls = function(boxLength, scene) {
     var type = 'boundaryWalls';
@@ -146,6 +166,8 @@ window.buildBoundaryWalls = function(boxLength, scene) {
     for ( var i = dimensions[1]; i > dimensions[1] - boxLength * 5; i -= boxLength ) {
         addBox(dimensions[0], i, type);
     }
+    var newMesh = BABYLON.Mesh.MergeMeshes(boundaryBoxes);
+    newMesh.checkCollisions = true;
 };
 
 window.generateMaze = function(x,y) {
@@ -227,12 +249,15 @@ var buildSimpleMaze = function(maze) {
             }
         }
     }
+    var newMesh = BABYLON.Mesh.MergeMeshes(mazeBoxes);
+    newMesh.checkCollisions = true;
 };
 
 /*******************************************************
  User Control
 *******************************************************/
-
+var customBullet = null;
+var bulletsFired = 0;
 window.shootBullet = function ( shooter, e, isIncoming = false ) {
     if ( !isIncoming ) {
         var invView = new BABYLON.Matrix();
@@ -246,15 +271,20 @@ window.shootBullet = function ( shooter, e, isIncoming = false ) {
         var invView = shooter.invView;
         var initPosition = shooter.initPosition;
     }
-    var bullet = BABYLON.Mesh.CreateSphere('bullet', 3, 0.3, scene);
+    if ( !customBullet ) {
+        var bullet = BABYLON.Mesh.CreateSphere('bullet' + (++bulletsFired), 3, 0.3, scene);    
+        var material = new BABYLON.StandardMaterial('texture1', scene);
+        material.diffuseColor = new BABYLON.Color3.White();
+        bullet.material = material; 
+        // bullet.applyGravity = true;
+        // bullet.checkCollisions = true;
+        // bullet.physicsImpostor = new BABYLON.PhysicsImpostor(bullet, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 10, restitution: 0.9 }, scene);    
+        customBullet = bullet;
+    } else {
+        var bullet = customBullet.clone('bullet' + (++bulletsFired) );
+    }
     bullet.position = new BABYLON.Vector3(initPosition.x, initPosition.y, initPosition.z);
-    var material = new BABYLON.StandardMaterial('texture1', scene);
-    material.diffuseColor = new BABYLON.Color3.White();
-    bullet.material = material; 
-    bullet.applyGravity = true;
-    bullet.checkCollisions = true;
-    var direction = BABYLON.Vector3.TransformNormal(new BABYLON.Vector3(0, 0, 2), invView);
-    bullet.physicsImpostor = new BABYLON.PhysicsImpostor(bullet, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 10, restitution: 0.9 }, scene);    
+    var direction = BABYLON.Vector3.TransformNormal(new BABYLON.Vector3(0, 0, 5), invView);
     scene.registerBeforeRender(function () {
         bullet.position.addInPlace(direction);
     });

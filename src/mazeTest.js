@@ -69,4 +69,4 @@ generateMaze = function(x,y) {
     return display(maze(x+2,y));
 }
 
-generateMaze(20,20);
+generateMaze(10,10);

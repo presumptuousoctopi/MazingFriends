@@ -1,18 +1,18 @@
 /*******************************************************
  Game Sockets
 *******************************************************/
-
 // Notify whether user is first or second player and update user position
 socket.on('firstPlayer', function(firstPlayer) {
   window.camera.position = firstPlayerPosition;
   console.log('You are first player');
   engine.runRenderLoop(function(){
+    console.log('fps : ', engine.fps);
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
         previousCameraPosition = currentCameraPosition;
         socket.emit('userPositionChanged', camera.position);
     }
-    //console.log(window.camera.rotation);
+    // console.log(window.camera.position);
     scene.render();
   });
 
@@ -25,6 +25,7 @@ socket.on('secondPlayer', function(secondPlayer) {
   socket.emit('sendPlayer', window.camera.position);
   console.log('secondPlayer');
   engine.runRenderLoop(function(){
+    console.log('fps : ', engine.fps);
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
         previousCameraPosition = currentCameraPosition;
