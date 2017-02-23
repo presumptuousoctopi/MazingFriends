@@ -73,7 +73,6 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     // camera.cameraRotation.x;
     // console.log('camera angularSensibility : ', camera.angularSensibility);
 
-    // Need to fix jump bug
     var cameraJump = function(flag) {
         camera.animations = [];        
         var animations = new BABYLON.Animation("a", "position.y", 20, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
@@ -106,7 +105,7 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
 };
 
 window.addPlayerObj = function(camera) {
-    var block = addSphere(new BABYLON.Vector3(0, 0, -4));
+    var block = addSphere(new BABYLON.Vector3(0, 0, -1));
     block.parent = camera;
 }
 
@@ -125,6 +124,8 @@ window.addSphere = function(spherePosition = new BABYLON.Vector3(10, 20, 10)) {
         // var sphere = customSphere['sphere'].clone('' + (++numberOfSpheres));        
     // }
     sphere.position = spherePosition;
+    // sphere.checkCollisions = true;
+    sphere.applyGravity = true;
     // material.specularColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
     // material.specularPower = 32;
     // material.ambientColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());  
@@ -139,6 +140,7 @@ window.addBox = function(x, z, type) {
     if ( !customBox[type] ) {
       var box = BABYLON.Mesh.CreateBox("Box" + (++numberOfBoxes), boxLength, scene);
       var material = new BABYLON.StandardMaterial("texture1" + numberOfBoxes, scene);
+      material.alpha = .3;
       box.material = material;
       // box.applyGravity = true;
       // box.checkCollisions = true;
@@ -146,9 +148,10 @@ window.addBox = function(x, z, type) {
       var box = customBox[type].clone('' + (++numberOfBoxes));
     }
     if ( type === 'boundaryWalls' ) {
-      box.material.wireframe= true;        
+      // box.material.wireframe= true;        
       boundaryBoxes.push(box);
     } else {
+      // box.material.wireframe= true;        // optional
       mazeBoxes.push(box);
     }
     box.position = new BABYLON.Vector3(x, 2, z);
