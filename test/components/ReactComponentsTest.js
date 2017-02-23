@@ -7,6 +7,7 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import createComponent from '../helpers/shallowRenderHelper';
 
+import ChatView from 'components/Game/ChatView'
 import TextChat from 'components/Game/TextChat';
 import HomeView from 'components/Home/HomeView';
 import Signup from 'components/Login/Signup';
@@ -158,7 +159,7 @@ describe('VideoChat component', function () {
   });
 
   it('should exist when mounted', function () {
-    const wrapper = mount(<VideoChat/>);
+    const wrapper = shallow(<ChatView/>);
     expect(wrapper.find(VideoChat)).to.have.length(1);
   });
 

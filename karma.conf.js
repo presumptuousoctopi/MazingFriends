@@ -7,6 +7,10 @@ module.exports = function(config) {
   config.set({
     basePath: '',
     browsers: [ 'PhantomJS' ],
+    browserConsoleLogOptions: {
+      terminal: true,
+      level: ""
+    },
     files: [
       'test/loadtests.js'
     ],
@@ -14,7 +18,8 @@ module.exports = function(config) {
     captureTimeout: 60000,
     frameworks: [ 'mocha', 'chai' ],
     client: {
-      mocha: {}
+      mocha: {
+      }
     },
     singleRun: true,
     reporters: [ 'mocha', 'coverage' ],
@@ -29,7 +34,7 @@ module.exports = function(config) {
       dir: 'coverage/',
       reporters: [
         { type: 'html' },
-        { type: 'text' }
+        { type: 'text' },
       ]
     }
   });

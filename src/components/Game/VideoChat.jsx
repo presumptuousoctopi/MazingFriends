@@ -13,7 +13,6 @@ class VideoChat extends React.Component {
         var remoteStream;
         var turnReady;
         var room;
-        console.log("abcd");
         //stun server for network data
         var pcConfig = {
             'iceServers': [{
@@ -109,8 +108,8 @@ class VideoChat extends React.Component {
 //set the local stream
         function gotStream(stream) {
             console.log('Adding local stream.');
-            console.log(localVideo);
             localVideo.src = window.URL.createObjectURL(stream);
+            console.log("local video source", localVideo.src);
             localStream = stream;
             sendMessage('got user media');
             if (isInitiator) {
