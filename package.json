@@ -8,11 +8,12 @@
     "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist",
     "dist": "npm run copy & webpack --env=dist",
     "lint": "eslint ./src",
-    "start": "webpack --watch | nodemon server.js",
+    "start": "nodemon server.js",
     "test": "karma start",
     "test:watch": "karma start --autoWatch=true --singleRun=false",
     "dev": "webpack -d --progress --colors --watch",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "postinstall": "NODE_ENV=production webpack -p"
   },
   "repository": "",
   "keywords": [],
@@ -70,11 +71,14 @@
     "mysql": "^2.13.0",
     "nodemon": "^1.11.0",
     "normalize.css": "^4.0.0",
+    "os": "^0.1.1",
+    "pg": "^6.1.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-router": "^3.0.2",
     "sequelize": "^3.30.2",
     "socket.io": "^1.7.3",
+    "webpack": "^1.14.0",
     "xmlhttprequest": "^1.8.0"
   }
 }

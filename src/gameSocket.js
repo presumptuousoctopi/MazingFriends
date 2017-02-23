@@ -1,18 +1,18 @@
 /*******************************************************
  Game Sockets
 *******************************************************/
-
 // Notify whether user is first or second player and update user position
 socket.on('firstPlayer', function(firstPlayer) {
   window.camera.position = firstPlayerPosition;
   console.log('You are first player');
   engine.runRenderLoop(function(){
+    console.log('fps : ', engine.fps);
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
         previousCameraPosition = currentCameraPosition;
         socket.emit('userPositionChanged', camera.position);
     }
-    //console.log(window.camera.rotation);
+    // console.log(window.camera.position);
     scene.render();
   });
 
@@ -20,11 +20,12 @@ socket.on('firstPlayer', function(firstPlayer) {
 
 socket.on('secondPlayer', function(secondPlayer) {
   window.playerType = secondPlayer;
-  window.camera.position = mediumLevelSecondPlayerPosition;
+  window.camera.position = easyLevelSecondPlayerPosition;
   // Send player position to other player
   socket.emit('sendPlayer', window.camera.position);
   console.log('secondPlayer');
   engine.runRenderLoop(function(){
+    console.log('fps : ', engine.fps);
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
         previousCameraPosition = currentCameraPosition;
@@ -95,4 +96,4 @@ var mousePosition = {
 // Event listener for shooting bullets
 window.addEventListener("click", shootBullet.bind(this, window.camera));
 // Event listener for mouse movement
-window.addEventListener("mousemove", window.mouseControl.bind(this, window.camera, mousePosition));
+// window.addEventListener("mousemove", window.mouseControl.bind(this, window.camera, mousePosition));
