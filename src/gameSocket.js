@@ -20,7 +20,7 @@ socket.on('firstPlayer', function(firstPlayer) {
 
 socket.on('secondPlayer', function(secondPlayer) {
   window.playerType = secondPlayer;
-  window.camera.position = mediumLevelSecondPlayerPosition;
+  window.camera.position = easyLevelSecondPlayerPosition;
   // Send player position to other player
   socket.emit('sendPlayer', window.camera.position);
   console.log('secondPlayer');
@@ -96,4 +96,4 @@ var mousePosition = {
 // Event listener for shooting bullets
 window.addEventListener("click", shootBullet.bind(this, window.camera));
 // Event listener for mouse movement
-window.addEventListener("mousemove", window.mouseControl.bind(this, window.camera, mousePosition));
+// window.addEventListener("mousemove", window.mouseControl.bind(this, window.camera, mousePosition));

@@ -54,14 +54,14 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     var camera = new BABYLON.FreeCamera('camera1', playerPosition, scene);
     camera.setTarget(BABYLON.Vector3.Zero());
     camera.attachControl(canvas, true);
-    camera.inputs.remove(camera.inputs.attached.mouse);
+    // camera.inputs.remove(camera.inputs.attached.mouse);
     camera.keysUp.push(87);
     camera.keysDown.push(83); 
     camera.keysLeft.push(65); 
     camera.keysRight.push(68);
-    camera.speed = 6;
-    camera.inertia = 0.3;
-    camera.angularSensibility = 500;
+    // camera.speed = 6;
+    // camera.inertia = 0.3;
+    // camera.angularSensibility = 500;
     camera.checkCollisions = true;
     camera.applyGravity = true;
     // camera.rotation = new BABYLON.Vector3(0, 1.6, 0);
@@ -111,14 +111,14 @@ window.addPlayerObj = function(camera) {
 var customSphere = {};
 var numberOfSpheres = 0;
 window.addSphere = function(spherePosition = new BABYLON.Vector3(10, 20, 10)) {
-    if (!customSphere['sphere']) {
+    // if (!customSphere['sphere']) {
         var sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene);
         var material = new BABYLON.StandardMaterial("texture1" + (++numberOfSpheres), scene);
         sphere.material = material; 
         customSphere['sphere'] = sphere;
-    } else {
-        var sphere = customSphere['sphere'].clone('' + (++numberOfSpheres));        
-    }
+    // } else {
+        // var sphere = customSphere['sphere'].clone('' + (++numberOfSpheres));        
+    // }
     sphere.position = spherePosition;
     // material.specularColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
     // material.specularPower = 32;
