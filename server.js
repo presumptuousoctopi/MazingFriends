@@ -184,14 +184,14 @@ socket.on('sendMessage', function(message) {
   var roomMessages = messages[roomName] || [];
   // Add new message and userId to messages array
   roomMessages.push({
-    userId: socket.id,
+    userId: usernames[socket.id],
     message: message
   });
   // Save the update messages array
   messages[roomName] = roomMessages;
   // Send back ten newest messages to all users in the room
-  var lastTenMessages = roomMessages.slice(roomMessages.length-10);
-  io.to(roomName).emit('receiveMessage', lastTenMessages);
+  // var lastTenMessages = roomMessages.slice(roomMessages.length-10);
+  io.to(roomName).emit('receiveMessage', roomMessages);
 });
 
 // Decerement user count when a user leaves the game
