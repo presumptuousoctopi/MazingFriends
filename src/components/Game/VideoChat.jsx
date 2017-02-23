@@ -31,9 +31,13 @@ class VideoChat extends React.Component {
         var localVideo = document.querySelector('#localVideo');
         var remoteVideo = document.querySelector('#remoteVideo');
         //get user media
+        function doNothing() {
+
+        }
         socket.on('roomName', function(roomName) {
             room = roomName;
             socket.emit('create or join', room);
+            doNothing();
             navigator.mediaDevices.getUserMedia({
                 audio: true,
                 video: true
@@ -69,8 +73,7 @@ class VideoChat extends React.Component {
 
         socket.on('full', function(room){
             alert("Room is full");
-        })
-////////////////////////////////////////////////
+        });
 
         function sendMessage(message) {
             console.log('Client sending message: ', message);
