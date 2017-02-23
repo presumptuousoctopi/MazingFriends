@@ -102,7 +102,7 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     window.addEventListener("keydown", onKeyDown);
     var flag = {}; 
     flag.canJump= false;
-    var cameraRotationSensitivity = .1 * ( 6 / 4 );
+    var cameraRotationSensitivity = .1 * ( Math.PI / 4 );
     var cameraMovementSensitivity = .1;
     function onKeyDown(event) {  
         // event.preventDefault();
