@@ -13,6 +13,9 @@ var db = require('./db.js');
 var bcrypt = require('bcryptjs');
 
 
+http.listen(port, function () {
+  console.log('Example app listening on port 3000!');
+});
 
 /*************************************************************************************************
  Node & Express
@@ -33,9 +36,6 @@ app.get('*', function (request, response){
   response.sendFile(path.join(__dirname, './src/index.html'));
 });
 
-http.listen(port, function () {
-  console.log('Example app listening on port 3000!');
-});
 
 /*************************************************************************************************
  Socket.io
