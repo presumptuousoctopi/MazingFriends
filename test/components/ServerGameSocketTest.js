@@ -88,7 +88,7 @@ describe('Socket.io Server', function(){
             player2.disconnect();
             player3.disconnect();
             player4.disconnect();
-            if ( !!maze1 && JSON.stringify(maze1) === JSON.stringify(maze2) && JSON.stringify(maze2) === JSON.stringify(maze3) ) {
+            if ( JSON.stringify(maze1) === JSON.stringify(maze2) && JSON.stringify(maze2) === JSON.stringify(maze3) ) {
               done();
             }
           });
