@@ -4,6 +4,7 @@
 // Notify whether user is first or second player and update user position
 socket.on('firstPlayer', function(firstPlayer) {
   window.camera.position = firstPlayerPosition;
+  window.camera.rotation = new BABYLON.Vector3(0, 0, 0);
   console.log('You are first player');
   engine.runRenderLoop(function(){
     console.log('fps : ', engine.fps);
@@ -12,7 +13,7 @@ socket.on('firstPlayer', function(firstPlayer) {
         previousCameraPosition = currentCameraPosition;
         socket.emit('userPositionChanged', camera.position);
     }
-    // console.log(window.camera.position);
+    console.log(window.camera.rotation);
     scene.render();
   });
 
@@ -21,6 +22,8 @@ socket.on('firstPlayer', function(firstPlayer) {
 socket.on('secondPlayer', function(secondPlayer) {
   window.playerType = secondPlayer;
   window.camera.position = easyLevelSecondPlayerPosition;
+  window.camera.rotation = new BABYLON.Vector3(0, 0, 0);
+
   // Send player position to other player
   socket.emit('sendPlayer', window.camera.position);
   console.log('secondPlayer');

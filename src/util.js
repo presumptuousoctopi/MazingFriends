@@ -54,11 +54,18 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     var camera = new BABYLON.FreeCamera('camera1', playerPosition, scene);
     camera.setTarget(BABYLON.Vector3.Zero());
     camera.attachControl(canvas, true);
-    // camera.inputs.remove(camera.inputs.attached.mouse);
-    camera.keysUp.push(87);
-    camera.keysDown.push(83); 
-    camera.keysLeft.push(65); 
-    camera.keysRight.push(68);
+
+    // camera.inputs.clear();
+    // camera.inputs.remove(camera.inputs.attached.keyboard);
+    // camera.inputs.addKeyboard();
+
+    camera.keysUp = [87];
+    camera.keysDown = [83]; 
+    camera.keysLeft = [65]; 
+    camera.keysRight = [68];
+
+    // camera.orthoLeft = [37];
+ 
     // camera.speed = 6;
     // camera.inertia = 0.3;
     // camera.angularSensibility = 500;
@@ -95,11 +102,53 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     window.addEventListener("keydown", onKeyDown);
     var flag = {}; 
     flag.canJump= false;
+    var cameraRotationSensitivity = .1 * ( 6 / 4 );
+    var cameraMovementSensitivity = .1;
     function onKeyDown(event) {  
+        // event.preventDefault();
       if ( event.keyCode === 32 && flag.canJump === false ) {
         flag.canJump = true;
         cameraJump(flag);
       }  
+        // w 87
+        // a 65
+        // s 83
+        // d 68
+
+      // if ( event.keyCode === 87 ) { 
+      //   camera.position.x += cameraMovementSensitivity;
+      // }
+
+      // if ( event.keyCode === 83 ) { 
+      //   camera.position.x += -cameraMovementSensitivity;
+      // }
+
+      // if ( event.keyCode === 65 ) { 
+      //   camera.position.x += -cameraMovementSensitivity;
+      // }
+
+      // if ( event.keyCode === 68 ) { 
+      //   camera.position.x += cameraMovementSensitivity;
+      // }
+        // Left Arrow  37 
+        // Up Arrow    38
+        // Right Arrow 39 
+        // Down Arrow  40 
+      if ( event.keyCode === 37 ) {
+        camera.cameraRotation.y += -cameraRotationSensitivity;
+      } 
+
+      if ( event.keyCode === 39 ) {
+        camera.cameraRotation.y += cameraRotationSensitivity;
+      }
+
+      if ( event.keyCode === 38 ) {
+        camera.cameraRotation.x += -cameraRotationSensitivity;
+      }
+
+      if ( event.keyCode === 40 ) {
+        camera.cameraRotation.x += cameraRotationSensitivity;
+      }
     }
     return camera;
 };
