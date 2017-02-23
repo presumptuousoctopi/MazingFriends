@@ -25,8 +25,12 @@ app.use( function(req, res, next) {
 
 app.use(express.static(__dirname + '/src'));
 
+app.get('/favicon.ico', function(request, response) {
+  response.sendFile(path.join(__dirname, './src/favicon.ico'));
+});
+
 app.get('*', function (request, response){
-  response.sendFile(path.join(__dirname, './src/index.html'))
+  response.sendFile(path.join(__dirname, './src/index.html'));
 });
 
 http.listen(port, function () {
