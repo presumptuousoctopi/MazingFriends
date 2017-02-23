@@ -11,6 +11,7 @@ import ChatView from 'components/ChatView';
 import GameOverView from 'components/GameOverView';
 import HomeView from 'components/HomeView';
 import LeaderboardView from 'components/LeaderboardView';
+import VideoChat from 'components/VideoChat'
 import TitleView from 'components/TitleView';
 import { shallow, mount, render } from 'enzyme';
 const wrapper = shallow(<App />);
@@ -90,7 +91,18 @@ describe('LeaderboardView component', function () {
 
 
 });
+describe('VideoChat component', function () {
+  beforeEach(function () {
+    this.VideoChatView = createComponent(VideoChat);
+  });
 
+  it('should exist when mounted', function () {
+    const wrapper = mount(<VideoChat/>);
+    expect(wrapper.find(VideoChat)).to.have.length(1);
+  });
+
+
+});
 describe('TitleView component', function () {
   beforeEach(function () {
     this.TitleView = createComponent(TitleView);
