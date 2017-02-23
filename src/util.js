@@ -74,7 +74,7 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     // console.log('camera angularSensibility : ', camera.angularSensibility);
 
     // Need to fix jump bug
-    var cameraJump = function() {
+    var cameraJump = function(flag) {
         camera.animations = [];        
         var animations = new BABYLON.Animation("a", "position.y", 20, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
         var keys = [];
@@ -89,12 +89,17 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
         
         camera.animations.push(animations);     
         scene.beginAnimation(camera, 0, 20, false);
+        setTimeout( () => {
+            flag.canJump = false;
+        }, 750);
     }; 
     window.addEventListener("keydown", onKeyDown);
+    var flag = {}; 
+    flag.canJump= false;
     function onKeyDown(event) {  
-      if ( event.keyCode === 32 ) {
-        console.log('jump!');
-        cameraJump();
+      if ( event.keyCode === 32 && flag.canJump === false ) {
+        flag.canJump = true;
+        cameraJump(flag);
       }  
     }
     return camera;
