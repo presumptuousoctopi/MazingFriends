@@ -13,7 +13,7 @@
     "test:watch": "karma start --autoWatch=true --singleRun=false",
     "dev": "webpack -d --progress --colors --watch",
     "build": "webpack -p",
-    "postinstall": "webpack -p --config ./webpack.config.js --progress"
+    "postinstall": "NODE_ENV=production webpack -p"
   },
   "repository": "",
   "keywords": [],
