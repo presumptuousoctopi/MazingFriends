@@ -162,9 +162,11 @@ io.on('connection', function(socket){
       });
     }
   });
+
   socket.on("changedToVideo", function(){
     socket.emit("roomName", playerRoom[socket.id]);
   });
+
   // Receive a user's initial position and send it to all other players in the room
   socket.on('sendPlayer', function(playerCamera) {
     socket.broadcast.to(playerRoom[socket.id]).emit('receivePlayer', playerCamera);
@@ -206,6 +208,11 @@ socket.on('disconnect', function(){
   // Send back number of users in the server
   socket.on('numberOfUsers', function() {
     socket.emit('receiveNumberOfUsers', userCount);
+  });
+
+  socket.on('gameover', function() {
+    console.log('in server')
+    socket.emit('gameoverlisten')
   });
   
   /*************************************************************************************************
@@ -282,4 +289,5 @@ socket.on('disconnect', function(){
 // socket.on('signinError', function(msg) {
 //   alert(msg);
 // });
+
 
