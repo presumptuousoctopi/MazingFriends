@@ -20,18 +20,21 @@
   outputplaneTexture.drawText("Timer", null, 140, "bold 140px verdana", "white", "#0000AA");
 
   var context2D = outputplaneTexture.getContext();
-  var refreshTime = function(data) {
+  window.refreshTime = function(data) {
     context2D.clearRect(0, 200, 512, 512);
-    outputplaneTexture.drawText(data, null, 380, "140px verdana", "white", null);
+    outputplaneTexture.drawText(data, null, 380, "100px verdana", "white", null);
   }
 var originalTime = 0;
-var currentTime = 0;
+window.currentTime = 0;
+window.finish = false;
+
 setInterval( () => {
   if ( originalTime !== 0 ) {
     var seconds = Math.round((new Date().getTime() - originalTime) / 100 ) / 10;
     var minutes = Math.floor(seconds / 60);
     var seconds = ( !(seconds % 1) ? ( Math.round((seconds % 60) * 10) / 10 + '.0') : Math.round((seconds % 60) * 10) / 10 );
     var minutes = ( minutes === 0 ? '' : (minutes + ':') );
+    var seconds = seconds.toString().length === 3 ? '0' + seconds : seconds;
     currentTime = minutes + seconds;
   }
 }, 100);
@@ -41,14 +44,14 @@ socket.on('firstPlayer', function(firstPlayer) {
   window.camera.rotation = new BABYLON.Vector3(0, 0, 0);
   console.log('You are first player');
   engine.runRenderLoop(function(){
-    outputplane.position = new BABYLON.Vector3(-40 + camera.position.x, 40 +camera.position.y, 40 + camera.position.z);
+    outputplane.position = new BABYLON.Vector3(-35 + camera.position.x, 35 +camera.position.y, 35 + camera.position.z);
     // console.log('fps : ', engine.fps);
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
         previousCameraPosition = currentCameraPosition;
         socket.emit('userPositionChanged', camera.position);
     }
-    if ( currentTime !== 0 ) {
+    if ( currentTime !== 0 && finished === false ) {
       refreshTime(currentTime);    
     }
     // console.log('currentTime : ', currentTime);
@@ -58,7 +61,6 @@ socket.on('firstPlayer', function(firstPlayer) {
 
 });
 
-var flag = false;
 socket.on('secondPlayer', function(secondPlayer) {
   window.playerType = secondPlayer;
   window.camera.position = mediumLevelSecondPlayerPosition;
@@ -69,13 +71,15 @@ socket.on('secondPlayer', function(secondPlayer) {
   socket.emit('sendPlayer', window.camera.position);
   console.log('secondPlayer');
   engine.runRenderLoop(function(){
-    outputplane.position = new BABYLON.Vector3(-40 + camera.position.x, 40 +camera.position.y, 40 + camera.position.z);
+    outputplane.position = new BABYLON.Vector3(-35 + camera.position.x, 35 +camera.position.y, 35 + camera.position.z);
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
         previousCameraPosition = currentCameraPosition;
         socket.emit('userPositionChanged', camera.position);
     }
-    refreshTime(currentTime);    
+    if ( finished === false ) {
+      refreshTime(currentTime);        
+    }
     // console.log(currentTime);
     //console.log(window.camera.rotation);
     scene.render();
