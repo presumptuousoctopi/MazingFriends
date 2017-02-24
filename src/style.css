@@ -28,6 +28,20 @@ html, body {
   margin: auto;
 }
 
+ .GameOver {
+ 		opacity: 0.9;
+	  width: 600px;
+	  height: 600px;
+	  background-color: darkred;
+	  position: absolute;
+	  top: 0;
+	  bottom: 0;
+	  left: 0;
+	  right: 25%;
+	  text-align: center;
+	  margin: auto;
+ }
+
 .vanish {
 	display: none;
 }

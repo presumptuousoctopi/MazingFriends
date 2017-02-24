@@ -351,6 +351,7 @@ function shootBullet ( shooter, e, isIncoming = false ) {
     });
 };
 
+
 window.mouseControl = function(camera, mousePosition, e) {
     var mouseX = e.clientX;
     var mouseY = e.clientY;
@@ -446,4 +447,5 @@ window.calculateDistance = function(x1, y1, z1, x2, y2, z2) {
 
 window.finishGame = function() {
   alert('Game over!');
+  //use react router params to render gme over view
 };

@@ -84,7 +84,7 @@ io.on('connection', function(socket){
       // Connect user to the room
       socket.join(roomName);
       // Send maze to user
-      socket.emit('serverSendingMaze', mazes.easyLevelMaze);
+      socket.emit('serverSendingMaze', mazes.mediumLevelMaze);
       console.log('A user made a room called ', roomName);
     } else {
       // Send error message back to user
@@ -113,7 +113,7 @@ io.on('connection', function(socket){
       // Request other player's game information
       socket.broadcast.to(playerRoom[socket.id]).emit('newPlayerRequestInfo');
       // Send maze to user
-      socket.emit('serverSendingMaze', mazes.easyLevelMaze);
+      socket.emit('serverSendingMaze', mazes.mediumLevelMaze);
       console.log('A user joined a room called ', roomName);
     }
   });
