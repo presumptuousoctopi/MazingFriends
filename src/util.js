@@ -448,6 +448,8 @@ window.calculateDistance = function(x1, y1, z1, x2, y2, z2) {
 window.gameover = false;
 
 window.finishGame = function() {
-    console.log('in util')
   socket.emit('gameover')
+  window.finishTime = window.currentTime;
+  window.finish = true;
+  window.refreshTime('Your record : ' + finishTime);
 };
