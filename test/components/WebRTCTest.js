@@ -1,5 +1,4 @@
 //GLOBALS
-
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import createComponent from '../helpers/shallowRenderHelper';
@@ -15,15 +14,6 @@ import { shallow, mount, render } from 'enzyme';
 import { SocketIO, Server } from 'mock-socket';
 
 describe("webrtc", function () {
-    before( function(done) {
-        window.mockServerAddress = 'test'
-        window.mockServer = new Server(mockServerAddress);
-        window.io = SocketIO;
-        window.socket = new window.io(mockServerAddress);
-        window.socket.on('connect', function() {
-            done();
-        });
-    });
     var io = require('socket.io-client');
     var  options ={
         transports: ['websocket'],
@@ -47,13 +37,18 @@ describe("webrtc", function () {
         var client = io.connect("http://localhost:3000", options);
         client.on("connect", function () {
             client.emit("createRoom", "room");
+            sinon.spy(VideoChat.prototype, 'getPeerConnections');
+            const wrapper = shallow(<VideoChat/>);
             client.on("roomName", function(data){
-                expect(spy).to.have.been.called();
+                var instance = wrapper.instance().getPeerConnections();
+                client.emit('create or join', data);
+                client.on('created', function(room){
+                    console.log(room);
+                })
+                client.disconnect();
+                done();
+
             })
-
-            client.disconnect();
-            done();
-
         });
     });
 

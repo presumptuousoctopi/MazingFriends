@@ -5,6 +5,9 @@ class VideoChat extends React.Component {
             super ()
         }
     componentDidMount() {
+        this.getPeerConnections();
+    }
+        getPeerConnections(){
         var isChannelReady = false;
         var isInitiator = false;
         var isStarted = false;
