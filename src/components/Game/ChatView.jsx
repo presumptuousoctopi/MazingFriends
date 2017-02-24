@@ -24,7 +24,6 @@ class Chat extends React.Component {
 
   stopGame() {
     location.reload();
-    browserHistory.push({ pathname: '/home'})
   }
 
   render() {
@@ -33,7 +32,7 @@ class Chat extends React.Component {
         <div className="Options">
           <h1>Mazing Friends</h1>
           <button className="optionButtons">Controls</button>
-          <button className="optionButtons" onClick={this.stopGame.bind(this)}>Quit Game</button>
+          <Link to="/"><button className="optionButtons" onClick={this.stopGame.bind(this)}>Quit Game</button></Link>
           <form>
             <h3>Chat Options</h3>
             <input type="radio" name="chat" value="text" onChange={this.switchChat.bind(this, "text")}/>Text

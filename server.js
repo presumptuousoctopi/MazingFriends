@@ -215,9 +215,9 @@ socket.on('disconnect', function(){
     socket.emit('receiveNumberOfUsers', userCount);
   });
 
-  socket.on('gameover', function() {
+  socket.on('gameover', function(time) {
     console.log('in server')
-    socket.emit('gameoverlisten')
+    socket.emit('gameoverlisten', time)
   });
   
   /*************************************************************************************************
