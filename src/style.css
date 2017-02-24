@@ -28,15 +28,11 @@ html, body {
   margin: auto;
 }
 
-.Play {
-
-} 
-
 .vanish {
 	display: none;
 }
 
-.optionsButton {
+.homeButtons {
 	width: 500px;
 	height: 50px;
 	margin: 10px;
@@ -65,7 +61,21 @@ html, body {
 }
 
 .Options {
-	text-align: center;;
+	text-align: center;
+	border: dotted 2px black;
+	padding-bottom: 10px;
+}
+
+.optionButtons {
+	width: 150px;
+	height: 25px;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+a {
+	cursor: pointer;
+	text-decoration: underline;
 }
 
 #canvas {

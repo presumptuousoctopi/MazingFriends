@@ -67,7 +67,7 @@ class Home extends React.Component {
       <div className={this.state.view}>
       	<Title />
       	<div className="NewView">
-	      	<button className="optionsButton" onClick={this.newButtonClick}>New Game</button>
+	      	<button className="homeButtons" onClick={this.newButtonClick}>New Game</button>
 	      	<div className={this.state.new}>
 	      	Room Name:
 	      	<input onChange={this.handleChange} name="createRoomName"></input>
@@ -77,7 +77,7 @@ class Home extends React.Component {
 	      	</div>
       	</div>
       	<div className="JoinView">
-	      	<button className="optionsButton" onClick={this.joinButtonClick}>Join Game</button>
+	      	<button className="homeButtons" onClick={this.joinButtonClick}>Join Game</button>
 	      	<div className={this.state.join}>
 	      	Room Name:
 	      	<input onChange={this.handleChange} name="joinRoomName"></input>
@@ -85,6 +85,8 @@ class Home extends React.Component {
       		<br/>
       		<br/>
 	      	</div>
+          <br/>
+          <button className="homeButtons">Controls</button>
       	</div>
       </div>
     );

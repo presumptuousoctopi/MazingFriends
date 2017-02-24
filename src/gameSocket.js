@@ -1,18 +1,19 @@
 /*******************************************************
  Game Sockets
 *******************************************************/
-
 // Notify whether user is first or second player and update user position
 socket.on('firstPlayer', function(firstPlayer) {
   window.camera.position = firstPlayerPosition;
+  window.camera.rotation = new BABYLON.Vector3(0, 0, 0);
   console.log('You are first player');
   engine.runRenderLoop(function(){
+    console.log('fps : ', engine.fps);
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
         previousCameraPosition = currentCameraPosition;
         socket.emit('userPositionChanged', camera.position);
     }
-    //console.log(window.camera.rotation);
+    console.log(window.camera.rotation);
     scene.render();
   });
 
@@ -20,11 +21,14 @@ socket.on('firstPlayer', function(firstPlayer) {
 
 socket.on('secondPlayer', function(secondPlayer) {
   window.playerType = secondPlayer;
-  window.camera.position = mediumLevelSecondPlayerPosition;
+  window.camera.position = easyLevelSecondPlayerPosition;
+  window.camera.rotation = new BABYLON.Vector3(0, 0, 0);
+
   // Send player position to other player
   socket.emit('sendPlayer', window.camera.position);
   console.log('secondPlayer');
   engine.runRenderLoop(function(){
+    console.log('fps : ', engine.fps);
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
         previousCameraPosition = currentCameraPosition;
@@ -93,6 +97,6 @@ var mousePosition = {
 };
 
 // Event listener for shooting bullets
-window.addEventListener("click", shootBullet.bind(this, window.camera));
+// window.addEventListener("click", shootBullet.bind(this, window.camera));
 // Event listener for mouse movement
-window.addEventListener("mousemove", window.mouseControl.bind(this, window.camera, mousePosition));
+// window.addEventListener("mousemove", window.mouseControl.bind(this, window.camera, mousePosition));

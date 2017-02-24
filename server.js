@@ -1,6 +1,6 @@
-const webpack = require('webpack');
-const config = require('./webpack.config');
-const open = require('open');
+// const webpack = require('webpack');
+// const config = require('./webpack.config');
+// const open = require('open');
 var os = require('os');
 var express = require('express');
 var app = express();
@@ -13,6 +13,9 @@ var db = require('./db.js');
 var bcrypt = require('bcryptjs');
 
 
+http.listen(port, function () {
+  console.log('Example app listening on port 3000!');
+});
 
 /*************************************************************************************************
  Node & Express
@@ -23,15 +26,22 @@ app.use( function(req, res, next) {
   next();
 });
 
-app.use(express.static(__dirname + '/src'));
+app.use('/', express.static(__dirname + '/src'));
+app.use('/js', express.static(__dirname + '/src/js'));
+app.use('/build', express.static(__dirname + '/src/build'));
 
-app.get('*', function (request, response){
-  response.sendFile(path.join(__dirname, './src/index.html'))
+app.get('/favicon.ico', function(request, response) {
+  response.sendFile(path.join(__dirname, './src/favicon.ico'));
 });
 
-http.listen(port, function () {
-  console.log('Example app listening on port 3000!');
+// app.get('/build/bundle.js', function(request, response) {
+//   response.sendFile(path.join(__dirname, './src/build/bundle.js'));  
+// });
+
+app.get('/', function (request, response){
+  response.sendFile(path.resolve(__dirname, './src/index.html'));
 });
+
 
 /*************************************************************************************************
  Socket.io
@@ -74,7 +84,7 @@ io.on('connection', function(socket){
       // Connect user to the room
       socket.join(roomName);
       // Send maze to user
-      socket.emit('serverSendingMaze', mazes.mediumLevelMaze);
+      socket.emit('serverSendingMaze', mazes.easyLevelMaze);
       console.log('A user made a room called ', roomName);
     } else {
       // Send error message back to user
@@ -103,7 +113,7 @@ io.on('connection', function(socket){
       // Request other player's game information
       socket.broadcast.to(playerRoom[socket.id]).emit('newPlayerRequestInfo');
       // Send maze to user
-      socket.emit('serverSendingMaze', mazes.mediumLevelMaze);
+      socket.emit('serverSendingMaze', mazes.easyLevelMaze);
       console.log('A user joined a room called ', roomName);
     }
   });
@@ -174,14 +184,14 @@ socket.on('sendMessage', function(message) {
   var roomMessages = messages[roomName] || [];
   // Add new message and userId to messages array
   roomMessages.push({
-    userId: socket.id,
+    userId: usernames[socket.id],
     message: message
   });
   // Save the update messages array
   messages[roomName] = roomMessages;
   // Send back ten newest messages to all users in the room
-  var lastTenMessages = roomMessages.slice(roomMessages.length-10);
-  io.to(roomName).emit('receiveMessage', lastTenMessages);
+  // var lastTenMessages = roomMessages.slice(roomMessages.length-10);
+  io.to(roomName).emit('receiveMessage', roomMessages);
 });
 
 // Decerement user count when a user leaves the game
