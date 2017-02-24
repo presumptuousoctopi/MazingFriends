@@ -14,7 +14,6 @@ class VideoChat extends React.Component {
         var remoteStream;
         var turnReady;
         var room;
-
         //stun server for network data
         var pcConfig = {
             'iceServers': [{

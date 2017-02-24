@@ -162,7 +162,9 @@ io.on('connection', function(socket){
       });
     }
   });
-
+  socket.on("changedToVideo", function(){
+    socket.emit("roomName", playerRoom[socket.id]);
+  });
   // Receive a user's initial position and send it to all other players in the room
   socket.on('sendPlayer', function(playerCamera) {
     socket.broadcast.to(playerRoom[socket.id]).emit('receivePlayer', playerCamera);
