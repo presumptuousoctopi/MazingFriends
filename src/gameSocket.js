@@ -26,7 +26,7 @@
   }
 var originalTime = 0;
 window.currentTime = 0;
-window.finish = false;
+window.finished = false;
 
 setInterval( () => {
   if ( originalTime !== 0 ) {
@@ -45,7 +45,7 @@ var protocolPrefix = (window.location.protocol === 'https:') ? 'wss:' : 'ws:';
 // Notify whether user is first or second player and update user position
 socket.on('firstPlayer', function(firstPlayer) {
   window.camera.position = firstPlayerPosition;
-  window.camera.rotation = new BABYLON.Vector3(0, 0, 0);
+  window.camera.rotation = new BABYLON.Vector3(-0.38385, -.77694, 0);
   console.log('You are first player');
   engine.runRenderLoop(function(){
     outputplane.position = new BABYLON.Vector3(-35 + camera.position.x, 35 +camera.position.y, 35 + camera.position.z);
@@ -56,7 +56,8 @@ socket.on('firstPlayer', function(firstPlayer) {
         socket.emit('userPositionChanged', camera.position);
     }
     if ( currentTime !== 0 && window.finished === false ) {
-      refreshTime(currentTime);    
+      console.log('before refreshTime');
+      window.refreshTime(window.currentTime);    
     }
     // console.log('currentTime : ', currentTime);
     // console.log(window.camera.rotation);
@@ -68,7 +69,7 @@ socket.on('firstPlayer', function(firstPlayer) {
 socket.on('secondPlayer', function(secondPlayer) {
   window.playerType = secondPlayer;
   window.camera.position = mediumLevelSecondPlayerPosition;
-  window.camera.rotation = new BABYLON.Vector3(0, 0, 0);
+  window.camera.rotation = new BABYLON.Vector3(-0.38385, -.77694, 0);
   originalTime = new Date().getTime();
   // Send player position to other player
 
@@ -82,10 +83,11 @@ socket.on('secondPlayer', function(secondPlayer) {
         socket.emit('userPositionChanged', camera.position);
     }
     if ( window.finished === false ) {
-      refreshTime(currentTime);        
+      console.log('before refreshTime');
+      window.refreshTime(window.currentTime);        
     }
     // console.log(currentTime);
-    //console.log(window.camera.rotation);
+    // console.log(window.camera.rotation);
     scene.render();
   });
 
@@ -112,7 +114,7 @@ socket.on('serverSendingMaze', function(maze) {
 // Send player position to newly joined player(s)
 socket.on('newPlayerRequestInfo', function() {
   socket.emit('sendPlayer', window.camera.position);
-  originalTime = new Date().getTime();
+  window.originalTime = new Date().getTime();
   console.log('New player joined!');
 });
 

@@ -432,6 +432,6 @@ window.gameover = false;
 window.finishGame = function() {
   socket.emit('gameover')
   window.finishTime = window.currentTime;
-  window.finish = true;
+  window.finished = true;
   window.refreshTime('Your record : ' + finishTime);
 };
