@@ -445,7 +445,9 @@ window.calculateDistance = function(x1, y1, z1, x2, y2, z2) {
   return Math.pow((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)+(z1-z2)*(z1-z2), 1/2);
 };
 
+window.gameover = false;
+
 window.finishGame = function() {
-  alert('Game over!');
-  //use react router params to render gme over view
+    console.log('in util')
+  socket.emit('gameover')
 };
