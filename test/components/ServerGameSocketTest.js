@@ -54,8 +54,8 @@ describe('Socket.io Server', function(){
       var player2 = io.connect(socketURL, options);
       player2.emit('joinRoom', '2');
       player2.on('roomName', function(roomName2){
-        var player3 = io.connect(socketURL, options);  
-        var player4 = io.connect(socketURL, options);  
+        var player3 = io.connect(socketURL, options);
+        var player4 = io.connect(socketURL, options);
         player3.emit('joinRoom', '2');
         player4.emit('joinRoom', '2');
         player3.on('roomName', function() {
@@ -116,7 +116,7 @@ describe('Socket.io Server', function(){
           }
         });
       });
-    });    
+    });
   });
 
   it('Should update user position only to other player', function(done) {
@@ -181,6 +181,6 @@ describe('Socket.io Server', function(){
       });
     });
   });
-  
+
 });
 

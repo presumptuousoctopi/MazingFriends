@@ -5,6 +5,7 @@ class VideoChat extends React.Component {
         super ()
     }
     componentDidMount() {
+
         var isChannelReady = false;
         var isInitiator = false;
         var isStarted = false;
@@ -13,7 +14,6 @@ class VideoChat extends React.Component {
         var remoteStream;
         var turnReady;
         var room;
-        console.log("in componentDidMount");    
         //stun server for network data
         var pcConfig = {
             'iceServers': [{
@@ -33,9 +33,13 @@ class VideoChat extends React.Component {
         console.log("local video", localVideo.src)
         var remoteVideo = document.querySelector('#remoteVideo');
         //get user media
+        function doNothing() {
+
+        }
         socket.on('roomName', function(roomName) {
             room = roomName;
             socket.emit('create or join', room);
+            doNothing();
             navigator.mediaDevices.getUserMedia({
                 audio: true,
                 video: true
@@ -71,8 +75,7 @@ class VideoChat extends React.Component {
 
         socket.on('full', function(room){
             alert("Room is full");
-        })
-////////////////////////////////////////////////
+        });
 
         function sendMessage(message) {
             console.log('Client sending message: ', message);
@@ -110,8 +113,8 @@ class VideoChat extends React.Component {
 //set the local stream
         function gotStream(stream) {
             console.log('Adding local stream.');
-            console.log(localVideo);
             localVideo.src = window.URL.createObjectURL(stream);
+            console.log("local video source", localVideo.src);
             localStream = stream;
             sendMessage('got user media');
             if (isInitiator) {

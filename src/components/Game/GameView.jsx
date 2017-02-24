@@ -1,6 +1,7 @@
 import React from 'react';
 import Chat from './ChatView.jsx';
 import GameOver from './GameOver.jsx'
+import ProgressBar from './ProgressBar.jsx'
 
 class Game extends React.Component {
 	constructor() {

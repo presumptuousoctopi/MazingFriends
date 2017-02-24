@@ -4,13 +4,15 @@
 'use strict';
 
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';  
+import TestUtils from 'react-addons-test-utils';
 import createComponent from '../helpers/shallowRenderHelper';
 
+import ChatView from 'components/Game/ChatView'
 import TextChat from 'components/Game/TextChat';
 import HomeView from 'components/Home/HomeView';
 import Signup from 'components/Login/Signup';
 import Login from 'components/Login/Login';
+import VideoChat from 'components/Game/VideoChat'
 
 import { shallow, mount, render } from 'enzyme';
 import { SocketIO, Server } from 'mock-socket';
@@ -39,7 +41,7 @@ describe('TextChat component', function () {
     });
     wrapper.update();
   });
-  
+
   it('Should contain updateInput function that updates message state', function() {
     const wrapper = shallow(<TextChat />);
     wrapper.instance().updateInput({
@@ -151,44 +153,57 @@ describe('Signup component', function () {
     window.socket.disconnect();
   });
 });
-
-describe('Login component', function () {
-  before( function(done) {
-    window.mockServerAddress = 'test'
-    window.mockServer = new Server(mockServerAddress);
-    window.io = SocketIO;
-    window.socket = new window.io(mockServerAddress);
-    window.socket.on('connect', function() {
-      done();
-    });
+describe('VideoChat component', function () {
+  beforeEach(function () {
+    this.VideoChatView = createComponent(VideoChat);
   });
 
-  it('Should contain signIn function that sends user information to the server via socket.io', function(done) {
-    mockServer.on('signin', function (user) {
-      expect(user.username).to.equal('dj');
-      expect(user.password).to.equal('kim');
-      done();
-    });
-    var wrapper = shallow(<Login />);
-    var instance = wrapper.instance({
-      preventDefault: () => {}
-    });
-    instance.refs = {
-      username: {
-        value: 'dj'
-      },
-      password: {
-        value: 'kim'
-      }
-    };
-    instance.signIn({
-      preventDefault: () => {}
-    });
-    wrapper.update();
+  it('should exist when mounted', function () {
+    const wrapper = shallow(<ChatView/>);
+    expect(wrapper.find(VideoChat)).to.have.length(1);
   });
 
-  after( function() {
-    window.mockServer.stop();
-    window.socket.disconnect();
+
+  describe('Login component', function () {
+    before(function (done) {
+      window.mockServerAddress = 'test'
+      window.mockServer = new Server(mockServerAddress);
+      window.io = SocketIO;
+      window.socket = new window.io(mockServerAddress);
+      window.socket.on('connect', function () {
+        done();
+      });
+    });
+
+    it('Should contain signIn function that sends user information to the server via socket.io', function (done) {
+      mockServer.on('signin', function (user) {
+        expect(user.username).to.equal('dj');
+        expect(user.password).to.equal('kim');
+        done();
+      });
+      var wrapper = shallow(<Login />);
+      var instance = wrapper.instance({
+        preventDefault: () => {
+        }
+      });
+      instance.refs = {
+        username: {
+          value: 'dj'
+        },
+        password: {
+          value: 'kim'
+        }
+      };
+      instance.signIn({
+        preventDefault: () => {
+        }
+      });
+      wrapper.update();
+    });
+
+    after(function () {
+      window.mockServer.stop();
+      window.socket.disconnect();
+    });
   });
 });

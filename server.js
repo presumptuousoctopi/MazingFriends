@@ -163,9 +163,9 @@ io.on('connection', function(socket){
     }
   });
 
-  socket.on('switchToVideo', function() {
-    console.log(clients)
-  })
+  socket.on("changedToVideo", function(){
+    socket.emit("roomName", playerRoom[socket.id]);
+  });
 
   // Receive a user's initial position and send it to all other players in the room
   socket.on('sendPlayer', function(playerCamera) {

@@ -17,12 +17,18 @@ class Chat extends React.Component {
     this.setState({
       text: value
     })
+<<<<<<< HEAD
     //if state is video
     if(value === 'video') {
       socket.emit('switchToVideo', 'switchToVideo')
     //emit socket to server
     }
 
+=======
+    if (value === 'video') {
+      socket.emit('changedToVideo', '');
+    }
+>>>>>>> 4a6b944a46a4b81312cac4ac8c602e7405c04244
   }
 
   stopGame() {
