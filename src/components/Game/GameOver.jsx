@@ -9,7 +9,7 @@ class GameOver extends React.Component {
     return (
       <div className="GameOver">
       	<h1>GameOver!</h1> <br/>
-      	<h3>Your time: {this.props.time}</h3> <br/>
+      	<h3>Your time: {}</h3> <br/>
       	<button className="homeButtons">Play Again</button> <br/>
       	<button className="homeButtons">Quit</button>
       </div>
