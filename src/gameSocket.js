@@ -39,29 +39,8 @@ setInterval( () => {
   }
 }, 100);
 
-socket.on('music', function(serverPort) {
-  // Receive process.env.PORT from the server;
-  var binaryAddress = 'ws://localhost:' + serverPort + '/binary';
-  window.binaryJSclient = new BinaryClient(binaryAddress);
-  // Listen for music stream from server
-  window.binaryJSclient.on('stream', function(stream, meta) {
-    console.log('server sent an mp3 file');
-    var parts = [];
-    var audioPlayer = document.getElementById('audioPlayer');
-    audioPlayer.preload = true;
-    audioPlayer.autoplay = true;
-    audioPlayer.controls = 'controls';
+var protocolPrefix = (window.location.protocol === 'https:') ? 'wss:' : 'ws:';
 
-    stream.on('data', function(data) {
-      parts.push(data);
-    });
-    
-    stream.on('end', function() {
-      audioPlayer.src = (window.URL || window.webkitURL).createObjectURL( new Blob(parts) );
-      console.log('song started playing');
-    });
-  }); 
-});
 
 // Notify whether user is first or second player and update user position
 socket.on('firstPlayer', function(firstPlayer) {
