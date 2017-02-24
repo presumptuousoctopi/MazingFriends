@@ -2,8 +2,8 @@ import React from 'react';
 
 class VideoChat extends React.Component {
     constructor (props) {
-            super ()
-        }
+        super ()
+    }
     componentDidMount() {
         var isChannelReady = false;
         var isInitiator = false;
@@ -13,7 +13,7 @@ class VideoChat extends React.Component {
         var remoteStream;
         var turnReady;
         var room;
-        console.log("abcd");
+        console.log("in componentDidMount");    
         //stun server for network data
         var pcConfig = {
             'iceServers': [{
@@ -30,6 +30,7 @@ class VideoChat extends React.Component {
 
         //your screen is local video- other person is remote video
         var localVideo = document.querySelector('#localVideo');
+        console.log("local video", localVideo.src)
         var remoteVideo = document.querySelector('#remoteVideo');
         //get user media
         socket.on('roomName', function(roomName) {
