@@ -6,7 +6,7 @@
   var outputplane = BABYLON.Mesh.CreatePlane("outputplane", 25, scene, false);
   outputplane.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
   outputplane.material = new BABYLON.StandardMaterial("outputplane", scene);
-  outputplane.position = new BABYLON.Vector3(-25, 15, 25);
+  outputplane.position = new BABYLON.Vector3(-40, 40, 40);
   outputplane.scaling.y = 0.4;
   // outputplane.parent = camera;
   // outputplane.position = new BABYLON.Vector3(0, 11, 0);
@@ -41,6 +41,7 @@ socket.on('firstPlayer', function(firstPlayer) {
   window.camera.rotation = new BABYLON.Vector3(0, 0, 0);
   console.log('You are first player');
   engine.runRenderLoop(function(){
+    outputplane.position = new BABYLON.Vector3(-40 + camera.position.x, 40 +camera.position.y, 40 + camera.position.z);
     // console.log('fps : ', engine.fps);
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
@@ -64,9 +65,11 @@ socket.on('secondPlayer', function(secondPlayer) {
   window.camera.rotation = new BABYLON.Vector3(0, 0, 0);
   originalTime = new Date().getTime();
   // Send player position to other player
+
   socket.emit('sendPlayer', window.camera.position);
   console.log('secondPlayer');
   engine.runRenderLoop(function(){
+    outputplane.position = new BABYLON.Vector3(-40 + camera.position.x, 40 +camera.position.y, 40 + camera.position.z);
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
         previousCameraPosition = currentCameraPosition;

@@ -66,7 +66,7 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
 
     // camera.orthoLeft = [37];
  
-    camera.speed = 1;
+    camera.speed = .8;
     // camera.inertia = 0.3;
     // camera.angularSensibility = 500;
     camera.checkCollisions = true;
