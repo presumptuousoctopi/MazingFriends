@@ -7,7 +7,8 @@ class Game extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			gameover: false
+			gameover: false,
+			time: null
 		}
 	} 
 
@@ -15,9 +16,10 @@ class Game extends React.Component {
 		var socket = window.socket;
 		var context = this;
 		
-		socket.on('gameoverlisten', function() {
+		socket.on('gameoverlisten', function(time) {
 				context.setState({
-					gameover: true
+					gameover: true,
+					time: time
 				})
 		console.log('gameover!')
 			});
@@ -28,7 +30,7 @@ class Game extends React.Component {
       <div className="Game">
 			{console.log(window.gameover)}
       	<Chat/>
-      	{this.state.gameover ? <GameOver/> : ''}
+      	{this.state.gameover ? <GameOver time={this.state.time}/> : ''}
       </div>
     );
   }
