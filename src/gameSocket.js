@@ -97,6 +97,6 @@ var mousePosition = {
 };
 
 // Event listener for shooting bullets
-window.addEventListener("click", shootBullet.bind(this, window.camera));
+// window.addEventListener("click", shootBullet.bind(this, window.camera));
 // Event listener for mouse movement
 // window.addEventListener("mousemove", window.mouseControl.bind(this, window.camera, mousePosition));
