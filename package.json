@@ -13,7 +13,7 @@
     "test:watch": "karma start --autoWatch=true --singleRun=false",
     "dev": "webpack -d --progress --colors --watch",
     "build": "webpack -p",
-    "postinstall": "NODE_ENV=production webpack -p"
+    "postinstall": "webpack -p"
   },
   "repository": "",
   "keywords": [],
@@ -66,6 +66,7 @@
     "babylon": "^6.15.0",
     "bcryptjs": "^2.4.3",
     "chai-spies": "^0.7.1",
+    "binaryjs": "^0.2.1",
     "child_process": "^1.0.2",
     "core-js": "^2.0.0",
     "enzyme": "^2.7.1",
