@@ -23,7 +23,7 @@ const boundaryWalls = {
   10: [92, 150],
   20: [173, 322]
 };
-const mazeSize = hardLevelMazeSize;
+const mazeSize = mediumLevelMazeSize;
 const groundBoundaryLength = boundaryWalls[mazeSize][1] * 1.2;
 
 // Create environment
