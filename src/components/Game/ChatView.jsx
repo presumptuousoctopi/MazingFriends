@@ -17,17 +17,14 @@ class Chat extends React.Component {
     this.setState({
       text: value
     })
-
-    //if state is video
-    if(value === 'video') {
-      socket.emit('switchToVideo', 'switchToVideo')
-    //emit socket to server
+    if (value === 'video') {
+      socket.emit('changedToVideo', '');
     }
-
   }
 
   stopGame() {
     location.reload();
+    browserHistory.push({ pathname: '/home'})
   }
 
   render() {
@@ -36,7 +33,7 @@ class Chat extends React.Component {
         <div className="Options">
           <h1>Mazing Friends</h1>
           <button className="optionButtons">Controls</button>
-          <Link to="/"><button className="optionButtons" onClick={this.stopGame.bind(this)}>Quit Game</button></Link>
+          <button className="optionButtons" onClick={this.stopGame.bind(this)}>Quit Game</button>
           <form>
             <h3>Chat Options</h3>
             <input type="radio" name="chat" value="text" onChange={this.switchChat.bind(this, "text")}/>Text
