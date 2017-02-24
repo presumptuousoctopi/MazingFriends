@@ -62,6 +62,7 @@
     "axios": "^0.15.3",
     "babylon": "^6.15.0",
     "bcryptjs": "^2.4.3",
+    "binaryjs": "^0.2.1",
     "child_process": "^1.0.2",
     "core-js": "^2.0.0",
     "enzyme": "^2.7.1",

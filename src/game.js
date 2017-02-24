@@ -1,5 +1,6 @@
 // Initialize
 window.socket = io();
+window.client = new BinaryClient('ws://localhost:9000');
 var canvas = document.getElementById('canvas');
 window.engine = new BABYLON.Engine(canvas, true);
 

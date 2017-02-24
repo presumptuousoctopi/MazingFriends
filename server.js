@@ -11,7 +11,8 @@ var port = process.env.PORT || 3000;
 var mazes = require('./src/customMazes');
 var db = require('./db.js');
 var bcrypt = require('bcryptjs');
-
+var fs = require('fs');
+var BinaryServer = require('binaryjs').BinaryServer;
 
 http.listen(port, function () {
   console.log('Example app listening on port 3000!');
@@ -281,3 +282,30 @@ socket.on('disconnect', function(){
 //   alert(msg);
 // });
 
+
+
+/*************************************************************************************************
+ Binary JS - Music Stream
+ *************************************************************************************************/
+// var binaryJSclients = {};
+// var songDownloadUrl = 'https://www.youtubeinmp3.com/fetch/?video=https://www.youtube.com/watch?v=' + videoId;
+// var savePath = fs.createWriteStream(path.join(__dirname, './song.mp3'));
+// binaryJSclients[clientId].client.send(fileStream);    
+// for ( var client in currentClients ) {
+//   currentClients[client].send(mp3File);
+// }
+
+
+
+// Open a binary server
+var binaryServer = BinaryServer({ port: 9000 });
+
+// Listen for connection with client
+binaryServer.on('connection', function(client) {
+  // Save path to mp3 file in a variable
+  var songFilePath = path.join(__dirname, '/songs/main.mp3');
+  // Save file stream in a variable
+  var fileStream = fs.createReadStream(songFilePath);
+  // Send mp3 file to client
+  client.send(fileStream);
+});
