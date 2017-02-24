@@ -134,6 +134,10 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
         // Up Arrow    38
         // Right Arrow 39 
         // Down Arrow  40 
+      if ( event.keyCode === 70 ) {
+        shootBullet.call(this, window.camera);
+      }
+
       if ( event.keyCode === 37 ) {
         camera.cameraRotation.y += -cameraRotationSensitivity;
       } 
@@ -315,7 +319,7 @@ var buildSimpleMaze = function(maze) {
 *******************************************************/
 var customBullet = null;
 var bulletsFired = 0;
-window.shootBullet = function ( shooter, e, isIncoming = false ) {
+function shootBullet ( shooter, e, isIncoming = false ) {
     if ( !isIncoming ) {
         var invView = new BABYLON.Matrix();
         var initPosition = shooter.position; 
