@@ -66,7 +66,7 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
 
     // camera.orthoLeft = [37];
  
-    camera.speed = 1;
+    camera.speed = .8;
     // camera.inertia = 0.3;
     // camera.angularSensibility = 500;
     camera.checkCollisions = true;
@@ -110,33 +110,15 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
         flag.canJump = true;
         cameraJump(flag);
       }  
-        // w 87
-        // a 65
-        // s 83
-        // d 68
 
-      // if ( event.keyCode === 87 ) { 
-      //   camera.position.x += cameraMovementSensitivity;
-      // }
-
-      // if ( event.keyCode === 83 ) { 
-      //   camera.position.x += -cameraMovementSensitivity;
-      // }
-
-      // if ( event.keyCode === 65 ) { 
-      //   camera.position.x += -cameraMovementSensitivity;
-      // }
-
-      // if ( event.keyCode === 68 ) { 
-      //   camera.position.x += cameraMovementSensitivity;
-      // }
-        // Left Arrow  37 
-        // Up Arrow    38
-        // Right Arrow 39 
-        // Down Arrow  40 
       if ( event.keyCode === 70 ) {
         shootBullet.call(this, window.camera);
       }
+
+    // Left Arrow  37 
+    // Up Arrow    38
+    // Right Arrow 39 
+    // Down Arrow  40 
 
       if ( event.keyCode === 37 ) {
         camera.cameraRotation.y += -cameraRotationSensitivity;
@@ -147,11 +129,11 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
       }
 
       if ( event.keyCode === 38 ) {
-        camera.cameraRotation.x += -cameraRotationSensitivity;
+        camera.cameraRotation.x += -cameraRotationSensitivity / 2;
       }
 
       if ( event.keyCode === 40 ) {
-        camera.cameraRotation.x += cameraRotationSensitivity;
+        camera.cameraRotation.x += cameraRotationSensitivity / 2;
       }
     }
     return camera;
@@ -352,29 +334,29 @@ function shootBullet ( shooter, e, isIncoming = false ) {
 };
 
 
-window.mouseControl = function(camera, mousePosition, e) {
-    var mouseX = e.clientX;
-    var mouseY = e.clientY;
-    var dx = mouseX - mousePosition.x;
-    var dy = mouseY - mousePosition.y;
-    var scale = 2000;
-    var sensitivity = .05;
+// window.mouseControl = function(camera, mousePosition, e) {
+//     var mouseX = e.clientX;
+//     var mouseY = e.clientY;
+//     var dx = mouseX - mousePosition.x;
+//     var dy = mouseY - mousePosition.y;
+//     var scale = 2000;
+//     var sensitivity = .05;
 
-    if ( dx > 2 ) {
-        camera.cameraRotation.y += sensitivity;
-    } else if ( dx < -2 ) {
-        camera.cameraRotation.y -= sensitivity;
-    }
+//     if ( dx > 2 ) {
+//         camera.cameraRotation.y += sensitivity;
+//     } else if ( dx < -2 ) {
+//         camera.cameraRotation.y -= sensitivity;
+//     }
 
-    if ( dy > 2 ) {
-        camera.cameraRotation.x += sensitivity;
-    } else if ( dy < -2 ) {
-        camera.cameraRotation.x -= sensitivity;
-    }        
+//     if ( dy > 2 ) {
+//         camera.cameraRotation.x += sensitivity;
+//     } else if ( dy < -2 ) {
+//         camera.cameraRotation.x -= sensitivity;
+//     }        
 
-    mousePosition.x = mouseX;
-    mousePosition.y = mouseY;
-};
+//     mousePosition.x = mouseX;
+//     mousePosition.y = mouseY;
+// };
 
 // To be used to find the solution for the maze:
 
@@ -448,6 +430,8 @@ window.calculateDistance = function(x1, y1, z1, x2, y2, z2) {
 window.gameover = false;
 
 window.finishGame = function() {
-    console.log('in util')
   socket.emit('gameover')
+  window.finishTime = window.currentTime;
+  window.finished = true;
+  window.refreshTime('Your record : ' + finishTime);
 };
