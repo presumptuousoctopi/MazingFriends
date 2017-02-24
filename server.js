@@ -13,6 +13,7 @@ var db = require('./db.js');
 var bcrypt = require('bcryptjs');
 var fs = require('fs');
 var BinaryServer = require('binaryjs').BinaryServer;
+var binaryServer = new BinaryServer({ server:http, path: '/binary'});
 
 http.listen(port, function () {
   console.log('Example app listening on port 3000!');
@@ -66,6 +67,8 @@ var usernames = {};
 
 // Start socket.io server
 io.on('connection', function(socket){
+  // Send process.env.PORT for binaryJS music stream
+  socket.emit('music', port);
   // Increment every time a new user is connected
   userCount++;
   console.log('a user connected', userCount);
@@ -297,8 +300,6 @@ socket.on('disconnect', function(){
 
 
 
-// Open a binary server
-var binaryServer = BinaryServer({ port: 9000 });
 
 // Listen for connection with client
 binaryServer.on('connection', function(client) {
