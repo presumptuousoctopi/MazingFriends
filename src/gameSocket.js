@@ -55,7 +55,7 @@ socket.on('firstPlayer', function(firstPlayer) {
         previousCameraPosition = currentCameraPosition;
         socket.emit('userPositionChanged', camera.position);
     }
-    if ( currentTime !== 0 && finished === false ) {
+    if ( currentTime !== 0 && window.finished === false ) {
       refreshTime(currentTime);    
     }
     // console.log('currentTime : ', currentTime);
@@ -81,7 +81,7 @@ socket.on('secondPlayer', function(secondPlayer) {
         previousCameraPosition = currentCameraPosition;
         socket.emit('userPositionChanged', camera.position);
     }
-    if ( finished === false ) {
+    if ( window.finished === false ) {
       refreshTime(currentTime);        
     }
     // console.log(currentTime);
