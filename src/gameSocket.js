@@ -21,7 +21,7 @@ socket.on('firstPlayer', function(firstPlayer) {
 
 socket.on('secondPlayer', function(secondPlayer) {
   window.playerType = secondPlayer;
-  window.camera.position = easyLevelSecondPlayerPosition;
+  window.camera.position = hardLevelSecondPlayerPosition;
   window.camera.rotation = new BABYLON.Vector3(0, 0, 0);
 
   // Send player position to other player
