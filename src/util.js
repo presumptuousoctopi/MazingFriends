@@ -66,7 +66,7 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
 
     // camera.orthoLeft = [37];
  
-    // camera.speed = 6;
+    camera.speed = 1;
     // camera.inertia = 0.3;
     // camera.angularSensibility = 500;
     camera.checkCollisions = true;
@@ -196,7 +196,6 @@ window.addBox = function(x, z, type) {
       material.alpha = .3;
       box.material = material;
       // box.applyGravity = true;
-      // box.checkCollisions = true;
     } else {
       var box = customBox[type].clone('' + (++numberOfBoxes));
     }
@@ -208,6 +207,7 @@ window.addBox = function(x, z, type) {
       mazeBoxes.push(box);
     }
     box.position = new BABYLON.Vector3(x, 2, z);
+    box.checkCollisions = true;
         // material.specularColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
         // material.specularPower = 32;
         // material.ambientColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());  
@@ -337,15 +337,15 @@ function shootBullet ( shooter, e, isIncoming = false ) {
         var material = new BABYLON.StandardMaterial('texture1', scene);
         material.diffuseColor = new BABYLON.Color3.White();
         bullet.material = material; 
-        // bullet.applyGravity = true;
-        // bullet.checkCollisions = true;
-        // bullet.physicsImpostor = new BABYLON.PhysicsImpostor(bullet, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 10, restitution: 0.9 }, scene);    
         customBullet = bullet;
     } else {
         var bullet = customBullet.clone('bullet' + (++bulletsFired) );
     }
+    // bullet.applyGravity = true;
     bullet.position = new BABYLON.Vector3(initPosition.x, initPosition.y, initPosition.z);
-    var direction = BABYLON.Vector3.TransformNormal(new BABYLON.Vector3(0, 0, 5), invView);
+    bullet.checkCollisions = true;
+    // bullet.physicsImpostor = new BABYLON.PhysicsImpostor(bullet, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 10, restitution: 0.9 }, scene);    
+    var direction = BABYLON.Vector3.TransformNormal(new BABYLON.Vector3(0, 0, 3), invView);
     scene.registerBeforeRender(function () {
         bullet.position.addInPlace(direction);
     });
