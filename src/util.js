@@ -351,6 +351,7 @@ function shootBullet ( shooter, e, isIncoming = false ) {
     });
 };
 
+
 window.mouseControl = function(camera, mousePosition, e) {
     var mouseX = e.clientX;
     var mouseY = e.clientY;
