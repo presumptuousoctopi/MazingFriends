@@ -104,7 +104,7 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     var cameraRotationSensitivity = .1 * ( Math.PI / 4 );
     var cameraMovementSensitivity = .1;
     function onKeyDown(event) {  
-      if ( window.userOnChat || !window.otherPlayer ) {
+      if ( window.userOnChat ) {
         return;
       }
         // event.preventDefault();
