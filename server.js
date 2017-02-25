@@ -70,6 +70,13 @@ var usernames = {};
 io.on('connection', function(socket){
   // Send process.env.PORT for binaryJS music stream
   socket.emit('music', port);
+  //send world record to client
+  db.Leaderboard.findAll({
+    order: [['time', 'DESC']]
+  }).then(function(data){
+    console.log("DATA:", data);
+  //socket.emit('receiveWorldRecord', data[0]);
+})
   // Increment every time a new user is connected
   userCount++;
   console.log('a user connected', userCount);
