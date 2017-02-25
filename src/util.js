@@ -431,8 +431,13 @@ window.gameover = false;
 
 window.finishGame = function() {
   window.finishTime = window.currentTime;
-  socket.emit('gameover', finishTime)
+  socket.emit('gameover', {
+      time: 20,
+      user: sessionStorage.getItem('user')
+  })
   window.finished = true;
   window.refreshTime(finishTime);
 };
+
+
 

@@ -193,14 +193,20 @@ socket.on('disconnect', function(){
     socket.emit('receiveNumberOfUsers', userCount);
   });
 
-  socket.on('gameover', function(time) {
-    console.log('in server')
-    socket.emit('gameoverlisten', time)
+  socket.on('gameover', function(data) {
+    console.log('in server', data);
+    db.Leaderboard.create({
+      username: data.user,
+      time: data.time
+    }).then(function(user){
+      console.log(user);
+    });
+    socket.emit('gameoverlisten', data.time)
   });
 
   socket.on('time', function(time) {
     socket.emit('timer', time)
-  })
+  });
   
   /*************************************************************************************************
    Authentication Sockets
