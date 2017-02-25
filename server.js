@@ -86,6 +86,8 @@ io.on('connection', function(socket){
       socket.emit('firstPlayer', 'firstPlayer');
       // Notify room name
       socket.emit('roomName', roomName);
+      //emit created event to video for webrtc
+      socket.emit('created', roomName, socket.id);
       // Connect user to the room
       socket.join(roomName);
       // Send maze to user
@@ -120,43 +122,19 @@ io.on('connection', function(socket){
       // Send maze to user
       socket.emit('serverSendingMaze', mazes.mediumLevelMaze);
       console.log('A user joined a room called ', roomName);
+      /////////
+      console.log('Client ID ' + socket.id + ' joined room ' + roomName);
+      io.in(roomName).emit('join', roomName);
+      socket.emit('joined', roomName, socket.id);
+      io.sockets.in(roomName).emit('ready');
     }
   });
 
   socket.on('message', function(message) {
     // for a real app, would be room-only (not broadcast)
-    socket.broadcast.emit('message', message);
+    io.sockets.in(playerRoom[socket.id]).emit('message', message);
   });
 
-  socket.on('create or join', function(room) {
-    //increment the counter
-    socket.room = room;
-    if(!clients[room]){
-      clients[room] = 1;
-    }
-    else {
-      clients[room] += 1;
-    }
-    console.log(clients);
-    //if it's the first person, emit the created event
-    //else it's the second person
-    if (clients[room] === 1) {
-      socket.join(room);
-      socket.emit('created', room, socket.id);
-      console.log(clients);
-
-    } else if (clients[room] === 2) {
-      console.log('Client ID ' + socket.id + ' joined room ' + room);
-      io.in(room).emit('join', room);
-      socket.join(room);
-      console.log(room);
-      socket.emit('joined', room, socket.id);
-      io.sockets.in(room).emit('ready');
-    }
-    else {
-      socket.emit('full', room);
-    }
-  });
   socket.on('ipaddr', function() {
     var ifaces = os.networkInterfaces();
     for (var dev in ifaces) {
