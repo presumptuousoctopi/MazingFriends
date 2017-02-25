@@ -31,8 +31,8 @@ class Chat extends React.Component {
       <div className="Chat">
         <div className="Options">
           <h1>Mazing Friends</h1>
-          {this.props.timer ? <h2>{this.props.timer}</h2> : <p>waiting for second player</p>}
-          <button className="optionButtons">Controls</button>
+          {this.props.timer ? <h2>{this.props.timer}</h2> : <p>waiting for second player...</p>}
+          <button className="optionButtons" onClick={this.props.controlsClickHandler}>Controls</button>
           <Link to="/"><button className="optionButtons" onClick={this.stopGame.bind(this)}>Quit Game</button></Link>
           <form>
             <h3>Chat Options</h3>
