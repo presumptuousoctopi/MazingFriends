@@ -23,6 +23,7 @@
   window.refreshTime = function(data) {
     context2D.clearRect(0, 200, 512, 512);
     outputplaneTexture.drawText(data, null, 380, "100px verdana", "white", null);
+    socket.emit('time', window.currentTime)
   }
 var originalTime = 0;
 window.currentTime = 0;
@@ -56,7 +57,6 @@ socket.on('firstPlayer', function(firstPlayer) {
         socket.emit('userPositionChanged', camera.position);
     }
     if ( currentTime !== 0 && window.finished === false ) {
-      console.log('before refreshTime');
       window.refreshTime(window.currentTime);    
     }
     // console.log('currentTime : ', currentTime);
@@ -83,7 +83,6 @@ socket.on('secondPlayer', function(secondPlayer) {
         socket.emit('userPositionChanged', camera.position);
     }
     if ( window.finished === false ) {
-      console.log('before refreshTime');
       window.refreshTime(window.currentTime);        
     }
     // console.log(currentTime);
