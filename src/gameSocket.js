@@ -13,7 +13,7 @@
   var outputplane2 = BABYLON.Mesh.CreatePlane("outputplane", 25, scene, false);
   outputplane2.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
   outputplane2.material = new BABYLON.StandardMaterial("outputplane", scene);
-  outputplane2.position = new BABYLON.Vector3(40, 40, 40);
+  outputplane2.position = new BABYLON.Vector3(20, 20, 20);
   outputplane2.scaling.y = 0.4;
 
   var outputplaneTexture = new BABYLON.DynamicTexture("dynamic texture", 512, scene, true);
@@ -29,7 +29,7 @@
   outputplane2.material.backFaceCulling = false;
 
   outputplaneTexture.drawText("Timer", null, 140, "bold 140px verdana", "white", "#0000AA");
-  outputplaneTexture2.drawText("World Record:" + window.worldRecord, null, 140, "bold 30px verdana", "white", "#0000AA");
+  // outputplaneTexture2.drawText("World Record", null, 140, "bold 100px verdana", "white", "#0000AA");
 
   var context2D = outputplaneTexture.getContext();
   window.refreshTime = function(data) {
@@ -170,7 +170,10 @@ socket.on('incomingShot', function(shooter) {
 });
 
 socket.on("receiveWorldRecord", function (data){
-    outputplaneTexture2.drawText("World Record:" + data, null, 140, "bold 30px verdana", "white", "#0000AA");
+  var seconds = data.time % 60;
+  var minutes = Math.round( data.time / 60 );
+  var stringTime = !!minutes ? minutes + ':' + seconds : seconds;
+    outputplaneTexture2.drawText( "World Record : " + stringTime + ' by ' + data.user, null, 280, "bold 30px verdana", "white", "#0000AA");
 });
 /*******************************************************
  User Control Event Listeners

@@ -62,8 +62,8 @@ var Gamestate = sequelize.define('gamestate', {
 //   })
 // });
 
-User.sync({force: true});
-Leaderboard.sync({force: true});
+User.sync();
+Leaderboard.sync();
 // var consoleLater = function() {
 //   User.findAll({
 //     order: [
