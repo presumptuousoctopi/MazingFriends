@@ -219,6 +219,10 @@ socket.on('disconnect', function(){
     console.log('in server')
     socket.emit('gameoverlisten', time)
   });
+
+  socket.on('time', function(time) {
+    socket.emit('timer', time)
+  })
   
   /*************************************************************************************************
    Authentication Sockets
