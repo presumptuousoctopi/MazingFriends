@@ -19,8 +19,8 @@ function requireAuth(nextState, replaceState) {
   console.log('outside if statement');
   if ( !!window.sessionStorage.getItem('user') ) {
     console.log('Inside if statement in requireAuth');
-    // replaceState({
-    //   nextPathName: nextState.location.pathName
-    // }, '/game');
+    replaceState({
+      pathname: '/home'
+    });
   }
 };
