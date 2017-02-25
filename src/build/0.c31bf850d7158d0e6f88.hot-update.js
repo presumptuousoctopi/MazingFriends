@@ -155,10 +155,12 @@ webpackHotUpdate(0,{
 	            };
 	
 	            console.log('Getting user media with constraints', constraints);
-	
-	            if (location.hostname !== 'localhost') {
-	                requestTurn('https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913');
-	            }
+	            //
+	            //if (location.hostname !== 'localhost') {
+	            //    requestTurn(
+	            //        'https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913'
+	            //    );
+	            //}
 	
 	            function start() {
 	                console.log('>>>>>>> start ', isStarted, localStream, isChannelReady);
@@ -403,4 +405,4 @@ webpackHotUpdate(0,{
 /***/ }
 
 })
-//# sourceMappingURL=0.abebaeca2f7025498d4b.hot-update.js.map
+//# sourceMappingURL=0.c31bf850d7158d0e6f88.hot-update.js.map

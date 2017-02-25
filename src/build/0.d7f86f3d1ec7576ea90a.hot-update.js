@@ -49,7 +49,6 @@ webpackHotUpdate(0,{
 	            var remoteStream;
 	            var turnReady;
 	            var room;
-	            console.log("in component did mount");
 	            //stun server for network data
 	            var pcConfig = {
 	                'iceServers': [{
@@ -156,10 +155,12 @@ webpackHotUpdate(0,{
 	            };
 	
 	            console.log('Getting user media with constraints', constraints);
-	
-	            if (location.hostname !== 'localhost') {
-	                requestTurn('https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913');
-	            }
+	            //
+	            //if (location.hostname !== 'localhost') {
+	            //    (
+	            //        'https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913'
+	            //    );
+	            //}
 	
 	            function start() {
 	                console.log('>>>>>>> start ', isStarted, localStream, isChannelReady);
@@ -404,4 +405,4 @@ webpackHotUpdate(0,{
 /***/ }
 
 })
-//# sourceMappingURL=0.8f01cf2394daa5cc5d8a.hot-update.js.map
+//# sourceMappingURL=0.d7f86f3d1ec7576ea90a.hot-update.js.map

@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9ce4d90dc9daf6e611c4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "5acb3e9f28e26afbbd1b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -30744,12 +30744,9 @@
 	            var localVideo = document.querySelector('#localVideo');
 	            console.log("local video", localVideo.src);
 	            var remoteVideo = document.querySelector('#remoteVideo');
-	            //get user media
-	            function doNothing() {}
 	            socket.on('roomName', function (roomName) {
 	                room = roomName;
 	                socket.emit('create or join', room);
-	                doNothing();
 	                navigator.mediaDevices.getUserMedia({
 	                    audio: true,
 	                    video: true
@@ -30822,6 +30819,7 @@
 	                console.log("local video source", localVideo.src);
 	                localStream = stream;
 	                sendMessage('got user media');
+	                console.log("is initiator", isInitiator);
 	                if (isInitiator) {
 	                    start();
 	                }
@@ -30832,10 +30830,12 @@
 	            };
 	
 	            console.log('Getting user media with constraints', constraints);
-	
-	            if (location.hostname !== 'localhost') {
-	                requestTurn('https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913');
-	            }
+	            //
+	            //if (location.hostname !== 'localhost') {
+	            //    (
+	            //        'https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913'
+	            //    );
+	            //}
 	
 	            function start() {
 	                console.log('>>>>>>> start ', isStarted, localStream, isChannelReady);
