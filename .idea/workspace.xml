@@ -2,35 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d5e261e-c9b1-4037-a6a8-f719ca933c1e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/songs/main.mp3" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/js/binaryJS.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/music.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/build/bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.23557883c750f117f065.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.23557883c750f117f065.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c31bf850d7158d0e6f88.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c31bf850d7158d0e6f88.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.d7f86f3d1ec7576ea90a.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.d7f86f3d1ec7576ea90a.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.e441a7a83104fe5d3a81.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.e441a7a83104fe5d3a81.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/23557883c750f117f065.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/bundle.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/c31bf850d7158d0e6f88.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/d7f86f3d1ec7576ea90a.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/e441a7a83104fe5d3a81.hot-update.json" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/ChatView.jsx" afterPath="$PROJECT_DIR$/src/components/Game/ChatView.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/GameOver.jsx" afterPath="$PROJECT_DIR$/src/components/Game/GameOver.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/GameView.jsx" afterPath="$PROJECT_DIR$/src/components/Game/GameView.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameSocket.js" afterPath="$PROJECT_DIR$/src/gameSocket.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/PhantomJS 2.1.1 (Windows 8 0.0.0)/index.html" afterPath="$PROJECT_DIR$/coverage/PhantomJS 2.1.1 (Windows 8 0.0.0)/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/style.css" afterPath="$PROJECT_DIR$/src/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util.js" afterPath="$PROJECT_DIR$/src/util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MazingFriends.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,21 +24,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.277778">
-              <caret line="135" column="5" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.76363635">
+              <caret line="43" column="10" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VideoChat.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Game/VideoChat.jsx">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-59.88889">
-              <caret line="159" column="61" selection-start-line="159" selection-start-column="36" selection-end-line="159" selection-end-column="61" />
+            <state vertical-scroll-proportion="-7.7777777">
+              <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -113,10 +86,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.82615894">
+            <state vertical-scroll-proportion="0.0">
               <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
               <folding />
             </state>
@@ -169,7 +142,6 @@
         <option value="$PROJECT_DIR$/src/game.js" />
         <option value="$PROJECT_DIR$/src/components/Login/Login.jsx" />
         <option value="$PROJECT_DIR$/src/gameSocket.js" />
-        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/components/Login/Signup.jsx" />
         <option value="$PROJECT_DIR$/src/components/Home/HomeView.jsx" />
         <option value="$PROJECT_DIR$/.gitignore" />
@@ -187,9 +159,10 @@
         <option value="$PROJECT_DIR$/src/components/Game/ChatView.jsx" />
         <option value="$PROJECT_DIR$/coverage/PhantomJS 2.1.1 (Mac OS X 0.0.0)/base.css" />
         <option value="$PROJECT_DIR$/src/components/Game/VideoChat.jsx" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/style.css" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/server.js" />
       </list>
     </option>
   </component>
@@ -399,9 +372,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1938046" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1938046" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -691,16 +664,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding>
-            <marker date="1487800822000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/webrtc.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.024834437">
@@ -821,22 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/VideoChat.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-59.88889">
-          <caret line="159" column="61" selection-start-line="159" selection-start-column="36" selection-end-line="159" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.277778">
-          <caret line="135" column="5" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.375">
@@ -849,8 +796,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82615894">
+        <state vertical-scroll-proportion="0.0">
           <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/VideoChat.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.8024263">
+          <caret line="159" column="61" selection-start-line="159" selection-start-column="36" selection-end-line="159" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.7777777">
+          <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76363635">
+          <caret line="43" column="10" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
           <folding />
         </state>
       </provider>

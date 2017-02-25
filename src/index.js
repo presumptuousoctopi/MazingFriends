@@ -8,9 +8,11 @@ import Home from './components/Home/HomeView.jsx'
 
 render((
   <Router history={browserHistory}>
-		<Route path="/" component={Login} />
+		<Route path="/" component={Login} onEnter={requireAuth}/>
     <Route path="/game" component={Game} />
 		<Route path="/home" component={Home} />
 	</Router>
-	), document.getElementById('app')
-);
+	), document.getElementById('app'));
+function requireAuth () {
+	console.log("abc");
+}
