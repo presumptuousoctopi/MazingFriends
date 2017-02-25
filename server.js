@@ -166,13 +166,13 @@ io.on('connection', function(socket){
   });
 
   // Receive a user's message and return all messages posted in the room
-socket.on('sendMessage', function(message) {
+socket.on('sendMessage', function(data) {
   var roomName = playerRoom[socket.id];
   var roomMessages = messages[roomName] || [];
   // Add new message and userId to messages array
   roomMessages.push({
-    userId: usernames[socket.id],
-    message: message
+    userId: data.user,
+    message: data.message
   });
   // Save the update messages array
   messages[roomName] = roomMessages;
