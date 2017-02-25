@@ -89,6 +89,10 @@ socket.on('firstPlayer', function(firstPlayer) {
 
 socket.on('secondPlayer', function(secondPlayer) {
   window.playerType = secondPlayer;
+  window.camera.keysUp = [87];
+  window.camera.keysDown = [83]; 
+  window.camera.keysLeft = [65]; 
+  window.camera.keysRight = [68];
   window.camera.position = mediumLevelSecondPlayerPosition;
   window.camera.rotation = new BABYLON.Vector3(-0.38385, -.77694, 0);
   originalTime = new Date().getTime();
@@ -144,6 +148,10 @@ socket.on('serverSendingMaze', function(maze) {
 socket.on('newPlayerRequestInfo', function() {
   socket.emit('sendPlayer', window.camera.position);
   window.originalTime = new Date().getTime();
+  window.camera.keysUp = [87];
+  window.camera.keysDown = [83]; 
+  window.camera.keysLeft = [65]; 
+  window.camera.keysRight = [68];
   console.log('New player joined!');
 });
 

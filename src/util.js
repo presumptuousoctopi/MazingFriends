@@ -58,10 +58,10 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     // camera.inputs.remove(camera.inputs.attached.keyboard);
     // camera.inputs.addKeyboard();
 
-    camera.keysUp = [87];
-    camera.keysDown = [83]; 
-    camera.keysLeft = [65]; 
-    camera.keysRight = [68];
+    camera.keysUp = [];
+    camera.keysDown = []; 
+    camera.keysLeft = []; 
+    camera.keysRight = [];
 
     // camera.orthoLeft = [37];
  
@@ -104,7 +104,7 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     var cameraRotationSensitivity = .1 * ( Math.PI / 4 );
     var cameraMovementSensitivity = .1;
     function onKeyDown(event) {  
-      if ( window.userOnChat ) {
+      if ( window.userOnChat || !window.otherPlayer ) {
         return;
       }
         // event.preventDefault();
