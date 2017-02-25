@@ -170,7 +170,10 @@ socket.on('incomingShot', function(shooter) {
 });
 
 socket.on("receiveWorldRecord", function (data){
-    outputplaneTexture2.drawText( "World Record : " + data.time + ' by ' + data.user, null, 280, "bold 30px verdana", "white", "#0000AA");
+  var seconds = data.time % 60;
+  var minutes = Math.round( data.time / 60 );
+  var stringTime = !!minutes ? minutes + ':' + seconds : seconds;
+    outputplaneTexture2.drawText( "World Record : " + stringTime + ' by ' + data.user, null, 280, "bold 30px verdana", "white", "#0000AA");
 });
 /*******************************************************
  User Control Event Listeners
