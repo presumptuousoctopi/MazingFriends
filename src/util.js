@@ -436,7 +436,20 @@ window.finishGame = function() {
   socket.emit('gameover', {
       time: finishTime,
       user: sessionStorage.getItem('user')
-  })
+  });
+  // 12:31.4
+  // 23.6
+  var integerTime = 0;
+  if ( window.finishTime.includes(':') ) {
+    var newTime = window.finishTime.split(':');
+    integerTime = Number(newTime[0] * 60) + Number(newTime[1]);
+  } else {
+    integerTime = Number(window.finishTime);
+  }
+  socket.emit('saveTime', {
+      time: integerTime,
+      user: sessionStorage.getItem('user')
+  });
   window.finished = true;
   window.refreshTime(finishTime);
 };

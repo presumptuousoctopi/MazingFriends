@@ -195,13 +195,16 @@ socket.on('disconnect', function(){
 
   socket.on('gameover', function(data) {
     console.log('in server', data);
+    socket.emit('gameoverlisten', data.time)
+  });
+
+  socket.on('saveTime', function(data) {
     db.Leaderboard.create({
       username: data.user,
       time: data.time
     }).then(function(user){
       console.log(user);
     });
-    socket.emit('gameoverlisten', data.time)
   });
 
   socket.on('time', function(time) {
