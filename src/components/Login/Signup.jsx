@@ -32,6 +32,10 @@ class Signup extends React.Component {
       password: this.refs.password.value
     };
     console.log('in signup', newUser);
+    if (this.refs.password.value !== this.refs.confirmPassword.value) {
+      alert("Please enter the same password");
+      return;
+    }
     window.socket.emit('signup', newUser);
     window.sessionStorage.setItem('user', this.refs.username.value);
     var data = window.sessionStorage.getItem('user');
@@ -50,7 +54,7 @@ class Signup extends React.Component {
       <br/>
       <br/>
       Confirm Password:
-      <input type="password" required="true"/>
+      <input type="password" ref="confirmPassword" required="true"/>
       <br/>
       <br/>
     	<button type="submit">Sign up</button>
