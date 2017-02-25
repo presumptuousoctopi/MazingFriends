@@ -1,6 +1,7 @@
 import React from 'react';
 import Chat from './ChatView.jsx';
 import GameOver from './GameOver.jsx'
+import Controls from './Controls.jsx'
 import ProgressBar from './ProgressBar.jsx'
 
 class Game extends React.Component {
@@ -9,7 +10,8 @@ class Game extends React.Component {
 		this.state = {
 			gameover: false,
 			time: null,
-			timer: null
+			timer: null,
+			controls: false
 		}
 	} 
 
@@ -32,12 +34,19 @@ class Game extends React.Component {
 			});
   }
 
+  controlsClickHandler() {
+  	this.setState({
+  		controls: !this.state.controls
+  	})
+  }
+
   render() {
     return (
       <div className="Game">
 			{console.log(window.gameover)}
-      	<Chat timer={this.state.timer} />
+      	<Chat timer={this.state.timer} controlsClickHandler={this.controlsClickHandler.bind(this)} />
       	{this.state.gameover ? <GameOver time={this.state.time}/> : ''}
+      	{this.state.controls ? <Controls controlsClickHandler={this.controlsClickHandler.bind(this)} /> : ''}
       </div>
     );
   }
