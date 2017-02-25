@@ -12,7 +12,7 @@ window.binaryJSclient.on('stream', function(stream, meta) {
   audioPlayer.preload = true;
   audioPlayer.controls = 'controls';
   if ( audioId !== 'audioPlayer1' ) {
-    audioPlayer.volume = .1;
+    audioPlayer.volume = .15;
     audioPlayer.pause();
   } else {
     audioPlayer.volume = .3;
