@@ -64,7 +64,7 @@ socket.on('firstPlayer', function(firstPlayer) {
       var p2 = window.otherPlayer.position;
       // Calculate distance between two users
       var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
-      if ( distanceBetweenUsers < 1 ) {
+      if ( distanceBetweenUsers < 3 ) {
         window.finishGame();
       }
     }
@@ -99,7 +99,7 @@ socket.on('secondPlayer', function(secondPlayer) {
       var p2 = window.otherPlayer.position;
       // Calculate distance between two users
       var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
-      if ( distanceBetweenUsers < 1 ) {
+      if ( distanceBetweenUsers < 3 ) {
         window.finishGame();
       }
     }
