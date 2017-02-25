@@ -61,7 +61,7 @@ socket.on('firstPlayer', function(firstPlayer) {
     }
     if ( window.otherPlayer && window.finished === false) {
       var p1 = window.camera.position;
-      var p2 = userPosition;
+      var p2 = window.otherPlayer.position;
       // Calculate distance between two users
       var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
       if ( distanceBetweenUsers < 1 ) {
@@ -96,7 +96,7 @@ socket.on('secondPlayer', function(secondPlayer) {
     }
     if ( window.otherPlayer && window.finished === false ) {
       var p1 = window.camera.position;
-      var p2 = userPosition;
+      var p2 = window.otherPlayer.position;
       // Calculate distance between two users
       var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
       if ( distanceBetweenUsers < 1 ) {
