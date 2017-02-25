@@ -432,7 +432,7 @@ window.gameover = false;
 window.finishGame = function() {
   window.finishTime = window.currentTime;
   socket.emit('gameover', {
-      time: 20,
+      time: finishTime,
       user: sessionStorage.getItem('user')
   })
   window.finished = true;
