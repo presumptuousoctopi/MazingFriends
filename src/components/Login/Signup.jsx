@@ -33,6 +33,9 @@ class Signup extends React.Component {
     };
     console.log('in signup', newUser);
     window.socket.emit('signup', newUser);
+    window.sessionStorage.setItem('user', this.refs.username.value);
+    var data = window.sessionStorage.getItem('user');
+    console.log(data);
   }
 
   render() {
