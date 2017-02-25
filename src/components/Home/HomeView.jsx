@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from './../TitleView.jsx'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 
 class Home extends React.Component {
 	constructor() {
@@ -22,9 +22,12 @@ class Home extends React.Component {
   componentDidMount() {
     var context = this;
     socket.on('roomJoinError', function(message) {
-      context.setState({
-        view: 'Home'
+      browserHistory.push({
+        pathname: '/home'
       });
+      // context.setState({
+      //   view: 'Home'
+      // });
       alert(message);
     });
   }

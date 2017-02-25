@@ -26,11 +26,15 @@ class TextChat extends React.Component {
   
   sendMessage(e) {
     e.preventDefault();
-    window.socket.emit('sendMessage', this.state.message);
+    window.socket.emit('sendMessage', {
+      message: this.state.message,
+      user: sessionStorage.getItem('user')
+    });
     this.clearMessage()
   }
 
   updateInput(e) {
+    e.preventDefault();
     this.setState({message: e.target.value});
   }
 
@@ -38,6 +42,25 @@ class TextChat extends React.Component {
     this.setState({
       message: ''
     })
+
+  onFocus() {
+    // disabling 'wasd' for game movement
+    window.camera.keysUp = [];
+    window.camera.keysDown = []; 
+    window.camera.keysLeft = []; 
+    window.camera.keysRight = [];
+    window.userOnChat = true;
+    
+  }
+
+  onBlur() {
+    // enabling 'wasd' for game movement
+    camera.keysUp = [87];
+    camera.keysDown = [83]; 
+    camera.keysLeft = [65]; 
+    camera.keysRight = [68];
+    window.userOnChat = false;
+
   }
 
   render() {

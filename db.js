@@ -30,15 +30,13 @@ sequelize
 
 var User = sequelize.define('user', {
   username: Sequelize.STRING,
-  password: Sequelize.STRING,
-  score: Sequelize.INTEGER
+  password: Sequelize.STRING
 });
 
 var Leaderboard = sequelize.define('leaderboard', {
-  ranking: Sequelize.INTEGER,
   username: Sequelize.STRING,
-  score: Sequelize.INTEGER
-});
+  time: Sequelize.INTEGER
+}, {freezeTableName:true});
 
 var Gamestate = sequelize.define('gamestate', {
   playerOnePosition: Sequelize.STRING,
@@ -64,7 +62,8 @@ var Gamestate = sequelize.define('gamestate', {
 //   })
 // });
 
-User.sync({force: true});
+User.sync();
+Leaderboard.sync();
 // var consoleLater = function() {
 //   User.findAll({
 //     order: [

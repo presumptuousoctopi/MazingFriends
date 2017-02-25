@@ -49,7 +49,6 @@ window.addLight = function() {
 /*******************************************************
  Users
 *******************************************************/
-
 window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     var camera = new BABYLON.FreeCamera('camera1', playerPosition, scene);
     camera.setTarget(BABYLON.Vector3.Zero());
@@ -105,6 +104,9 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     var cameraRotationSensitivity = .1 * ( Math.PI / 4 );
     var cameraMovementSensitivity = .1;
     function onKeyDown(event) {  
+      if ( window.userOnChat ) {
+        return;
+      }
         // event.preventDefault();
       if ( event.keyCode === 32 && flag.canJump === false ) {
         flag.canJump = true;
@@ -431,8 +433,26 @@ window.gameover = false;
 
 window.finishGame = function() {
   window.finishTime = window.currentTime;
-  socket.emit('gameover', finishTime)
+  socket.emit('gameover', {
+      time: finishTime,
+      user: sessionStorage.getItem('user')
+  });
+  // 12:31.4
+  // 23.6
+  var integerTime = 0;
+  if ( window.finishTime.includes(':') ) {
+    var newTime = window.finishTime.split(':');
+    integerTime = Number(newTime[0] * 60) + Number(newTime[1]);
+  } else {
+    integerTime = Number(window.finishTime);
+  }
+  socket.emit('saveTime', {
+      time: integerTime,
+      user: sessionStorage.getItem('user')
+  });
   window.finished = true;
   window.refreshTime(finishTime);
 };
+
+
 

@@ -70,6 +70,16 @@ var usernames = {};
 io.on('connection', function(socket){
   // Send process.env.PORT for binaryJS music stream
   socket.emit('music', port);
+  //send world record to client
+  db.Leaderboard.findAll({
+    order: [['time', 'ASC']]
+  }).then(function(data){
+    var newData = {
+      time: data[0].dataValues.time,
+      user: data[0].dataValues.username
+    };
+    socket.emit('receiveWorldRecord', newData);
+  })
   // Increment every time a new user is connected
   userCount++;
   console.log('a user connected', userCount);
@@ -166,13 +176,13 @@ io.on('connection', function(socket){
   });
 
   // Receive a user's message and return all messages posted in the room
-socket.on('sendMessage', function(message) {
+socket.on('sendMessage', function(data) {
   var roomName = playerRoom[socket.id];
   var roomMessages = messages[roomName] || [];
   // Add new message and userId to messages array
   roomMessages.push({
-    userId: usernames[socket.id],
-    message: message
+    userId: data.user,
+    message: data.message
   });
   // Save the update messages array
   messages[roomName] = roomMessages;
@@ -193,14 +203,23 @@ socket.on('disconnect', function(){
     socket.emit('receiveNumberOfUsers', userCount);
   });
 
-  socket.on('gameover', function(time) {
-    console.log('in server')
-    socket.emit('gameoverlisten', time)
+  socket.on('gameover', function(data) {
+    console.log('in server', data);
+    socket.emit('gameoverlisten', data.time)
+  });
+
+  socket.on('saveTime', function(data) {
+    db.Leaderboard.create({
+      username: data.user,
+      time: data.time
+    }).then(function(user){
+      console.log(user);
+    });
   });
 
   socket.on('time', function(time) {
     socket.emit('timer', time)
-  })
+  });
   
   /*************************************************************************************************
    Authentication Sockets
