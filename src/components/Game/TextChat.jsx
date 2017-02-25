@@ -27,26 +27,37 @@ class TextChat extends React.Component {
   sendMessage(e) {
     e.preventDefault();
     window.socket.emit('sendMessage', this.state.message);
+    this.clearMessage()
   }
 
   updateInput(e) {
     this.setState({message: e.target.value});
   }
 
+  clearMessage() {
+    this.setState({
+      message: ''
+    })
+  }
+
   render() {
     return (
       <div className="TextChat">
-        <form onSubmit={this.sendMessage.bind(this)}> 
-          <input type="text" value={this.state.message} onChange={this.updateInput.bind(this)} />
-          <input type="submit" value="Submit" />
-        </form>
-        <div id="chatBox">
-          {this.state.messages.map( (messageObj) => (
-            <div>
-              <h3>{messageObj['userId']}</h3>
-              <div>{messageObj.message}</div>
-            </div>
-          ))}
+        <div className="ChatContainer">
+          <div className="ChatBox">
+            {this.state.messages.map( (messageObj) => (
+              <div>
+                <h3>{messageObj['userId']}</h3>
+                <div>{messageObj.message}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="TextInput">
+          <form onSubmit={this.sendMessage.bind(this)}> 
+            <input type="text" className="chatBar" value={this.state.message} onChange={this.updateInput.bind(this)} />
+            <input type="submit" value="Submit"/>
+          </form>
         </div>
       </div>
     );

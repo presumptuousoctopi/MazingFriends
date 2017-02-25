@@ -74,6 +74,43 @@ html, body {
  border: solid 5px darkred;
 }
 
+.TextChat {
+	margin: 20px;
+}
+
+.ChatContainer {
+	height: 440px;
+	overflow-y: scroll;
+	position: relative;
+	vertical-align: bottom;
+	float: bottom;
+	background-color: rgba(255,255,255, 0.2);
+	padding: 15px;
+}
+
+.ChatBox {
+  position: absolute;
+  bottom: 0;
+  opacity: 1.0;
+  height: 470px;
+  padding-bottom: 20px;
+  overflow-y: scroll;
+  width: 290px;
+}
+
+.TextInput {
+	vertical-align: bottom;
+	float: center;
+	margin-top: 15px;
+	margin-bottom: 20px;
+}
+
+.chatBar {
+	width: 250px;
+	margin-right: 5px;   
+  margin-bottom: 20px;
+}
+
 .Options {
 	text-align: center;
 	border: dotted 2px black;
