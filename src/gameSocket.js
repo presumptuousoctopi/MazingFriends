@@ -59,9 +59,14 @@ socket.on('firstPlayer', function(firstPlayer) {
     if ( currentTime !== 0 && window.finished === false ) {
       window.refreshTime(window.currentTime);    
     }
-    var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
-    if ( distanceBetweenUsers < 1 ) {
-      window.finishGame();
+    if ( window.otherPlayer && window.finished === false) {
+      var p1 = window.camera.position;
+      var p2 = userPosition;
+      // Calculate distance between two users
+      var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
+      if ( distanceBetweenUsers < 1 ) {
+        window.finishGame();
+      }
     }
     // console.log('currentTime : ', currentTime);
     // console.log(window.camera.rotation);
@@ -89,9 +94,14 @@ socket.on('secondPlayer', function(secondPlayer) {
     if ( window.finished === false ) {
       window.refreshTime(window.currentTime);        
     }
-    var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
-    if ( distanceBetweenUsers < 1 ) {
-      window.finishGame();
+    if ( window.otherPlayer && window.finished === false ) {
+      var p1 = window.camera.position;
+      var p2 = userPosition;
+      // Calculate distance between two users
+      var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
+      if ( distanceBetweenUsers < 1 ) {
+        window.finishGame();
+      }
     }
     // console.log(currentTime);
     // console.log(window.camera.rotation);
@@ -131,6 +141,10 @@ socket.on('receiveUserPosition', function(userPosition) {
     var p1 = window.camera.position;
     var p2 = userPosition;
     // Calculate distance between two users
+    var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
+    if ( distanceBetweenUsers < 1 && window.finished === false ) {
+      window.finishGame();
+    }
     window.otherPlayer.position = userPosition;
   }
 });

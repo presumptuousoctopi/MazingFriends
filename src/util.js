@@ -435,3 +435,4 @@ window.finishGame = function() {
   window.finished = true;
   window.refreshTime(finishTime);
 };
+
