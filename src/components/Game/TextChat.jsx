@@ -26,7 +26,10 @@ class TextChat extends React.Component {
   
   sendMessage(e) {
     e.preventDefault();
-    window.socket.emit('sendMessage', this.state.message);
+    window.socket.emit('sendMessage', {
+      message: this.state.message,
+      user: sessionStorage.getItem('user')
+    });
   }
 
   updateInput(e) {
