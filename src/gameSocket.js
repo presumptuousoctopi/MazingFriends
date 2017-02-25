@@ -171,7 +171,7 @@ socket.on('incomingShot', function(shooter) {
 
 socket.on("receiveWorldRecord", function (data){
   var seconds = data.time % 60;
-  var minutes = Math.round( data.time / 60 );
+  var minutes = Math.floor( data.time / 60 );
   var stringTime = !!minutes ? minutes + ':' + seconds : seconds;
   outputplaneTexture2.drawText( "World Record : " + stringTime + ' by ' + data.user, null, 280, "bold 30px verdana", "white", "#0000AA");
 });
