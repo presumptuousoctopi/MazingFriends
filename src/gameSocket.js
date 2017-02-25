@@ -56,7 +56,9 @@ var protocolPrefix = (window.location.protocol === 'https:') ? 'wss:' : 'ws:';
 
 
 // Notify whether user is first or second player and update user position
+window.inRoom = false;
 socket.on('firstPlayer', function(firstPlayer) {
+  window.inRoom = true;
   window.camera.position = firstPlayerPosition;
   window.camera.rotation = new BABYLON.Vector3(-0.38385, -.77694, 0);
   console.log('You are first player');
@@ -88,6 +90,7 @@ socket.on('firstPlayer', function(firstPlayer) {
 });
 
 socket.on('secondPlayer', function(secondPlayer) {
+  window.inRoom = true;
   window.playerType = secondPlayer;
   window.camera.keysUp = [87];
   window.camera.keysDown = [83]; 

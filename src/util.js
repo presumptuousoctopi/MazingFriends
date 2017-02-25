@@ -111,10 +111,16 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
       if ( event.keyCode === 32 && flag.canJump === false ) {
         flag.canJump = true;
         cameraJump(flag);
+        if ( window.inRoom ) {
+          window.playJump();
+        }
       }  
 
       if ( event.keyCode === 70 ) {
         shootBullet.call(this, window.camera);
+        if ( window.inRoom ) {
+          window.playShoot();
+        }
       }
 
     // Left Arrow  37 
