@@ -49,7 +49,6 @@ window.addLight = function() {
 /*******************************************************
  Users
 *******************************************************/
-
 window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     var camera = new BABYLON.FreeCamera('camera1', playerPosition, scene);
     camera.setTarget(BABYLON.Vector3.Zero());
@@ -105,6 +104,9 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     var cameraRotationSensitivity = .1 * ( Math.PI / 4 );
     var cameraMovementSensitivity = .1;
     function onKeyDown(event) {  
+      if ( window.userOnChat ) {
+        return;
+      }
         // event.preventDefault();
       if ( event.keyCode === 32 && flag.canJump === false ) {
         flag.canJump = true;
