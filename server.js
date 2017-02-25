@@ -72,11 +72,14 @@ io.on('connection', function(socket){
   socket.emit('music', port);
   //send world record to client
   db.Leaderboard.findAll({
-    order: [['time', 'DESC']]
+    order: [['time', 'ASC']]
   }).then(function(data){
-    console.log("DATA:", data);
-  //socket.emit('receiveWorldRecord', data[0]);
-})
+    var newData = {
+      time: data[0].dataValues.time,
+      user: data[0].dataValues.username
+    };
+    socket.emit('receiveWorldRecord', newData);
+  })
   // Increment every time a new user is connected
   userCount++;
   console.log('a user connected', userCount);
