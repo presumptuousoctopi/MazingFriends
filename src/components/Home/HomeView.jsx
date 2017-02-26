@@ -1,6 +1,7 @@
 import React from 'react';
 import Title from './../TitleView.jsx'
 import { Link, browserHistory } from 'react-router'
+import Lobby from './../Game/Lobby.jsx'
 
 class Home extends React.Component {
 	constructor() {
@@ -31,7 +32,6 @@ class Home extends React.Component {
       alert(message);
     });
   }
-
 	createRoomButton() {
     window.socket.emit('createRoom', this.state.createRoomName);
 		this.setState({
@@ -91,6 +91,7 @@ class Home extends React.Component {
           <br/>
           <button className="homeButtons">Controls</button>
       	</div>
+		  <Lobby/>
       </div>
     );
   }
