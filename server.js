@@ -269,15 +269,15 @@ socket.on('disconnect', function(){
       .then( function(user) {
         // If there is no such user, then check password
         if ( !user ) {
-          socket.emit('signinResponse', 'user does not exist');
+          socket.emit('signinResponse', {message: 'user does not exist'});
         } else {
           bcrypt.compare(password, user.password, function(err, isAuthenticated) {
             if( err || !isAuthenticated) {
               console.log(err, password, user.password);
-              socket.emit('signinResponse', 'wrong password');
+              socket.emit('signinResponse', {message: "wrong password"});
             } else {
               usernames[socket.id] = username;
-              socket.emit('signinResponse', null);
+              socket.emit('signinResponse', {username: username});
             }
           });
         }
