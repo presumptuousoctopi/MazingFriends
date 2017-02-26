@@ -30,11 +30,18 @@ class TextChat extends React.Component {
       message: this.state.message,
       user: sessionStorage.getItem('user')
     });
+    this.clearMessage()
   }
 
   updateInput(e) {
     e.preventDefault();
     this.setState({message: e.target.value});
+  }
+
+  clearMessage() {
+    this.setState({
+      message: ''
+    })
   }
 
   onFocus() {
@@ -60,22 +67,27 @@ class TextChat extends React.Component {
   render() {
     return (
       <div className="TextChat">
-        <form onSubmit={this.sendMessage.bind(this)}> 
-          <input type="text" value={this.state.message} onFocus={this.onFocus.bind(this)} onChange={this.updateInput.bind(this)} onBlur={this.onBlur.bind(this)} />
-          <input type="submit" value="Submit" />
-        </form>
-        <div id="chatBox">
-          {this.state.messages.map( (messageObj) => (
-            <div>
-              <h3>{messageObj['userId']}</h3>
-              <div>{messageObj.message}</div>
-            </div>
-          ))}
+        <div className="ChatContainer">
+          <div className="ChatBox">
+            {this.state.messages.map( (messageObj) => (
+              <div>
+                <h3>{messageObj['userId']}</h3>
+                <div>{messageObj.message}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="TextInput">
+          <form onSubmit={this.sendMessage.bind(this)}> 
+            <input type="text" className="chatBar" value={this.state.message} onChange={this.updateInput.bind(this)} />
+            <input type="submit" value="Submit"/>
+          </form>
         </div>
       </div>
-    );
+    )
   }
-};
+
+}
 
 
 export default TextChat;

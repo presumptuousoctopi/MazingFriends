@@ -56,12 +56,16 @@ var protocolPrefix = (window.location.protocol === 'https:') ? 'wss:' : 'ws:';
 
 
 // Notify whether user is first or second player and update user position
+window.inRoom = false;
 socket.on('firstPlayer', function(firstPlayer) {
+  window.inRoom = true;
   window.camera.position = firstPlayerPosition;
   window.camera.rotation = new BABYLON.Vector3(-0.38385, -.77694, 0);
   console.log('You are first player');
   engine.runRenderLoop(function(){
     outputplane.position = new BABYLON.Vector3(-35 + camera.position.x, 35 +camera.position.y, 35 + camera.position.z);
+    outputplane2.position = new BABYLON.Vector3(20 + camera.position.x, 20 +camera.position.y, 20 + camera.position.z);
+    
     // console.log('fps : ', engine.fps);
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
@@ -88,7 +92,12 @@ socket.on('firstPlayer', function(firstPlayer) {
 });
 
 socket.on('secondPlayer', function(secondPlayer) {
+  window.inRoom = true;
   window.playerType = secondPlayer;
+  window.camera.keysUp = [87];
+  window.camera.keysDown = [83]; 
+  window.camera.keysLeft = [65]; 
+  window.camera.keysRight = [68];
   window.camera.position = mediumLevelSecondPlayerPosition;
   window.camera.rotation = new BABYLON.Vector3(-0.38385, -.77694, 0);
   originalTime = new Date().getTime();
@@ -98,6 +107,8 @@ socket.on('secondPlayer', function(secondPlayer) {
   console.log('secondPlayer');
   engine.runRenderLoop(function(){
     outputplane.position = new BABYLON.Vector3(-35 + camera.position.x, 35 +camera.position.y, 35 + camera.position.z);
+    outputplane2.position = new BABYLON.Vector3(20 + camera.position.x, 20 +camera.position.y, 20 + camera.position.z);
+
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
         previousCameraPosition = currentCameraPosition;
@@ -144,6 +155,10 @@ socket.on('serverSendingMaze', function(maze) {
 socket.on('newPlayerRequestInfo', function() {
   socket.emit('sendPlayer', window.camera.position);
   window.originalTime = new Date().getTime();
+  window.camera.keysUp = [87];
+  window.camera.keysDown = [83]; 
+  window.camera.keysLeft = [65]; 
+  window.camera.keysRight = [68];
   console.log('New player joined!');
 });
 
@@ -171,9 +186,9 @@ socket.on('incomingShot', function(shooter) {
 
 socket.on("receiveWorldRecord", function (data){
   var seconds = data.time % 60;
-  var minutes = Math.round( data.time / 60 );
+  var minutes = Math.floor( data.time / 60 );
   var stringTime = !!minutes ? minutes + ':' + seconds : seconds;
-    outputplaneTexture2.drawText( "World Record : " + stringTime + ' by ' + data.user, null, 280, "bold 30px verdana", "white", "#0000AA");
+  outputplaneTexture2.drawText( "World Record : " + stringTime + ' by ' + data.user, null, 280, "bold 30px verdana", "white", "#0000AA");
 });
 /*******************************************************
  User Control Event Listeners
