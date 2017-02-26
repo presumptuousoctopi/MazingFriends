@@ -64,6 +64,8 @@ socket.on('firstPlayer', function(firstPlayer) {
   console.log('You are first player');
   engine.runRenderLoop(function(){
     outputplane.position = new BABYLON.Vector3(-35 + camera.position.x, 35 +camera.position.y, 35 + camera.position.z);
+    outputplane2.position = new BABYLON.Vector3(20 + camera.position.x, 20 +camera.position.y, 20 + camera.position.z);
+    
     // console.log('fps : ', engine.fps);
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
@@ -105,6 +107,8 @@ socket.on('secondPlayer', function(secondPlayer) {
   console.log('secondPlayer');
   engine.runRenderLoop(function(){
     outputplane.position = new BABYLON.Vector3(-35 + camera.position.x, 35 +camera.position.y, 35 + camera.position.z);
+    outputplane2.position = new BABYLON.Vector3(20 + camera.position.x, 20 +camera.position.y, 20 + camera.position.z);
+
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
         previousCameraPosition = currentCameraPosition;
