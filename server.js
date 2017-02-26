@@ -68,6 +68,10 @@ var usernames = {};
 // Start socket.io server
 io.on('connection', function(socket){
   //send world record to client
+  socket.on("getRooms", function() {
+    console.log("request to get all rooms");
+    socket.emit("receive", rooms);
+  });
   db.Leaderboard.findAll({
     order: [['time', 'ASC']]
   }).then(function(data){
