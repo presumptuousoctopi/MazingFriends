@@ -65,8 +65,9 @@
     "axios": "^0.15.3",
     "babylon": "^6.15.0",
     "bcryptjs": "^2.4.3",
-    "chai-spies": "^0.7.1",
     "binaryjs": "^0.2.1",
+    "bluebird": "^3.4.7",
+    "chai-spies": "^0.7.1",
     "child_process": "^1.0.2",
     "core-js": "^2.0.0",
     "enzyme": "^2.7.1",
@@ -84,6 +85,7 @@
     "sequelize": "^3.30.2",
     "sinon": "^1.17.7",
     "socket.io": "^1.7.3",
+    "stream-to-promise": "^2.2.0",
     "webpack": "^1.14.0",
     "xmlhttprequest": "^1.8.0"
   }

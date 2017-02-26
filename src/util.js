@@ -58,10 +58,10 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
     // camera.inputs.remove(camera.inputs.attached.keyboard);
     // camera.inputs.addKeyboard();
 
-    camera.keysUp = [87];
-    camera.keysDown = [83]; 
-    camera.keysLeft = [65]; 
-    camera.keysRight = [68];
+    camera.keysUp = [];
+    camera.keysDown = []; 
+    camera.keysLeft = []; 
+    camera.keysRight = [];
 
     // camera.orthoLeft = [37];
  
@@ -111,10 +111,16 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
       if ( event.keyCode === 32 && flag.canJump === false ) {
         flag.canJump = true;
         cameraJump(flag);
+        if ( window.inRoom ) {
+          window.playJump();
+        }
       }  
 
       if ( event.keyCode === 70 ) {
         shootBullet.call(this, window.camera);
+        if ( window.inRoom ) {
+          window.playShoot();
+        }
       }
 
     // Left Arrow  37 
