@@ -40,7 +40,7 @@
 var originalTime = 0;
 window.currentTime = 0;
 window.finished = false;
-
+window.distancePercentage = 100;
 setInterval( () => {
   if ( originalTime !== 0 ) {
     var seconds = Math.round((new Date().getTime() - originalTime) / 100 ) / 10;
@@ -80,6 +80,7 @@ socket.on('firstPlayer', function(firstPlayer) {
       var p2 = window.otherPlayer.position;
       // Calculate distance between two users
       var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
+      window.distancePercentage = distanceBetweenUsers / window.farthestUserDist * 100;
       if ( distanceBetweenUsers < 3 ) {
         window.finishGame();
       }
@@ -122,6 +123,8 @@ socket.on('secondPlayer', function(secondPlayer) {
       var p2 = window.otherPlayer.position;
       // Calculate distance between two users
       var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
+      window.distancePercentage = distanceBetweenUsers / window.farthestUserDist * 100;
+ 
       if ( distanceBetweenUsers < 3 ) {
         window.finishGame();
       }
