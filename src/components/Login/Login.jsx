@@ -9,10 +9,11 @@ class Login extends React.Component {
   componentDidMount() {
     var socket = window.socket;
     var context = this;
-    socket.on('signinResponse', function(message) {
-      if ( message ) {
+    socket.on('signinResponse', function(obj) {
+      if ( obj.message ) {
         alert(message);      
       } else {
+        window.sessionStorage.setItem('user', obj.username);
         browserHistory.push({ pathname: '/home'});
       }
     });

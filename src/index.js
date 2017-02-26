@@ -9,21 +9,30 @@ import { IndexRedirect } from 'react-router'
 
 render((
   <Router history={browserHistory}>
-      <Route path="/" component={Login} onEnter={requireAuth}/>
+      <Route path="/" component={Login} onEnter={checkState}/>
       <Route path="/game" component={Game} />
-		<Route path="/home" component={Home} />
+		<Route path="/home" component={Home} onEnter={requireAuth}/>
     <Route path="*" component={Login} />
 	</Router>
 	), document.getElementById('app'));
 
 
 function requireAuth(nextState, replaceState) {
-  console.log('outside if statement');
-  if ( !!window.sessionStorage.getItem('user') ) {
+  console.log(nextState);
+  if ( !window.sessionStorage.getItem('user') ) {
     console.log('Inside if statement in requireAuth');
     replaceState({
-      pathname: '/home'
+      pathname: '/'
     });
   }
 };
 
+function checkState(nextState, replaceState) {
+
+  if ( window.sessionStorage.getItem('user') ) {
+    console.log('already authenticated');
+    replaceState({
+      pathname: '/home'
+    });
+  }
+}
