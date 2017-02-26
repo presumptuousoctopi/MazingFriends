@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import axios from 'axios'
 import TextChat from './TextChat.jsx'
 import VideoChat from './VideoChat.jsx';
+import ProgressBar from './ProgressBar.jsx'
 
 class Chat extends React.Component {
   constructor() {
@@ -41,6 +42,7 @@ class Chat extends React.Component {
           </form>
         </div>
         {this.state.text === "video" ? <VideoChat/> : <TextChat/> }
+        <ProgressBar />
       </div>
     );
   }

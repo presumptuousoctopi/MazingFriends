@@ -25,6 +25,9 @@ const boundaryWalls = {
 };
 const mazeSize = mediumLevelMazeSize;
 const groundBoundaryLength = boundaryWalls[mazeSize][1] * 1.2;
+const a = boundaryWalls[mazeSize][0];
+const b = boundaryWalls[mazeSize][1];
+window.farthestUserDist = Math.pow(a * a + b * b, (1/2));
 
 // Create environment
 window.scene = createScene();
