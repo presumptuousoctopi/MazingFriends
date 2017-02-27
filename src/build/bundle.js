@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "3a2cba46451b64fe9ead"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "988a7a6586bedc960b9c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31735,7 +31735,7 @@
 	      var context = this;
 	      socket.on('signinResponse', function (obj) {
 	        if (obj.message) {
-	          alert(message);
+	          alert(obj.message);
 	        } else {
 	          window.sessionStorage.setItem('user', obj.username);
 	          _reactRouter.browserHistory.push({ pathname: '/home' });

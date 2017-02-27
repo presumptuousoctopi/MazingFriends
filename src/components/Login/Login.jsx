@@ -11,7 +11,7 @@ class Login extends React.Component {
     var context = this;
     socket.on('signinResponse', function(obj) {
       if ( obj.message ) {
-        alert(message);      
+        alert(obj.message);      
       } else {
         window.sessionStorage.setItem('user', obj.username);
         browserHistory.push({ pathname: '/home'});
