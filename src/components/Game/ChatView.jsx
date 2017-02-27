@@ -42,7 +42,7 @@ class Chat extends React.Component {
           </form>
         </div>
         {this.state.text === "video" ? <VideoChat/> : <TextChat/> }
-        <ProgressBar />
+
       </div>
     );
   }
