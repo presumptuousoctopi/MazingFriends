@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "cf3dafbdd2728cb3e238"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "203c22cb79a201a2287d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28867,6 +28867,7 @@
 	  }, {
 	    key: 'stopGame',
 	    value: function stopGame() {
+	      document.getElementById("canvas").remove();
 	      location.reload();
 	    }
 	  }, {
@@ -31313,6 +31314,7 @@
 	  _createClass(GameOver, [{
 	    key: 'quitGame',
 	    value: function quitGame() {
+	      document.getElementById("canvas").remove();
 	      location.reload();
 	    }
 	  }, {
@@ -31736,7 +31738,7 @@
 	      var context = this;
 	      socket.on('signinResponse', function (obj) {
 	        if (obj.message) {
-	          alert(message);
+	          alert(obj.message);
 	        } else {
 	          window.sessionStorage.setItem('user', obj.username);
 	          _reactRouter.browserHistory.push({ pathname: '/home' });
