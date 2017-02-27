@@ -206,6 +206,9 @@ socket.on('sendMessage', function(data) {
 socket.on('disconnect', function(){
   userCount--;
   rooms[playerRoom[socket.id]]--;
+  if ( rooms[playerRoom[socket.id]] === 0 ) {
+    delete rooms[playerRoom[socket.id]];
+  } 
   console.log('user disconnected! Current user count : ', userCount);
 });
 
