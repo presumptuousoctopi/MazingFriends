@@ -18,7 +18,7 @@ class ProgressBar extends React.Component {
     render () {
         return (
         <div className="progress">
-            <div className="progress-bar" role="progressbar" aria-valuenow={this.state.percentage}
+            <div className="progress-bar progress-bar-danger" role="progressbar" aria-valuenow={this.state.percentage}
                  aria-valuemin="0" aria-valuemax="100" style={{width:this.state.percentage+'%'}}>
                 <span className="sr-only"></span>
             </div>
