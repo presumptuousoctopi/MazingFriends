@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "203c22cb79a201a2287d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e39558a46d9fb2c23809"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -30826,18 +30826,26 @@
 	    function VideoChat(props) {
 	        _classCallCheck(this, VideoChat);
 	
-	        return _possibleConstructorReturn(this, (VideoChat.__proto__ || Object.getPrototypeOf(VideoChat)).call(this));
+	        var _this = _possibleConstructorReturn(this, (VideoChat.__proto__ || Object.getPrototypeOf(VideoChat)).call(this));
+	
+	        _this.state = {
+	            isChannelReady: false,
+	            isInitiator: false,
+	            isStarted: false,
+	            localStream: '',
+	            remoteStream: '',
+	            turnReady: '',
+	            room: ''
+	        };
+	        return _this;
 	    }
 	
 	    _createClass(VideoChat, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	
-	            var isChannelReady = false;
-	            var isInitiator = false;
-	            var isStarted = false;
-	            var localStream;
+	            var context = this;
 	            var pc;
+	            var localStream;
 	            var remoteStream;
 	            var turnReady;
 	            var room;
@@ -30873,19 +30881,23 @@
 	
 	            socket.on('created', function (room) {
 	                console.log('Created room ' + room);
-	                isInitiator = true;
+	                context.setState({
+	                    isInitiator: true
+	                });
 	            });
 	
 	            //once the second person joins, set channel to true
 	            socket.on('join', function (room) {
 	                console.log('Another peer made a request to join room ' + room);
-	                isChannelReady = true;
+	                context.setState({
+	                    isChannelReady: true
+	                });
 	            });
 	
-	            socket.on('joined', function (room) {
-	                console.log('joined: ' + room);
-	                isChannelReady = true;
-	            });
+	            //socket.on('joined', function(room) {
+	            //    console.log('joined: ' + room);
+	            //    isChannelReady = true;
+	            //});
 	
 	            socket.on('log', function (array) {
 	                console.log.apply(console, array);
@@ -30909,20 +30921,20 @@
 	                if (message === 'got user media') {
 	                    start();
 	                } else if (message.type === 'offer') {
-	                    if (!isInitiator && !isStarted) {
+	                    if (!context.state.isInitiator && !context.state.isStarted) {
 	                        start();
 	                    }
 	                    pc.setRemoteDescription(new RTCSessionDescription(message));
 	                    createAnswer();
-	                } else if (message.type === 'answer' && isStarted) {
+	                } else if (message.type === 'answer' && context.state.isStarted) {
 	                    pc.setRemoteDescription(new RTCSessionDescription(message));
-	                } else if (message.type === 'candidate' && isStarted) {
+	                } else if (message.type === 'candidate' && context.state.isStarted) {
 	                    var candidate = new RTCIceCandidate({
 	                        sdpMLineIndex: message.label,
 	                        candidate: message.candidate
 	                    });
 	                    pc.addIceCandidate(candidate);
-	                } else if (message === 'bye' && isStarted) {
+	                } else if (message === 'bye' && context.state.isStarted) {
 	                    handleRemoteHangup();
 	                }
 	            });
@@ -30934,8 +30946,8 @@
 	                console.log("local video source", localVideo.src);
 	                localStream = stream;
 	                sendMessage('got user media');
-	                console.log("is initiator", isInitiator);
-	                if (isInitiator) {
+	                console.log("is initiator", context.state.isInitiator);
+	                if (context.state.isInitiator) {
 	                    start();
 	                }
 	            }
@@ -30953,14 +30965,16 @@
 	            //}
 	
 	            function start() {
-	                console.log('>>>>>>> start ', isStarted, localStream, isChannelReady);
-	                if (!isStarted && typeof localStream !== 'undefined' && isChannelReady) {
+	                console.log('>>>>>>> start ', context.state.isStarted, localStream, context.state.isChannelReady);
+	                if (!context.state.isStarted && typeof localStream !== 'undefined' && context.state.isChannelReady) {
 	                    console.log('>>>>>> creating peer connection');
 	                    createPeerConnection();
 	                    pc.addStream(localStream);
-	                    isStarted = true;
-	                    console.log('isInitiator', isInitiator);
-	                    if (isInitiator) {
+	                    context.setState({
+	                        isStarted: true
+	                    });
+	                    console.log('isInitiator', context.state.isInitiator);
+	                    if (context.state.isInitiator) {
 	                        call();
 	                    }
 	                }
@@ -31083,11 +31097,15 @@
 	            function handleRemoteHangup() {
 	                console.log('Session terminated.');
 	                stop();
-	                isInitiator = false;
+	                context.setState({
+	                    isInitiator: false
+	                });
 	            }
 	
 	            function stop() {
-	                isStarted = false;
+	                context.setState({
+	                    isStarted: false
+	                });
 	                // isAudioMuted = false;
 	                // isVideoMuted = false;
 	                pc.close();
