@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "cf3dafbdd2728cb3e238"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3a2cba46451b64fe9ead"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28775,7 +28775,6 @@
 				return _react2.default.createElement(
 					'div',
 					{ className: 'Game' },
-					_react2.default.createElement(_ProgressBar2.default, null),
 					console.log(window.gameover),
 					_react2.default.createElement(_ChatView2.default, { timer: this.state.timer, controlsClickHandler: this.controlsClickHandler.bind(this) }),
 					this.state.gameover ? _react2.default.createElement(_GameOver2.default, { time: this.state.time }) : '',
