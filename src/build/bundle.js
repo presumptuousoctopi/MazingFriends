@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "542e2fa5686a836185f8"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2d1f56d3be4a6cac993f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31348,7 +31348,7 @@
 	                { className: 'progress' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'progress-bar', role: 'progressbar', 'aria-valuenow': this.state.percentage,
+	                    { className: 'progress-bar progress-bar-danger', role: 'progressbar', 'aria-valuenow': this.state.percentage,
 	                        'aria-valuemin': '0', 'aria-valuemax': '100', style: { width: this.state.percentage + '%' } },
 	                    _react2.default.createElement('span', { className: 'sr-only' })
 	                )
