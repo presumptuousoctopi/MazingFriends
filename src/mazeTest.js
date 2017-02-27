@@ -63,10 +63,85 @@ generateMaze = function(x,y) {
             box.push(line);
             text.push(line.join('')+'\r\n');
         }
-        console.log(box);
         return box;
     }
     return display(maze(x+2,y));
 }
 
-generateMaze(10,10);
+
+// To be used to find the solution for the maze:
+
+var robotPaths = function(board) {
+  var n = board.length;
+  var m = board[0].length;
+
+  var solutionBoard = null;
+  var togglePiece = function(board, i, j) {
+    if ( board[i][j] === '1' ) {
+
+    } else if ( board[i][j] === '2' ) {
+        solutionBoard = JSON.parse(JSON.stringify(board));
+    } else if ( board[i][j] === ' ' ) {
+        board[i][j] = '@';
+    } else {
+        board[i][j] = ' ';
+    }
+  };
+
+  var isEmptySpace = function(board, i, j) {
+    if ( board[i][j] === ' ' || board[i][j] === '2' ) {
+        // solutionBoard = board.slice();
+        return true;
+    } else {
+        return false;
+    }
+  };
+
+
+  var findPath = function(newBoard, i = 0, j = 1, count = 0) {
+    // console.log('newBoard " ', newBoard);
+    togglePiece(newBoard,i,j);
+    if ( !!solutionBoard ) {
+        return; 
+    }
+    if ( i === n-1 && j === m-1 ) {
+      return possiblePaths++;
+    } 
+
+    if ( i+1 < n ) {
+      if ( isEmptySpace(newBoard, i+1, j)  && !solutionBoard ) {
+        findPath(newBoard, i+1, j, count); 
+        togglePiece(newBoard,i+1,j);      
+      }
+    }
+
+
+    if ( j+1 < m ) {
+      if ( isEmptySpace(newBoard, i, j+1) && !solutionBoard ) {
+        findPath(newBoard, i, j+1, count);
+        togglePiece(newBoard,i,j+1);
+      }
+    }
+    
+    if ( i-1 >= 0 ) {
+      if ( isEmptySpace(newBoard, i-1, j) && !solutionBoard ) {
+        findPath(newBoard, i-1, j, count);  
+        togglePiece(newBoard,i-1,j);          
+      }
+    }
+
+    if ( j-1 >= 0 ) {
+      if ( isEmptySpace(newBoard, i, j-1) && !solutionBoard ) {
+        findPath(newBoard, i, j-1, count);    
+        togglePiece(newBoard,i,j-1);        
+      }
+    }
+  };
+  findPath(board);
+  return solutionBoard;
+};
+
+var maze = generateMaze(10,10);
+maze[0][1] = '1';
+maze[maze.length-1][maze[0].length-1] = '2';
+console.log(robotPaths(maze));
