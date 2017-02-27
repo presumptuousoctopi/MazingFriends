@@ -7,7 +7,8 @@ class GameOver extends React.Component {
 	}
 
   quitGame() {
-    location.reload()
+    document.getElementById("canvas").remove();
+    location.reload();
   }
 
   render() {

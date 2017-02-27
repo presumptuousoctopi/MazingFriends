@@ -24,6 +24,7 @@ class Chat extends React.Component {
   }
 
   stopGame() {
+    document.getElementById("canvas").remove();
     location.reload();
   }
 
