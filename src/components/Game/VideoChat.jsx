@@ -99,16 +99,16 @@ class VideoChat extends React.Component {
                 if (!context.state.isInitiator && !context.state.isStarted) {
                     start();
                 }
-                pc.setRemoteDescription(new RTCSessionDescription(message));
+                pcConfig.setRemoteDescription(new RTCSessionDescription(message));
                 createAnswer();
             } else if (message.type === 'answer' && context.state.isStarted) {
-                pc.setRemoteDescription(new RTCSessionDescription(message));
+                pcConfig.setRemoteDescription(new RTCSessionDescription(message));
             } else if (message.type === 'candidate' && context.state.isStarted) {
                 var candidate = new RTCIceCandidate({
                     sdpMLineIndex: message.label,
                     candidate: message.candidate
                 });
-                pc.addIceCandidate(candidate);
+                pcConfig.addIceCandidate(candidate);
             } else if (message === 'bye' && context.state.isStarted) {
                 handleRemoteHangup();
             }
@@ -145,7 +145,7 @@ class VideoChat extends React.Component {
             if (!context.state.isStarted && typeof localStream !== 'undefined' && context.state.isChannelReady) {
                 console.log('>>>>>> creating peer connection');
                 createPeerConnection();
-                pc.addStream(localStream);
+                pcConfig.addStream(localStream);
                 context.setState({
                     isStarted: true
                 });
@@ -166,10 +166,10 @@ class VideoChat extends React.Component {
             //create a new peer connection
             //add the ice handler
             try {
-                pc = new RTCPeerConnection(null);
-                pc.onicecandidate = handleIceCandidate;
-                pc.onaddstream = handleRemoteStreamAdded;
-                pc.onremovestream = handleRemoteStreamRemoved;
+                pcConfig = new RTCPeerConnection(null);
+                pcConfig.onicecandidate = handleIceCandidate;
+                pcConfig.onaddstream = handleRemoteStreamAdded;
+                pcConfig.onremovestream = handleRemoteStreamRemoved;
                 console.log('Created RTCPeerConnnection');
             } catch (e) {
                 console.log('Failed to create PeerConnection, exception: ' + e.message);
@@ -205,12 +205,12 @@ class VideoChat extends React.Component {
 //on response set the remote description(other persons pc)
         function call() {
             console.log('Sending offer to peer');
-            pc.createOffer(setLocalAndSendMessage, handleCreateOfferError);
+            pcConfig.createOffer(setLocalAndSendMessage, handleCreateOfferError);
         }
 
         function createAnswer() {
             console.log('Sending answer to peer.');
-            pc.createAnswer().then(
+            pcConfig.createAnswer().then(
                 setLocalAndSendMessage,
                 onCreateSessionDescriptionError
             );
@@ -219,7 +219,7 @@ class VideoChat extends React.Component {
         function setLocalAndSendMessage(sessionDescription) {
             // Set Opus as the preferred codec in SDP if Opus is present.
             //  sessionDescription.sdp = preferOpus(sessionDescription.sdp);
-            pc.setLocalDescription(sessionDescription);
+            pcConfig.setLocalDescription(sessionDescription);
             console.log('setLocalAndSendMessage sending message', sessionDescription);
             sendMessage(sessionDescription);
         }
@@ -287,8 +287,8 @@ class VideoChat extends React.Component {
             });
             // isAudioMuted = false;
             // isVideoMuted = false;
-            pc.close();
-            pc = null;
+            pcConfig.close();
+            pcConfig = null;
         }
 
 ///////////////////////////////////////////
