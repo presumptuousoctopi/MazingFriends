@@ -3,17 +3,23 @@ import React from 'react';
 class VideoChat extends React.Component {
     constructor (props) {
         super ()
+        this.state = {
+            isChannelReady: false,
+            isInitiator: false,
+            isStarted: false,
+            localStream: '',
+            remoteStream: '',
+            turnReady: '',
+            room: ''
+        }
     }
     componentDidMount() {
-
-        var isChannelReady = false;
-        var isInitiator = false;
-        var isStarted = false;
-        var localStream;
+        var context = this;
         var pc;
+        var localStream;
         var remoteStream;
         var turnReady;
-        var room;
+        var room
         //stun server for network data
         var pcConfig = {
             'iceServers': [{
@@ -49,20 +55,24 @@ class VideoChat extends React.Component {
 
         socket.on('created', function(room) {
             console.log('Created room ' + room);
-            isInitiator = true;
+            context.setState({
+                isInitiator: true
+            })
 
         });
 
 //once the second person joins, set channel to true
         socket.on('join', function (room){
             console.log('Another peer made a request to join room ' + room);
-            isChannelReady = true;
+            context.setState({
+                isChannelReady: true
+            })
         });
 
-        socket.on('joined', function(room) {
-            console.log('joined: ' + room);
-            isChannelReady = true;
-        });
+        //socket.on('joined', function(room) {
+        //    console.log('joined: ' + room);
+        //    isChannelReady = true;
+        //});
 
         socket.on('log', function(array) {
             console.log.apply(console, array);
@@ -86,20 +96,20 @@ class VideoChat extends React.Component {
             if (message === 'got user media') {
                 start();
             } else if (message.type === 'offer') {
-                if (!isInitiator && !isStarted) {
+                if (!context.state.isInitiator && !context.state.isStarted) {
                     start();
                 }
-                pc.setRemoteDescription(new RTCSessionDescription(message));
+                pcConfig.setRemoteDescription(new RTCSessionDescription(message));
                 createAnswer();
-            } else if (message.type === 'answer' && isStarted) {
-                pc.setRemoteDescription(new RTCSessionDescription(message));
-            } else if (message.type === 'candidate' && isStarted) {
+            } else if (message.type === 'answer' && context.state.isStarted) {
+                pcConfig.setRemoteDescription(new RTCSessionDescription(message));
+            } else if (message.type === 'candidate' && context.state.isStarted) {
                 var candidate = new RTCIceCandidate({
                     sdpMLineIndex: message.label,
                     candidate: message.candidate
                 });
-                pc.addIceCandidate(candidate);
-            } else if (message === 'bye' && isStarted) {
+                pcConfig.addIceCandidate(candidate);
+            } else if (message === 'bye' && context.state.isStarted) {
                 handleRemoteHangup();
             }
         });
@@ -112,8 +122,8 @@ class VideoChat extends React.Component {
             console.log("local video source", localVideo.src);
             localStream = stream;
             sendMessage('got user media');
-            console.log("is initiator", isInitiator);
-            if (isInitiator) {
+            console.log("is initiator", context.state.isInitiator);
+            if (context.state.isInitiator) {
                 start();
             }
         }
@@ -131,14 +141,16 @@ class VideoChat extends React.Component {
         //}
 
         function start() {
-            console.log('>>>>>>> start ', isStarted, localStream, isChannelReady);
-            if (!isStarted && typeof localStream !== 'undefined' && isChannelReady) {
+            console.log('>>>>>>> start ', context.state.isStarted, localStream, context.state.isChannelReady);
+            if (!context.state.isStarted && typeof localStream !== 'undefined' && context.state.isChannelReady) {
                 console.log('>>>>>> creating peer connection');
                 createPeerConnection();
-                pc.addStream(localStream);
-                isStarted = true;
-                console.log('isInitiator', isInitiator);
-                if (isInitiator) {
+                pcConfig.addStream(localStream);
+                context.setState({
+                    isStarted: true
+                });
+                console.log('isInitiator', context.state.isInitiator);
+                if (context.state.isInitiator) {
                     call();
                 }
             }
@@ -154,10 +166,10 @@ class VideoChat extends React.Component {
             //create a new peer connection
             //add the ice handler
             try {
-                pc = new RTCPeerConnection(null);
-                pc.onicecandidate = handleIceCandidate;
-                pc.onaddstream = handleRemoteStreamAdded;
-                pc.onremovestream = handleRemoteStreamRemoved;
+                pcConfig = new RTCPeerConnection(null);
+                pcConfig.onicecandidate = handleIceCandidate;
+                pcConfig.onaddstream = handleRemoteStreamAdded;
+                pcConfig.onremovestream = handleRemoteStreamRemoved;
                 console.log('Created RTCPeerConnnection');
             } catch (e) {
                 console.log('Failed to create PeerConnection, exception: ' + e.message);
@@ -193,12 +205,12 @@ class VideoChat extends React.Component {
 //on response set the remote description(other persons pc)
         function call() {
             console.log('Sending offer to peer');
-            pc.createOffer(setLocalAndSendMessage, handleCreateOfferError);
+            pcConfig.createOffer(setLocalAndSendMessage, handleCreateOfferError);
         }
 
         function createAnswer() {
             console.log('Sending answer to peer.');
-            pc.createAnswer().then(
+            pcConfig.createAnswer().then(
                 setLocalAndSendMessage,
                 onCreateSessionDescriptionError
             );
@@ -207,7 +219,7 @@ class VideoChat extends React.Component {
         function setLocalAndSendMessage(sessionDescription) {
             // Set Opus as the preferred codec in SDP if Opus is present.
             //  sessionDescription.sdp = preferOpus(sessionDescription.sdp);
-            pc.setLocalDescription(sessionDescription);
+            pcConfig.setLocalDescription(sessionDescription);
             console.log('setLocalAndSendMessage sending message', sessionDescription);
             sendMessage(sessionDescription);
         }
@@ -264,15 +276,19 @@ class VideoChat extends React.Component {
         function handleRemoteHangup() {
             console.log('Session terminated.');
             stop();
-            isInitiator = false;
+            context.setState({
+                isInitiator: false
+            });
         }
 
         function stop() {
-            isStarted = false;
+            context.setState({
+                isStarted: false
+            });
             // isAudioMuted = false;
             // isVideoMuted = false;
-            pc.close();
-            pc = null;
+            pcConfig.close();
+            pcConfig = null;
         }
 
 ///////////////////////////////////////////
