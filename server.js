@@ -86,8 +86,12 @@ io.on('connection', function(socket){
   // Increment every time a new user is connected
   userCount++;
   console.log('a user connected', userCount);
+  socket.on("quit", function(){
+    io.sockets.emit("receive", rooms);
+  });
   // Listen for createRoom
   socket.on('createRoom', function(roomName) {
+
     // If no empty room exists, make a new room and put user into it
     if ( !rooms[roomName] ) {
       // Create/save room and increment room count
@@ -110,9 +114,11 @@ io.on('connection', function(socket){
       // Send error message back to user
       socket.emit('roomJoinError', 'roomAlreadyExsits');
     }
+    io.sockets.emit("receive", rooms);
   });
 
   socket.on('joinRoom', function(roomName) {
+
     if ( !rooms[roomName] ) {
       // Send error message back to user
       socket.emit('roomJoinError', 'noSuchRoom');
@@ -141,6 +147,7 @@ io.on('connection', function(socket){
       socket.emit('joined', roomName, socket.id);
       io.sockets.in(roomName).emit('ready');
     }
+    io.sockets.emit("receive", rooms);
   });
 
   socket.on('message', function(message) {

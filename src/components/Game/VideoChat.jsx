@@ -1,4 +1,5 @@
 import React from 'react';
+import {browserHistory} from 'react-router';
 
 class VideoChat extends React.Component {
     constructor (props) {
@@ -19,7 +20,7 @@ class VideoChat extends React.Component {
         var localStream;
         var remoteStream;
         var turnReady;
-        var room
+        var room;
         //stun server for network data
         var pcConfig = {
             'iceServers': [{
@@ -36,7 +37,7 @@ class VideoChat extends React.Component {
 
         //your screen is local video- other person is remote video
         var localVideo = document.querySelector('#localVideo');
-        console.log("local video", localVideo.src)
+        console.log("local video", localVideo.src);
         var remoteVideo = document.querySelector('#remoteVideo');
         socket.on('roomName', function(roomName) {
             room = roomName;
@@ -96,11 +97,14 @@ class VideoChat extends React.Component {
             if (message === 'got user media') {
                 start();
             } else if (message.type === 'offer') {
+                console.log("MAKING AN OFFER");
                 if (!context.state.isInitiator && !context.state.isStarted) {
                     start();
                 }
-                pcConfig.setRemoteDescription(new RTCSessionDescription(message));
-                createAnswer();
+                pcConfig.setRemoteDescription(new RTCSessionDescription(message), function(){
+                    createAnswer();
+                    });
+
             } else if (message.type === 'answer' && context.state.isStarted) {
                 pcConfig.setRemoteDescription(new RTCSessionDescription(message));
             } else if (message.type === 'candidate' && context.state.isStarted) {
@@ -108,6 +112,7 @@ class VideoChat extends React.Component {
                     sdpMLineIndex: message.label,
                     candidate: message.candidate
                 });
+                console.log("CANDIDATE:", candidate);
                 pcConfig.addIceCandidate(candidate);
             } else if (message === 'bye' && context.state.isStarted) {
                 handleRemoteHangup();
@@ -219,6 +224,7 @@ class VideoChat extends React.Component {
         function setLocalAndSendMessage(sessionDescription) {
             // Set Opus as the preferred codec in SDP if Opus is present.
             //  sessionDescription.sdp = preferOpus(sessionDescription.sdp);
+            console.log("SESSIONDESCRIPTION:", sessionDescription);
             pcConfig.setLocalDescription(sessionDescription);
             console.log('setLocalAndSendMessage sending message', sessionDescription);
             sendMessage(sessionDescription);
@@ -227,35 +233,36 @@ class VideoChat extends React.Component {
         function onCreateSessionDescriptionError(error) {
             console.log('Failed to create session description: ' + error.toString());
         }
+        //NOT BEING USED RIGHT NOW
 //TURN servers- if ICE cant find the external address, traffic will be routed using turn servers
-        function requestTurn(turnURL) {
-            var turnExists = false;
-            for (var i in pcConfig.iceServers) {
-                if (pcConfig.iceServers[i].url.substr(0, 5) === 'turn:') {
-                    turnExists = true;
-                    turnReady = true;
-                    break;
-                }
-            }
-            if (!turnExists) {
-                console.log('Getting TURN server from ', turnURL);
-                // No TURN server. Get one from computeengineondemand.appspot.com:
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        var turnServer = JSON.parse(xhr.responseText);
-                        console.log('Got TURN server: ', turnServer);
-                        pcConfig.iceServers.push({
-                            'url': 'turn:' + turnServer.username + '@' + turnServer.turn,
-                            'credential': turnServer.password
-                        });
-                        turnReady = true;
-                    }
-                };
-                xhr.open('GET', turnURL, true);
-                xhr.send();
-            }
-        }
+//        function requestTurn(turnURL) {
+//            var turnExists = false;
+//            for (var i in pcConfig.iceServers) {
+//                if (pcConfig.iceServers[i].url.substr(0, 5) === 'turn:') {
+//                    turnExists = true;
+//                    turnReady = true;
+//                    break;
+//                }
+//            }
+//            if (!turnExists) {
+//                console.log('Getting TURN server from ', turnURL);
+//                // No TURN server. Get one from computeengineondemand.appspot.com:
+//                var xhr = new XMLHttpRequest();
+//                xhr.onreadystatechange = function() {
+//                    if (xhr.readyState === 4 && xhr.status === 200) {
+//                        var turnServer = JSON.parse(xhr.responseText);
+//                        console.log('Got TURN server: ', turnServer);
+//                        pcConfig.iceServers.push({
+//                            'url': 'turn:' + turnServer.username + '@' + turnServer.turn,
+//                            'credential': turnServer.password
+//                        });
+//                        turnReady = true;
+//                    }
+//                };
+//                xhr.open('GET', turnURL, true);
+//                xhr.send();
+//            }
+//        }
 
         function handleRemoteStreamAdded(event) {
             console.log('Remote stream added.');
@@ -289,85 +296,92 @@ class VideoChat extends React.Component {
             // isVideoMuted = false;
             pcConfig.close();
             pcConfig = null;
+            remoteVideo.src = null;
+            localVideo.src = null;
+            document.getElementById("canvas").remove();
+            socket.emit("quit");
+            browserHistory.push({
+                pathname: '/home'
+            })
         }
 
 ///////////////////////////////////////////
-
+//NOT BEING USED RIGHT NOW
 // Set Opus as the default audio codec if it's present.
-        function preferOpus(sdp) {
-            var sdpLines = sdp.split('\r\n');
-            var mLineIndex;
-            // Search for m line.
-            for (var i = 0; i < sdpLines.length; i++) {
-                if (sdpLines[i].search('m=audio') !== -1) {
-                    mLineIndex = i;
-                    break;
-                }
-            }
-            if (mLineIndex === null) {
-                return sdp;
-            }
+//        function preferOpus(sdp) {
+//            var sdpLines = sdp.split('\r\n');
+//            var mLineIndex;
+//            // Search for m line.
+//            for (var i = 0; i < sdpLines.length; i++) {
+//                if (sdpLines[i].search('m=audio') !== -1) {
+//                    mLineIndex = i;
+//                    break;
+//                }
+//            }
+//            if (mLineIndex === null) {
+//                return sdp;
+//            }
+//
+//            // If Opus is available, set it as the default in m line.
+//            for (i = 0; i < sdpLines.length; i++) {
+//                if (sdpLines[i].search('opus/48000') !== -1) {
+//                    var opusPayload = extractSdp(sdpLines[i], /:(\d+) opus\/48000/i);
+//                    if (opusPayload) {
+//                        sdpLines[mLineIndex] = setDefaultCodec(sdpLines[mLineIndex],
+//                            opusPayload);
+//                    }
+//                    break;
+//                }
+//            }
+//
+//            // Remove CN in m line and sdp.
+//            sdpLines = removeCN(sdpLines, mLineIndex);
+//
+//            sdp = sdpLines.join('\r\n');
+//            return sdp;
+//        }
 
-            // If Opus is available, set it as the default in m line.
-            for (i = 0; i < sdpLines.length; i++) {
-                if (sdpLines[i].search('opus/48000') !== -1) {
-                    var opusPayload = extractSdp(sdpLines[i], /:(\d+) opus\/48000/i);
-                    if (opusPayload) {
-                        sdpLines[mLineIndex] = setDefaultCodec(sdpLines[mLineIndex],
-                            opusPayload);
-                    }
-                    break;
-                }
-            }
-
-            // Remove CN in m line and sdp.
-            sdpLines = removeCN(sdpLines, mLineIndex);
-
-            sdp = sdpLines.join('\r\n');
-            return sdp;
-        }
-
-        function extractSdp(sdpLine, pattern) {
-            var result = sdpLine.match(pattern);
-            return result && result.length === 2 ? result[1] : null;
-        }
+        //function extractSdp(sdpLine, pattern) {
+        //    var result = sdpLine.match(pattern);
+        //    return result && result.length === 2 ? result[1] : null;
+        //}
 
 // Set the selected codec to the first in m line.
-        function setDefaultCodec(mLine, payload) {
-            var elements = mLine.split(' ');
-            var newLine = [];
-            var index = 0;
-            for (var i = 0; i < elements.length; i++) {
-                if (index === 3) { // Format of media starts from the fourth.
-                    newLine[index++] = payload; // Put target payload to the first.
-                }
-                if (elements[i] !== payload) {
-                    newLine[index++] = elements[i];
-                }
-            }
-            return newLine.join(' ');
-        }
+//        function setDefaultCodec(mLine, payload) {
+//            var elements = mLine.split(' ');
+//            var newLine = [];
+//            var index = 0;
+//            for (var i = 0; i < elements.length; i++) {
+//                if (index === 3) { // Format of media starts from the fourth.
+//                    newLine[index++] = payload; // Put target payload to the first.
+//                }
+//                if (elements[i] !== payload) {
+//                    newLine[index++] = elements[i];
+//                }
+//            }
+//            return newLine.join(' ');
+//        }
 
 // Strip CN from sdp before CN constraints is ready.
-        function removeCN(sdpLines, mLineIndex) {
-            var mLineElements = sdpLines[mLineIndex].split(' ');
-            // Scan from end for the convenience of removing an item.
-            for (var i = sdpLines.length - 1; i >= 0; i--) {
-                var payload = extractSdp(sdpLines[i], /a=rtpmap:(\d+) CN\/\d+/i);
-                if (payload) {
-                    var cnPos = mLineElements.indexOf(payload);
-                    if (cnPos !== -1) {
-                        // Remove CN payload from m line.
-                        mLineElements.splice(cnPos, 1);
-                    }
-                    // Remove CN line in sdp
-                    sdpLines.splice(i, 1);
-                }
-            }
-
-            sdpLines[mLineIndex] = mLineElements.join(' ');
-            return sdpLines;
-        }
+//        function removeCN(sdpLines, mLineIndex) {
+//            var mLineElements = sdpLines[mLineIndex].split(' ');
+//            // Scan from end for the convenience of removing an item.
+//            for (var i = sdpLines.length - 1; i >= 0; i--) {
+//                var payload = extractSdp(sdpLines[i], /a=rtpmap:(\d+) CN\/\d+/i);
+//                if (payload) {
+//                    var cnPos = mLineElements.indexOf(payload);
+//                    if (cnPos !== -1) {
+//                        // Remove CN payload from m line.
+//                        mLineElements.splice(cnPos, 1);
+//                    }
+//                    // Remove CN line in sdp
+//                    sdpLines.splice(i, 1);
+//                }
+//            }
+//
+//            sdpLines[mLineIndex] = mLineElements.join(' ');
+//            return sdpLines;
+//        }
 
     }
     render () {

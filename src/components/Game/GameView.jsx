@@ -44,7 +44,6 @@ class Game extends React.Component {
     return (
       <div className="Game">
 		  <ProgressBar/>
-			{console.log(window.gameover)}
       	<Chat timer={this.state.timer} controlsClickHandler={this.controlsClickHandler.bind(this)} />
       	{this.state.gameover ? <GameOver time={this.state.time}/> : ''}
       	{this.state.controls ? <Controls controlsClickHandler={this.controlsClickHandler.bind(this)} /> : ''}

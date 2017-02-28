@@ -12,7 +12,6 @@ class ProgressBar extends React.Component {
             this.setState({
                 percentage: 100 - window.distancePercentage
             });
-            console.log('Changing percentage : ', 100 - window.distancePercentage);
         }, 1500);
     }
     render () {
