@@ -28,7 +28,7 @@ const boundaryWalls = {
   10: [92, 150],
   20: [173, 322]
 };
-const mazeSize = easyLevelMazeSize;
+const mazeSize = mediumLevelMazeSize;
 // window.secondPlayerPosition = secondPlayerPositions[mazeSize];
 const groundBoundaryLength = boundaryWalls[mazeSize][1] * 1.2;
 const a = boundaryWalls[mazeSize][0];

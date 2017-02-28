@@ -63,7 +63,7 @@ var newRoom = [];
 var clients = {};
 var usernames = {};
 
-var mazeLevel = 1;
+var mazeLevel = 2;
 
 // Start socket.io server
 io.on('connection', function(socket){
