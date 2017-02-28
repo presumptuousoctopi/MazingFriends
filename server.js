@@ -14,7 +14,7 @@ var bcrypt = require('bcryptjs');
 var fs = require('fs');
 var BinaryServer = require('binaryjs').BinaryServer;
 var binaryServer = new BinaryServer({ server:http, path: '/binary'});
-
+var calculateDistance = require('./calculateDistance');
 http.listen(port, function () {
   console.log('Example app listening on port 3000!');
 });
@@ -63,7 +63,7 @@ var newRoom = [];
 var clients = {};
 var usernames = {};
 
-
+var mazeLevel = 1;
 
 // Start socket.io server
 io.on('connection', function(socket){
@@ -92,7 +92,6 @@ io.on('connection', function(socket){
   });
   // Listen for createRoom
   socket.on('createRoom', function(roomName) {
-
     // If no empty room exists, make a new room and put user into it
     if ( !rooms[roomName] ) {
       // Create/save room and increment room count
@@ -109,7 +108,7 @@ io.on('connection', function(socket){
       // Connect user to the room
       socket.join(roomName);
       // Send maze to user
-      socket.emit('serverSendingMaze', mazes.mediumLevelMaze);
+      socket.emit('serverSendingMaze', mazes[mazeLevel]);
       console.log('A user made a room called ', roomName);
     } else {
       // Send error message back to user
@@ -140,7 +139,7 @@ io.on('connection', function(socket){
       // Request other player's game information
       socket.broadcast.to(playerRoom[socket.id]).emit('newPlayerRequestInfo');
       // Send maze to user
-      socket.emit('serverSendingMaze', mazes.mediumLevelMaze);
+      socket.emit('serverSendingMaze', mazes[mazeLevel]);
       console.log('A user joined a room called ', roomName);
       /////////
       console.log('Client ID ' + socket.id + ' joined room ' + roomName);
@@ -206,6 +205,9 @@ socket.on('sendMessage', function(data) {
 socket.on('disconnect', function(){
   userCount--;
   rooms[playerRoom[socket.id]]--;
+  if ( rooms[playerRoom[socket.id]] === 0 ) {
+    delete rooms[playerRoom[socket.id]];
+  } 
   console.log('user disconnected! Current user count : ', userCount);
 });
 
@@ -230,6 +232,12 @@ socket.on('disconnect', function(){
 
   socket.on('time', function(time) {
     socket.emit('timer', time)
+  });
+
+  // calculate distance between two users and send back percentage (%)
+  socket.on('calculateDistance', function(positionObject) {
+    positionObject.level = mazeLevel;
+    socket.emit('receiveDistancePercentage', calculateDistance(positionObject));
   });
   
   /*************************************************************************************************
