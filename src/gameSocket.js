@@ -86,6 +86,7 @@ socket.on('firstPlayer', function(firstPlayer) {
       }
     }
     // console.log('currentTime : ', currentTime);
+    console.log('position : ', window.camera.position);
     // console.log(window.camera.rotation);
     scene.render();
   });
@@ -99,7 +100,7 @@ socket.on('secondPlayer', function(secondPlayer) {
   window.camera.keysDown = [83]; 
   window.camera.keysLeft = [65]; 
   window.camera.keysRight = [68];
-  window.camera.position = mediumLevelSecondPlayerPosition;
+  window.camera.position = window.secondPlayerPosition;
   window.camera.rotation = new BABYLON.Vector3(-0.38385, -.77694, 0);
   originalTime = new Date().getTime();
   // Send player position to other player
