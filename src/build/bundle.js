@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1e62a11b5661ed0b35c2"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "29b94ce49b7393f5cabb"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28847,7 +28847,7 @@
 	    var _this = _possibleConstructorReturn(this, (Chat.__proto__ || Object.getPrototypeOf(Chat)).call(this));
 	
 	    _this.state = {
-	      text: "video"
+	      video: true
 	    };
 	    console.log(_this.state.text);
 	    return _this;
@@ -28855,13 +28855,13 @@
 	
 	  _createClass(Chat, [{
 	    key: 'switchChat',
-	    value: function switchChat(value) {
+	    value: function switchChat() {
 	      this.setState({
-	        text: value
+	        video: false
 	      });
-	      if (value === 'video') {
-	        socket.emit('changedToVideo', '');
-	      }
+	      // if (value === 'video') {
+	      //   socket.emit('changedToVideo', '');
+	      // }
 	    }
 	  }, {
 	    key: 'stopGame',
@@ -28906,22 +28906,16 @@
 	              { className: 'optionButtons', onClick: this.stopGame.bind(this) },
 	              'Quit Game'
 	            )
-	          ),
-	          _react2.default.createElement(
-	            'form',
-	            null,
-	            _react2.default.createElement(
-	              'h3',
-	              null,
-	              'Chat Options'
-	            ),
-	            _react2.default.createElement('input', { type: 'radio', name: 'chat', value: 'text', onChange: this.switchChat.bind(this, "text") }),
-	            'Text',
-	            _react2.default.createElement('input', { type: 'radio', name: 'chat', value: 'video', onChange: this.switchChat.bind(this, "video") }),
-	            'Video'
 	          )
 	        ),
-	        this.state.text === "video" ? _react2.default.createElement(_VideoChat2.default, null) : _react2.default.createElement(_TextChat2.default, null)
+	        this.state.video ? _react2.default.createElement(_VideoChat2.default, null) : '',
+	        _react2.default.createElement(
+	          'form',
+	          null,
+	          _react2.default.createElement('input', { type: 'radio', name: 'chat', value: 'video', onChange: this.switchChat.bind(this) }),
+	          'Video Off'
+	        ),
+	        _react2.default.createElement(_TextChat2.default, null)
 	      );
 	    }
 	  }]);
@@ -30640,7 +30634,7 @@
 	            'form',
 	            { onSubmit: this.sendMessage.bind(this) },
 	            _react2.default.createElement('input', { type: 'text', className: 'chatBar', value: this.state.message, onChange: this.updateInput.bind(this) }),
-	            _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+	            _react2.default.createElement('input', { type: 'submit', value: 'Submit', className: 'chatBtn' })
 	          )
 	        )
 	      );
@@ -31557,6 +31551,11 @@
 	              " F : fire"
 	            )
 	          )
+	        ),
+	        _react2.default.createElement(
+	          "button",
+	          { onClick: this.props.close },
+	          "Close"
 	        )
 	      );
 	    }
@@ -31971,6 +31970,10 @@
 	
 	var _Lobby2 = _interopRequireDefault(_Lobby);
 	
+	var _Controls = __webpack_require__(/*! ./../Game/Controls.jsx */ 284);
+	
+	var _Controls2 = _interopRequireDefault(_Controls);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -31994,7 +31997,8 @@
 	      join: 'vanish',
 	      new: 'vanish',
 	      createRoomName: '',
-	      joinRoomName: ''
+	      joinRoomName: '',
+	      controlsView: false
 	    };
 	    _this.createRoomButton = _this.createRoomButton.bind(_this);
 	    _this.joinRoomButton = _this.joinRoomButton.bind(_this);
@@ -32053,6 +32057,13 @@
 	    value: function handleChange(e) {
 	      this.setState(_defineProperty({}, e.target.name, e.target.value));
 	      console.log(this.state);
+	    }
+	  }, {
+	    key: 'controlsViewToggle',
+	    value: function controlsViewToggle() {
+	      this.setState({
+	        controlsView: !this.state.controlsView
+	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -32115,9 +32126,10 @@
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
 	            'button',
-	            { className: 'homeButtons' },
+	            { className: 'homeButtons', onClick: this.controlsViewToggle.bind(this) },
 	            'Controls'
-	          )
+	          ),
+	          this.state.controlsView ? _react2.default.createElement(_Controls2.default, { close: this.controlsViewToggle.bind(this) }) : ''
 	        ),
 	        _react2.default.createElement(_Lobby2.default, null)
 	      );
