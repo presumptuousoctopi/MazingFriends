@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4239b00e5d33e48e9f6f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1e62a11b5661ed0b35c2"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31113,11 +31113,8 @@
 	                // isVideoMuted = false;
 	                pcConfig.close();
 	                pcConfig = null;
-	                remoteVideo.src = null;
 	                localVideo.src = null;
-	                localStream.getTracks().forEach(function (track) {
-	                    return track.stop();
-	                });
+	                remoteVideo.src = null;
 	                document.getElementById("canvas").remove();
 	                socket.emit("quit", room);
 	                _reactRouter.browserHistory.push({
@@ -31232,7 +31229,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-loader/~/react-hot-api/modules/index.js */ 2), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 10), ReactMount = __webpack_require__(/*! react-dom/lib/ReactMount */ 12), React = __webpack_require__(/*! react */ 103); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -31267,27 +31264,34 @@
 	    }
 	
 	    _createClass(ProgressBar, [{
-	        key: "componentDidMount",
+	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            var _this2 = this;
-	
-	            setInterval(function () {
-	                _this2.setState({
-	                    percentage: 100 - window.distancePercentage
+	            var context = this;
+	            socket.on('receiveDistancePercentage', function (percentage) {
+	                // console.log('New percentage : ', percentage);
+	                // window.distancePercentage = percentage;
+	                context.setState({
+	                    percentage: percentage
 	                });
-	            }, 1500);
+	            });
+	
+	            // setInterval( () => {
+	            //     this.setState({
+	            //         percentage: window.distancePercentage
+	            //     });
+	            // }, 1500);
 	        }
 	    }, {
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                "div",
-	                { className: "progress" },
+	                'div',
+	                { className: 'progress' },
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "progress-bar progress-bar-danger", role: "progressbar", "aria-valuenow": this.state.percentage,
-	                        "aria-valuemin": "0", "aria-valuemax": "100", style: { width: this.state.percentage + '%' } },
-	                    _react2.default.createElement("span", { className: "sr-only" })
+	                    'div',
+	                    { className: 'progress-bar progress-bar-danger', role: 'progressbar', 'aria-valuenow': this.state.percentage,
+	                        'aria-valuemin': '0', 'aria-valuemax': '100', style: { width: this.state.percentage + '%' } },
+	                    _react2.default.createElement('span', { className: 'sr-only' })
 	                )
 	            );
 	        }

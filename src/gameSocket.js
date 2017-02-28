@@ -2,6 +2,11 @@
  Game Sockets
 *******************************************************/
 
+// socket.on('receiveDistancePercentage', function(percentage) {
+//   // console.log('New percentage : ', percentage);
+//   window.distancePercentage = percentage;
+// });
+
 //data reporter
   var outputplane = BABYLON.Mesh.CreatePlane("outputplane", 25, scene, false);
   outputplane.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
@@ -65,7 +70,9 @@ socket.on('firstPlayer', function(firstPlayer) {
   engine.runRenderLoop(function(){
     outputplane.position = new BABYLON.Vector3(-35 + camera.position.x, 35 +camera.position.y, 35 + camera.position.z);
     outputplane2.position = new BABYLON.Vector3(20 + camera.position.x, 20 +camera.position.y, 20 + camera.position.z);
-    
+    var xGrid = Math.floor(window.camera.position.x / 4 + .4);
+    var yGrid = Math.floor(window.camera.position.z / 4 + .4);
+    console.log('Here are grids : ', xGrid, yGrid);
     // console.log('fps : ', engine.fps);
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
@@ -79,13 +86,18 @@ socket.on('firstPlayer', function(firstPlayer) {
       var p1 = window.camera.position;
       var p2 = window.otherPlayer.position;
       // Calculate distance between two users
+
+      socket.emit('calculateDistance', {
+        p1: p1,
+        p2: p2
+      });
       var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
-      window.distancePercentage = distanceBetweenUsers / window.farthestUserDist * 100;
       if ( distanceBetweenUsers < 3 ) {
         window.finishGame();
       }
     }
     // console.log('currentTime : ', currentTime);
+    // console.log('position : ', window.camera.position);
     // console.log(window.camera.rotation);
     scene.render();
   });
@@ -99,6 +111,7 @@ socket.on('secondPlayer', function(secondPlayer) {
   window.camera.keysDown = [83]; 
   window.camera.keysLeft = [65]; 
   window.camera.keysRight = [68];
+
   window.camera.position = mediumLevelSecondPlayerPosition;
   window.camera.rotation = new BABYLON.Vector3(-0.38385, -.77694, 0);
   originalTime = new Date().getTime();
@@ -121,9 +134,13 @@ socket.on('secondPlayer', function(secondPlayer) {
     if ( window.otherPlayer && window.finished === false ) {
       var p1 = window.camera.position;
       var p2 = window.otherPlayer.position;
+
+      socket.emit('calculateDistance', {
+        p1: p1,
+        p2: p2
+      });
       // Calculate distance between two users
       var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
-      window.distancePercentage = distanceBetweenUsers / window.farthestUserDist * 100;
  
       if ( distanceBetweenUsers < 3 ) {
         window.finishGame();
@@ -170,9 +187,9 @@ socket.on('receiveUserPosition', function(userPosition) {
   if ( window.otherPlayer ) {
     var p1 = window.camera.position;
     var p2 = userPosition;
-    // Calculate distance between two users
     var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
-    if ( distanceBetweenUsers < 1 && window.finished === false ) {
+    // Calculate distance between two users
+    if ( window.distanceBetweenUsers < 1 && window.finished === false ) {
       window.finishGame();
     }
     window.otherPlayer.position = userPosition;
