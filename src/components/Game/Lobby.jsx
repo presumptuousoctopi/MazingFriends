@@ -20,6 +20,9 @@ class Lobby extends React.Component {
                 if (data[key] === 0) {
                     delete data[key];
                 }
+                if (data[key] === null) {
+                    delete data[key];
+                }
             }
             delete data[undefined];
             context.setState({
