@@ -20,6 +20,7 @@ class Lobby extends React.Component {
                 if (data[key] === 0) {
                     delete data[key];
                 }
+                //this might be hacky- check why the server is storing a null value
                 if (data[key] === null) {
                     delete data[key];
                 }
