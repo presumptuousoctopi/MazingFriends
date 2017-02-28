@@ -2,6 +2,10 @@
  Game Sockets
 *******************************************************/
 
+socket.on('receiveDistance', function(distance) {
+  window.distanceBetweenUsers = distance;
+});
+
 //data reporter
   var outputplane = BABYLON.Mesh.CreatePlane("outputplane", 25, scene, false);
   outputplane.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
@@ -79,9 +83,15 @@ socket.on('firstPlayer', function(firstPlayer) {
       var p1 = window.camera.position;
       var p2 = window.otherPlayer.position;
       // Calculate distance between two users
-      var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
-      window.distancePercentage = distanceBetweenUsers / window.farthestUserDist * 100;
-      if ( distanceBetweenUsers < 3 ) {
+
+      socket.emit('calculateDistance', {
+        p1: p1,
+        p2: p2
+      });
+
+      // var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
+      window.distancePercentage = window.distanceBetweenUsers / window.farthestUserDist * 100;
+      if ( window.distanceBetweenUsers < 3 ) {
         window.finishGame();
       }
     }
@@ -122,11 +132,15 @@ socket.on('secondPlayer', function(secondPlayer) {
     if ( window.otherPlayer && window.finished === false ) {
       var p1 = window.camera.position;
       var p2 = window.otherPlayer.position;
+      socket.emit('calculateDistance', {
+        p1: p1,
+        p2: p2
+      });
       // Calculate distance between two users
-      var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
-      window.distancePercentage = distanceBetweenUsers / window.farthestUserDist * 100;
+      // var window.distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
+      window.distancePercentage = window.distanceBetweenUsers / window.farthestUserDist * 100;
  
-      if ( distanceBetweenUsers < 3 ) {
+      if ( window.distanceBetweenUsers < 3 ) {
         window.finishGame();
       }
     }
@@ -172,7 +186,7 @@ socket.on('receiveUserPosition', function(userPosition) {
     var p1 = window.camera.position;
     var p2 = userPosition;
     // Calculate distance between two users
-    var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
+    var window.distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
     if ( distanceBetweenUsers < 1 && window.finished === false ) {
       window.finishGame();
     }
