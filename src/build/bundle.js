@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0fc4c61962da62cec156"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4239b00e5d33e48e9f6f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31115,6 +31115,9 @@
 	                pcConfig = null;
 	                remoteVideo.src = null;
 	                localVideo.src = null;
+	                localStream.getTracks().forEach(function (track) {
+	                    return track.stop();
+	                });
 	                document.getElementById("canvas").remove();
 	                socket.emit("quit", room);
 	                _reactRouter.browserHistory.push({
@@ -32181,6 +32184,7 @@
 	                    if (data[key] === 0) {
 	                        delete data[key];
 	                    }
+	                    //this might be hacky- check why the server is storing a null value
 	                    if (data[key] === null) {
 	                        delete data[key];
 	                    }
