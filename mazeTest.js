@@ -5,6 +5,7 @@
 var mazes = require('./src/customMazes');
 var PF = require('pathfinding');
 
+<<<<<<< HEAD
 var calculateDistance = function(userData, initialDist = 54) {
     // generateMaze = function(x,y) {
     //     function maze(x,y) {
@@ -203,3 +204,184 @@ var calculateDistance = function(userData, initialDist = 54) {
 };
 
 module.exports = calculateDistance;
+=======
+// generateMaze = function(x,y) {
+//     function maze(x,y) {
+//         var n=x*y-1;
+//         if (n<0) {alert("illegal maze dimensions");return;}
+//         var horiz =[]; for (var j= 0; j<x+1; j++) horiz[j]= [],
+//             verti =[]; for (var j= 0; j<x+1; j++) verti[j]= [],
+//             here = [Math.floor(Math.random()*x), Math.floor(Math.random()*y)],
+//             path = [here],
+//             unvisited = [];
+//         for (var j = 0; j<x+2; j++) {
+//             unvisited[j] = [];
+//             for (var k= 0; k<y+1; k++)
+//                 unvisited[j].push(j>0 && j<x+1 && k>0 && (j != here[0]+1 || k != here[1]+1));
+//         }
+//         while (0<n) {
+//             var potential = [[here[0]+1, here[1]], [here[0],here[1]+1],
+//                 [here[0]-1, here[1]], [here[0],here[1]-1]];
+//             var neighbors = [];
+//             for (var j = 0; j < 4; j++)
+//                 if (unvisited[potential[j][0]+1][potential[j][1]+1])
+//                     neighbors.push(potential[j]);
+//             if (neighbors.length) {
+//                 n = n-1;
+//                 next= neighbors[Math.floor(Math.random()*neighbors.length)];
+//                 unvisited[next[0]+1][next[1]+1]= false;
+//                 if (next[0] == here[0])
+//                     horiz[next[0]][(next[1]+here[1]-1)/2]= true;
+//                 else 
+//                     verti[(next[0]+here[0]-1)/2][next[1]]= true;
+//                 path.push(here = next);
+//             } else 
+//                 here = path.pop();
+//         }
+//         return {x: x, y: y, horiz: horiz, verti: verti};
+//     }
+
+//     function display(m) {
+//         var text= [];
+//         var box = [];
+//         for (var j= 0; j<m.x*2+1; j++) {
+//             var line= [];
+//             if (0 == j%2)
+//                 for (var k=0; k<m.y*4+1; k++)
+//                     if (0 == k%4) 
+//                         line[k]= '+';
+//                     else
+//                         if (j>0 && m.verti[j/2-1][Math.floor(k/4)])
+//                             line[k]= ' ';
+//                         else
+//                             line[k]= '-';
+//             else
+//                 for (var k=0; k<m.y*4+1; k++)
+//                     if (0 == k%4)
+//                         if (k>0 && m.horiz[(j-1)/2][k/4-1])
+//                             line[k]= ' ';
+//                         else
+//                             line[k]= '|';
+//                     else
+//                         line[k]= ' ';
+//             if (0 == j) line[1]= line[2]= line[3]= ' ';
+//             if (m.x*2-1 == j) line[4*m.y]= ' ';
+//             box.push(line);
+//             text.push(line.join('')+'\r\n');
+//         }
+//         return box;
+//     }
+//     return display(maze(x+2,y));
+// }
+
+
+// var mazeSize = 5;
+// var maze = generateMaze(mazeSize,mazeSize);
+var maze = mazes.easyLevelMaze;
+var firstPosition = {
+    x: 0,
+    y: 1
+};
+var secondPosition = {
+    x: maze.length-1,
+    y: maze[0].length-1
+};
+
+// console.log('secondPosition : ', secondPosition);
+
+maze[firstPosition.x][firstPosition.y] = '1';
+maze[secondPosition.x][secondPosition.y] = '2';
+var columnLength = maze.length;
+var rowLength = maze[0].length;
+console.log('columnLength :', columnLength);
+console.log('rowLength :', rowLength);
+
+for ( var i = 0; i < columnLength; i++ ) {
+    for ( var j = 0; j < rowLength; j++ ) {
+        if ( maze[i][j] === ' ' ) {
+            maze[i][j] = 0;      
+        } else if ( maze[i][j] === '1' ) {
+            maze[i][j] = 0;
+        } else if ( maze[i][j] === '2' ) {
+            maze[i][j] = 0;
+        } else {
+            maze[i][j] = 1;
+        }
+    }
+}
+
+var newRow = [];
+for ( var i = 0; i < rowLength; i++ ) {
+    newRow.push(1);
+};
+
+for ( var i = 0; i < rowLength - columnLength; i++ ) {
+    maze.push(newRow);
+}
+
+console.log(maze.length === maze[0].length);
+// console.log('new columnLength',)
+var grid = new PF.Grid(rowLength, rowLength, maze);
+// var grid = new PF.Grid(columnLength, rowLength);
+// // console.log('grid : ', grid);
+// console.log(maze);
+var finder = new PF.BiBestFirstFinder();
+console.log(firstPosition);
+console.log(secondPosition);
+
+for ( var i = 0; i < rowLength; i++ ) {
+    for ( var j = 0; j < rowLength; j++ ) {
+        if ( maze[i][j] === 0 ) {
+            grid.setWalkableAt(i, j, true);        
+        } else {
+            grid.setWalkableAt(i, j, false);
+        }
+    }
+}
+// var path = finder.findPath(0,1,10,12,grid);
+var path = finder.findPath(firstPosition.x, firstPosition.y, secondPosition.x, secondPosition.y, grid);
+
+// 54, 2, 2
+// 54, 2, 12
+// 0, 2, 12
+// 0, 2, 2
+
+for ( var i = 0; i < path.length; i++ ) {
+    maze[path[i][0]][path[i][1]] = 7;
+}
+console.log('Does path exist ? ', path.length !== 0);
+console.log(maze);
+// console.log(path.length);
+// console.table(robotPaths(maze));
+// JSON.stringify(robotPaths(maze));
+// console.log(robotPaths(maze).join("\",\""))
+// var solutionPath = null;
+// // console.log(robotPaths(maze));
+// // console.log(maze)
+// var newRow = [];
+// for ( var j = 0; j < maze[0].length; j++ ) {
+//     newRow.push('x');
+// }
+// var columnLength = maze.length;
+// var rowLength = maze[0].length;
+// for ( var i = 0; i <= rowLength - columnLength; i++ ) {
+//     maze.push(newRow);
+// }
+// easystar.setGrid(maze);
+// easystar.setAcceptableTiles([' ']);
+
+// easystar.findPath(firstPosition.x, firstPosition.y, secondPosition.x, Math.round(secondPosition.y / 2),  function( path ) {
+//     if (path === null) {
+//         console.log("Path was not found.");
+//     } else {
+//         // console.log("Path was found. The first Point is " + path[0].x + " " + path[0].y);
+//         solutionPath = path;
+//         var solvedMaze = JSON.parse(JSON.stringify(maze));
+//         for ( var i = 0; i < solutionPath.length; i++ ) {
+//             solvedMaze[solutionPath[i].x][solutionPath[i].y] = '@';
+//         }
+//         console.log(solvedMaze);
+//     }
+// });
+// easystar.calculate();
+>>>>>>> Add pathfinding.js and maze solving algorithm
