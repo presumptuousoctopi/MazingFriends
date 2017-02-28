@@ -366,66 +366,6 @@ function shootBullet ( shooter, e, isIncoming = false ) {
 //     mousePosition.y = mouseY;
 // };
 
-// To be used to find the solution for the maze:
-
-// var robotPaths = function(n) {
-//   var makeBoard = function(n) {
-//     var board = [];
-//     for (var i = 0; i < n; i++) {
-//       board.push([]);
-//       for (var j = 0; j < n; j++) {
-//         board[i].push(false);
-//       }
-//     }
-//     return board;
-//   };
-//   var togglePiece = function(board, i, j) {
-//     board[i][j] = !board[i][j];
-//   };
-//   var hasBeenVisited = function(board, i, j) {
-//     return !!board[i][j];
-//   };
-
-//   var board = makeBoard(n);
-//   var possiblePaths = 0;
-
-//   var findPath = function(newBoard, i = 0, j = 0, count = 0) {
-//     togglePiece(newBoard,i,j);
-//     if ( i === n-1 && j === n-1 ) {
-//       return possiblePaths++;
-//     } 
-
-//     if ( i+1 < n ) {
-//       if ( !hasBeenVisited(newBoard, i+1, j) ) {
-//         findPath(newBoard, i+1, j, count);
-//         togglePiece(newBoard,i+1,j);      
-//       }
-//     }
-
-//     if ( i-1 >= 0 ) {
-//       if ( !hasBeenVisited(newBoard, i-1, j) ) {
-//         findPath(newBoard, i-1, j, count);  
-//         togglePiece(newBoard,i-1,j);          
-//       }
-//     }
-
-//     if ( j+1 < n ) {
-//       if ( !hasBeenVisited(newBoard, i, j+1) ) {
-//         findPath(newBoard, i, j+1, count);
-//         togglePiece(newBoard,i,j+1);
-//       }
-//     }
-    
-//     if ( j-1 >= 0 ) {
-//       if ( !hasBeenVisited(newBoard, i, j-1) ) {
-//         findPath(newBoard, i, j-1, count);    
-//         togglePiece(newBoard,i,j-1);        
-//       }
-//     }
-//   };
-//   findPath(board);
-//   return possiblePaths;
-// };
 
 /*******************************************************
  Game Flow / Etc.

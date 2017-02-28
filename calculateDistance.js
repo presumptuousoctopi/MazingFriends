@@ -9,6 +9,8 @@ var calculateDistance = function(userData) {
     var initialDist;
     if ( userData.level === 1 ) {
         initialDist = 29;
+    } else if ( userData.level === 2 ) {
+        initialDist = 150;
     }
     var maze = JSON.parse(JSON.stringify(mazes[userData.level]));
     var firstPosition = {
