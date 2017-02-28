@@ -19,6 +19,9 @@ import { shallow, mount, render } from 'enzyme';
 import { SocketIO, Server } from 'mock-socket';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> uncommented tests and fixed error
 describe('TextChat component', function () {
   before( function(done) {
     window.mockServerAddress = 'test';
@@ -100,6 +103,7 @@ describe('HomeView component', function () {
     wrapper.instance().createRoomButton();
     wrapper.update();
     expect(wrapper.state().view).to.equal('vanish');
+<<<<<<< HEAD
 =======
 //describe('TextChat component', function () {
 //  before( function(done) {
@@ -247,6 +251,73 @@ describe('HomeView component', function () {
 //    expect(wrapper.find(VideoChat)).to.have.length(1);
 //  });
 //});
+=======
+
+    mockServer.on('joinRoom', function (message) {
+      expect(message).to.equal('');
+      done();
+    });
+    var wrapper = shallow(<HomeView />);
+    wrapper.instance().joinRoomButton();
+    wrapper.update();
+    expect(wrapper.state().view).to.equal('vanish');
+  });
+
+  after( function() {
+    window.mockServer.stop();
+    window.socket.disconnect();
+  });
+});
+
+
+describe('Signup component', function () {
+  before( function(done) {
+    window.mockServerAddress = 'test'
+    window.mockServer = new Server(mockServerAddress);
+    window.io = SocketIO;
+    window.socket = new window.io(mockServerAddress);
+    window.socket.on('connect', function() {
+      done();
+    });
+  });
+
+  it('Should contain signUp function that sends user information to the server via socket.io', function(done) {
+    mockServer.on('signup', function (newUser) {
+      expect(newUser.username).to.equal('dj');
+      expect(newUser.password).to.equal('kim');
+      done();
+    });
+    var wrapper = shallow(<Signup />);
+    var instance = wrapper.instance();
+    instance.refs = {
+      username: {
+        value: 'dj'
+      },
+      password: {
+        value: 'kim'
+      }
+    };
+    instance.signUp({
+      preventDefault: () => {}
+    });
+  });
+
+  after( function() {
+    window.mockServer.stop();
+    window.socket.disconnect();
+  });
+});
+describe('VideoChat component', function () {
+  beforeEach(function () {
+    this.VideoChatView = createComponent(VideoChat);
+  });
+
+  it('should exist when mounted', function () {
+    const wrapper = shallow(<ChatView/>);
+    expect(wrapper.find(VideoChat)).to.have.length(1);
+  });
+});
+>>>>>>> uncommented tests and fixed error
 
   describe('ProgressBar component', function () {
     const wrapper = shallow(<ProgressBar/>);
@@ -385,6 +456,7 @@ describe('VideoChat component', function () {
         assert.equal(wrapper.state().rooms["1"], "1");
       });
     });
+<<<<<<< HEAD
 //
 //
 //  describe('Login component', function () {
@@ -431,3 +503,49 @@ describe('VideoChat component', function () {
 //  });
 //});
 >>>>>>> tests for progressbar
+=======
+
+
+  describe('Login component', function () {
+    before(function (done) {
+      window.mockServerAddress = 'test'
+      window.mockServer = new Server(mockServerAddress);
+      window.io = SocketIO;
+      window.socket = new window.io(mockServerAddress);
+      window.socket.on('connect', function () {
+        done();
+      });
+    });
+
+    it('Should contain signIn function that sends user information to the server via socket.io', function (done) {
+      mockServer.on('signin', function (user) {
+        expect(user.username).to.equal('dj');
+        expect(user.password).to.equal('kim');
+        done();
+      });
+      var wrapper = shallow(<Login />);
+      var instance = wrapper.instance({
+        preventDefault: () => {
+        }
+      });
+      instance.refs = {
+        username: {
+          value: 'dj'
+        },
+        password: {
+          value: 'kim'
+        }
+      };
+      instance.signIn({
+        preventDefault: () => {
+        }
+      });
+      wrapper.update();
+    });
+
+    after(function () {
+      window.mockServer.stop();
+      window.socket.disconnect();
+    });
+  });
+>>>>>>> uncommented tests and fixed error
