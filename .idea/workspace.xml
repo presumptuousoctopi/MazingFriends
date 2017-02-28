@@ -2,7 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d5e261e-c9b1-4037-a6a8-f719ca933c1e" name="Default" comment="">
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/components/ReactComponentsTest.js" afterPath="$PROJECT_DIR$/test/components/ReactComponentsTest.js" />
+=======
+<<<<<<< HEAD
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/Lobby.jsx" afterPath="$PROJECT_DIR$/src/components/Game/Lobby.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/VideoChat.jsx" afterPath="$PROJECT_DIR$/src/components/Game/VideoChat.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/build/bundle.js.map" afterPath="$PROJECT_DIR$/src/build/bundle.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/build/bundle.js" afterPath="$PROJECT_DIR$/src/build/bundle.js" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/components/ReactComponentsTest.js" afterPath="$PROJECT_DIR$/test/components/ReactComponentsTest.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/components/ServerGameSocketTest.js" afterPath="$PROJECT_DIR$/test/components/ServerGameSocketTest.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/components/WebRTCTest.js" afterPath="$PROJECT_DIR$/test/components/WebRTCTest.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/PhantomJS 2.1.1 (Mac OS X 0.0.0)/base.css" afterPath="$PROJECT_DIR$/coverage/PhantomJS 2.1.1 (Mac OS X 0.0.0)/base.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/build/bundle.js.map" afterPath="$PROJECT_DIR$/src/build/bundle.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/build/bundle.js" afterPath="$PROJECT_DIR$/src/build/bundle.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/PhantomJS 2.1.1 (Mac OS X 0.0.0)/index.html" afterPath="$PROJECT_DIR$/coverage/PhantomJS 2.1.1 (Mac OS X 0.0.0)/index.html" />
+>>>>>>> tests for progressbar
+>>>>>>> tests for progressbar
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MazingFriends.iws" />
@@ -24,6 +41,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+<<<<<<< HEAD
       <file leaf-file-name="ReactComponentsTest.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/components/ReactComponentsTest.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -32,6 +50,19 @@
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
+=======
+      <file leaf-file-name="ReactComponentsTest.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/components/ReactComponentsTest.js">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state vertical-scroll-proportion="-4.7777777">
+              <caret line="89" column="24" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
+=======
+            <state vertical-scroll-proportion="-12.222222">
+              <caret line="185" column="38" selection-start-line="185" selection-start-column="38" selection-end-line="185" selection-end-column="38" />
+>>>>>>> tests for progressbar
+              <folding />
+>>>>>>> tests for progressbar
             </state>
           </provider>
         </entry>
@@ -40,7 +71,11 @@
         <entry file="file://$PROJECT_DIR$/src/components/Game/ProgressBar.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
               <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
+=======
+              <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="40" />
+>>>>>>> tests for progressbar
               <folding />
             </state>
           </provider>
@@ -56,11 +91,32 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      <file leaf-file-name="VideoChat.jsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/Game/VideoChat.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.19410746">
+              <caret line="296" column="67" selection-start-line="296" selection-start-column="67" selection-end-line="296" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+>>>>>>> tests for progressbar
       <file leaf-file-name="Controls.jsx" pinned="false" current-in-tab="false">
+=======
+      <file leaf-file-name="Controls.jsx" pinned="false" current-in-tab="true">
+>>>>>>> tests for progressbar
         <entry file="file://$PROJECT_DIR$/src/components/Game/Controls.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
               <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+=======
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+>>>>>>> tests for progressbar
               <folding />
             </state>
           </provider>
@@ -717,6 +773,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/style.css">
+<<<<<<< HEAD
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="190" column="19" selection-start-line="190" selection-start-column="19" selection-end-line="190" selection-end-column="19" />
@@ -731,6 +788,14 @@
         <state vertical-scroll-proportion="0.24090122">
           <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
           <folding />
+=======
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="190" column="19" selection-start-line="190" selection-start-column="19" selection-end-line="190" selection-end-column="19" />
+          <folding>
+            <marker date="1488307790000" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+>>>>>>> tests for progressbar
         </state>
       </provider>
     </entry>
@@ -742,6 +807,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/components/Game/ChatView.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.666666">
@@ -751,9 +817,33 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
+=======
+    <entry file="file://$PROJECT_DIR$/src/components/Game/GameOver.jsx">
+>>>>>>> tests for progressbar
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.5">
           <caret line="88" column="24" selection-start-line="88" selection-start-column="24" selection-end-line="88" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/VideoChat.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="-113.03704">
+          <caret line="295" column="35" selection-start-line="295" selection-start-column="35" selection-end-line="295" selection-end-column="35" />
+=======
+        <state vertical-scroll-proportion="-16.666666">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+>>>>>>> tests for progressbar
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Controls.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -766,10 +856,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/Controls.jsx">
+    <entry file="file://$PROJECT_DIR$/test/components/WebRTCTest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.5529801">
+          <caret line="43" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/components/ServerGameSocketTest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.024834437">
+          <caret line="11" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/components/ReactComponentsTest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.222222">
+          <caret line="185" column="38" selection-start-line="185" selection-start-column="38" selection-end-line="185" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -784,8 +890,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Game/ProgressBar.jsx">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
+=======
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="0.19410746">
+          <caret line="296" column="67" selection-start-line="296" selection-start-column="67" selection-end-line="296" selection-end-column="67" />
+=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Controls.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+>>>>>>> tests for progressbar
+>>>>>>> tests for progressbar
           <folding />
         </state>
       </provider>
