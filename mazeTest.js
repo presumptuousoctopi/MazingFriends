@@ -6,6 +6,9 @@ var mazes = require('./src/customMazes');
 var PF = require('pathfinding');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Add calculateDistance function in server
 var calculateDistance = function(userData, initialDist = 54) {
     // generateMaze = function(x,y) {
     //     function maze(x,y) {
@@ -122,6 +125,7 @@ var calculateDistance = function(userData, initialDist = 54) {
             } else {
                 maze[i][j] = 1;
             }
+<<<<<<< HEAD
         }
     }
 
@@ -318,37 +322,40 @@ for ( var i = 0; i < columnLength; i++ ) {
             maze[i][j] = 0;
         } else {
             maze[i][j] = 1;
+=======
+>>>>>>> Add calculateDistance function in server
         }
     }
-}
 
-var newRow = [];
-for ( var i = 0; i < rowLength; i++ ) {
-    newRow.push(1);
-};
+    var newRow = [];
+    for ( var i = 0; i < rowLength; i++ ) {
+        newRow.push(1);
+    };
 
-for ( var i = 0; i < rowLength - columnLength; i++ ) {
-    maze.push(newRow);
-}
+    for ( var i = 0; i < rowLength - columnLength; i++ ) {
+        maze.push(newRow);
+    }
 
-console.log(maze.length === maze[0].length);
-// console.log('new columnLength',)
-var grid = new PF.Grid(rowLength, rowLength, maze);
-// var grid = new PF.Grid(columnLength, rowLength);
-// // console.log('grid : ', grid);
-// console.log(maze);
-var finder = new PF.BiBestFirstFinder();
-console.log(firstPosition);
-console.log(secondPosition);
+    console.log(maze.length === maze[0].length);
+    // console.log('new columnLength',)
+    var grid = new PF.Grid(rowLength, rowLength, maze);
+    // var grid = new PF.Grid(columnLength, rowLength);
+    // // console.log('grid : ', grid);
+    // console.log(maze);
+    var finder = new PF.BiBestFirstFinder();
+    console.log(firstPosition);
+    console.log(secondPosition);
 
-for ( var i = 0; i < rowLength; i++ ) {
-    for ( var j = 0; j < rowLength; j++ ) {
-        if ( maze[i][j] === 0 ) {
-            grid.setWalkableAt(i, j, true);        
-        } else {
-            grid.setWalkableAt(i, j, false);
+    for ( var i = 0; i < rowLength; i++ ) {
+        for ( var j = 0; j < rowLength; j++ ) {
+            if ( maze[i][j] === 0 ) {
+                grid.setWalkableAt(i, j, true);        
+            } else {
+                grid.setWalkableAt(i, j, false);
+            }
         }
     }
+<<<<<<< HEAD
 }
 // var path = finder.findPath(0,1,10,12,grid);
 var path = finder.findPath(firstPosition.x, firstPosition.y, secondPosition.x, secondPosition.y, grid);
@@ -397,3 +404,56 @@ console.log(maze);
 // });
 // easystar.calculate();
 >>>>>>> Add pathfinding.js and maze solving algorithm
+=======
+    // var path = finder.findPath(0,1,10,12,grid);
+    var path = finder.findPath(firstPosition.x, firstPosition.y, secondPosition.x, secondPosition.y, grid);
+
+    // 54, 2, 2
+    // 54, 2, 12
+    // 0, 2, 12
+    // 0, 2, 2
+
+    for ( var i = 0; i < path.length; i++ ) {
+        maze[path[i][0]][path[i][1]] = 7;
+    }
+    console.log('Does path exist ? ', path.length !== 0);
+    console.log(path.length);
+
+    // console.log(path.length);
+    // console.table(robotPaths(maze));
+    // JSON.stringify(robotPaths(maze));
+    // console.log(robotPaths(maze).join("\",\""))
+    // var solutionPath = null;
+    // // console.log(robotPaths(maze));
+    // // console.log(maze)
+    // var newRow = [];
+    // for ( var j = 0; j < maze[0].length; j++ ) {
+    //     newRow.push('x');
+    // }
+    // var columnLength = maze.length;
+    // var rowLength = maze[0].length;
+    // for ( var i = 0; i <= rowLength - columnLength; i++ ) {
+    //     maze.push(newRow);
+    // }
+    // easystar.setGrid(maze);
+    // easystar.setAcceptableTiles([' ']);
+
+    // easystar.findPath(firstPosition.x, firstPosition.y, secondPosition.x, Math.round(secondPosition.y / 2),  function( path ) {
+    //     if (path === null) {
+    //         console.log("Path was not found.");
+    //     } else {
+    //         // console.log("Path was found. The first Point is " + path[0].x + " " + path[0].y);
+    //         solutionPath = path;
+    //         var solvedMaze = JSON.parse(JSON.stringify(maze));
+    //         for ( var i = 0; i < solutionPath.length; i++ ) {
+    //             solvedMaze[solutionPath[i].x][solutionPath[i].y] = '@';
+    //         }
+    //         console.log(solvedMaze);
+    //     }
+    // });
+    // easystar.calculate();
+    return 100 - path.length / initialDist * 100 ; 
+};
+
+module.exports = calculateDistance;
+>>>>>>> Add calculateDistance function in server
