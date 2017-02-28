@@ -9,18 +9,18 @@ class Chat extends React.Component {
   constructor() {
     super();
     this.state = {
-      text: "video"
+      video: true
     }
     console.log(this.state.text)
   }
 
-  switchChat(value) {
+  switchChat() {
     this.setState({
-      text: value
+      video: false
     })
-    if (value === 'video') {
-      socket.emit('changedToVideo', '');
-    }
+    // if (value === 'video') {
+    //   socket.emit('changedToVideo', '');
+    // }
   }
 
   stopGame() {
@@ -37,14 +37,12 @@ class Chat extends React.Component {
           {this.props.timer ? <h2>{this.props.timer}</h2> : <p>waiting for second player...</p>}
           <button className="optionButtons" onClick={this.props.controlsClickHandler}>Controls</button>
           <Link to="/"><button className="optionButtons" onClick={this.stopGame.bind(this)}>Quit Game</button></Link>
-          <form>
-            <h3>Chat Options</h3>
-            <input type="radio" name="chat" value="text" onChange={this.switchChat.bind(this, "text")}/>Text
-            <input type="radio" name="chat" value="video" onChange={this.switchChat.bind(this, "video")}/>Video
-          </form>
         </div>
-        {this.state.text === "video" ? <VideoChat/> : <TextChat/> }
-
+        {this.state.video ? <VideoChat/> : '' }
+          <form>
+            <input type="radio" name="chat" value="video" onChange={this.switchChat.bind(this)}/>Video Off
+          </form>
+        <TextChat/>
       </div>
     );
   }

@@ -43,7 +43,7 @@ class Controls extends React.Component {
               <td> F : fire</td>
             </tr>
         </table>
-
+        <button onClick={this.props.close}>Close</button>
       </div>
     );
   }
