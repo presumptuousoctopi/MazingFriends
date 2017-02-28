@@ -292,8 +292,8 @@ class VideoChat extends React.Component {
             // isVideoMuted = false;
             pcConfig.close();
             pcConfig = null;
-            remoteVideo.src = null;
             localVideo.src = null;
+            remoteVideo.src = null;
             document.getElementById("canvas").remove();
             socket.emit("quit", room);
             browserHistory.push({
