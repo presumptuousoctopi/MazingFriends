@@ -11,17 +11,24 @@ class Lobby extends React.Component {
     }
 
     componentDidMount() {
+        var context = this;
         console.log("component did mount");
         var context = this;
         socket.on("receive", function(data) {
+            console.log("CURRENT DATA:", data);
+            for (var key in data) {
+                if (data[key] === 0) {
+                    delete data[key];
+                }
+            }
             delete data[undefined];
             context.setState({
                 rooms: data,
                 roomNames: Object.keys(data)
-
             }, function (data) {
 
             })
+            context.forceUpdate();
         })
         socket.emit("getRooms");
     }
