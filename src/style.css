@@ -62,16 +62,17 @@ html, body {
 }
 
 .Chat {
- width: 25%; 
- height: 750px;
- float: right;
- display: inline-block;
- margin-right: 15px;
- margin-bottom: 15px;
- padding: 10px;
- background-color: darkred;
- opacity: 0.9;
- border: solid 5px darkred;
+  width: 25%;
+  height: 94%;
+  right: 0;
+  position: absolute;
+  display: inline-block;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: darkred;
+  opacity: 0.9;
+  border: solid 5px darkred;
 }
 
 .TextChat {
@@ -79,13 +80,13 @@ html, body {
 }
 
 .ChatContainer {
-	height: 440px;
-	overflow-y: scroll;
-	position: relative;
-	vertical-align: bottom;
-	float: bottom;
-	background-color: rgba(255,255,255, 0.2);
-	padding: 15px;
+  height: 50%;
+  width: 80%;
+  position: absolute;
+  overflow-y: scroll;
+  vertical-align: bottom;
+  background-color: rgba(255,255,255, 0.2);
+  padding: 15px;
 }
 
 .ChatBox {
@@ -95,14 +96,14 @@ html, body {
   height: 470px;
   padding-bottom: 20px;
   overflow-y: scroll;
-  width: 290px;
+  width: 95%;
 }
 
 .TextInput {
-	vertical-align: bottom;
-	float: center;
-	margin-top: 15px;
-	margin-bottom: 20px;
+  bottom: 0;
+  width: 85%;
+  position: absolute;
+  margin-top: 15px;
 }
 
 .chatBar {
@@ -168,18 +169,21 @@ table {
 }
 
 #videos {
-	padding: 15px;
-	margin: 15px;
+	padding: 5px 5px 0px 5px;
+  margin: 5px 5px 0px 5px;
+  width: 100%;
 }
 
 #localVideo {
- width: 300px;
- float: center;
+  width: 45%;
+  float: center;
+  padding-right: 5px;
  }
 
 #remoteVideo {
-  width: 300px;
+  width: 45%;
   float: center;
+  padding-left: 5px;
 }
 
 .progress {

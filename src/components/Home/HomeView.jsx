@@ -2,6 +2,7 @@ import React from 'react';
 import Title from './../TitleView.jsx'
 import { Link, browserHistory } from 'react-router'
 import Lobby from './../Game/Lobby.jsx'
+import Controls from './../Game/Controls.jsx'
 
 class Home extends React.Component {
 	constructor() {
@@ -12,7 +13,8 @@ class Home extends React.Component {
 			new: 'vanish',
       gameLevel: 2,
       createRoomName: '',
-      joinRoomName: ''
+      joinRoomName: '',
+      controlsView: false
 		}
     this.createRoomButton = this.createRoomButton.bind(this);
     this.joinRoomButton = this.joinRoomButton.bind(this);
@@ -71,6 +73,12 @@ class Home extends React.Component {
     console.log(this.state);
   }
 
+  controlsViewToggle() {
+    this.setState({
+      controlsView: !this.state.controlsView
+    }) 
+  }
+
   render() {
     return (
       <div className={this.state.view}>
@@ -100,7 +108,8 @@ class Home extends React.Component {
       		<br/>
 	      	</div>
           <br/>
-          <button className="homeButtons">Controls</button>
+          <button className="homeButtons" onClick={this.controlsViewToggle.bind(this)}>Controls</button>
+          {this.state.controlsView ? <Controls close={this.controlsViewToggle.bind(this)}/> : ''}
       	</div>
 		  <Lobby/>
       </div>
