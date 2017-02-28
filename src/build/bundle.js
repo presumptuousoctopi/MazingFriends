@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d56c13bbcdf51baf7971"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d66dc7ef6fd67af0c142"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31121,9 +31121,7 @@
 	                localVideo.src = null;
 	                document.getElementById("canvas").remove();
 	                socket.emit("quit");
-	                _reactRouter.browserHistory.push({
-	                    pathname: '/home'
-	                });
+	                location.reload();
 	            }
 	
 	            ///////////////////////////////////////////
@@ -32180,7 +32178,11 @@
 	            console.log("component did mount");
 	            var context = this;
 	            socket.on("receive", function (data) {
-	                console.log(data);
+	                for (var key in data) {
+	                    if (data[key] === 0) {
+	                        delete data[key];
+	                    }
+	                }
 	                delete data[undefined];
 	                context.setState({
 	                    rooms: data,
