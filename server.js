@@ -234,6 +234,10 @@ socket.on('disconnect', function(){
   socket.on('time', function(time) {
     socket.emit('timer', time)
   });
+
+  socket.on('calculateDistance', function(positionObject) {
+    
+  });
   
   /*************************************************************************************************
    Authentication Sockets
