@@ -5,100 +5,19 @@
 var mazes = require('./src/customMazes');
 var PF = require('pathfinding');
 
-var calculateDistance = function(userData, initialDist = 54) {
-    // generateMaze = function(x,y) {
-    //     function maze(x,y) {
-    //         var n=x*y-1;
-    //         if (n<0) {alert("illegal maze dimensions");return;}
-    //         var horiz =[]; for (var j= 0; j<x+1; j++) horiz[j]= [],
-    //             verti =[]; for (var j= 0; j<x+1; j++) verti[j]= [],
-    //             here = [Math.floor(Math.random()*x), Math.floor(Math.random()*y)],
-    //             path = [here],
-    //             unvisited = [];
-    //         for (var j = 0; j<x+2; j++) {
-    //             unvisited[j] = [];
-    //             for (var k= 0; k<y+1; k++)
-    //                 unvisited[j].push(j>0 && j<x+1 && k>0 && (j != here[0]+1 || k != here[1]+1));
-    //         }
-    //         while (0<n) {
-    //             var potential = [[here[0]+1, here[1]], [here[0],here[1]+1],
-    //                 [here[0]-1, here[1]], [here[0],here[1]-1]];
-    //             var neighbors = [];
-    //             for (var j = 0; j < 4; j++)
-    //                 if (unvisited[potential[j][0]+1][potential[j][1]+1])
-    //                     neighbors.push(potential[j]);
-    //             if (neighbors.length) {
-    //                 n = n-1;
-    //                 next= neighbors[Math.floor(Math.random()*neighbors.length)];
-    //                 unvisited[next[0]+1][next[1]+1]= false;
-    //                 if (next[0] == here[0])
-    //                     horiz[next[0]][(next[1]+here[1]-1)/2]= true;
-    //                 else 
-    //                     verti[(next[0]+here[0]-1)/2][next[1]]= true;
-    //                 path.push(here = next);
-    //             } else 
-    //                 here = path.pop();
-    //         }
-    //         return {x: x, y: y, horiz: horiz, verti: verti};
-    //     }
-
-    //     function display(m) {
-    //         var text= [];
-    //         var box = [];
-    //         for (var j= 0; j<m.x*2+1; j++) {
-    //             var line= [];
-    //             if (0 == j%2)
-    //                 for (var k=0; k<m.y*4+1; k++)
-    //                     if (0 == k%4) 
-    //                         line[k]= '+';
-    //                     else
-    //                         if (j>0 && m.verti[j/2-1][Math.floor(k/4)])
-    //                             line[k]= ' ';
-    //                         else
-    //                             line[k]= '-';
-    //             else
-    //                 for (var k=0; k<m.y*4+1; k++)
-    //                     if (0 == k%4)
-    //                         if (k>0 && m.horiz[(j-1)/2][k/4-1])
-    //                             line[k]= ' ';
-    //                         else
-    //                             line[k]= '|';
-    //                     else
-    //                         line[k]= ' ';
-    //             if (0 == j) line[1]= line[2]= line[3]= ' ';
-    //             if (m.x*2-1 == j) line[4*m.y]= ' ';
-    //             box.push(line);
-    //             text.push(line.join('')+'\r\n');
-    //         }
-    //         return box;
-    //     }
-    //     return display(maze(x+2,y));
-    // }
-
-    // var test = [-1.5, 2.5, 30, 2.5, 30, 13.5, -1.5, 13.5];
-    // -1.5, 2, 2.5
-    // 30, 2, 2.5
-    // 30, 2, 13.5
-    // -1.5, 2, 13.5
-
-    // for ( var i = 0; i < test.length; i++ ) {
-    //     console.log();
-    // }
-    // 2~3 * dx = 11
-    // 7~8 * dy = 31.5
-
-    // Find user's position : Math.floor(position / 4 + .4)
-
-    // var mazeSize = 5;
-    // var maze = generateMaze(mazeSize,mazeSize);
-    var maze = JSON.parse(JSON.stringify(mazes.easyLevelMaze));
+var calculateDistance = function(userData) {
+    var initialDist;
+    if ( userData.level === 1 ) {
+        initialDist = 29;
+    }
+    var maze = JSON.parse(JSON.stringify(mazes[userData.level]));
     var firstPosition = {
-        x: 0,
-        y: 1
+        x: Math.floor(userData.p1.x / 4 + .4),
+        y: Math.floor(userData.p1.z / 4 + .4)
     };
     var secondPosition = {
-        x: maze.length-1,
-        y: maze[0].length-1
+        x: Math.floor(userData.p2.x / 4 + .4),
+        y: Math.floor(userData.p2.z / 4 + .4)
     };
 
     // console.log('secondPosition : ', secondPosition);
@@ -199,7 +118,8 @@ var calculateDistance = function(userData, initialDist = 54) {
     //     }
     // });
     // easystar.calculate();
-    return 100 - path.length / initialDist * 100 ; 
+    var percentage = 100 - (path.length / initialDist) * 100;
+    return percentage < 0 ? 0 : percentage; 
 };
 
 module.exports = calculateDistance;
