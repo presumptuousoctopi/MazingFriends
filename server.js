@@ -62,6 +62,7 @@ var roomCount = 0;
 var newRoom = [];
 var clients = {};
 var usernames = {};
+var roomLevel = {};
 
 var mazeLevel = 2;
 
@@ -79,8 +80,8 @@ io.on('connection', function(socket){
       time: data[0].dataValues.time,
       user: data[0].dataValues.username
     };
-    console.log('Here is all data : ', data);
-    console.log('Here is the data sending to client : ', newData);
+    // console.log('Here is all data : ', data);
+    // console.log('Here is the data sending to client : ', newData);
     socket.emit('receiveWorldRecord', newData);
   })
   // Increment every time a new user is connected
@@ -91,9 +92,12 @@ io.on('connection', function(socket){
     io.sockets.emit("receive", rooms);
   });
   // Listen for createRoom
-  socket.on('createRoom', function(roomName) {
+  socket.on('createRoom', function(roomInfo) {
+    var roomName = roomInfo.roomname;
     // If no empty room exists, make a new room and put user into it
     if ( !rooms[roomName] ) {
+      // Save game level for second player
+      roomLevel[roomName] = roomInfo.level;
       // Create/save room and increment room count
       rooms[roomName] = 1;
       roomCount++;
@@ -108,7 +112,11 @@ io.on('connection', function(socket){
       // Connect user to the room
       socket.join(roomName);
       // Send maze to user
-      socket.emit('serverSendingMaze', mazes[mazeLevel]);
+      console.log('Here is room Info : ', roomInfo);
+      socket.emit('serverSendingMaze', {
+        maze: mazes[roomLevel[roomName]],
+        mazeLevel: roomLevel[roomName]
+      });
       console.log('A user made a room called ', roomName);
     } else {
       // Send error message back to user
@@ -138,8 +146,11 @@ io.on('connection', function(socket){
       socket.emit('roomName', roomName);
       // Request other player's game information
       socket.broadcast.to(playerRoom[socket.id]).emit('newPlayerRequestInfo');
-      // Send maze to user
-      socket.emit('serverSendingMaze', mazes[mazeLevel]);
+      // Send maze and maze level to user
+      socket.emit('serverSendingMaze', {
+        maze: mazes[roomLevel[roomName]],
+        mazeLevel: roomLevel[roomName]
+      });
       console.log('A user joined a room called ', roomName);
       /////////
       console.log('Client ID ' + socket.id + ' joined room ' + roomName);
@@ -236,7 +247,7 @@ socket.on('disconnect', function(){
 
   // calculate distance between two users and send back percentage (%)
   socket.on('calculateDistance', function(positionObject) {
-    positionObject.level = mazeLevel;
+    // console.log('Distance object from user : ', positionObject);
     socket.emit('receiveDistancePercentage', calculateDistance(positionObject));
   });
   

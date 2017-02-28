@@ -13,12 +13,14 @@ const mediumLevelMazeSize = 10;
 const mediumLevelSecondPlayerPosition = new BABYLON.Vector3(92, 2, 142);
 const hardLevelMazeSize = 20;
 const hardLevelSecondPlayerPosition = new BABYLON.Vector3(169, 2, 310);
-// var secondPlayerPositions = {
-//   easyLevelMazeSize: easyLevelSecondPlayerPosition,
-//   mediumLevelMazeSize: mediumLevelSecondPlayerPosition,
-//   hardLevelMazeSize, hardLevelSecondPlayerPosition
-// };
-const boundaryWalls = {
+
+
+window.secondPlayerPositions = {
+  1: easyLevelSecondPlayerPosition,
+  2: mediumLevelSecondPlayerPosition,
+  3: hardLevelSecondPlayerPosition
+};
+window.boundaryWalls = {
   1: [-4, 16],
   3: [35, 50],
   4: [44, 68],
@@ -28,19 +30,12 @@ const boundaryWalls = {
   10: [92, 150],
   20: [173, 322]
 };
-const mazeSize = mediumLevelMazeSize;
-// window.secondPlayerPosition = secondPlayerPositions[mazeSize];
-const groundBoundaryLength = boundaryWalls[mazeSize][1] * 1.2;
-const a = boundaryWalls[mazeSize][0];
-const b = boundaryWalls[mazeSize][1];
-window.farthestUserDist = Math.pow(a * a + b * b, (1/2));
+
 
 // Create environment
 window.scene = createScene();
-window.ground = addGround();
 addLight();
 addSkyBox();
-buildBoundaryWalls(boxLength, scene);
 
 // Create player
 window.camera = addPlayer();
