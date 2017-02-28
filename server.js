@@ -86,7 +86,8 @@ io.on('connection', function(socket){
   // Increment every time a new user is connected
   userCount++;
   console.log('a user connected', userCount);
-  socket.on("quit", function(){
+  socket.on("quit", function(data){
+    delete(rooms[data]);
     io.sockets.emit("receive", rooms);
   });
   // Listen for createRoom

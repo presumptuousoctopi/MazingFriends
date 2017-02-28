@@ -15,6 +15,7 @@ class Lobby extends React.Component {
         console.log("component did mount");
         var context = this;
         socket.on("receive", function(data) {
+            console.log("CURRENT DATA:", data);
             for (var key in data) {
                 if (data[key] === 0) {
                     delete data[key];

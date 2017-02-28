@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d66dc7ef6fd67af0c142"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "51bb5a924c7abf4279bf"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -30833,11 +30833,7 @@
 	        _this.state = {
 	            isChannelReady: false,
 	            isInitiator: false,
-	            isStarted: false,
-	            localStream: '',
-	            remoteStream: '',
-	            turnReady: '',
-	            room: ''
+	            isStarted: false
 	        };
 	        return _this;
 	    }
@@ -31120,8 +31116,10 @@
 	                remoteVideo.src = null;
 	                localVideo.src = null;
 	                document.getElementById("canvas").remove();
-	                socket.emit("quit");
-	                location.reload();
+	                socket.emit("quit", room);
+	                _reactRouter.browserHistory.push({
+	                    pathname: '/home'
+	                });
 	            }
 	
 	            ///////////////////////////////////////////
@@ -32178,6 +32176,7 @@
 	            console.log("component did mount");
 	            var context = this;
 	            socket.on("receive", function (data) {
+	                console.log("CURRENT DATA:", data);
 	                for (var key in data) {
 	                    if (data[key] === 0) {
 	                        delete data[key];

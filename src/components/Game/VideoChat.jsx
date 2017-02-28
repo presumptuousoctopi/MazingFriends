@@ -8,10 +8,6 @@ class VideoChat extends React.Component {
             isChannelReady: false,
             isInitiator: false,
             isStarted: false,
-            localStream: '',
-            remoteStream: '',
-            turnReady: '',
-            room: ''
         }
     }
     componentDidMount() {
@@ -299,8 +295,10 @@ class VideoChat extends React.Component {
             remoteVideo.src = null;
             localVideo.src = null;
             document.getElementById("canvas").remove();
-            socket.emit("quit");
-            location.reload();
+            socket.emit("quit", room);
+            browserHistory.push({
+                pathname: '/home'
+            });
         }
 
 ///////////////////////////////////////////
