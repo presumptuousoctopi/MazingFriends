@@ -259,7 +259,10 @@ describe('HomeView component', function () {
       assert.equal(wrapper.find('.progress-bar').prop('aria-valuenow'), "0");
     });
     it('should have a width equal to the percentage passed in', function () {
-      assert.equal(wrapper.find('.progress-bar').prop('style').width, "0%");
+      wrapper.setState({
+        percentage: 20
+      })
+      assert.equal(wrapper.find('.progress-bar').prop('style').width, "20%");
       //this test should also incorporate changing progress bar-tbd
     });
   });
@@ -366,6 +369,20 @@ describe('VideoChat component', function () {
     });
   });
 =======
+      });
+      it('should update state when rooms are passed in', function () {
+        wrapper.setState({
+          roomnames: ["1"],
+          rooms: {"1": "1"}
+        })
+        assert.equal(wrapper.state().roomnames[0], "1");
+      });
+      it('should render rooms in the lobby when rooms are passed in', function () {
+        wrapper.setState({
+          roomnames: ["1"],
+          rooms: {"1": "1"}
+        })
+        assert.equal(wrapper.state().rooms["1"], "1");
       });
     });
 //
