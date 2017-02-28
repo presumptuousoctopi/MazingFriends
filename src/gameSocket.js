@@ -111,10 +111,14 @@ socket.on('secondPlayer', function(secondPlayer) {
   window.camera.keysLeft = [65]; 
   window.camera.keysRight = [68];
 <<<<<<< HEAD
+<<<<<<< HEAD
   window.camera.position = easyLevelSecondPlayerPosition;
 =======
   window.camera.position = window.secondPlayerPosition;
 >>>>>>> Add pathfinding.js and maze solving algorithm
+=======
+  window.camera.position = easyLevelSecondPlayerPosition;
+>>>>>>> Convert user's x,y,z coordinates to matrix indices
   window.camera.rotation = new BABYLON.Vector3(-0.38385, -.77694, 0);
   originalTime = new Date().getTime();
   // Send player position to other player
