@@ -74,10 +74,22 @@ var PF = require('pathfinding');
 //     return display(maze(x+2,y));
 // }
 
+var test = [-1.5, 2.5, 30, 2.5, 30, 13.5, -1.5, 13.5];
+// -1.5, 2, 2.5
+// 30, 2, 2.5
+// 30, 2, 13.5
+// -1.5, 2, 13.5
+
+// Find user's position : Math.floor(position / 4 + .4)
+for ( var i = 0; i < test.length; i++ ) {
+    console.log();
+}
+// 2~3 * dx = 11
+// 7~8 * dy = 31.5
 
 // var mazeSize = 5;
 // var maze = generateMaze(mazeSize,mazeSize);
-var maze = mazes.easyLevelMaze;
+var maze = JSON.parse(JSON.stringify(mazes.easyLevelMaze));
 var firstPosition = {
     x: 0,
     y: 1

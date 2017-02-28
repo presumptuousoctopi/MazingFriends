@@ -100,7 +100,7 @@ socket.on('secondPlayer', function(secondPlayer) {
   window.camera.keysDown = [83]; 
   window.camera.keysLeft = [65]; 
   window.camera.keysRight = [68];
-  window.camera.position = window.secondPlayerPosition;
+  window.camera.position = easyLevelSecondPlayerPosition;
   window.camera.rotation = new BABYLON.Vector3(-0.38385, -.77694, 0);
   originalTime = new Date().getTime();
   // Send player position to other player
