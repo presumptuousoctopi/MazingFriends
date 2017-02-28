@@ -13,25 +13,11 @@ const mediumLevelMazeSize = 10;
 const mediumLevelSecondPlayerPosition = new BABYLON.Vector3(92, 2, 142);
 const hardLevelMazeSize = 20;
 const hardLevelSecondPlayerPosition = new BABYLON.Vector3(169, 2, 310);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Convert user's x,y,z coordinates to matrix indices
 // var secondPlayerPositions = {
 //   easyLevelMazeSize: easyLevelSecondPlayerPosition,
 //   mediumLevelMazeSize: mediumLevelSecondPlayerPosition,
 //   hardLevelMazeSize, hardLevelSecondPlayerPosition
 // };
-<<<<<<< HEAD
-=======
-var secondPlayerPositions = {
-  easyLevelMazeSize: easyLevelSecondPlayerPosition,
-  mediumLevelMazeSize: mediumLevelSecondPlayerPosition,
-  hardLevelMazeSize, hardLevelSecondPlayerPosition
-};
->>>>>>> Add pathfinding.js and maze solving algorithm
-=======
->>>>>>> Convert user's x,y,z coordinates to matrix indices
 const boundaryWalls = {
   1: [-4, 16],
   3: [35, 50],
@@ -43,15 +29,7 @@ const boundaryWalls = {
   20: [173, 322]
 };
 const mazeSize = easyLevelMazeSize;
-<<<<<<< HEAD
-<<<<<<< HEAD
 // window.secondPlayerPosition = secondPlayerPositions[mazeSize];
-=======
-window.secondPlayerPosition = secondPlayerPositions[mazeSize];
->>>>>>> Add pathfinding.js and maze solving algorithm
-=======
-// window.secondPlayerPosition = secondPlayerPositions[mazeSize];
->>>>>>> Convert user's x,y,z coordinates to matrix indices
 const groundBoundaryLength = boundaryWalls[mazeSize][1] * 1.2;
 const a = boundaryWalls[mazeSize][0];
 const b = boundaryWalls[mazeSize][1];
