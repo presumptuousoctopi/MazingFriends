@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2d5e261e-c9b1-4037-a6a8-f719ca933c1e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/components/ReactComponentsTest.js" afterPath="$PROJECT_DIR$/test/components/ReactComponentsTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/components/ServerGameSocketTest.js" afterPath="$PROJECT_DIR$/test/components/ServerGameSocketTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/components/WebRTCTest.js" afterPath="$PROJECT_DIR$/test/components/WebRTCTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/PhantomJS 2.1.1 (Mac OS X 0.0.0)/index.html" afterPath="$PROJECT_DIR$/coverage/PhantomJS 2.1.1 (Mac OS X 0.0.0)/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MazingFriends.iws" />
@@ -30,9 +27,11 @@
       <file leaf-file-name="ReactComponentsTest.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/components/ReactComponentsTest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.779896">
-              <caret line="197" column="64" selection-start-line="197" selection-start-column="64" selection-end-line="197" selection-end-column="64" />
-              <folding />
+            <state vertical-scroll-proportion="0.8440208">
+              <caret line="247" column="2" selection-start-line="247" selection-start-column="2" selection-end-line="247" selection-end-column="2" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,9 +118,9 @@
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/src/components/Game/Lobby.jsx" />
         <option value="$PROJECT_DIR$/src/components/Game/VideoChat.jsx" />
-        <option value="$PROJECT_DIR$/test/components/ReactComponentsTest.js" />
         <option value="$PROJECT_DIR$/test/components/ServerGameSocketTest.js" />
         <option value="$PROJECT_DIR$/test/components/WebRTCTest.js" />
+        <option value="$PROJECT_DIR$/test/components/ReactComponentsTest.js" />
       </list>
     </option>
   </component>
@@ -811,9 +810,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/components/ReactComponentsTest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.779896">
-          <caret line="197" column="64" selection-start-line="197" selection-start-column="64" selection-end-line="197" selection-end-column="64" />
-          <folding />
+        <state vertical-scroll-proportion="0.8440208">
+          <caret line="247" column="2" selection-start-line="247" selection-start-column="2" selection-end-line="247" selection-end-column="2" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
