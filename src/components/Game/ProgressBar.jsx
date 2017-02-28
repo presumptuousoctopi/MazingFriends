@@ -8,11 +8,20 @@ class ProgressBar extends React.Component {
         };
     }
     componentDidMount() {
-        setInterval( () => {
-            this.setState({
-                percentage: 100 - window.distancePercentage
+        var context = this;
+        socket.on('receiveDistancePercentage', function(percentage) {
+          // console.log('New percentage : ', percentage);
+          // window.distancePercentage = percentage;
+            context.setState({
+                percentage: percentage
             });
-        }, 1500);
+        });
+
+        // setInterval( () => {
+        //     this.setState({
+        //         percentage: window.distancePercentage
+        //     });
+        // }, 1500);
     }
     render () {
         return (
