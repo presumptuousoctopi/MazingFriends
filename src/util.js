@@ -367,14 +367,14 @@ window.createGhost = function() {
 
         var distanceFromGhost = Math.pow(Math.pow(ghostPosition.x-userPosition.x, 2) + Math.pow(ghostPosition.y-userPosition.y, 2) + Math.pow(ghostPosition.z-userPosition.z, 2), 1/2);
         if ( distanceFromGhost < 2 ) {
-            console.log('Collision with ghost');
+            // console.log('Collision with ghost');
           if ( window.playerType === 'secondPlayer' ) {
-            console.log('Collision with ghost - 2nd player');
+            // console.log('Collision with ghost - 2nd player');
             var p2 =  window.secondPlayerPositions[window.mazeLevel];
             window.camera.position = new BABYLON.Vector3(p2.x, p2.y, p2.z);
 
           } else {
-            console.log('Collision with ghost - 1st player');
+            // console.log('Collision with ghost - 1st player');
             var p1 =  window.firstPlayerPosition;
             window.camera.position = new BABYLON.Vector3(p1.x, p1.y, p1.z);
           }
