@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "29b94ce49b7393f5cabb"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "93f7170ad3be3c9cb870"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28868,7 +28868,6 @@
 	    value: function stopGame() {
 	      document.getElementById("canvas").remove();
 	      location.reload();
-	      socket.emit("quit");
 	    }
 	  }, {
 	    key: 'render',
@@ -31110,7 +31109,6 @@
 	                localVideo.src = null;
 	                remoteVideo.src = null;
 	                document.getElementById("canvas").remove();
-	                socket.emit("quit", room);
 	                _reactRouter.browserHistory.push({
 	                    pathname: '/home'
 	                });
@@ -31344,7 +31342,6 @@
 	    value: function quitGame() {
 	      document.getElementById("canvas").remove();
 	      location.reload();
-	      socket.emit("quit");
 	    }
 	  }, {
 	    key: 'render',
@@ -31996,6 +31993,7 @@
 	      view: 'Home',
 	      join: 'vanish',
 	      new: 'vanish',
+	      gameLevel: 2,
 	      createRoomName: '',
 	      joinRoomName: '',
 	      controlsView: false
@@ -32025,7 +32023,12 @@
 	  }, {
 	    key: 'createRoomButton',
 	    value: function createRoomButton() {
-	      window.socket.emit('createRoom', this.state.createRoomName);
+	      var roomInfo = {
+	        roomname: this.state.createRoomName,
+	        level: this.state.gameLevel
+	      };
+	
+	      window.socket.emit('createRoom', roomInfo);
 	      this.setState({
 	        view: 'vanish'
 	      });
@@ -32085,6 +32088,25 @@
 	            { className: this.state.new },
 	            'Room Name:',
 	            _react2.default.createElement('input', { onChange: this.handleChange, name: 'createRoomName' }),
+	            _react2.default.createElement(
+	              'select',
+	              { onChange: this.handleChange, value: this.state.gameLevel, name: 'gameLevel', required: true },
+	              _react2.default.createElement(
+	                'option',
+	                { value: '1' },
+	                'Easy'
+	              ),
+	              _react2.default.createElement(
+	                'option',
+	                { value: '2' },
+	                'Normal'
+	              ),
+	              _react2.default.createElement(
+	                'option',
+	                { value: '3' },
+	                'Hard'
+	              )
+	            ),
 	            _react2.default.createElement(
 	              _reactRouter.Link,
 	              { to: '/game' },

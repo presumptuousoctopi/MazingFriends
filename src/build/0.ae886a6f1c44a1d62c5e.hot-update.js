@@ -324,7 +324,6 @@ webpackHotUpdate(0,{
 	                localVideo.src = null;
 	                remoteVideo.src = null;
 	                document.getElementById("canvas").remove();
-	                socket.emit("quit", room);
 	                _reactRouter.browserHistory.push({
 	                    pathname: '/home'
 	                });
@@ -431,4 +430,4 @@ webpackHotUpdate(0,{
 /***/ }
 
 })
-//# sourceMappingURL=0.2158f7560e6f978867bf.hot-update.js.map
+//# sourceMappingURL=0.ae886a6f1c44a1d62c5e.hot-update.js.map

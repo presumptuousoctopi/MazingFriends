@@ -11,6 +11,7 @@ class Home extends React.Component {
 			view: 'Home',
 			join: 'vanish',
 			new: 'vanish',
+      gameLevel: 2,
       createRoomName: '',
       joinRoomName: '',
       controlsView: false
@@ -35,7 +36,12 @@ class Home extends React.Component {
     });
   }
 	createRoomButton() {
-    window.socket.emit('createRoom', this.state.createRoomName);
+    var roomInfo = {
+      roomname: this.state.createRoomName,
+      level: this.state.gameLevel
+    };
+
+    window.socket.emit('createRoom', roomInfo);
 		this.setState({
 			view: 'vanish'
 		})
@@ -82,6 +88,11 @@ class Home extends React.Component {
 	      	<div className={this.state.new}>
 	      	Room Name:
 	      	<input onChange={this.handleChange} name="createRoomName"></input>
+          <select onChange={this.handleChange} value={this.state.gameLevel}  name="gameLevel" required>
+            <option value="1">Easy</option>
+            <option value="2">Normal</option>
+            <option value="3">Hard</option>
+          </select>
 	      	<Link to="/game"><button className="Play" onClick={this.createRoomButton}>Create Room</button></Link>
 	      	<br/>
 	      	<br/>
