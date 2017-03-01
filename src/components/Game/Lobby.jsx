@@ -36,9 +36,17 @@ class Lobby extends React.Component {
         })
         socket.emit("getRooms");
     }
-
+    searchForFriends() {
+        socket.emit("getUsers");
+        socket.on("users", function(data){
+            console.log(data);
+        })
+    }
     render() {
         return (
+            <div>
+                <input type="text" placeholder="search for friends"></input>
+                <button type="submit" onClick={this.searchForFriends}>Search</button>
             <table>
                 <tr>
                     <th>Roomname</th>
@@ -54,6 +62,7 @@ class Lobby extends React.Component {
                 )
             })}
             </table>
+            </div>
         );
     }
 }

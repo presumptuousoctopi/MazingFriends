@@ -294,7 +294,7 @@ class VideoChat extends React.Component {
             pcConfig = null;
             localVideo.src = null;
             remoteVideo.src = null;
-            document.getElementById("canvas").remove();
+            //document.getElementById("canvas").remove();
             browserHistory.push({
                 pathname: '/home'
             });

@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "93f7170ad3be3c9cb870"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "290b1eab9b3497e37d1d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31108,7 +31108,7 @@
 	                pcConfig = null;
 	                localVideo.src = null;
 	                remoteVideo.src = null;
-	                document.getElementById("canvas").remove();
+	                //document.getElementById("canvas").remove();
 	                _reactRouter.browserHistory.push({
 	                    pathname: '/home'
 	                });
@@ -32237,45 +32237,63 @@
 	            socket.emit("getRooms");
 	        }
 	    }, {
+	        key: "searchForFriends",
+	        value: function searchForFriends() {
+	            socket.emit("getUsers");
+	            socket.on("users", function (data) {
+	                console.log(data);
+	            });
+	        }
+	    }, {
 	        key: "render",
 	        value: function render() {
 	            var _this2 = this;
 	
 	            return _react2.default.createElement(
-	                "table",
+	                "div",
 	                null,
+	                _react2.default.createElement("input", { type: "text", placeholder: "search for friends" }),
 	                _react2.default.createElement(
-	                    "tr",
+	                    "button",
+	                    { type: "submit", onClick: this.searchForFriends },
+	                    "Search"
+	                ),
+	                _react2.default.createElement(
+	                    "table",
 	                    null,
 	                    _react2.default.createElement(
-	                        "th",
-	                        null,
-	                        "Roomname"
-	                    ),
-	                    _react2.default.createElement(
-	                        "th",
-	                        null,
-	                        "Number of Players"
-	                    )
-	                ),
-	                this.state.roomNames.map(function (key, index) {
-	                    console.log(key);
-	                    return _react2.default.createElement(
 	                        "tr",
 	                        null,
 	                        _react2.default.createElement(
-	                            "td",
+	                            "th",
 	                            null,
-	                            key
+	                            "Roomname"
 	                        ),
 	                        _react2.default.createElement(
-	                            "td",
+	                            "th",
 	                            null,
-	                            _this2.state.rooms[key],
-	                            "/2"
+	                            "Number of Players"
 	                        )
-	                    );
-	                })
+	                    ),
+	                    this.state.roomNames.map(function (key, index) {
+	                        console.log(key);
+	                        return _react2.default.createElement(
+	                            "tr",
+	                            null,
+	                            _react2.default.createElement(
+	                                "td",
+	                                null,
+	                                key
+	                            ),
+	                            _react2.default.createElement(
+	                                "td",
+	                                null,
+	                                _this2.state.rooms[key],
+	                                "/2"
+	                            )
+	                        );
+	                    })
+	                )
 	            );
 	        }
 	    }]);
