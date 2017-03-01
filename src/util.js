@@ -337,7 +337,7 @@ window.createGhost = function() {
         var ghostPosition = sphere.position;
         var userPosition = window.camera.position;
 
-        var teleportSpeed = 1;
+        var teleportSpeed = 2;
         var dx;
         var dy;
         var dz;
