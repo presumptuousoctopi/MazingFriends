@@ -2,7 +2,6 @@
  Game Sockets
 *******************************************************/
 
-
 setInterval ( function() {
   if ( !!window.mazeLevel && !!window.otherPlayer ) {
     var p1 = window.camera.position;
@@ -15,41 +14,7 @@ setInterval ( function() {
   } 
 }, 3000);
 
-//data reporter
-  var outputplane = BABYLON.Mesh.CreatePlane("outputplane", 25, scene, false);
-  outputplane.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
-  outputplane.material = new BABYLON.StandardMaterial("outputplane", scene);
-  outputplane.position = new BABYLON.Vector3(-40, 40, 40);
-  outputplane.scaling.y = 0.4;
-  // outputplane.parent = camera;
-  // outputplane.position = new BABYLON.Vector3(0, 11, 0);
-  var outputplane2 = BABYLON.Mesh.CreatePlane("outputplane", 25, scene, false);
-  outputplane2.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
-  outputplane2.material = new BABYLON.StandardMaterial("outputplane", scene);
-  outputplane2.position = new BABYLON.Vector3(20, 20, 20);
-  outputplane2.scaling.y = 0.4;
 
-  var outputplaneTexture = new BABYLON.DynamicTexture("dynamic texture", 512, scene, true);
-  outputplane.material.diffuseTexture = outputplaneTexture;
-  outputplane.material.specularColor = new BABYLON.Color3(0, 0, 0);
-  outputplane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
-  outputplane.material.backFaceCulling = false;
-
-  var outputplaneTexture2 = new BABYLON.DynamicTexture("dynamic texture", 512, scene, true);
-  outputplane2.material.diffuseTexture = outputplaneTexture2;
-  outputplane2.material.specularColor = new BABYLON.Color3(0, 0, 0);
-  outputplane2.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
-  outputplane2.material.backFaceCulling = false;
-
-  outputplaneTexture.drawText("Timer", null, 140, "bold 140px verdana", "white", "#0000AA");
-  // outputplaneTexture2.drawText("World Record", null, 140, "bold 100px verdana", "white", "#0000AA");
-
-  var context2D = outputplaneTexture.getContext();
-  window.refreshTime = function(data) {
-    context2D.clearRect(0, 200, 512, 512);
-    outputplaneTexture.drawText(data, null, 380, "100px verdana", "white", null);
-    socket.emit('time', window.currentTime)
-  }
 var originalTime = 0;
 window.currentTime = 0;
 window.finished = false;
@@ -71,14 +36,14 @@ var protocolPrefix = (window.location.protocol === 'https:') ? 'wss:' : 'ws:';
 // Notify whether user is first or second player and update user position
 window.inRoom = false;
 socket.on('firstPlayer', function(firstPlayer) {
-
   window.inRoom = true;
+  window.playerType = firstPlayer;
   window.camera.position = window.firstPlayerPosition;
   window.camera.rotation = new BABYLON.Vector3(-0.38385, -.77694, 0);
   console.log('You are first player');
   engine.runRenderLoop(function(){
-    outputplane.position = new BABYLON.Vector3(-35 + camera.position.x, 35 +camera.position.y, 35 + camera.position.z);
-    outputplane2.position = new BABYLON.Vector3(20 + camera.position.x, 20 +camera.position.y, 20 + camera.position.z);
+    window.outputplane.position = new BABYLON.Vector3(-35 + camera.position.x, 35 +camera.position.y, 35 + camera.position.z);
+    window.outputplane2.position = new BABYLON.Vector3(20 + camera.position.x, 20 +camera.position.y, 20 + camera.position.z);
     var xGrid = Math.floor(window.camera.position.x / 4 + .4);
     var yGrid = Math.floor(window.camera.position.z / 4 + .4);
     // console.log('Here are grids : ', xGrid, yGrid);
@@ -243,7 +208,7 @@ socket.on("receiveWorldRecord", function (data){
   var seconds = data.time % 60;
   var minutes = Math.floor( data.time / 60 );
   var stringTime = !!minutes ? minutes + ':' + seconds : seconds;
-  outputplaneTexture2.drawText( "World Record : " + stringTime + ' by ' + data.user, null, 280, "bold 30px verdana", "white", "#0000AA");
+  window.outputplaneTexture2.drawText( "World Record : " + stringTime + ' by ' + data.user, null, 280, "bold 30px verdana", "white", "#0000AA");
 });
 /*******************************************************
  User Control Event Listeners

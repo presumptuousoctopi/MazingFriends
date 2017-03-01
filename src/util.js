@@ -428,32 +428,6 @@ function shootBullet ( shooter, e, isIncoming = false ) {
     });
 };
 
-
-// window.mouseControl = function(camera, mousePosition, e) {
-//     var mouseX = e.clientX;
-//     var mouseY = e.clientY;
-//     var dx = mouseX - mousePosition.x;
-//     var dy = mouseY - mousePosition.y;
-//     var scale = 2000;
-//     var sensitivity = .05;
-
-//     if ( dx > 2 ) {
-//         camera.cameraRotation.y += sensitivity;
-//     } else if ( dx < -2 ) {
-//         camera.cameraRotation.y -= sensitivity;
-//     }
-
-//     if ( dy > 2 ) {
-//         camera.cameraRotation.x += sensitivity;
-//     } else if ( dy < -2 ) {
-//         camera.cameraRotation.x -= sensitivity;
-//     }        
-
-//     mousePosition.x = mouseX;
-//     mousePosition.y = mouseY;
-// };
-
-
 /*******************************************************
  Game Flow / Etc.
 *******************************************************/
@@ -462,8 +436,13 @@ window.calculateDistance = function(x1, y1, z1, x2, y2, z2) {
   return Math.pow((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)+(z1-z2)*(z1-z2), 1/2);
 };
 
-window.gameover = false;
+window.refreshTime = function(data) {
+    context2D.clearRect(0, 200, 512, 512);
+    window.outputplaneTexture.drawText(data, null, 380, "100px verdana", "white", null);
+    socket.emit('time', window.currentTime)
+}
 
+window.gameover = false;
 window.finishGame = function() {
   window.finishTime = window.currentTime;
   socket.emit('gameover', {
@@ -487,5 +466,36 @@ window.finishGame = function() {
   window.refreshTime(finishTime);
 };
 
+//data reporter
+window.makeTimerBoard = function() {
+  window.outputplane = BABYLON.Mesh.CreatePlane("outputplane", 25, window.scene, false);
+  outputplane.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
+  outputplane.material = new BABYLON.StandardMaterial("outputplane", window.scene);
+  outputplane.position = new BABYLON.Vector3(-40, 40, 40);
+  outputplane.scaling.y = 0.4;
+  window.outputplaneTexture = new BABYLON.DynamicTexture("dynamic texture", 512, window.scene, true);
+  outputplane.material.diffuseTexture = outputplaneTexture;
+  outputplane.material.specularColor = new BABYLON.Color3(0, 0, 0);
+  outputplane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
+  outputplane.material.backFaceCulling = false;
+  outputplaneTexture.drawText("Timer", null, 140, "bold 140px verdana", "white", "#0000AA");
+  window.context2D = window.outputplaneTexture.getContext();
+};
+
+window.makeLeaderBoard = function() {
+  window.outputplane2 = BABYLON.Mesh.CreatePlane("outputplane", 25, window.scene, false);
+  outputplane2.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
+  outputplane2.material = new BABYLON.StandardMaterial("outputplane", window.scene);
+  outputplane2.position = new BABYLON.Vector3(20, 20, 20);
+  outputplane2.scaling.y = 0.4;
+  window.outputplaneTexture2 = new BABYLON.DynamicTexture("dynamic texture", 512, window.scene, true);
+  outputplane2.material.diffuseTexture = outputplaneTexture2;
+  outputplane2.material.specularColor = new BABYLON.Color3(0, 0, 0);
+  outputplane2.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
+  outputplane2.material.backFaceCulling = false;
+};
+
+
+  // outputplaneTexture2.drawText("World Record", null, 140, "bold 100px verdana", "white", "#0000AA");
 
 
