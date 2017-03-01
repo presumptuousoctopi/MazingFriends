@@ -44,6 +44,7 @@ window.randomSphereInAir = addSphere();
 window.bullets = [];
 window.makeTimerBoard();
 window.makeLeaderBoard();
+window.runClock();
 
 // Update player location to other clients via socket.io
 var previousCameraPosition = camera.position.x + camera.position.y + camera.position.z;
