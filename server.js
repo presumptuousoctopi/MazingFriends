@@ -50,7 +50,7 @@ var roomCount = 0;
 var newRoom = [];
 var usernames = {};
 var roomLevel = {};
-
+var finalTime = {};
 // Start socket.io server
 io.on('connection', function(socket){
   // Increment every time a new user is connected
@@ -140,6 +140,8 @@ io.on('connection', function(socket){
     }
     // Update rooms in lobby view
     io.sockets.emit("receiveRooms", rooms);
+    // Start timer in the room
+    io.to(roomName).emit('receiveStartTime', new Date().getTime() );
   });
   
   // Listen for user request for rooms for lobby view
@@ -172,6 +174,9 @@ io.on('connection', function(socket){
   db.Leaderboard.findAll({
     order: [['time', 'ASC']]
   }).then(function(data){
+    if ( data.length === 0 ) {
+      return;
+    }
     var newData = {
       time: data[0].dataValues.time,
       user: data[0].dataValues.username
@@ -205,16 +210,44 @@ io.on('connection', function(socket){
   });
 
   socket.on('gameover', function(data) {
-    socket.emit('gameoverlisten', data.time)
+    if ( !finalTime[playerRoom[socket.id]] ) {
+      finalTime[playerRoom[socket.id]] = {
+        time: data.time,
+        user: data.user + ' & '
+      };
+    } else {
+      var finalTimeData = finalTime[playerRoom[socket.id]];
+      if ( finalTimeData.time > data.time ) {
+        finalTime[playerRoom[socket.id]] = {
+          time: data.time,
+          user: finalTime[playerRoom[socket.id]].user + data.user
+        };
+      } else {
+        finalTime[playerRoom[socket.id]]['user'] += data.user; 
+      }
+      var username = finalTime[playerRoom[socket.id]].user;
+      var finishTime = finalTime[playerRoom[socket.id]].time;
+      setTimeout( () => {
+        io.in(playerRoom[socket.id]).emit('timer', finishTime);      
+      }, 100);
+      io.in(playerRoom[socket.id]).emit('receiveFinalTime', finishTime);      
+      io.in(playerRoom[socket.id]).emit('gameoverlisten', finishTime);      
+      var integerTime = 0;
+      if ( finishTime.includes(':') ) {
+        var newTime = finishTime.split(':');
+        integerTime = Number(newTime[0] * 60) + Number(newTime[1]);
+      } else {
+        integerTime = Number(finishTime);
+      }
+      db.Leaderboard.create({
+        username: username,
+        time: integerTime
+      }).then( (data) => {
+        console.log('Saved : ', data);
+      }) ;
+    }
   });
 
-  // Save personal record in the database
-  socket.on('saveTime', function(data) {
-    db.Leaderboard.create({
-      username: data.user,
-      time: data.time
-    });
-  });
 
   /*************************************************************************************************
    WebRTC Sockets
@@ -313,19 +346,20 @@ io.on('connection', function(socket){
  Binary JS - Music Stream
  *************************************************************************************************/
 
-// Save path to mp3 file in a variable
-var songFilePath = path.join(__dirname, '/songs/main.mp3');
-var jumpFilePath = path.join(__dirname, '/songs/jump.mp3');
-var shootFilePath = path.join(__dirname, '/songs/shoot.mp3');
-var files = [songFilePath, jumpFilePath, shootFilePath];
-
-// Create file read streams
-var songStream = fs.createReadStream.call(this, songFilePath);
-var jumpStream = fs.createReadStream.call(this, jumpFilePath);
-var shootStream = fs.createReadStream.call(this, shootFilePath);
 
 // Listen for connection with client
 binaryServer.on('connection', function(client) {
+  // Save path to mp3 file in a variable
+  var songFilePath = path.join(__dirname, '/songs/main.mp3');
+  var jumpFilePath = path.join(__dirname, '/songs/jump.mp3');
+  var shootFilePath = path.join(__dirname, '/songs/shoot.mp3');
+  var files = [songFilePath, jumpFilePath, shootFilePath];
+
+  // Create file read streams
+  var songStream = fs.createReadStream.call(this, songFilePath);
+  var jumpStream = fs.createReadStream.call(this, jumpFilePath);
+  var shootStream = fs.createReadStream.call(this, shootFilePath);
+
   // Send mp3 files to client
   client.send(songStream);
   client.send(jumpStream);

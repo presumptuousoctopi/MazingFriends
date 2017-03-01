@@ -128,8 +128,8 @@ var calculateDistance = function(userData) {
     // });
     // easystar.calculate();
     var percentage = 100 - (path.length / initialDist) * 100;
-    console.log('Path Length : ', path.length);
-    console.log('Initial Distance : ', initialDist);    
+    // console.log('Path Length : ', path.length);
+    // console.log('Initial Distance : ', initialDist);    
     return percentage < 0 ? 0 : percentage; 
 };
 
