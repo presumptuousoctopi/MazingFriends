@@ -65,7 +65,7 @@ window.addPlayer = function(playerPosition = new BABYLON.Vector3(0, 20, 0)) {
 
     // camera.orthoLeft = [37];
  
-    camera.speed = .8;
+    camera.speed = .5;
     // camera.inertia = 0.3;
     // camera.angularSensibility = 500;
     camera.checkCollisions = true;
@@ -159,7 +159,7 @@ var customSphere = {};
 var numberOfSpheres = 0;
 window.addSphere = function(spherePosition = new BABYLON.Vector3(10, 20, 10)) {
     // if (!customSphere['sphere']) {
-        var sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene);
+        var sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, window.scene);
         var material = new BABYLON.StandardMaterial("texture1" + (++numberOfSpheres), scene);
         sphere.material = material; 
         customSphere['sphere'] = sphere;
@@ -169,9 +169,8 @@ window.addSphere = function(spherePosition = new BABYLON.Vector3(10, 20, 10)) {
     sphere.position = spherePosition;
     // sphere.checkCollisions = true;
     sphere.applyGravity = true;
-    // material.specularColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
-    // material.specularPower = 32;
-    // material.ambientColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());  
+
+
     return sphere;
 };
 
@@ -303,6 +302,90 @@ var buildSimpleMaze = function(maze) {
     var newMesh = BABYLON.Mesh.MergeMeshes(mazeBoxes);
     newMesh.checkCollisions = true;
 };
+/*******************************************************
+ Monsters / Obstacles
+*******************************************************/
+window.didCollide = function(o1, o2) {
+    var bulletDistance = Math.pow ( Math.pow(o1.position.x - o2.position.x, 2) + Math.pow(o1.position.y - o2.position.y, 2) + Math.pow(o1.position.z - o2.position.z, 2), 1/2 );
+
+    if ( bulletDistance < 5 ) {
+        return true;
+    } else {
+        return false;
+    }
+
+};
+
+window.createGhost = function() {
+    var sphere = window.addSphere();
+    console.log('Inside createGhost');
+    sphere.applyGravity = false;
+    var material = new BABYLON.StandardMaterial("material01", window.scene);
+    material.diffuseColor = new BABYLON.Color3(0, 0, 0);
+    material.HP = 3;
+    sphere.material = material;
+    console.log('Inside createGhost, before setInterval');
+    setInterval( function() {
+        var bullets = window.bullets.slice();
+        // console.log('Number of bullets : ', bullets.length);
+        bullets.forEach( (bullet) => {
+            if ( window.didCollide(bullet, sphere) ) {
+                sphere.position = new BABYLON.Vector3(100 * Math.random(), 2, 100 * Math.random());
+            };
+        });
+
+        var ghostPosition = sphere.position;
+        var userPosition = window.camera.position;
+
+        var teleportSpeed = 1;
+        var dx;
+        var dy;
+        var dz;
+        if ( Math.floor(userPosition.x) === Math.floor(ghostPosition.x) ) {
+            dx = 0;
+        } else if ( userPosition.x < ghostPosition.x ) {
+            dx = -teleportSpeed;
+        } else if ( userPosition.x > ghostPosition.x ){
+            dx = teleportSpeed;
+        }
+
+        if ( Math.floor(userPosition.y) === Math.floor(ghostPosition.y) ) {
+            dy = 0;
+        } else if ( userPosition.y < ghostPosition.y ) {
+            dy = -teleportSpeed;
+        } else if ( userPosition.y > ghostPosition.y ){
+            dy = teleportSpeed;
+        }
+
+        if ( Math.floor(userPosition.z) === Math.floor(ghostPosition.z) ) {
+            dz = 0;
+        } else if ( userPosition.z < ghostPosition.z ) {
+            dz = -teleportSpeed;
+        } else if ( userPosition.z > ghostPosition.z ){
+            dz = teleportSpeed;
+        }
+
+        var distanceFromGhost = Math.pow(Math.pow(ghostPosition.x-userPosition.x, 2) + Math.pow(ghostPosition.y-userPosition.y, 2) + Math.pow(ghostPosition.z-userPosition.z, 2), 1/2);
+        if ( distanceFromGhost < 2 ) {
+            // console.log('Collision with ghost');
+          if ( window.playerType === 'secondPlayer' ) {
+            // console.log('Collision with ghost - 2nd player');
+            var p2 =  window.secondPlayerPositions[window.mazeLevel];
+            window.camera.position = new BABYLON.Vector3(p2.x, p2.y, p2.z);
+
+          } else {
+            // console.log('Collision with ghost - 1st player');
+            var p1 =  window.firstPlayerPosition;
+            window.camera.position = new BABYLON.Vector3(p1.x, p1.y, p1.z);
+          }
+        }
+        ghostPosition.x += dx;
+        ghostPosition.y += dy;
+        ghostPosition.z += dz;
+        
+        sphere.position =  ghostPosition;
+    }.bind(this), 500);
+};
 
 /*******************************************************
  User Control
@@ -331,6 +414,10 @@ function shootBullet ( shooter, e, isIncoming = false ) {
     } else {
         var bullet = customBullet.clone('bullet' + (++bulletsFired) );
     }
+    window.bullets.push(bullet);
+    setTimeout(() => {
+        var bullet = window.bullets.shift();
+    }, 2000);
     // bullet.applyGravity = true;
     bullet.position = new BABYLON.Vector3(initPosition.x, initPosition.y, initPosition.z);
     bullet.checkCollisions = true;
