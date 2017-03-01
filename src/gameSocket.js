@@ -196,8 +196,14 @@ socket.on('serverSendingMaze', function(mazeData) {
   if ( window.mazeLevel === '3' ) {
     window.createGhost();
     window.createGhost();
+    window.createGhost();
+    window.createGhost();
+    window.createGhost();
+    window.createGhost();
+    window.createGhost();got
   } else if ( window.mazeLevel === '2' ) {
     window.createGhost();    
+    window.createGhost();
   }
   window.createGhost();  
 });
