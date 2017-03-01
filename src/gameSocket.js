@@ -193,6 +193,12 @@ socket.on('serverSendingMaze', function(mazeData) {
   console.log('Received a maze from server');
   window.ground = addGround();
   buildBoundaryWalls(boxLength, window.scene);
+  if ( window.mazeLevel === '3' ) {
+    window.createGhost();
+    window.createGhost();
+  } else if ( window.mazeLevel === '2' ) {
+    window.createGhost();    
+  }
   window.createGhost();  
 });
 
