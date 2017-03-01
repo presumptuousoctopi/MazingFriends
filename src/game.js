@@ -6,7 +6,7 @@ window.engine = new BABYLON.Engine(canvas, true);
 // Declare environment constants
 var numberOfBoxes = 0;
 const boxLength = 4;
-const firstPlayerPosition = new BABYLON.Vector3(boxLength, 2, boxLength);
+window.firstPlayerPosition = new BABYLON.Vector3(boxLength, 2, boxLength);
 const easyLevelMazeSize = 5;
 const easyLevelSecondPlayerPosition = new BABYLON.Vector3(45, 2, 60);
 const mediumLevelMazeSize = 10;
@@ -41,6 +41,7 @@ addSkyBox();
 window.camera = addPlayer();
 addPlayerObj(window.camera);
 window.randomSphereInAir = addSphere();
+window.bullets = [];
 
 // Update player location to other clients via socket.io
 var previousCameraPosition = camera.position.x + camera.position.y + camera.position.z;
