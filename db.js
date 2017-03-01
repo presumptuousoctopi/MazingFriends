@@ -35,7 +35,8 @@ var User = sequelize.define('user', {
 
 var Leaderboard = sequelize.define('leaderboard', {
   username: Sequelize.STRING,
-  time: Sequelize.FLOAT
+  time: Sequelize.FLOAT,
+  level: Sequelize.INTEGER
 }, {freezeTableName:true});
 
 var Gamestate = sequelize.define('gamestate', {
