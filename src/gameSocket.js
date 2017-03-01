@@ -28,13 +28,10 @@ socket.on('firstPlayer', function(firstPlayer) {
   window.camera.position = window.firstPlayerPosition;
   window.camera.rotation = new BABYLON.Vector3(-0.38385, -.77694, 0);
   console.log('You are first player');
+
   engine.runRenderLoop(function(){
     window.outputplane.position = new BABYLON.Vector3(-35 + camera.position.x, 35 +camera.position.y, 35 + camera.position.z);
     window.outputplane2.position = new BABYLON.Vector3(20 + camera.position.x, 20 +camera.position.y, 20 + camera.position.z);
-    var xGrid = Math.floor(window.camera.position.x / 4 + .4);
-    var yGrid = Math.floor(window.camera.position.z / 4 + .4);
-    // console.log('Here are grids : ', xGrid, yGrid);
-    // console.log('fps : ', engine.fps);
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
         previousCameraPosition = currentCameraPosition;
@@ -46,16 +43,13 @@ socket.on('firstPlayer', function(firstPlayer) {
     if ( window.otherPlayer && window.finished === false) {
       var p1 = window.camera.position;
       var p2 = window.otherPlayer.position;
-      // Calculate distance between two users
 
       var distanceBetweenUsers = window.calculateDistance(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
       if ( distanceBetweenUsers < 3 ) {
         window.finishGame();
       }
     }
-    // console.log('currentTime : ', currentTime);
-    // console.log('position : ', window.camera.position);
-    // console.log(window.camera.rotation);
+
     scene.render();
   });
 
@@ -193,9 +187,15 @@ socket.on("receiveWorldRecord", function (data){
   var seconds = data.time % 60;
   var minutes = Math.floor( data.time / 60 );
   var stringTime = !!minutes ? minutes + ':' + seconds : seconds;
-  window.outputplaneTexture2.drawText( "World Record : " + stringTime + ' by ' + data.user, null, 280, "bold 30px verdana", "white", "#0000AA");
+  window.outputplaneTexture2.drawText( "BEST : " + stringTime + ' by ' + data.user, null, 280, "bold 25px verdana", "white", "#0000AA");
 });
 
 socket.on('receiveStartTime', function(time) {
   window.originalTime = time;
+});
+
+socket.on('receiveFinalTime', function(time) {
+  window.finishTime = time;
+  socket.emit('time', time);
+  window.refreshTime(time);
 });
