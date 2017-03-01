@@ -1,5 +1,5 @@
 import React from 'react';
-
+import FriendSearch from './FriendSearch.jsx'
 
 class Lobby extends React.Component {
     constructor() {
@@ -36,17 +36,10 @@ class Lobby extends React.Component {
         })
         socket.emit("getRooms");
     }
-    searchForFriends() {
-        socket.emit("getUsers");
-        socket.on("users", function(data){
-            console.log(data);
-        })
-    }
     render() {
         return (
             <div>
-                <input type="text" placeholder="search for friends"></input>
-                <button type="submit" onClick={this.searchForFriends}>Search</button>
+                <FriendSearch/>
             <table>
                 <tr>
                     <th>Roomname</th>

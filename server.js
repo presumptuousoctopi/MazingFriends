@@ -310,16 +310,20 @@ io.on('connection', function(socket) {
           }
         })
   });
-  socket.on("getUsers", function() {
+  socket.on("getUsers", function(req) {
     db.User
-        .findAll({})
-        .then(function (data) {
-          var results = [];
-          data.forEach(function (obj) {
-            results.push(obj.username);
-          })
-          io.sockets.emit("users", results);
-        });
+        .findOne({
+          where: {
+            username: req
+          }
+        })
+        .then(function (user) {
+          if (!user) {
+            socket.emit('users', {data: 'user does not exist'});
+          } else {
+            socket.emit('users', {data: user})
+          }
+        })
   });
 });
 // socket.emit('signup', {
