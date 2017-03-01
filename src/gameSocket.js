@@ -2,10 +2,7 @@
  Game Sockets
 *******************************************************/
 
-// socket.on('receiveDistancePercentage', function(percentage) {
-//   // console.log('New percentage : ', percentage);
-//   window.distancePercentage = percentage;
-// });
+
 setInterval ( function() {
   if ( !!window.mazeLevel && !!window.otherPlayer ) {
     var p1 = window.camera.position;

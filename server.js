@@ -1,6 +1,3 @@
-// const webpack = require('webpack');
-// const config = require('./webpack.config');
-// const open = require('open');
 var os = require('os');
 var express = require('express');
 var app = express();
@@ -36,18 +33,9 @@ app.get('/favicon.ico', function(request, response) {
   response.sendFile(path.join(__dirname, './src/favicon.ico'));
 });
 
-// app.get('/build/bundle.js', function(request, response) {
-//   response.sendFile(path.join(__dirname, './src/build/bundle.js'));  
-// });
-
 app.get('*', function (request, response){
   response.sendFile(path.resolve(__dirname, './src/index.html'));
 });
-
-
-/*************************************************************************************************
- Socket.io
- *************************************************************************************************/
 
 /*************************************************************************************************
  Game and Webrtc Signal Sockets
@@ -60,19 +48,16 @@ var playerRoom = {};
 var messages = {};
 var roomCount = 0;
 var newRoom = [];
-var clients = {};
 var usernames = {};
 var roomLevel = {};
 
-var mazeLevel = 2;
-
 // Start socket.io server
 io.on('connection', function(socket){
-  //send world record to client
+  
   socket.on("getRooms", function() {
-    console.log("request to get all rooms");
     socket.emit("receive", rooms);
   });
+  
   db.Leaderboard.findAll({
     order: [['time', 'ASC']]
   }).then(function(data){
@@ -80,8 +65,6 @@ io.on('connection', function(socket){
       time: data[0].dataValues.time,
       user: data[0].dataValues.username
     };
-    // console.log('Here is all data : ', data);
-    // console.log('Here is the data sending to client : ', newData);
     socket.emit('receiveWorldRecord', newData);
   })
   // Increment every time a new user is connected
@@ -244,7 +227,6 @@ socket.on('disconnect', function(){
 
   // calculate distance between two users and send back percentage (%)
   socket.on('calculateDistance', function(positionObject) {
-    // console.log('Distance object from user : ', positionObject);
     socket.emit('receiveDistancePercentage', calculateDistance(positionObject));
   });
   
@@ -254,7 +236,6 @@ socket.on('disconnect', function(){
   socket.on('signup', function(userInfo) {
     var username = userInfo.username;
     var password = userInfo.password;
-    console.log('in signup');
     // Check whether username already exists
     db.User
       .findOne({ 
@@ -265,9 +246,10 @@ socket.on('disconnect', function(){
       .then( function(user) {
         bcrypt.genSalt(10, function(err2, salt) {
           if (user || err2) {
-            // If user already exists, send an error signal back to user
+            // If user already exists, send error message back to user
             socket.emit('signupResponse', 'Username already exists');
           } else {
+            // If username does not exist, then save username and hashed password
             bcrypt.hash(password, salt, function(err, hashedPassword) {
               db.User.create({ 
                 username: username,
@@ -276,7 +258,6 @@ socket.on('disconnect', function(){
             });
             usernames[socket.id] = username;
             socket.emit('signupResponse', null);
-            console.log('User created!');
           }
         });
       });
@@ -285,8 +266,7 @@ socket.on('disconnect', function(){
   socket.on('signin', function(userInfo) {
     var username = userInfo.username;
     var password = userInfo.password;
-    console.log('in signin');
-    // CHeck whether user already exists
+    // Check whether user already exists
     db.User
       .findOne({ 
         where: { 
@@ -294,15 +274,17 @@ socket.on('disconnect', function(){
         }
       })
       .then( function(user) {
-        // If there is no such user, then check password
         if ( !user ) {
+          // If there is no such user, send error message back to user
           socket.emit('signinResponse', {message: 'user does not exist'});
         } else {
+          // If user exists, then compare password
           bcrypt.compare(password, user.password, function(err, isAuthenticated) {
             if( err || !isAuthenticated) {
-              console.log(err, password, user.password);
+              // If there is database error or authentication failure, send error message back to user
               socket.emit('signinResponse', {message: "wrong password"});
             } else {
+              // If authentication was successful, then send username back to user
               usernames[socket.id] = username;
               socket.emit('signinResponse', {username: username});
             }
@@ -312,41 +294,25 @@ socket.on('disconnect', function(){
   });
 
 });
-// socket.emit('signup', {
-//   username: 'djk',
-//   password: 'hey'
-// });
-// socket.on('signupError', function(msg) {
-//   alert(msg);
-// });
-// socket.on('signinError', function(msg) {
-//   alert(msg);
-// });
 
 /*************************************************************************************************
  Binary JS - Music Stream
  *************************************************************************************************/
-// var binaryJSclients = {};
-// var songDownloadUrl = 'https://www.youtubeinmp3.com/fetch/?video=https://www.youtube.com/watch?v=' + videoId;
-// var savePath = fs.createWriteStream(path.join(__dirname, './song.mp3'));
-// binaryJSclients[clientId].client.send(fileStream);    
-// for ( var client in currentClients ) {
-//   currentClients[client].send(mp3File);
-// }
 
+// Save path to mp3 file in a variable
+var songFilePath = path.join(__dirname, '/songs/main.mp3');
+var jumpFilePath = path.join(__dirname, '/songs/jump.mp3');
+var shootFilePath = path.join(__dirname, '/songs/shoot.mp3');
+var files = [songFilePath, jumpFilePath, shootFilePath];
+
+// Create file read streams
+var songStream = fs.createReadStream.call(this, songFilePath);
+var jumpStream = fs.createReadStream.call(this, jumpFilePath);
+var shootStream = fs.createReadStream.call(this, shootFilePath);
 
 // Listen for connection with client
 binaryServer.on('connection', function(client) {
-  // Save path to mp3 file in a variable
-  var songFilePath = path.join(__dirname, '/songs/main.mp3');
-  var jumpFilePath = path.join(__dirname, '/songs/jump.mp3');
-  var shootFilePath = path.join(__dirname, '/songs/shoot.mp3');
-  var files = [songFilePath, jumpFilePath, shootFilePath];
-  // Save file stream in a variable
-  var songStream = fs.createReadStream.call(this, songFilePath);
-  var jumpStream = fs.createReadStream.call(this, jumpFilePath);
-  var shootStream = fs.createReadStream.call(this, shootFilePath);
-  // Send mp3 file to client
+  // Send mp3 files to client
   client.send(songStream);
   client.send(jumpStream);
   client.send(shootStream);
