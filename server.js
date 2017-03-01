@@ -87,10 +87,6 @@ io.on('connection', function(socket){
   // Increment every time a new user is connected
   userCount++;
   console.log('a user connected', userCount);
-  socket.on("quit", function(data){
-    delete(rooms[data]);
-    io.sockets.emit("receive", rooms);
-  });
   // Listen for createRoom
   socket.on('createRoom', function(roomInfo) {
     var roomName = roomInfo.roomname;
@@ -218,7 +214,8 @@ socket.on('disconnect', function(){
   rooms[playerRoom[socket.id]]--;
   if ( rooms[playerRoom[socket.id]] === 0 ) {
     delete rooms[playerRoom[socket.id]];
-  } 
+  }
+  io.sockets.emit("receive", rooms);
   console.log('user disconnected! Current user count : ', userCount);
 });
 
