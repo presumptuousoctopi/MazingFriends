@@ -38,10 +38,10 @@ app.get('*', function (request, response){
 });
 
 /*************************************************************************************************
- Game and Webrtc Signal Sockets
+ Socket.io
 *************************************************************************************************/
 
-
+// Declare necessary variables for keeping track of users, rooms, messages, and game levels
 var userCount = 0;
 var rooms = {};
 var playerRoom = {};
@@ -53,23 +53,28 @@ var roomLevel = {};
 
 // Start socket.io server
 io.on('connection', function(socket){
-  
-  socket.on("getRooms", function() {
-    socket.emit("receive", rooms);
-  });
-  
-  db.Leaderboard.findAll({
-    order: [['time', 'ASC']]
-  }).then(function(data){
-    var newData = {
-      time: data[0].dataValues.time,
-      user: data[0].dataValues.username
-    };
-    socket.emit('receiveWorldRecord', newData);
-  })
   // Increment every time a new user is connected
   userCount++;
   console.log('a user connected', userCount);
+
+  socket.on('disconnect', function(){
+    // Decerement user count when a user leaves the game
+    userCount--;
+    // Decrement number of people in the room
+    rooms[playerRoom[socket.id]]--;
+    // If there is no one in the room, delete the room
+    if ( rooms[playerRoom[socket.id]] === 0 ) {
+      delete rooms[playerRoom[socket.id]];
+    }
+    // Update rooms in lobby view
+    io.sockets.emit("receiveRooms", rooms);
+    console.log('user disconnected! Current user count : ', userCount);
+  });
+
+  /*************************************************************************************************
+   Game Rooms / Messages Sockets
+  *************************************************************************************************/
+  
   // Listen for createRoom
   socket.on('createRoom', function(roomInfo) {
     var roomName = roomInfo.roomname;
@@ -91,21 +96,19 @@ io.on('connection', function(socket){
       // Connect user to the room
       socket.join(roomName);
       // Send maze to user
-      console.log('Here is room Info : ', roomInfo);
       socket.emit('serverSendingMaze', {
         maze: mazes[roomLevel[roomName]],
         mazeLevel: roomLevel[roomName]
       });
-      console.log('A user made a room called ', roomName);
     } else {
       // Send error message back to user
       socket.emit('roomJoinError', 'roomAlreadyExsits');
     }
-    io.sockets.emit("receive", rooms);
+    // Update rooms in lobby view
+    io.sockets.emit("receiveRooms", rooms);
   });
 
   socket.on('joinRoom', function(roomName) {
-
     if ( !rooms[roomName] ) {
       // Send error message back to user
       socket.emit('roomJoinError', 'noSuchRoom');
@@ -130,34 +133,51 @@ io.on('connection', function(socket){
         maze: mazes[roomLevel[roomName]],
         mazeLevel: roomLevel[roomName]
       });
-      console.log('A user joined a room called ', roomName);
       /////////
-      console.log('Client ID ' + socket.id + ' joined room ' + roomName);
       io.in(roomName).emit('join', roomName);
       socket.emit('joined', roomName, socket.id);
       io.sockets.in(roomName).emit('ready');
     }
-    io.sockets.emit("receive", rooms);
+    // Update rooms in lobby view
+    io.sockets.emit("receiveRooms", rooms);
+  });
+  
+  // Listen for user request for rooms for lobby view
+  socket.on("getRooms", function() {
+    // Send room information back to user
+    socket.emit("receiveRooms", rooms);
   });
 
-  socket.on('message', function(message) {
-    // for a real app, would be room-only (not broadcast)
-    io.sockets.in(playerRoom[socket.id]).emit('message', message);
+  // Receive a user's message and return all messages posted in the room
+  socket.on('sendMessage', function(data) {
+    var roomName = playerRoom[socket.id];
+    var roomMessages = messages[roomName] || [];
+    // Add new message and userId to messages array
+    roomMessages.push({
+      userId: data.user,
+      message: data.message
+    });
+    // Save the update messages array
+    messages[roomName] = roomMessages;
+    // Send back ten newest messages to all users in the room
+    // var lastTenMessages = roomMessages.slice(roomMessages.length-10);
+    io.to(roomName).emit('receiveMessage', roomMessages);
   });
 
-  socket.on('ipaddr', function() {
-    var ifaces = os.networkInterfaces();
-    for (var dev in ifaces) {
-      ifaces[dev].forEach(function(details) {
-        if (details.family === 'IPv4' && details.address !== '127.0.0.1') {
-          socket.emit('ipaddr', details.address);
-        }
-      });
-    }
-  });
+  /*************************************************************************************************
+   Game Sockets
+  *************************************************************************************************/
 
-  socket.on("changedToVideo", function(){
-    socket.emit("roomName", playerRoom[socket.id]);
+  // Find best record from database
+  db.Leaderboard.findAll({
+    order: [['time', 'ASC']]
+  }).then(function(data){
+    var newData = {
+      time: data[0].dataValues.time,
+      user: data[0].dataValues.username
+    };
+    // Send best record back to user
+    socket.emit('receiveWorldRecord', newData);
   });
 
   // Receive a user's initial position and send it to all other players in the room
@@ -175,63 +195,57 @@ io.on('connection', function(socket){
     socket.broadcast.to(playerRoom[socket.id]).emit('incomingShot', shooter );
   });
 
-  // Receive a user's message and return all messages posted in the room
-socket.on('sendMessage', function(data) {
-  var roomName = playerRoom[socket.id];
-  var roomMessages = messages[roomName] || [];
-  // Add new message and userId to messages array
-  roomMessages.push({
-    userId: data.user,
-    message: data.message
-  });
-  // Save the update messages array
-  messages[roomName] = roomMessages;
-  // Send back ten newest messages to all users in the room
-  // var lastTenMessages = roomMessages.slice(roomMessages.length-10);
-  io.to(roomName).emit('receiveMessage', roomMessages);
-});
-
-// Decerement user count when a user leaves the game
-socket.on('disconnect', function(){
-  userCount--;
-  rooms[playerRoom[socket.id]]--;
-  if ( rooms[playerRoom[socket.id]] === 0 ) {
-    delete rooms[playerRoom[socket.id]];
-  }
-  io.sockets.emit("receive", rooms);
-  console.log('user disconnected! Current user count : ', userCount);
-});
-
-  // Send back number of users in the server
-  socket.on('numberOfUsers', function() {
-    socket.emit('receiveNumberOfUsers', userCount);
-  });
-
-  socket.on('gameover', function(data) {
-    console.log('in server', data);
-    socket.emit('gameoverlisten', data.time)
-  });
-
-  socket.on('saveTime', function(data) {
-    db.Leaderboard.create({
-      username: data.user,
-      time: data.time
-    }).then(function(user){
-      console.log(user);
-    });
+  // calculate distance between two users and send back percentage (%)
+  socket.on('calculateDistance', function(positionObject) {
+    socket.emit('receiveDistancePercentage', calculateDistance(positionObject));
   });
 
   socket.on('time', function(time) {
     socket.emit('timer', time)
   });
 
-  // calculate distance between two users and send back percentage (%)
-  socket.on('calculateDistance', function(positionObject) {
-    socket.emit('receiveDistancePercentage', calculateDistance(positionObject));
+  socket.on('gameover', function(data) {
+    socket.emit('gameoverlisten', data.time)
   });
-  
+
+  // Save personal record in the database
+  socket.on('saveTime', function(data) {
+    db.Leaderboard.create({
+      username: data.user,
+      time: data.time
+    });
+  });
+
   /*************************************************************************************************
-   Authentication Sockets
+   WebRTC Sockets
+  *************************************************************************************************/
+  
+  socket.on('ipaddr', function() {
+    var ifaces = os.networkInterfaces();
+    for (var dev in ifaces) {
+      ifaces[dev].forEach(function(details) {
+        if (details.family === 'IPv4' && details.address !== '127.0.0.1') {
+          socket.emit('ipaddr', details.address);
+        }
+      });
+    }
+  });
+
+  socket.on("changedToVideo", function(){
+    socket.emit("roomName", playerRoom[socket.id]);
+  });
+
+  /*************************************************************************************************
+   Testing Sockets
+  *************************************************************************************************/
+
+  // Send back number of users currently connected to server
+  socket.on('numberOfUsers', function() {
+    socket.emit('receiveNumberOfUsers', userCount);
+  });
+
+  /*************************************************************************************************
+   Authentication Sockets 
   *************************************************************************************************/
   socket.on('signup', function(userInfo) {
     var username = userInfo.username;
