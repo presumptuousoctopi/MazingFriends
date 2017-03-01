@@ -1,6 +1,3 @@
-// const webpack = require('webpack');
-// const config = require('./webpack.config');
-// const open = require('open');
 var os = require('os');
 var express = require('express');
 var app = express();
@@ -36,57 +33,48 @@ app.get('/favicon.ico', function(request, response) {
   response.sendFile(path.join(__dirname, './src/favicon.ico'));
 });
 
-// app.get('/build/bundle.js', function(request, response) {
-//   response.sendFile(path.join(__dirname, './src/build/bundle.js'));  
-// });
-
 app.get('*', function (request, response){
   response.sendFile(path.resolve(__dirname, './src/index.html'));
 });
 
-
 /*************************************************************************************************
  Socket.io
- *************************************************************************************************/
-
-/*************************************************************************************************
- Game and Webrtc Signal Sockets
 *************************************************************************************************/
 
-
+// Declare necessary variables for keeping track of users, rooms, messages, and game levels
 var userCount = 0;
 var rooms = {};
 var playerRoom = {};
 var messages = {};
 var roomCount = 0;
 var newRoom = [];
-var clients = {};
 var usernames = {};
 var roomLevel = {};
 
-var mazeLevel = 2;
-
 // Start socket.io server
 io.on('connection', function(socket){
-  //send world record to client
-  socket.on("getRooms", function() {
-    console.log("request to get all rooms");
-    socket.emit("receive", rooms);
-  });
-  db.Leaderboard.findAll({
-    order: [['time', 'ASC']]
-  }).then(function(data){
-    var newData = {
-      time: data[0].dataValues.time,
-      user: data[0].dataValues.username
-    };
-    // console.log('Here is all data : ', data);
-    // console.log('Here is the data sending to client : ', newData);
-    socket.emit('receiveWorldRecord', newData);
-  })
   // Increment every time a new user is connected
   userCount++;
   console.log('a user connected', userCount);
+
+  socket.on('disconnect', function(){
+    // Decerement user count when a user leaves the game
+    userCount--;
+    // Decrement number of people in the room
+    rooms[playerRoom[socket.id]]--;
+    // If there is no one in the room, delete the room
+    if ( rooms[playerRoom[socket.id]] === 0 ) {
+      delete rooms[playerRoom[socket.id]];
+    }
+    // Update rooms in lobby view
+    io.sockets.emit("receiveRooms", rooms);
+    console.log('user disconnected! Current user count : ', userCount);
+  });
+
+  /*************************************************************************************************
+   Game Rooms / Messages Sockets
+  *************************************************************************************************/
+  
   // Listen for createRoom
   socket.on('createRoom', function(roomInfo) {
     var roomName = roomInfo.roomname;
@@ -108,21 +96,19 @@ io.on('connection', function(socket){
       // Connect user to the room
       socket.join(roomName);
       // Send maze to user
-      console.log('Here is room Info : ', roomInfo);
       socket.emit('serverSendingMaze', {
         maze: mazes[roomLevel[roomName]],
         mazeLevel: roomLevel[roomName]
       });
-      console.log('A user made a room called ', roomName);
     } else {
       // Send error message back to user
       socket.emit('roomJoinError', 'roomAlreadyExsits');
     }
-    io.sockets.emit("receive", rooms);
+    // Update rooms in lobby view
+    io.sockets.emit("receiveRooms", rooms);
   });
 
   socket.on('joinRoom', function(roomName) {
-
     if ( !rooms[roomName] ) {
       // Send error message back to user
       socket.emit('roomJoinError', 'noSuchRoom');
@@ -147,34 +133,51 @@ io.on('connection', function(socket){
         maze: mazes[roomLevel[roomName]],
         mazeLevel: roomLevel[roomName]
       });
-      console.log('A user joined a room called ', roomName);
       /////////
-      console.log('Client ID ' + socket.id + ' joined room ' + roomName);
       io.in(roomName).emit('join', roomName);
       socket.emit('joined', roomName, socket.id);
       io.sockets.in(roomName).emit('ready');
     }
-    io.sockets.emit("receive", rooms);
+    // Update rooms in lobby view
+    io.sockets.emit("receiveRooms", rooms);
+  });
+  
+  // Listen for user request for rooms for lobby view
+  socket.on("getRooms", function() {
+    // Send room information back to user
+    socket.emit("receiveRooms", rooms);
   });
 
-  socket.on('message', function(message) {
-    // for a real app, would be room-only (not broadcast)
-    io.sockets.in(playerRoom[socket.id]).emit('message', message);
+  // Receive a user's message and return all messages posted in the room
+  socket.on('sendMessage', function(data) {
+    var roomName = playerRoom[socket.id];
+    var roomMessages = messages[roomName] || [];
+    // Add new message and userId to messages array
+    roomMessages.push({
+      userId: data.user,
+      message: data.message
+    });
+    // Save the update messages array
+    messages[roomName] = roomMessages;
+    // Send back ten newest messages to all users in the room
+    // var lastTenMessages = roomMessages.slice(roomMessages.length-10);
+    io.to(roomName).emit('receiveMessage', roomMessages);
   });
 
-  socket.on('ipaddr', function() {
-    var ifaces = os.networkInterfaces();
-    for (var dev in ifaces) {
-      ifaces[dev].forEach(function(details) {
-        if (details.family === 'IPv4' && details.address !== '127.0.0.1') {
-          socket.emit('ipaddr', details.address);
-        }
-      });
-    }
-  });
+  /*************************************************************************************************
+   Game Sockets
+  *************************************************************************************************/
 
-  socket.on("changedToVideo", function(){
-    socket.emit("roomName", playerRoom[socket.id]);
+  // Find best record from database
+  db.Leaderboard.findAll({
+    order: [['time', 'ASC']]
+  }).then(function(data){
+    var newData = {
+      time: data[0].dataValues.time,
+      user: data[0].dataValues.username
+    };
+    // Send best record back to user
+    socket.emit('receiveWorldRecord', newData);
   });
 
   // Receive a user's initial position and send it to all other players in the room
@@ -192,69 +195,61 @@ io.on('connection', function(socket){
     socket.broadcast.to(playerRoom[socket.id]).emit('incomingShot', shooter );
   });
 
-  // Receive a user's message and return all messages posted in the room
-socket.on('sendMessage', function(data) {
-  var roomName = playerRoom[socket.id];
-  var roomMessages = messages[roomName] || [];
-  // Add new message and userId to messages array
-  roomMessages.push({
-    userId: data.user,
-    message: data.message
-  });
-  // Save the update messages array
-  messages[roomName] = roomMessages;
-  // Send back ten newest messages to all users in the room
-  // var lastTenMessages = roomMessages.slice(roomMessages.length-10);
-  io.to(roomName).emit('receiveMessage', roomMessages);
-});
-
-// Decerement user count when a user leaves the game
-socket.on('disconnect', function(){
-  userCount--;
-  rooms[playerRoom[socket.id]]--;
-  if ( rooms[playerRoom[socket.id]] === 0 ) {
-    delete rooms[playerRoom[socket.id]];
-  }
-  io.sockets.emit("receive", rooms);
-  console.log('user disconnected! Current user count : ', userCount);
-});
-
-  // Send back number of users in the server
-  socket.on('numberOfUsers', function() {
-    socket.emit('receiveNumberOfUsers', userCount);
-  });
-
-  socket.on('gameover', function(data) {
-    console.log('in server', data);
-    socket.emit('gameoverlisten', data.time)
-  });
-
-  socket.on('saveTime', function(data) {
-    db.Leaderboard.create({
-      username: data.user,
-      time: data.time
-    }).then(function(user){
-      console.log(user);
-    });
+  // calculate distance between two users and send back percentage (%)
+  socket.on('calculateDistance', function(positionObject) {
+    socket.emit('receiveDistancePercentage', calculateDistance(positionObject));
   });
 
   socket.on('time', function(time) {
     socket.emit('timer', time)
   });
 
-  // calculate distance between two users and send back percentage (%)
-  socket.on('calculateDistance', function(positionObject) {
-    // console.log('Distance object from user : ', positionObject);
-    socket.emit('receiveDistancePercentage', calculateDistance(positionObject));
+  socket.on('gameover', function(data) {
+    socket.emit('gameoverlisten', data.time)
   });
-  
+
+  // Save personal record in the database
+  socket.on('saveTime', function(data) {
+    db.Leaderboard.create({
+      username: data.user,
+      time: data.time
+    });
+  });
+
   /*************************************************************************************************
-   Authentication Sockets
+   WebRTC Sockets
+  *************************************************************************************************/
+  
+  socket.on('ipaddr', function() {
+    var ifaces = os.networkInterfaces();
+    for (var dev in ifaces) {
+      ifaces[dev].forEach(function(details) {
+        if (details.family === 'IPv4' && details.address !== '127.0.0.1') {
+          socket.emit('ipaddr', details.address);
+        }
+      });
+    }
+  });
+
+  socket.on("changedToVideo", function(){
+    socket.emit("roomName", playerRoom[socket.id]);
+  });
+
+  /*************************************************************************************************
+   Testing Sockets
+  *************************************************************************************************/
+
+  // Send back number of users currently connected to server
+  socket.on('numberOfUsers', function() {
+    socket.emit('receiveNumberOfUsers', userCount);
+  });
+
+  /*************************************************************************************************
+   Authentication Sockets 
   *************************************************************************************************/
   socket.on('signup', function(userInfo) {
     var username = userInfo.username;
     var password = userInfo.password;
-    console.log('in signup');
     // Check whether username already exists
     db.User
       .findOne({ 
@@ -265,9 +260,10 @@ socket.on('disconnect', function(){
       .then( function(user) {
         bcrypt.genSalt(10, function(err2, salt) {
           if (user || err2) {
-            // If user already exists, send an error signal back to user
+            // If user already exists, send error message back to user
             socket.emit('signupResponse', 'Username already exists');
           } else {
+            // If username does not exist, then save username and hashed password
             bcrypt.hash(password, salt, function(err, hashedPassword) {
               db.User.create({ 
                 username: username,
@@ -276,7 +272,6 @@ socket.on('disconnect', function(){
             });
             usernames[socket.id] = username;
             socket.emit('signupResponse', null);
-            console.log('User created!');
           }
         });
       });
@@ -285,8 +280,7 @@ socket.on('disconnect', function(){
   socket.on('signin', function(userInfo) {
     var username = userInfo.username;
     var password = userInfo.password;
-    console.log('in signin');
-    // CHeck whether user already exists
+    // Check whether user already exists
     db.User
       .findOne({ 
         where: { 
@@ -294,15 +288,17 @@ socket.on('disconnect', function(){
         }
       })
       .then( function(user) {
-        // If there is no such user, then check password
         if ( !user ) {
+          // If there is no such user, send error message back to user
           socket.emit('signinResponse', {message: 'user does not exist'});
         } else {
+          // If user exists, then compare password
           bcrypt.compare(password, user.password, function(err, isAuthenticated) {
             if( err || !isAuthenticated) {
-              console.log(err, password, user.password);
+              // If there is database error or authentication failure, send error message back to user
               socket.emit('signinResponse', {message: "wrong password"});
             } else {
+              // If authentication was successful, then send username back to user
               usernames[socket.id] = username;
               socket.emit('signinResponse', {username: username});
             }
@@ -312,41 +308,25 @@ socket.on('disconnect', function(){
   });
 
 });
-// socket.emit('signup', {
-//   username: 'djk',
-//   password: 'hey'
-// });
-// socket.on('signupError', function(msg) {
-//   alert(msg);
-// });
-// socket.on('signinError', function(msg) {
-//   alert(msg);
-// });
 
 /*************************************************************************************************
  Binary JS - Music Stream
  *************************************************************************************************/
-// var binaryJSclients = {};
-// var songDownloadUrl = 'https://www.youtubeinmp3.com/fetch/?video=https://www.youtube.com/watch?v=' + videoId;
-// var savePath = fs.createWriteStream(path.join(__dirname, './song.mp3'));
-// binaryJSclients[clientId].client.send(fileStream);    
-// for ( var client in currentClients ) {
-//   currentClients[client].send(mp3File);
-// }
 
+// Save path to mp3 file in a variable
+var songFilePath = path.join(__dirname, '/songs/main.mp3');
+var jumpFilePath = path.join(__dirname, '/songs/jump.mp3');
+var shootFilePath = path.join(__dirname, '/songs/shoot.mp3');
+var files = [songFilePath, jumpFilePath, shootFilePath];
+
+// Create file read streams
+var songStream = fs.createReadStream.call(this, songFilePath);
+var jumpStream = fs.createReadStream.call(this, jumpFilePath);
+var shootStream = fs.createReadStream.call(this, shootFilePath);
 
 // Listen for connection with client
 binaryServer.on('connection', function(client) {
-  // Save path to mp3 file in a variable
-  var songFilePath = path.join(__dirname, '/songs/main.mp3');
-  var jumpFilePath = path.join(__dirname, '/songs/jump.mp3');
-  var shootFilePath = path.join(__dirname, '/songs/shoot.mp3');
-  var files = [songFilePath, jumpFilePath, shootFilePath];
-  // Save file stream in a variable
-  var songStream = fs.createReadStream.call(this, songFilePath);
-  var jumpStream = fs.createReadStream.call(this, jumpFilePath);
-  var shootStream = fs.createReadStream.call(this, shootFilePath);
-  // Send mp3 file to client
+  // Send mp3 files to client
   client.send(songStream);
   client.send(jumpStream);
   client.send(shootStream);
