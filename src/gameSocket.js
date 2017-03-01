@@ -76,7 +76,7 @@ window.inRoom = false;
 socket.on('firstPlayer', function(firstPlayer) {
 
   window.inRoom = true;
-  window.camera.position = firstPlayerPosition;
+  window.camera.position = window.firstPlayerPosition;
   window.camera.rotation = new BABYLON.Vector3(-0.38385, -.77694, 0);
   console.log('You are first player');
   engine.runRenderLoop(function(){
@@ -193,6 +193,7 @@ socket.on('serverSendingMaze', function(mazeData) {
   console.log('Received a maze from server');
   window.ground = addGround();
   buildBoundaryWalls(boxLength, window.scene);
+  window.createGhost();  
 });
 
 // Send player position to newly joined player(s)
@@ -248,3 +249,10 @@ var mousePosition = {
 // window.addEventListener("click", shootBullet.bind(this, window.camera));
 // Event listener for mouse movement
 // window.addEventListener("mousemove", window.mouseControl.bind(this, window.camera, mousePosition));
+
+
+
+/*******************************************************
+ Monsters / Obstacles
+*******************************************************/
+
