@@ -306,8 +306,9 @@ var buildSimpleMaze = function(maze) {
  Monsters / Obstacles
 *******************************************************/
 window.didCollide = function(o1, o2) {
-    var bulletDistance = o1.position.x - o2.position.x + o1.position.y - o2.position.y + o1.position.z - o2.position.z;
-    if ( bulletDistance  < 2 ) {
+    var bulletDistance = Math.pow ( Math.pow(o1.position.x - o2.position.x, 2) + Math.pow(o1.position.y - o2.position.y, 2) + Math.pow(o1.position.z - o2.position.z, 2), 1/2 );
+
+    if ( bulletDistance < 5 ) {
         return true;
     } else {
         return false;
@@ -329,7 +330,7 @@ window.createGhost = function() {
         // console.log('Number of bullets : ', bullets.length);
         bullets.forEach( (bullet) => {
             if ( window.didCollide(bullet, sphere) ) {
-                sphere.position = new BABYLON.Vector3(100 * Math.random(), 100 * Math.random(), 100 * Math.random());
+                sphere.position = new BABYLON.Vector3(100 * Math.random(), 2, 100 * Math.random());
             };
         });
 
