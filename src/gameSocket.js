@@ -15,20 +15,7 @@ setInterval ( function() {
 }, 3000);
 
 
-var originalTime = 0;
-window.currentTime = 0;
-window.finished = false;
-window.distancePercentage = 100;
-setInterval( () => {
-  if ( originalTime !== 0 ) {
-    var seconds = Math.round((new Date().getTime() - originalTime) / 100 ) / 10;
-    var minutes = Math.floor(seconds / 60);
-    var seconds = ( !(seconds % 1) ? ( Math.round((seconds % 60) * 10) / 10 + '.0') : Math.round((seconds % 60) * 10) / 10 );
-    var minutes = ( minutes === 0 ? '' : (minutes + ':') );
-    var seconds = seconds.toString().length === 3 ? '0' + seconds : seconds;
-    currentTime = minutes + seconds;
-  }
-}, 100);
+
 
 var protocolPrefix = (window.location.protocol === 'https:') ? 'wss:' : 'ws:';
 
@@ -84,7 +71,6 @@ socket.on('secondPlayer', function(secondPlayer) {
 
 
   window.camera.rotation = new BABYLON.Vector3(-0.38385, -.77694, 0);
-  originalTime = new Date().getTime();
   // Send player position to other player
 
   socket.emit('sendPlayer', window.camera.position);
@@ -173,7 +159,6 @@ socket.on('serverSendingMaze', function(mazeData) {
 // Send player position to newly joined player(s)
 socket.on('newPlayerRequestInfo', function() {
   socket.emit('sendPlayer', window.camera.position);
-  window.originalTime = new Date().getTime();
   window.camera.keysUp = [87];
   window.camera.keysDown = [83]; 
   window.camera.keysLeft = [65]; 
@@ -210,23 +195,7 @@ socket.on("receiveWorldRecord", function (data){
   var stringTime = !!minutes ? minutes + ':' + seconds : seconds;
   window.outputplaneTexture2.drawText( "World Record : " + stringTime + ' by ' + data.user, null, 280, "bold 30px verdana", "white", "#0000AA");
 });
-/*******************************************************
- User Control Event Listeners
-*******************************************************/
 
-var mousePosition = {
-  previousX: null,
-  previousY: null
-};
-
-// Event listener for shooting bullets
-// window.addEventListener("click", shootBullet.bind(this, window.camera));
-// Event listener for mouse movement
-// window.addEventListener("mousemove", window.mouseControl.bind(this, window.camera, mousePosition));
-
-
-
-/*******************************************************
- Monsters / Obstacles
-*******************************************************/
-
+socket.on('receiveStartTime', function(time) {
+  window.originalTime = time;
+});

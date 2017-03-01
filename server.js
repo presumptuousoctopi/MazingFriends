@@ -140,6 +140,8 @@ io.on('connection', function(socket){
     }
     // Update rooms in lobby view
     io.sockets.emit("receiveRooms", rooms);
+    // Start timer in the room
+    io.to(roomName).emit('receiveStartTime', new Date().getTime() );
   });
   
   // Listen for user request for rooms for lobby view

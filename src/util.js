@@ -495,6 +495,23 @@ window.makeLeaderBoard = function() {
   outputplane2.material.backFaceCulling = false;
 };
 
+window.runClock = function() {
+    window.originalTime = 0;
+    window.currentTime = 0;
+    window.finished = false;
+    window.distancePercentage = 100;
+    setInterval( () => {
+      if ( originalTime !== 0 ) {
+        var seconds = Math.round((new Date().getTime() - originalTime) / 100 ) / 10;
+        var minutes = Math.floor(seconds / 60);
+        var seconds = ( !(seconds % 1) ? ( Math.round((seconds % 60) * 10) / 10 + '.0') : Math.round((seconds % 60) * 10) / 10 );
+        var minutes = ( minutes === 0 ? '' : (minutes + ':') );
+        var seconds = seconds.toString().length === 3 ? '0' + seconds : seconds;
+        currentTime = minutes + seconds;
+      }
+    }, 100);
+};
+
 
   // outputplaneTexture2.drawText("World Record", null, 140, "bold 100px verdana", "white", "#0000AA");
 
