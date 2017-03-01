@@ -193,7 +193,6 @@ socket.on('serverSendingMaze', function(mazeData) {
   console.log('Received a maze from server');
   window.ground = addGround();
   buildBoundaryWalls(boxLength, window.scene);
-<<<<<<< HEAD
   if ( window.mazeLevel === '3' ) {
     window.createGhost();
     window.createGhost();
@@ -201,8 +200,6 @@ socket.on('serverSendingMaze', function(mazeData) {
     window.createGhost();    
   }
   window.createGhost();  
-=======
->>>>>>> Add select level feature
 });
 
 // Send player position to newly joined player(s)
