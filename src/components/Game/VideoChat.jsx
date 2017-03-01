@@ -293,11 +293,7 @@ class VideoChat extends React.Component {
             pcConfig.close();
             pcConfig = null;
             localVideo.src = null;
-<<<<<<< HEAD
             remoteVideo.src = null;
-=======
-            localStream.getTracks().forEach(track => track.stop());
->>>>>>> switch off camera when player quits
             document.getElementById("canvas").remove();
             socket.emit("quit", room);
             browserHistory.push({
