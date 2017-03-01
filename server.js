@@ -213,11 +213,12 @@ io.on('connection', function(socket){
     if ( !finalTime[playerRoom[socket.id]] ) {
       finalTime[playerRoom[socket.id]] = {
         time: data.time,
-        user: data.user + ' & '
+        user: data.user + ' & ',
+        id: socket.id
       };
-    } else {
+    } else if ( finalTime[playerRoom[socket.id]]['id'] !== socket.id ) {
       var finalTimeData = finalTime[playerRoom[socket.id]];
-      if ( finalTimeData.time > data.time ) {
+      if ( finalTimeData.time < data.time ) {
         finalTime[playerRoom[socket.id]] = {
           time: data.time,
           user: finalTime[playerRoom[socket.id]].user + data.user
