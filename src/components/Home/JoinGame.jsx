@@ -39,21 +39,26 @@ class Lobby extends React.Component {
 
     render() {
         return (
-            <table>
-                <tr>
-                    <th>Roomname</th>
-                    <th>Number of Players</th>
-                </tr>
-                {this.state.roomNames.map((key, index) => {
-                    console.log(key);
-                return (
-                <tr>
-                <td>{key}</td>
-                <td>{this.state.rooms[key]}/2</td>
-                </tr>
-                )
-            })}
-            </table>
+            <div className="TableContainer">
+                <table className="LobbyTable">
+                    <tr>
+                        <td>Roomname</td>
+                        <td>User</td>
+                        <td>Capacity</td>
+                        <td>Join</td>
+                    </tr>
+                    {this.state.roomNames.map((key, index) => {
+                        console.log(key);
+                    return (
+                    <tr>
+                    <td>{key}</td>
+                    <td>{this.state.rooms[key]}/2</td>
+                    <td>{this.state.rooms[key] === 2 ? <p>Room Full</p> : <button>Join Game</button>}</td>
+                    </tr>
+                    )
+                })}
+                </table>
+            </div>
         );
     }
 }

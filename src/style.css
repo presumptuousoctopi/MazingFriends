@@ -70,7 +70,6 @@ html, body {
   margin-right: 15px;
   margin-bottom: 15px;
   padding: 10px;
-  background-color: darkred;
   opacity: 0.9;
   border: solid 5px darkred;
 }
@@ -87,6 +86,23 @@ html, body {
   vertical-align: bottom;
   background-color: rgba(255,255,255, 0.2);
   padding: 15px;
+}
+
+.TableContainer {
+  height: 63%;
+  width: 91%;
+  position: absolute;
+  margin: 0px 15px 0px 15px;
+  overflow-y: scroll;
+  vertical-align: bottom;
+  background-color: rgba(255,255,255, 0.1);
+}
+
+.Profile {
+  border: solid;
+  width: 64%;
+  height: 90%;
+  margin: 20px;
 }
 
 .ChatBox {
@@ -134,6 +150,30 @@ table {
 	font-size: xx-large;
 	text-align: left;
 	margin: 10px;
+}
+
+.Lobby {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 20px;
+  width: 30%;
+  margin-right: 20px;
+  border: solid;
+  height: 90%;
+}
+
+.LobbyTable {
+  font-size: 20px;
+  width: 95%;
+  margin: 5px;
+  text-align: center;
+}
+
+.NewGame {
+  border-bottom: dotted;
+  padding-bottom: 15px;
+  margin: 10px;
 }
 
 .Controls {

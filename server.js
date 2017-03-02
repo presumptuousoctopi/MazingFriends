@@ -75,13 +75,15 @@ io.on('connection', function(socket){
   db.Leaderboard.findAll({
     order: [['time', 'ASC']]
   }).then(function(data){
-    var newData = {
-      time: data[0].dataValues.time,
-      user: data[0].dataValues.username
-    };
-    console.log('Here is all data : ', data);
-    console.log('Here is the data sending to client : ', newData);
-    socket.emit('receiveWorldRecord', newData);
+    if(data.length > 0) {
+      var newData = {
+        time: data[0].dataValues.time,
+        user: data[0].dataValues.username   
+      };
+        console.log('Here is all data : ', data);
+        console.log('Here is the data sending to client : ', newData);
+        socket.emit('receiveWorldRecord', newData);
+     }
   })
   // Increment every time a new user is connected
   userCount++;
