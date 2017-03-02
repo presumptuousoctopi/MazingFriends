@@ -79,7 +79,7 @@ class TextChat extends React.Component {
         </div>
         <div className="TextInput">
           <form onSubmit={this.sendMessage.bind(this)}> 
-            <input type="text" className="chatBar" value={this.state.message} onChange={this.updateInput.bind(this)} />
+            <input type="text" className="chatBar" onFocus={this.onFocus.bind(this)} onBlur={this.onBlur.bind(this)} value={this.state.message} onChange={this.updateInput.bind(this)} />
             <input type="submit" value="Submit" className="chatBtn" />
           </form>
         </div>
