@@ -55,6 +55,25 @@ var finalTime = {};
 
 
 io.on('connection', function(socket){
+  //send world record to client
+  socket.on("getRooms", function() {
+    console.log("request to get all rooms");
+    socket.emit("receive", rooms);
+  });
+  db.Leaderboard.findAll({
+    order: [['time', 'ASC']]
+  }).then(function(data){
+    if(data.length > 0) {
+      var newData = {
+        time: data[0].dataValues.time,
+        user: data[0].dataValues.username   
+      };
+        console.log('Here is all data : ', data);
+        console.log('Here is the data sending to client : ', newData);
+        socket.emit('receiveWorldRecord', newData);
+     }
+  })
+
   // Increment every time a new user is connected
   userCount++;
   console.log('a user connected', userCount);
@@ -102,6 +121,25 @@ io.on('connection', function(socket){
         maze: mazes[roomLevel[roomName]],
         mazeLevel: roomLevel[roomName]
       });
+      // Find best record from database
+      db.Leaderboard.findAll({
+        where: {
+          level: Number(roomLevel[playerRoom[socket.id]])
+        },
+        order: [['time', 'ASC']]
+      }).then(function(data){
+        if ( data.length === 0 ) {
+          return;
+        }
+        var newData = {
+          time: data[0].dataValues.time,
+          user: data[0].dataValues.username
+        };
+        // Send best record back to users
+        var roomName = playerRoom[socket.id];
+        console.log('Send back world record to users in ', roomName);
+        io.sockets.in(roomName).emit('receiveWorldRecord', newData);
+      });
     } else {
       // Send error message back to user
       socket.emit('roomJoinError', 'roomAlreadyExsits');
@@ -134,6 +172,25 @@ io.on('connection', function(socket){
       socket.emit('serverSendingMaze', {
         maze: mazes[roomLevel[roomName]],
         mazeLevel: roomLevel[roomName]
+      });
+      // Find best record from database
+      db.Leaderboard.findAll({
+        where: {
+          level: Number(roomLevel[playerRoom[socket.id]])
+        },
+        order: [['time', 'ASC']]
+      }).then(function(data){
+        if ( data.length === 0 ) {
+          return;
+        }
+        var newData = {
+          time: data[0].dataValues.time,
+          user: data[0].dataValues.username
+        };
+        // Send best record back to users
+        var roomName = playerRoom[socket.id];
+        console.log('Send back world record to users in ', roomName);
+        io.sockets.in(roomName).emit('receiveWorldRecord', newData);
       });
       /////////
       io.in(roomName).emit('join', roomName);
@@ -173,20 +230,6 @@ io.on('connection', function(socket){
    Game Sockets
   *************************************************************************************************/
 
-  // Find best record from database
-  db.Leaderboard.findAll({
-    order: [['time', 'ASC']]
-  }).then(function(data){
-    if ( data.length === 0 ) {
-      return;
-    }
-    var newData = {
-      time: data[0].dataValues.time,
-      user: data[0].dataValues.username
-    };
-    // Send best record back to user
-    socket.emit('receiveWorldRecord', newData);
-  });
 
   // Receive a user's initial position and send it to all other players in the room
   socket.on('sendPlayer', function (playerCamera) {
@@ -244,7 +287,8 @@ io.on('connection', function(socket){
       }
       db.Leaderboard.create({
         username: username,
-        time: integerTime
+        time: integerTime,
+        level: Number(roomLevel[playerRoom[socket.id]])
       }).then( (data) => {
         console.log('Saved : ', data);
       }) ;
