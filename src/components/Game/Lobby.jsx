@@ -1,5 +1,5 @@
 import React from 'react';
-
+import FriendSearch from './FriendSearch.jsx'
 
 class Lobby extends React.Component {
     constructor() {
@@ -32,13 +32,14 @@ class Lobby extends React.Component {
             }, function (data) {
 
             })
-            context.forceUpdate();
+            //context.forceUpdate();
         })
         socket.emit("getRooms");
     }
-
     render() {
         return (
+            <div>
+                <FriendSearch/>
             <table>
                 <tr>
                     <th>Roomname</th>
@@ -54,6 +55,7 @@ class Lobby extends React.Component {
                 )
             })}
             </table>
+            </div>
         );
     }
 }

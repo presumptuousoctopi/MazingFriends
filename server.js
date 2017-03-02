@@ -52,6 +52,8 @@ var usernames = {};
 var roomLevel = {};
 var finalTime = {};
 // Start socket.io server
+
+
 io.on('connection', function(socket){
   // Increment every time a new user is connected
   userCount++;
@@ -76,10 +78,10 @@ io.on('connection', function(socket){
   *************************************************************************************************/
   
   // Listen for createRoom
-  socket.on('createRoom', function(roomInfo) {
+  socket.on('createRoom', function (roomInfo) {
     var roomName = roomInfo.roomname;
     // If no empty room exists, make a new room and put user into it
-    if ( !rooms[roomName] ) {
+    if (!rooms[roomName]) {
       // Save game level for second player
       roomLevel[roomName] = roomInfo.level;
       // Create/save room and increment room count
@@ -112,7 +114,7 @@ io.on('connection', function(socket){
     if ( !rooms[roomName] ) {
       // Send error message back to user
       socket.emit('roomJoinError', 'noSuchRoom');
-    } else if ( rooms[roomName] === 2 ) {
+    } else if (rooms[roomName] === 2) {
       // Send error message back to user
       socket.emit('roomJoinError', 'roomFull');
     } else {
@@ -143,6 +145,7 @@ io.on('connection', function(socket){
     // Start timer in the room
     io.to(roomName).emit('receiveStartTime', new Date().getTime() );
   });
+
   
   // Listen for user request for rooms for lobby view
   socket.on("getRooms", function() {
@@ -186,18 +189,18 @@ io.on('connection', function(socket){
   });
 
   // Receive a user's initial position and send it to all other players in the room
-  socket.on('sendPlayer', function(playerCamera) {
+  socket.on('sendPlayer', function (playerCamera) {
     socket.broadcast.to(playerRoom[socket.id]).emit('receivePlayer', playerCamera);
   });
 
   // Receive a user's updated position and send it to all other players in the room
-  socket.on('userPositionChanged', function(userPosition) {
+  socket.on('userPositionChanged', function (userPosition) {
     socket.broadcast.to(playerRoom[socket.id]).emit('receiveUserPosition', userPosition);
   });
 
   // Receive initial location of bullet that was fired and send it to all other players in the room
-  socket.on('shotFired', function(shooter) {
-    socket.broadcast.to(playerRoom[socket.id]).emit('incomingShot', shooter );
+  socket.on('shotFired', function (shooter) {
+    socket.broadcast.to(playerRoom[socket.id]).emit('incomingShot', shooter);
   });
 
   // calculate distance between two users and send back percentage (%)
@@ -253,7 +256,10 @@ io.on('connection', function(socket){
   /*************************************************************************************************
    WebRTC Sockets
   *************************************************************************************************/
-  
+  socket.on('message', function(message) {
+    // for a real app, would be room-only (not broadcast)
+    socket.broadcast.emit('message', message);
+  });
   socket.on('ipaddr', function() {
     var ifaces = os.networkInterfaces();
     for (var dev in ifaces) {
@@ -286,61 +292,75 @@ io.on('connection', function(socket){
     var password = userInfo.password;
     // Check whether username already exists
     db.User
-      .findOne({ 
-        where: { 
-          username: username 
-        }
-      })
-      .then( function(user) {
-        bcrypt.genSalt(10, function(err2, salt) {
-          if (user || err2) {
-            // If user already exists, send error message back to user
-            socket.emit('signupResponse', 'Username already exists');
-          } else {
-            // If username does not exist, then save username and hashed password
-            bcrypt.hash(password, salt, function(err, hashedPassword) {
-              db.User.create({ 
-                username: username,
-                password: hashedPassword
-              })
-            });
-            usernames[socket.id] = username;
-            socket.emit('signupResponse', null);
+        .findOne({
+          where: {
+            username: username
           }
+        })
+        .then(function (user) {
+          bcrypt.genSalt(10, function (err2, salt) {
+            if (user || err2) {
+              // If user already exists, send error message back to user
+              socket.emit('signupResponse', 'Username already exists');
+            } else {
+              // If username does not exist, then save username and hashed password
+              bcrypt.hash(password, salt, function (err, hashedPassword) {
+                db.User.create({
+                  username: username,
+                  password: hashedPassword
+                })
+              });
+              usernames[socket.id] = username;
+              socket.emit('signupResponse', null);
+            }
+          })
         });
-      });
   });
-
-  socket.on('signin', function(userInfo) {
+  socket.on('signin', function (userInfo) {
     var username = userInfo.username;
     var password = userInfo.password;
     // Check whether user already exists
     db.User
-      .findOne({ 
-        where: { 
-          username: username 
-        }
-      })
-      .then( function(user) {
-        if ( !user ) {
-          // If there is no such user, send error message back to user
-          socket.emit('signinResponse', {message: 'user does not exist'});
-        } else {
-          // If user exists, then compare password
-          bcrypt.compare(password, user.password, function(err, isAuthenticated) {
-            if( err || !isAuthenticated) {
-              // If there is database error or authentication failure, send error message back to user
-              socket.emit('signinResponse', {message: "wrong password"});
-            } else {
-              // If authentication was successful, then send username back to user
-              usernames[socket.id] = username;
-              socket.emit('signinResponse', {username: username});
-            }
-          });
-        }
-      })
+        .findOne({
+          where: {
+            username: username
+          }
+        })
+        .then( function(user) {
+          if ( !user ) {
+            // If there is no such user, send error message back to user
+            socket.emit('signinResponse', {message: 'user does not exist'});
+          } else {
+            // If user exists, then compare password
+            bcrypt.compare(password, user.password, function(err, isAuthenticated) {
+              if( err || !isAuthenticated) {
+                // If there is database error or authentication failure, send error message back to user
+                socket.emit('signinResponse', {message: "wrong password"});
+              } else {
+                // If authentication was successful, then send username back to user
+                usernames[socket.id] = username;
+                socket.emit('signinResponse', {username: username});
+              }
+            });
+          }
+        })
   });
+  socket.on("getUsers", function(req) {
+    db.User
+        .findOne({
+          where: {
+            username: req
+          }
+        })
+        .then(function (user) {
+          if (!user) {
+            socket.emit('users', {data: 'user does not exist'});
+          } else {
+            socket.emit('users', {data: user})
+          }
+        })
 
+  });
 });
 
 /*************************************************************************************************
