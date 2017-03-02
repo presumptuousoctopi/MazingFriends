@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d5e3d34827a7fb668d03"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c571058be7b3f3104334"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31772,6 +31772,9 @@
 	      var socket = window.socket;
 	      var context = this;
 	      socket.on('signinResponse', function (obj) {
+	        if (window.sessionStorage.getItem('user')) {
+	          alert("Youre already logged in!");
+	        }
 	        if (obj.message) {
 	          alert(obj.message);
 	        } else {
@@ -31965,7 +31968,7 @@
 	
 	var _ProfileView2 = _interopRequireDefault(_ProfileView);
 	
-	var _LobbyView = __webpack_require__(/*! ./LobbyView.jsx */ 293);
+	var _LobbyView = __webpack_require__(/*! ./LobbyView.jsx */ 294);
 	
 	var _LobbyView2 = _interopRequireDefault(_LobbyView);
 	
@@ -32035,7 +32038,7 @@
 	
 	var _FriendSearch2 = _interopRequireDefault(_FriendSearch);
 	
-	var _FriendView = __webpack_require__(/*! ./FriendView.jsx */ 296);
+	var _FriendView = __webpack_require__(/*! ./FriendView.jsx */ 293);
 	
 	var _FriendView2 = _interopRequireDefault(_FriendView);
 	
@@ -32261,385 +32264,6 @@
 
 /***/ },
 /* 293 */
-/*!*******************************************!*\
-  !*** ./src/components/Home/LobbyView.jsx ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-loader/~/react-hot-api/modules/index.js */ 2), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 10), ReactMount = __webpack_require__(/*! react-dom/lib/ReactMount */ 12), React = __webpack_require__(/*! react */ 103); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 103);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _NewGame = __webpack_require__(/*! ./NewGame.jsx */ 294);
-	
-	var _NewGame2 = _interopRequireDefault(_NewGame);
-	
-	var _JoinGame = __webpack_require__(/*! ./JoinGame.jsx */ 295);
-	
-	var _JoinGame2 = _interopRequireDefault(_JoinGame);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Lobby = function (_React$Component) {
-	  _inherits(Lobby, _React$Component);
-	
-	  function Lobby() {
-	    _classCallCheck(this, Lobby);
-	
-	    return _possibleConstructorReturn(this, (Lobby.__proto__ || Object.getPrototypeOf(Lobby)).apply(this, arguments));
-	  }
-	
-	  _createClass(Lobby, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'Lobby' },
-	        _react2.default.createElement(_NewGame2.default, null),
-	        _react2.default.createElement(_JoinGame2.default, null)
-	      );
-	    }
-	  }]);
-	
-	  return Lobby;
-	}(_react2.default.Component);
-	
-	exports.default = Lobby;
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 278); if (makeExportsHot(module, __webpack_require__(/*! react */ 103))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "LobbyView.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../~/webpack/buildin/module.js */ 1)(module)))
-
-/***/ },
-/* 294 */
-/*!*****************************************!*\
-  !*** ./src/components/Home/NewGame.jsx ***!
-  \*****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-loader/~/react-hot-api/modules/index.js */ 2), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 10), ReactMount = __webpack_require__(/*! react-dom/lib/ReactMount */ 12), React = __webpack_require__(/*! react */ 103); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 103);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _TitleView = __webpack_require__(/*! ./../TitleView.jsx */ 286);
-	
-	var _TitleView2 = _interopRequireDefault(_TitleView);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 194);
-	
-	var _Controls = __webpack_require__(/*! ./../Game/Controls.jsx */ 284);
-	
-	var _Controls2 = _interopRequireDefault(_Controls);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Home = function (_React$Component) {
-	  _inherits(Home, _React$Component);
-	
-	  function Home() {
-	    _classCallCheck(this, Home);
-	
-	    var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this));
-	
-	    _this.state = {
-	      //view: 'Home',
-	      createRoomName: '',
-	      joinRoomName: '',
-	      controlsView: false
-	    };
-	    _this.createRoomButton = _this.createRoomButton.bind(_this);
-	    _this.handleChange = _this.handleChange.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(Home, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var context = this;
-	      socket.on('roomJoinError', function (message) {
-	        _reactRouter.browserHistory.push({
-	          pathname: '/home'
-	        });
-	        alert(message);
-	      });
-	    }
-	  }, {
-	    key: 'createRoomButton',
-	    value: function createRoomButton() {
-	      window.socket.emit('createRoom', {
-	        roomname: this.state.createRoomName,
-	        level: 1
-	      });
-	      console.log('room created: ', this.state.createRoomName);
-	    }
-	  }, {
-	    key: 'handleChange',
-	    value: function handleChange(e) {
-	      this.setState(_defineProperty({}, e.target.name, e.target.value));
-	      console.log(this.state);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'NewGame' },
-	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          'Create New Game'
-	        ),
-	        _react2.default.createElement(
-	          'form',
-	          null,
-	          'Room Name:',
-	          _react2.default.createElement('input', { onChange: this.handleChange, name: 'createRoomName' }),
-	          ' ',
-	          _react2.default.createElement('br', null),
-	          'Level:',
-	          _react2.default.createElement('br', null),
-	          'Invite ',
-	          _react2.default.createElement('input', { type: 'text', placeholder: 'optional' }),
-	          ' ',
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/game' },
-	            _react2.default.createElement(
-	              'button',
-	              { className: 'Play', onClick: this.createRoomButton },
-	              'Create Game'
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return Home;
-	}(_react2.default.Component);
-	
-	/*
-	      <div classNameName={this.state.view}>
-	        <div className="NewView">
-	          <button className="homeButtons" onClick={this.newButtonClick}>New Game</button>
-	          <div className={this.state.new}>
-	          Room Name:
-	          <input onChange={this.handleChange} name="createRoomName"></input>
-	          <Link to="/game"><button className="Play" onClick={this.createRoomButton}>Create Room</button></Link>
-	          </div>
-	        </div>
-	        <div className="JoinView">
-	          <button className="homeButtons" onClick={this.joinButtonClick}>Join Game</button>
-	          <div className={this.state.join}>
-	          Room Name:
-	          <input onChange={this.handleChange} name="joinRoomName"></input>
-	        <Link to="/game"><button className="Play" onClick={this.joinRoomButton}>Join Room</button></Link>
-	          </div>
-	          <br/>
-	        </div>
-	      </div>
-	*/
-	
-	exports.default = Home;
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 278); if (makeExportsHot(module, __webpack_require__(/*! react */ 103))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "NewGame.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../~/webpack/buildin/module.js */ 1)(module)))
-
-/***/ },
-/* 295 */
-/*!******************************************!*\
-  !*** ./src/components/Home/JoinGame.jsx ***!
-  \******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-loader/~/react-hot-api/modules/index.js */ 2), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 10), ReactMount = __webpack_require__(/*! react-dom/lib/ReactMount */ 12), React = __webpack_require__(/*! react */ 103); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 103);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Lobby = function (_React$Component) {
-	    _inherits(Lobby, _React$Component);
-	
-	    function Lobby() {
-	        _classCallCheck(this, Lobby);
-	
-	        var _this = _possibleConstructorReturn(this, (Lobby.__proto__ || Object.getPrototypeOf(Lobby)).call(this));
-	
-	        _this.state = {
-	            rooms: {},
-	            roomNames: []
-	        };
-	        _this.joinRoomButton = _this.joinRoomButton.bind(_this);
-	        return _this;
-	    }
-	
-	    _createClass(Lobby, [{
-	        key: "componentDidMount",
-	        value: function componentDidMount() {
-	            var context = this;
-	            console.log("component did mount in joinGame");
-	            var context = this;
-	            socket.on("receiveRooms", function (data) {
-	                console.log("CURRENT DATA:", data);
-	                for (var key in data) {
-	                    if (data[key] === 0) {
-	                        delete data[key];
-	                    }
-	                    //this might be hacky- check why the server is storing a null value
-	                    if (data[key] === null) {
-	                        delete data[key];
-	                    }
-	                }
-	                delete data[undefined];
-	                context.setState({
-	                    rooms: data,
-	                    roomNames: Object.keys(data)
-	                }, function (data) {});
-	                //context.forceUpdate();
-	            });
-	            socket.emit("getRooms");
-	        }
-	    }, {
-	        key: "joinRoomButton",
-	        value: function joinRoomButton(room) {
-	            window.socket.emit('joinRoom', room);
-	        }
-	    }, {
-	        key: "render",
-	        value: function render() {
-	            var _this2 = this;
-	
-	            return _react2.default.createElement(
-	                "div",
-	                { className: "TableContainer" },
-	                _react2.default.createElement(
-	                    "table",
-	                    { className: "LobbyTable" },
-	                    _react2.default.createElement(
-	                        "tbody",
-	                        null,
-	                        _react2.default.createElement(
-	                            "tr",
-	                            null,
-	                            _react2.default.createElement(
-	                                "td",
-	                                null,
-	                                "Roomname"
-	                            ),
-	                            _react2.default.createElement(
-	                                "td",
-	                                null,
-	                                "Capacity"
-	                            ),
-	                            _react2.default.createElement(
-	                                "td",
-	                                null,
-	                                "Join"
-	                            )
-	                        ),
-	                        this.state.roomNames.map(function (key, index) {
-	                            console.log(key);
-	                            return _react2.default.createElement(
-	                                "tr",
-	                                null,
-	                                _react2.default.createElement(
-	                                    "td",
-	                                    null,
-	                                    key
-	                                ),
-	                                _react2.default.createElement(
-	                                    "td",
-	                                    null,
-	                                    _this2.state.rooms[key],
-	                                    "/2"
-	                                ),
-	                                _react2.default.createElement(
-	                                    "td",
-	                                    null,
-	                                    _this2.state.rooms[key] === 2 ? _react2.default.createElement(
-	                                        "p",
-	                                        null,
-	                                        "Room Full"
-	                                    ) : _react2.default.createElement(
-	                                        Link,
-	                                        { to: "/game" },
-	                                        _react2.default.createElement(
-	                                            "button",
-	                                            { className: "Play", onClick: _this2.joinRoomButton.bind(null, key) },
-	                                            "Join Room"
-	                                        )
-	                                    ),
-	                                    " "
-	                                )
-	                            );
-	                        })
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Lobby;
-	}(_react2.default.Component);
-	
-	exports.default = Lobby;
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 278); if (makeExportsHot(module, __webpack_require__(/*! react */ 103))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "JoinGame.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../~/webpack/buildin/module.js */ 1)(module)))
-
-/***/ },
-/* 296 */
 /*!********************************************!*\
   !*** ./src/components/Home/FriendView.jsx ***!
   \********************************************/
@@ -32715,6 +32339,405 @@
 	exports.default = FriendView;
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 278); if (makeExportsHot(module, __webpack_require__(/*! react */ 103))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "FriendView.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../~/webpack/buildin/module.js */ 1)(module)))
+
+/***/ },
+/* 294 */
+/*!*******************************************!*\
+  !*** ./src/components/Home/LobbyView.jsx ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-loader/~/react-hot-api/modules/index.js */ 2), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 10), ReactMount = __webpack_require__(/*! react-dom/lib/ReactMount */ 12), React = __webpack_require__(/*! react */ 103); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 103);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _NewGame = __webpack_require__(/*! ./NewGame.jsx */ 295);
+	
+	var _NewGame2 = _interopRequireDefault(_NewGame);
+	
+	var _JoinGame = __webpack_require__(/*! ./JoinGame.jsx */ 296);
+	
+	var _JoinGame2 = _interopRequireDefault(_JoinGame);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Lobby = function (_React$Component) {
+	  _inherits(Lobby, _React$Component);
+	
+	  function Lobby() {
+	    _classCallCheck(this, Lobby);
+	
+	    return _possibleConstructorReturn(this, (Lobby.__proto__ || Object.getPrototypeOf(Lobby)).apply(this, arguments));
+	  }
+	
+	  _createClass(Lobby, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'Lobby' },
+	        _react2.default.createElement(_NewGame2.default, null),
+	        _react2.default.createElement(_JoinGame2.default, null)
+	      );
+	    }
+	  }]);
+	
+	  return Lobby;
+	}(_react2.default.Component);
+	
+	exports.default = Lobby;
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 278); if (makeExportsHot(module, __webpack_require__(/*! react */ 103))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "LobbyView.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../~/webpack/buildin/module.js */ 1)(module)))
+
+/***/ },
+/* 295 */
+/*!*****************************************!*\
+  !*** ./src/components/Home/NewGame.jsx ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-loader/~/react-hot-api/modules/index.js */ 2), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 10), ReactMount = __webpack_require__(/*! react-dom/lib/ReactMount */ 12), React = __webpack_require__(/*! react */ 103); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 103);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _TitleView = __webpack_require__(/*! ./../TitleView.jsx */ 286);
+	
+	var _TitleView2 = _interopRequireDefault(_TitleView);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 194);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Home = function (_React$Component) {
+	  _inherits(Home, _React$Component);
+	
+	  function Home() {
+	    _classCallCheck(this, Home);
+	
+	    var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this));
+	
+	    _this.state = {
+	      //view: 'Home',
+	      createRoomName: '',
+	      joinRoomName: '',
+	      controlsView: false,
+	      gameLevel: 2
+	    };
+	    _this.createRoomButton = _this.createRoomButton.bind(_this);
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(Home, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var context = this;
+	      socket.on('roomJoinError', function (message) {
+	        _reactRouter.browserHistory.push({
+	          pathname: '/home'
+	        });
+	        alert(message);
+	      });
+	    }
+	  }, {
+	    key: 'createRoomButton',
+	    value: function createRoomButton() {
+	      var roomInfo = {
+	        roomname: this.state.createRoomName,
+	        level: this.state.gameLevel
+	      };
+	
+	      window.socket.emit('createRoom', roomInfo);
+	      console.log('room created: ', this.state.createRoomName);
+	    }
+	  }, {
+	    key: 'handleChange',
+	    value: function handleChange(e) {
+	      this.setState(_defineProperty({}, e.target.name, e.target.value));
+	      console.log(this.state);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'NewGame' },
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Create New Game'
+	        ),
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'NewGameForm' },
+	          'Room Name:',
+	          _react2.default.createElement('input', { onChange: this.handleChange, name: 'createRoomName' }),
+	          ' ',
+	          _react2.default.createElement('br', null),
+	          'Level:',
+	          _react2.default.createElement(
+	            'select',
+	            { onChange: this.handleChange, value: this.state.gameLevel, name: 'gameLevel', required: true },
+	            _react2.default.createElement(
+	              'option',
+	              { value: '1' },
+	              'Easy'
+	            ),
+	            _react2.default.createElement(
+	              'option',
+	              { value: '2' },
+	              'Normal'
+	            ),
+	            _react2.default.createElement(
+	              'option',
+	              { value: '3' },
+	              'Hard'
+	            )
+	          ),
+	          _react2.default.createElement('br', null),
+	          'Invite: ',
+	          _react2.default.createElement('input', { type: 'text', placeholder: 'optional' }),
+	          ' ',
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/game' },
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'newGameButton', onClick: this.createRoomButton },
+	              'Create Game'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Home;
+	}(_react2.default.Component);
+	
+	/*
+	      <div classNameName={this.state.view}>
+	        <div className="NewView">
+	          <button className="homeButtons" onClick={this.newButtonClick}>New Game</button>
+	          <div className={this.state.new}>
+	          Room Name:
+	          <input onChange={this.handleChange} name="createRoomName"></input>
+	          <Link to="/game"><button className="Play" onClick={this.createRoomButton}>Create Room</button></Link>
+	          </div>
+	        </div>
+	        <div className="JoinView">
+	          <button className="homeButtons" onClick={this.joinButtonClick}>Join Game</button>
+	          <div className={this.state.join}>
+	          Room Name:
+	          <input onChange={this.handleChange} name="joinRoomName"></input>
+	        <Link to="/game"><button className="Play" onClick={this.joinRoomButton}>Join Room</button></Link>
+	          </div>
+	          <br/>
+	        </div>
+	      </div>
+	*/
+	
+	exports.default = Home;
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 278); if (makeExportsHot(module, __webpack_require__(/*! react */ 103))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "NewGame.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../~/webpack/buildin/module.js */ 1)(module)))
+
+/***/ },
+/* 296 */
+/*!******************************************!*\
+  !*** ./src/components/Home/JoinGame.jsx ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-loader/~/react-hot-api/modules/index.js */ 2), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 10), ReactMount = __webpack_require__(/*! react-dom/lib/ReactMount */ 12), React = __webpack_require__(/*! react */ 103); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 103);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 194);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Lobby = function (_React$Component) {
+	    _inherits(Lobby, _React$Component);
+	
+	    function Lobby() {
+	        _classCallCheck(this, Lobby);
+	
+	        var _this = _possibleConstructorReturn(this, (Lobby.__proto__ || Object.getPrototypeOf(Lobby)).call(this));
+	
+	        _this.state = {
+	            rooms: {},
+	            roomNames: []
+	        };
+	        _this.joinRoomButton = _this.joinRoomButton.bind(_this);
+	        return _this;
+	    }
+	
+	    _createClass(Lobby, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var context = this;
+	            console.log("component did mount in joinGame");
+	            var context = this;
+	            socket.on("receiveRooms", function (data) {
+	                console.log("CURRENT DATA:", data);
+	                for (var key in data) {
+	                    if (data[key] === 0) {
+	                        delete data[key];
+	                    }
+	                    //this might be hacky- check why the server is storing a null value
+	                    if (data[key] === null) {
+	                        delete data[key];
+	                    }
+	                }
+	                delete data[undefined];
+	                context.setState({
+	                    rooms: data,
+	                    roomNames: Object.keys(data)
+	                }, function (data) {});
+	                //context.forceUpdate();
+	            });
+	            socket.emit("getRooms");
+	        }
+	    }, {
+	        key: 'joinRoomButton',
+	        value: function joinRoomButton(room) {
+	            window.socket.emit('joinRoom', room);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+	
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'TableContainer' },
+	                _react2.default.createElement(
+	                    'table',
+	                    { className: 'LobbyTable' },
+	                    _react2.default.createElement(
+	                        'tbody',
+	                        null,
+	                        _react2.default.createElement(
+	                            'tr',
+	                            null,
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                'Roomname'
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                'Capacity'
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                'Join'
+	                            )
+	                        ),
+	                        this.state.roomNames.map(function (key, index) {
+	                            console.log(key);
+	                            return _react2.default.createElement(
+	                                'tr',
+	                                null,
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    key
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    _this2.state.rooms[key],
+	                                    '/2'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    _this2.state.rooms[key] === 2 ? _react2.default.createElement(
+	                                        'p',
+	                                        null,
+	                                        'Room Full'
+	                                    ) : _react2.default.createElement(
+	                                        _reactRouter.Link,
+	                                        { to: '/game' },
+	                                        _react2.default.createElement(
+	                                            'button',
+	                                            { className: 'Play', onClick: _this2.joinRoomButton.bind(null, key) },
+	                                            'Join Room'
+	                                        )
+	                                    ),
+	                                    ' '
+	                                )
+	                            );
+	                        })
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Lobby;
+	}(_react2.default.Component);
+	
+	exports.default = Lobby;
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 278); if (makeExportsHot(module, __webpack_require__(/*! react */ 103))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "JoinGame.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../~/webpack/buildin/module.js */ 1)(module)))
 
 /***/ }

@@ -55,7 +55,6 @@ var finalTime = {};
 
 
 io.on('connection', function(socket){
-
   socket.on("getFriends", function(user) {
 
     db.Friends.findAll({
@@ -96,6 +95,9 @@ io.on('connection', function(socket){
 
   socket.on('disconnect', function(){
     // Decerement user count when a user leaves the game
+    var username = usernames[socket.id];
+    delete usernames[socket.id];
+    delete usernames[username];
     userCount--;
     // Decrement number of people in the room
     rooms[playerRoom[socket.id]]--;
@@ -115,6 +117,7 @@ io.on('connection', function(socket){
   // Listen for createRoom
   socket.on('createRoom', function (roomInfo) {
     var roomName = roomInfo.roomname;
+    console.log('roomName in server: ', roomName)
     // If no empty room exists, make a new room and put user into it
     if (!rooms[roomName]) {
       // Save game level for second player
@@ -371,6 +374,7 @@ io.on('connection', function(socket){
                 })
               });
               usernames[socket.id] = username;
+              usernames[username] = username;
               socket.emit('signupResponse', null);
             }
           })
@@ -380,6 +384,10 @@ io.on('connection', function(socket){
     var username = userInfo.username;
     var password = userInfo.password;
     // Check whether user already exists
+    if (usernames[username]) {
+      socket.emit("signinResponse", {message: "Youre already signed in"});
+      return;
+    }
     db.User
         .findOne({
           where: {
@@ -399,6 +407,7 @@ io.on('connection', function(socket){
               } else {
                 // If authentication was successful, then send username back to user
                 usernames[socket.id] = username;
+                usernames[username] = username;
                 socket.emit('signinResponse', {username: username});
               }
             });
