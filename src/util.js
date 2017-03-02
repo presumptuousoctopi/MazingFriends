@@ -449,10 +449,7 @@ window.finishGame = function() {
       time: finishTime,
       user: sessionStorage.getItem('user')
   });
-  window.finished = true;
-
-
-  
+  window.finished = true;  
 };
 
 //data reporter
