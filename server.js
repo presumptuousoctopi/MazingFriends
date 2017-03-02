@@ -356,6 +356,7 @@ io.on('connection', function(socket){
               });
               usernames[socket.id] = username;
               socket.emit('signupResponse', null);
+              socket.emit('currentUser', username);
             }
           })
         });
@@ -384,6 +385,7 @@ io.on('connection', function(socket){
                 // If authentication was successful, then send username back to user
                 usernames[socket.id] = username;
                 socket.emit('signinResponse', {username: username});
+                socket.emit('currentUser', username);
               }
             });
           }

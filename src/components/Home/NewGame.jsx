@@ -64,26 +64,4 @@ class Home extends React.Component {
   }
 }
 
-/*
-      <div classNameName={this.state.view}>
-        <div className="NewView">
-          <button className="homeButtons" onClick={this.newButtonClick}>New Game</button>
-          <div className={this.state.new}>
-          Room Name:
-          <input onChange={this.handleChange} name="createRoomName"></input>
-          <Link to="/game"><button className="Play" onClick={this.createRoomButton}>Create Room</button></Link>
-          </div>
-        </div>
-        <div className="JoinView">
-          <button className="homeButtons" onClick={this.joinButtonClick}>Join Game</button>
-          <div className={this.state.join}>
-          Room Name:
-          <input onChange={this.handleChange} name="joinRoomName"></input>
-        <Link to="/game"><button className="Play" onClick={this.joinRoomButton}>Join Room</button></Link>
-          </div>
-          <br/>
-        </div>
-      </div>
-*/
-
 export default Home;
