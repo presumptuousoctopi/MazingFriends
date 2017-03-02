@@ -299,6 +299,7 @@ class VideoChat extends React.Component {
             browserHistory.push({
                 pathname: '/home'
             });
+            location.reload();
         }
 
 ///////////////////////////////////////////

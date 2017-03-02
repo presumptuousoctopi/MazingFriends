@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "967893e08a0479b8fea2"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "55cc8dd41753f8b9badd"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31109,10 +31109,11 @@
 	                pcConfig = null;
 	                localVideo.src = null;
 	                remoteVideo.src = null;
-	                //document.getElementById("canvas").remove();
+	                document.getElementById("canvas").remove();
 	                _reactRouter.browserHistory.push({
 	                    pathname: '/home'
 	                });
+	                location.reload();
 	            }
 	
 	            ///////////////////////////////////////////
