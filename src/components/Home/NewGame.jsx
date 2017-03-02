@@ -9,7 +9,8 @@ class Home extends React.Component {
 			//view: 'Home',
       createRoomName: '',
       joinRoomName: '',
-      controlsView: false
+      controlsView: false,
+      gameLevel: 2
 		}
     this.createRoomButton = this.createRoomButton.bind(this);
     this.handleChange = this.handleChange.bind(this);
