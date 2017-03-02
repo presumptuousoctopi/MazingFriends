@@ -6,8 +6,8 @@ import VideoChat from './VideoChat.jsx';
 import ProgressBar from './ProgressBar.jsx'
 
 class Chat extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       video: true
     }
@@ -29,11 +29,12 @@ class Chat extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="Chat">
         <div className="Options">
           <h1>Mazing Friends</h1>
-          {this.props.time ? <h2>{this.props.time}</h2> : <p>waiting for second player...</p>}
+          {this.props.timer ? <h2>{this.props.timer}</h2> : <h2>{this.props.time}</h2>}
           <button className="optionButtons" onClick={this.props.controlsClickHandler}>Controls</button>
           <Link to="/"><button className="optionButtons" onClick={this.stopGame.bind(this)}>Quit Game</button></Link>
         </div>

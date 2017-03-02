@@ -22,7 +22,8 @@ class Game extends React.Component {
 		socket.on('gameoverlisten', function(time) {
 				context.setState({
 					gameover: true,
-					time: time
+					time: time,
+					timer: null
 				})
 		console.log('gameover!')
 			});
@@ -44,7 +45,7 @@ class Game extends React.Component {
     return (
       <div className="Game">
 		  <ProgressBar/>
-      	<Chat timer={this.state.time} controlsClickHandler={this.controlsClickHandler.bind(this)} />
+      	<Chat timer={this.state.timer} time={this.state.time} controlsClickHandler={this.controlsClickHandler.bind(this)} />
       	{this.state.gameover ? <GameOver time={this.state.time}/> : ''}
       	{this.state.controls ? <Controls controlsClickHandler={this.controlsClickHandler.bind(this)} /> : ''}
       </div>

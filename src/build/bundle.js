@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "fc5eedd14a32a9b527dc"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c40a63329b3f331dbf32"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28751,7 +28751,8 @@
 				socket.on('gameoverlisten', function (time) {
 					context.setState({
 						gameover: true,
-						time: time
+						time: time,
+						timer: null
 					});
 					console.log('gameover!');
 				});
@@ -28776,7 +28777,7 @@
 					'div',
 					{ className: 'Game' },
 					_react2.default.createElement(_ProgressBar2.default, null),
-					_react2.default.createElement(_ChatView2.default, { timer: this.state.time, controlsClickHandler: this.controlsClickHandler.bind(this) }),
+					_react2.default.createElement(_ChatView2.default, { timer: this.state.timer, time: this.state.time, controlsClickHandler: this.controlsClickHandler.bind(this) }),
 					this.state.gameover ? _react2.default.createElement(_GameOver2.default, { time: this.state.time }) : '',
 					this.state.controls ? _react2.default.createElement(_Controls2.default, { controlsClickHandler: this.controlsClickHandler.bind(this) }) : ''
 				);
@@ -28841,10 +28842,10 @@
 	var Chat = function (_React$Component) {
 	  _inherits(Chat, _React$Component);
 	
-	  function Chat() {
+	  function Chat(props) {
 	    _classCallCheck(this, Chat);
 	
-	    var _this = _possibleConstructorReturn(this, (Chat.__proto__ || Object.getPrototypeOf(Chat)).call(this));
+	    var _this = _possibleConstructorReturn(this, (Chat.__proto__ || Object.getPrototypeOf(Chat)).call(this, props));
 	
 	    _this.state = {
 	      video: true
@@ -28872,6 +28873,7 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      console.log(this.props);
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'Chat' },
@@ -28883,14 +28885,14 @@
 	            null,
 	            'Mazing Friends'
 	          ),
-	          this.props.time ? _react2.default.createElement(
+	          this.props.timer ? _react2.default.createElement(
+	            'h2',
+	            null,
+	            this.props.timer
+	          ) : _react2.default.createElement(
 	            'h2',
 	            null,
 	            this.props.time
-	          ) : _react2.default.createElement(
-	            'p',
-	            null,
-	            'waiting for second player...'
 	          ),
 	          _react2.default.createElement(
 	            'button',
