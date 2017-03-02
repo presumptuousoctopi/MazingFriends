@@ -444,15 +444,12 @@ window.refreshTime = function(data) {
 
 window.gameover = false;
 window.finishGame = function() {
-  // window.finishTime = window.currentTime;
+  window.finishTime = window.currentTime;
   socket.emit('gameover', {
       time: finishTime,
       user: sessionStorage.getItem('user')
   });
-  // window.finished = true;
-
-
-  
+  window.finished = true;  
 };
 
 //data reporter
