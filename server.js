@@ -279,6 +279,7 @@ io.on('connection', function(socket){
     // for a real app, would be room-only (not broadcast)
     socket.broadcast.emit('message', message);
   });
+  
   socket.on('ipaddr', function() {
     var ifaces = os.networkInterfaces();
     for (var dev in ifaces) {
