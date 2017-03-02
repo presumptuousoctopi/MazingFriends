@@ -55,7 +55,22 @@ var finalTime = {};
 
 
 io.on('connection', function(socket){
-  //send world record to client
+  socket.on("getFriends", function(user) {
+
+    db.Friends.findAll({
+      where: {
+        user: user
+      }
+    }).then(function(data){
+      socket.emit("friendData", data);
+    });
+  })
+  socket.on("addFriend", function(data){
+   db.Friends.create({
+     user: data.user,
+     friend: data.friend
+   })
+  });
   socket.on("getRooms", function() {
     console.log("request to get all rooms");
     socket.emit("receive", rooms);
@@ -72,7 +87,7 @@ io.on('connection', function(socket){
         console.log('Here is the data sending to client : ', newData);
         socket.emit('receiveWorldRecord', newData);
      }
-  })
+  });
 
   // Increment every time a new user is connected
   userCount++;
@@ -80,6 +95,9 @@ io.on('connection', function(socket){
 
   socket.on('disconnect', function(){
     // Decerement user count when a user leaves the game
+    var username = usernames[socket.id];
+    delete usernames[socket.id];
+    delete usernames[username];
     userCount--;
     // Decrement number of people in the room
     rooms[playerRoom[socket.id]]--;
@@ -123,24 +141,24 @@ io.on('connection', function(socket){
         mazeLevel: roomLevel[roomName]
       });
       // Find best record from database
-      db.Leaderboard.findAll({
-        where: {
-          level: Number(roomLevel[playerRoom[socket.id]])
-        },
-        order: [['time', 'ASC']]
-      }).then(function(data){
-        if ( data.length === 0 ) {
-          return;
-        }
-        var newData = {
-          time: data[0].dataValues.time,
-          user: data[0].dataValues.username
-        };
-        // Send best record back to users
-        var roomName = playerRoom[socket.id];
-        console.log('Send back world record to users in ', roomName);
-        io.sockets.in(roomName).emit('receiveWorldRecord', newData);
-      });
+      //db.Leaderboard.findAll({
+      //  where: {
+      //    level: Number(roomLevel[playerRoom[socket.id]])
+      //  },
+      //  order: [['time', 'ASC']]
+      //}).then(function(data){
+      //  if ( data.length === 0 ) {
+      //    return;
+      //  }
+      //  var newData = {
+      //    time: data[0].dataValues.time,
+      //    user: data[0].dataValues.username
+      //  };
+      //  // Send best record back to users
+      //  var roomName = playerRoom[socket.id];
+      //  console.log('Send back world record to users in ', roomName);
+      //  io.sockets.in(roomName).emit('receiveWorldRecord', newData);
+      //});
     } else {
       // Send error message back to user
       socket.emit('roomJoinError', 'roomAlreadyExsits');
@@ -275,9 +293,10 @@ io.on('connection', function(socket){
       }
       var username = finalTime[playerRoom[socket.id]].user;
       var finishTime = finalTime[playerRoom[socket.id]].time;
-      io.in(playerRoom[socket.id]).emit('timer', finishTime);      
+      io.in(playerRoom[socket.id]).emit('gameoverlisten', finishTime);
+      io.in(playerRoom[socket.id]).emit('timer', finishTime);
       io.in(playerRoom[socket.id]).emit('receiveFinalTime', finishTime);      
-      io.in(playerRoom[socket.id]).emit('gameoverlisten', finishTime);      
+
       var integerTime = 0;
       if ( finishTime.includes(':') ) {
         var newTime = finishTime.split(':');
@@ -355,6 +374,7 @@ io.on('connection', function(socket){
                 })
               });
               usernames[socket.id] = username;
+              usernames[username] = username;
               socket.emit('signupResponse', null);
               socket.emit('currentUser', username);
             }
@@ -365,6 +385,10 @@ io.on('connection', function(socket){
     var username = userInfo.username;
     var password = userInfo.password;
     // Check whether user already exists
+    if (usernames[username]) {
+      socket.emit("signinResponse", {message: "Youre already signed in"});
+      return;
+    }
     db.User
         .findOne({
           where: {
@@ -384,6 +408,7 @@ io.on('connection', function(socket){
               } else {
                 // If authentication was successful, then send username back to user
                 usernames[socket.id] = username;
+                usernames[username] = username;
                 socket.emit('signinResponse', {username: username});
                 socket.emit('currentUser', username);
               }

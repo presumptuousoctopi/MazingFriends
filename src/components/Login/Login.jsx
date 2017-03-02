@@ -10,6 +10,9 @@ class Login extends React.Component {
     var socket = window.socket;
     var context = this;
     socket.on('signinResponse', function(obj) {
+      if (window.sessionStorage.getItem('user')) {
+        alert("Youre already logged in!");
+      }
       if ( obj.message ) {
         alert(obj.message);
       } else {
