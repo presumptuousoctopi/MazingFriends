@@ -55,6 +55,25 @@ var finalTime = {};
 
 
 io.on('connection', function(socket){
+  //send world record to client
+  socket.on("getRooms", function() {
+    console.log("request to get all rooms");
+    socket.emit("receive", rooms);
+  });
+  db.Leaderboard.findAll({
+    order: [['time', 'ASC']]
+  }).then(function(data){
+    if(data.length > 0) {
+      var newData = {
+        time: data[0].dataValues.time,
+        user: data[0].dataValues.username   
+      };
+        console.log('Here is all data : ', data);
+        console.log('Here is the data sending to client : ', newData);
+        socket.emit('receiveWorldRecord', newData);
+     }
+  })
+
   // Increment every time a new user is connected
   userCount++;
   console.log('a user connected', userCount);

@@ -7,7 +7,7 @@ window.audioCount = 1;
 window.binaryJSclient.on('stream', function(stream, meta) {
   console.log('server sent an mp3 file');
   var parts = [];
-  var audioId = 'audioPlayer' + window.audioCount++;
+  var audioId = 'audioPlayer' + wind ow.audioCount++;
   var audioPlayer = document.getElementById(audioId);
   audioPlayer.preload = true;
   audioPlayer.controls = 'controls';
