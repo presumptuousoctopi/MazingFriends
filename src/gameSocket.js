@@ -195,6 +195,7 @@ socket.on('receiveStartTime', function(time) {
 });
 
 socket.on('receiveFinalTime', function(time) {
+  window.finished = true;
   window.finishTime = time;
   socket.emit('time', time);
   window.refreshTime(time);
