@@ -292,6 +292,7 @@ webpackHotUpdate(0,{
 	            function handleRemoteStreamAdded(event) {
 	                console.log('Remote stream added.');
 	                remoteVideo.src = window.URL.createObjectURL(event.stream);
+	
 	                remoteStream = event.stream;
 	            }
 	
@@ -323,8 +324,7 @@ webpackHotUpdate(0,{
 	                pcConfig = null;
 	                localVideo.src = null;
 	                remoteVideo.src = null;
-	                document.getElementById("canvas").remove();
-	                socket.emit("quit", room);
+	                //document.getElementById("canvas").remove();
 	                _reactRouter.browserHistory.push({
 	                    pathname: '/home'
 	                });
@@ -431,4 +431,4 @@ webpackHotUpdate(0,{
 /***/ }
 
 })
-//# sourceMappingURL=0.2158f7560e6f978867bf.hot-update.js.map
+//# sourceMappingURL=0.1ac51d822fd10bc3a73c.hot-update.js.map

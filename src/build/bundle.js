@@ -65,7 +65,11 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
+<<<<<<< HEAD
 /******/ 	var hotCurrentHash = "2327e08ceb9679b46a4e"; // eslint-disable-line no-unused-vars
+=======
+/******/ 	var hotCurrentHash = "967893e08a0479b8fea2"; // eslint-disable-line no-unused-vars
+>>>>>>> 425791ddeec9678389118278593d9341273784d9
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27709,7 +27713,6 @@
 	    value: function stopGame() {
 	      document.getElementById("canvas").remove();
 	      location.reload();
-	      socket.emit("quit");
 	    }
 	  }, {
 	    key: 'render',
@@ -29829,6 +29832,7 @@
 	            function handleRemoteStreamAdded(event) {
 	                console.log('Remote stream added.');
 	                remoteVideo.src = window.URL.createObjectURL(event.stream);
+	
 	                remoteStream = event.stream;
 	            }
 	
@@ -29860,8 +29864,7 @@
 	                pcConfig = null;
 	                localVideo.src = null;
 	                remoteVideo.src = null;
-	                document.getElementById("canvas").remove();
-	                socket.emit("quit", room);
+	                //document.getElementById("canvas").remove();
 	                _reactRouter.browserHistory.push({
 	                    pathname: '/home'
 	                });
@@ -30048,6 +30051,137 @@
 	        )
 	      );
 	    }
+<<<<<<< HEAD
+=======
+	
+	    _createClass(ProgressBar, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var context = this;
+	            socket.on('receiveDistancePercentage', function (percentage) {
+	                // console.log('New percentage : ', percentage);
+	                // window.distancePercentage = percentage;
+	                context.setState({
+	                    percentage: percentage
+	                });
+	            });
+	
+	            // setInterval( () => {
+	            //     this.setState({
+	            //         percentage: window.distancePercentage
+	            //     });
+	            // }, 1500);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'progress' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'progress-bar progress-bar-danger', role: 'progressbar', 'aria-valuenow': this.state.percentage,
+	                        'aria-valuemin': '0', 'aria-valuemax': '100', style: { width: this.state.percentage + '%' } },
+	                    _react2.default.createElement('span', { className: 'sr-only' })
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return ProgressBar;
+	}(_react2.default.Component);
+	
+	exports.default = ProgressBar;
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 278); if (makeExportsHot(module, __webpack_require__(/*! react */ 103))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ProgressBar.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../~/webpack/buildin/module.js */ 1)(module)))
+
+/***/ },
+/* 283 */
+/*!******************************************!*\
+  !*** ./src/components/Game/GameOver.jsx ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-loader/~/react-hot-api/modules/index.js */ 2), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 10), ReactMount = __webpack_require__(/*! react-dom/lib/ReactMount */ 12), React = __webpack_require__(/*! react */ 103); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 103);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 194);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var GameOver = function (_React$Component) {
+	  _inherits(GameOver, _React$Component);
+	
+	  function GameOver(props) {
+	    _classCallCheck(this, GameOver);
+	
+	    return _possibleConstructorReturn(this, (GameOver.__proto__ || Object.getPrototypeOf(GameOver)).call(this, props));
+	  }
+	
+	  _createClass(GameOver, [{
+	    key: 'quitGame',
+	    value: function quitGame() {
+	      document.getElementById("canvas").remove();
+	      location.reload();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'GameOver' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Game Over!'
+	        ),
+	        ' ',
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Your time: ',
+	          this.props.time
+	        ),
+	        ' ',
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'button',
+	          { className: 'homeButtons' },
+	          'Keep Playing'
+	        ),
+	        ' ',
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'homeButtons', onClick: this.quitGame.bind(this) },
+	            'Quit'
+	          )
+	        )
+	      );
+	    }
+>>>>>>> 425791ddeec9678389118278593d9341273784d9
 	  }]);
 	
 	  return GameOver;
@@ -30881,6 +31015,10 @@
 	
 	var _Controls2 = _interopRequireDefault(_Controls);
 	
+	var _Controls = __webpack_require__(/*! ./../Game/Controls.jsx */ 284);
+	
+	var _Controls2 = _interopRequireDefault(_Controls);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -30903,6 +31041,7 @@
 	      view: 'Home',
 	      join: 'vanish',
 	      new: 'vanish',
+	      gameLevel: 2,
 	      createRoomName: '',
 	      joinRoomName: '',
 	      controlsView: false
@@ -30932,7 +31071,12 @@
 	  }, {
 	    key: 'createRoomButton',
 	    value: function createRoomButton() {
-	      window.socket.emit('createRoom', this.state.createRoomName);
+	      var roomInfo = {
+	        roomname: this.state.createRoomName,
+	        level: this.state.gameLevel
+	      };
+	
+	      window.socket.emit('createRoom', roomInfo);
 	      this.setState({
 	        view: 'vanish'
 	      });
@@ -30966,15 +31110,68 @@
 	      console.log(this.state);
 	    }
 	  }, {
+	    key: 'controlsViewToggle',
+	    value: function controlsViewToggle() {
+	      this.setState({
+	        controlsView: !this.state.controlsView
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'NewGame' },
 	        _react2.default.createElement(
+<<<<<<< HEAD
 	          'h3',
 	          null,
 	          'Create New Game'
+=======
+	          'div',
+	          { className: 'NewView' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'homeButtons', onClick: this.newButtonClick },
+	            'New Game'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: this.state.new },
+	            'Room Name:',
+	            _react2.default.createElement('input', { onChange: this.handleChange, name: 'createRoomName' }),
+	            _react2.default.createElement(
+	              'select',
+	              { onChange: this.handleChange, value: this.state.gameLevel, name: 'gameLevel', required: true },
+	              _react2.default.createElement(
+	                'option',
+	                { value: '1' },
+	                'Easy'
+	              ),
+	              _react2.default.createElement(
+	                'option',
+	                { value: '2' },
+	                'Normal'
+	              ),
+	              _react2.default.createElement(
+	                'option',
+	                { value: '3' },
+	                'Hard'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/game' },
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'Play', onClick: this.createRoomButton },
+	                'Create Room'
+	              )
+	            ),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('br', null)
+	          )
+>>>>>>> 425791ddeec9678389118278593d9341273784d9
 	        ),
 	        _react2.default.createElement(
 	          'form',
@@ -30991,10 +31188,19 @@
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
 	            'button',
+<<<<<<< HEAD
 	            null,
 	            'Create Game'
 	          )
 	        )
+=======
+	            { className: 'homeButtons', onClick: this.controlsViewToggle.bind(this) },
+	            'Controls'
+	          ),
+	          this.state.controlsView ? _react2.default.createElement(_Controls2.default, { close: this.controlsViewToggle.bind(this) }) : ''
+	        ),
+	        _react2.default.createElement(_Lobby2.default, null)
+>>>>>>> 425791ddeec9678389118278593d9341273784d9
 	      );
 	    }
 	  }]);
@@ -31035,7 +31241,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(2), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(12), React = __webpack_require__(98); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -31046,6 +31252,10 @@
 	var _react = __webpack_require__(98);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _FriendSearch = __webpack_require__(/*! ./FriendSearch.jsx */ 291);
+	
+	var _FriendSearch2 = _interopRequireDefault(_FriendSearch);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -31071,12 +31281,12 @@
 	    }
 	
 	    _createClass(Lobby, [{
-	        key: "componentDidMount",
+	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            var context = this;
 	            console.log("component did mount");
 	            var context = this;
-	            socket.on("receive", function (data) {
+	            socket.on("receiveRooms", function (data) {
 	                console.log("CURRENT DATA:", data);
 	                for (var key in data) {
 	                    if (data[key] === 0) {
@@ -31092,16 +31302,17 @@
 	                    rooms: data,
 	                    roomNames: Object.keys(data)
 	                }, function (data) {});
-	                context.forceUpdate();
+	                //context.forceUpdate();
 	            });
 	            socket.emit("getRooms");
 	        }
 	    }, {
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
 	
 	            return _react2.default.createElement(
+<<<<<<< HEAD
 	                "div",
 	                { className: "TableContainer" },
 	                _react2.default.createElement(
@@ -31109,15 +31320,30 @@
 	                    { className: "LobbyTable" },
 	                    _react2.default.createElement(
 	                        "tr",
+=======
+	                'div',
+	                null,
+	                _react2.default.createElement(_FriendSearch2.default, null),
+	                _react2.default.createElement(
+	                    'table',
+	                    null,
+	                    _react2.default.createElement(
+	                        'tr',
+>>>>>>> 425791ddeec9678389118278593d9341273784d9
 	                        null,
 	                        _react2.default.createElement(
-	                            "td",
+	                            'th',
 	                            null,
+<<<<<<< HEAD
 	                            "Roomname"
+=======
+	                            'Roomname'
+>>>>>>> 425791ddeec9678389118278593d9341273784d9
 	                        ),
 	                        _react2.default.createElement(
-	                            "td",
+	                            'th',
 	                            null,
+<<<<<<< HEAD
 	                            "User"
 	                        ),
 	                        _react2.default.createElement(
@@ -31129,19 +31355,30 @@
 	                            "td",
 	                            null,
 	                            "Join"
+=======
+	                            'Number of Players'
+>>>>>>> 425791ddeec9678389118278593d9341273784d9
 	                        )
 	                    ),
 	                    this.state.roomNames.map(function (key, index) {
 	                        console.log(key);
 	                        return _react2.default.createElement(
+<<<<<<< HEAD
 	                            "tr",
 	                            null,
 	                            _react2.default.createElement(
 	                                "td",
+=======
+	                            'tr',
+	                            null,
+	                            _react2.default.createElement(
+	                                'td',
+>>>>>>> 425791ddeec9678389118278593d9341273784d9
 	                                null,
 	                                key
 	                            ),
 	                            _react2.default.createElement(
+<<<<<<< HEAD
 	                                "td",
 	                                null,
 	                                _this2.state.rooms[key],
@@ -31159,6 +31396,12 @@
 	                                    null,
 	                                    "Join Game"
 	                                )
+=======
+	                                'td',
+	                                null,
+	                                _this2.state.rooms[key],
+	                                '/2'
+>>>>>>> 425791ddeec9678389118278593d9341273784d9
 	                            )
 	                        );
 	                    })
@@ -31232,6 +31475,116 @@
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(272); if (makeExportsHot(module, __webpack_require__(98))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "UserStats.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ },
+/* 291 */
+/*!**********************************************!*\
+  !*** ./src/components/Game/FriendSearch.jsx ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-loader/~/react-hot-api/modules/index.js */ 2), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 10), ReactMount = __webpack_require__(/*! react-dom/lib/ReactMount */ 12), React = __webpack_require__(/*! react */ 103); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 103);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var FriendSearch = function (_React$Component) {
+	    _inherits(FriendSearch, _React$Component);
+	
+	    function FriendSearch() {
+	        _classCallCheck(this, FriendSearch);
+	
+	        var _this = _possibleConstructorReturn(this, (FriendSearch.__proto__ || Object.getPrototypeOf(FriendSearch)).call(this));
+	
+	        _this.state = {
+	            friend: "",
+	            searchResult: ""
+	        };
+	        _this.updateFriend = _this.updateFriend.bind(_this);
+	        return _this;
+	    }
+	
+	    _createClass(FriendSearch, [{
+	        key: "searchForFriends",
+	        value: function searchForFriends(event) {
+	            var context = this;
+	            event.preventDefault();
+	            socket.emit("getUsers", this.state.friend);
+	            socket.on("users", function (obj) {
+	                if (obj.data.username) {
+	                    context.setState({
+	                        searchResult: obj.data.username
+	                    });
+	                } else {
+	                    alert("no such user in the database");
+	                }
+	            });
+	        }
+	    }, {
+	        key: "updateFriend",
+	        value: function updateFriend(event) {
+	            this.setState({
+	                friend: event.target.value
+	            });
+	        }
+	    }, {
+	        key: "addFriend",
+	        value: function addFriend() {}
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            var button = null;
+	            return _react2.default.createElement(
+	                "div",
+	                null,
+	                _react2.default.createElement(
+	                    "form",
+	                    null,
+	                    _react2.default.createElement("input", { type: "text", value: this.state.friend, onChange: this.updateFriend, placeholder: "search for friends" }),
+	                    _react2.default.createElement(
+	                        "button",
+	                        { type: "submit", onClick: this.searchForFriends.bind(this) },
+	                        "Search"
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    "h4",
+	                    null,
+	                    this.state.searchResult
+	                ),
+	                this.state.searchResult !== "" && _react2.default.createElement(
+	                    "button",
+	                    { onClick: this.addFriend },
+	                    "Add"
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return FriendSearch;
+	}(_react2.default.Component);
+	
+	exports.default = FriendSearch;
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 278); if (makeExportsHot(module, __webpack_require__(/*! react */ 103))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "FriendSearch.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../~/webpack/buildin/module.js */ 1)(module)))
 
 /***/ }
 /******/ ]);

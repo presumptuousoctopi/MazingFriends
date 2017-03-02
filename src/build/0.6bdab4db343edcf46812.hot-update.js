@@ -8,7 +8,7 @@ webpackHotUpdate(0,{
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-loader/~/react-hot-api/modules/index.js */ 2), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 10), ReactMount = __webpack_require__(/*! react-dom/lib/ReactMount */ 12), React = __webpack_require__(/*! react */ 103); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -19,6 +19,10 @@ webpackHotUpdate(0,{
 	var _react = __webpack_require__(/*! react */ 103);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _FriendSearch = __webpack_require__(/*! ./FriendSearch.jsx */ 291);
+	
+	var _FriendSearch2 = _interopRequireDefault(_FriendSearch);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -44,12 +48,12 @@ webpackHotUpdate(0,{
 	    }
 	
 	    _createClass(Lobby, [{
-	        key: "componentDidMount",
+	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            var context = this;
 	            console.log("component did mount");
 	            var context = this;
-	            socket.on("receive", function (data) {
+	            socket.on("receiveRooms", function (data) {
 	                console.log("CURRENT DATA:", data);
 	                for (var key in data) {
 	                    if (data[key] === 0) {
@@ -65,50 +69,55 @@ webpackHotUpdate(0,{
 	                    rooms: data,
 	                    roomNames: Object.keys(data)
 	                }, function (data) {});
-	                context.forceUpdate();
+	                //context.forceUpdate();
 	            });
 	            socket.emit("getRooms");
 	        }
 	    }, {
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
 	
 	            return _react2.default.createElement(
-	                "table",
+	                'div',
 	                null,
+	                _react2.default.createElement(_FriendSearch2.default, null),
 	                _react2.default.createElement(
-	                    "tr",
+	                    'table',
 	                    null,
 	                    _react2.default.createElement(
-	                        "th",
-	                        null,
-	                        "Roomname"
-	                    ),
-	                    _react2.default.createElement(
-	                        "th",
-	                        null,
-	                        "Number of Players"
-	                    )
-	                ),
-	                this.state.roomNames.map(function (key, index) {
-	                    console.log(key);
-	                    return _react2.default.createElement(
-	                        "tr",
+	                        'tr',
 	                        null,
 	                        _react2.default.createElement(
-	                            "td",
+	                            'th',
 	                            null,
-	                            key
+	                            'Roomname'
 	                        ),
 	                        _react2.default.createElement(
-	                            "td",
+	                            'th',
 	                            null,
-	                            _this2.state.rooms[key],
-	                            "/2"
+	                            'Number of Players'
 	                        )
-	                    );
-	                })
+	                    ),
+	                    this.state.roomNames.map(function (key, index) {
+	                        console.log(key);
+	                        return _react2.default.createElement(
+	                            'tr',
+	                            null,
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                key
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                _this2.state.rooms[key],
+	                                '/2'
+	                            )
+	                        );
+	                    })
+	                )
 	            );
 	        }
 	    }]);
@@ -124,4 +133,4 @@ webpackHotUpdate(0,{
 /***/ }
 
 })
-//# sourceMappingURL=0.0fc4c61962da62cec156.hot-update.js.map
+//# sourceMappingURL=0.6bdab4db343edcf46812.hot-update.js.map

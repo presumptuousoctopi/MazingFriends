@@ -7,10 +7,17 @@ var PF = require('pathfinding');
 
 var calculateDistance = function(userData) {
     var initialDist;
-    if ( userData.level === 1 ) {
+    console.log('User Data : ', userData);
+    userData.level = userData.level.toString();
+    if ( userData.level === '1' ) {
         initialDist = 29;
-    } else if ( userData.level === 2 ) {
+    } else if ( userData.level === '2' ) {
         initialDist = 150;
+    } else if ( userData.level === '3' ) {
+        initialDist = 458;
+    } else if ( !userData.level ) {
+        initialDist = 50;
+        console.log('Error with maze level calculation');
     }
     var maze = JSON.parse(JSON.stringify(mazes[userData.level]));
     var firstPosition = {
@@ -28,8 +35,8 @@ var calculateDistance = function(userData) {
     maze[secondPosition.x][secondPosition.y] = '2';
     var columnLength = maze.length;
     var rowLength = maze[0].length;
-    console.log('columnLength :', columnLength);
-    console.log('rowLength :', rowLength);
+    // console.log('columnLength :', columnLength);
+    // console.log('rowLength :', rowLength);
 
     for ( var i = 0; i < columnLength; i++ ) {
         for ( var j = 0; j < rowLength; j++ ) {
@@ -54,15 +61,15 @@ var calculateDistance = function(userData) {
         maze.push(newRow);
     }
 
-    console.log(maze.length === maze[0].length);
+    // console.log(maze.length === maze[0].length);
     // console.log('new columnLength',)
     var grid = new PF.Grid(rowLength, rowLength, maze);
     // var grid = new PF.Grid(columnLength, rowLength);
     // // console.log('grid : ', grid);
     // console.log(maze);
     var finder = new PF.BiBestFirstFinder();
-    console.log(firstPosition);
-    console.log(secondPosition);
+    // console.log(firstPosition);
+    // console.log(secondPosition);
 
     for ( var i = 0; i < rowLength; i++ ) {
         for ( var j = 0; j < rowLength; j++ ) {
@@ -84,8 +91,8 @@ var calculateDistance = function(userData) {
     for ( var i = 0; i < path.length; i++ ) {
         maze[path[i][0]][path[i][1]] = 7;
     }
-    console.log('Does path exist ? ', path.length !== 0);
-    console.log(path.length);
+    // console.log('Does path exist ? ', path.length !== 0);
+    // console.log(path.length);
 
     // console.log(path.length);
     // console.table(robotPaths(maze));
@@ -121,6 +128,8 @@ var calculateDistance = function(userData) {
     // });
     // easystar.calculate();
     var percentage = 100 - (path.length / initialDist) * 100;
+    // console.log('Path Length : ', path.length);
+    // console.log('Initial Distance : ', initialDist);    
     return percentage < 0 ? 0 : percentage; 
 };
 

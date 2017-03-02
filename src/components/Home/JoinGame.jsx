@@ -1,5 +1,5 @@
 import React from 'react';
-
+import FriendSearch from './FriendSearch.jsx'
 
 class Lobby extends React.Component {
     constructor() {
@@ -14,7 +14,7 @@ class Lobby extends React.Component {
         var context = this;
         console.log("component did mount");
         var context = this;
-        socket.on("receive", function(data) {
+        socket.on("receiveRooms", function(data) {
             console.log("CURRENT DATA:", data);
             for (var key in data) {
                 if (data[key] === 0) {
@@ -32,13 +32,13 @@ class Lobby extends React.Component {
             }, function (data) {
 
             })
-            context.forceUpdate();
+            //context.forceUpdate();
         })
         socket.emit("getRooms");
     }
-
     render() {
         return (
+<<<<<<< HEAD:src/components/Home/JoinGame.jsx
             <div className="TableContainer">
                 <table className="LobbyTable">
                     <tr>
@@ -58,6 +58,25 @@ class Lobby extends React.Component {
                     )
                 })}
                 </table>
+=======
+            <div>
+                <FriendSearch/>
+            <table>
+                <tr>
+                    <th>Roomname</th>
+                    <th>Number of Players</th>
+                </tr>
+                {this.state.roomNames.map((key, index) => {
+                    console.log(key);
+                return (
+                <tr>
+                <td>{key}</td>
+                <td>{this.state.rooms[key]}/2</td>
+                </tr>
+                )
+            })}
+            </table>
+>>>>>>> 425791ddeec9678389118278593d9341273784d9:src/components/Game/Lobby.jsx
             </div>
         );
     }
