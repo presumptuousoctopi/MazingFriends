@@ -6,7 +6,7 @@ class FriendView extends React.Component {
         super();
         this.state = {
             friends: []
-        };
+        }
     }
     componentDidMount() {
         let context = this;
@@ -18,6 +18,15 @@ class FriendView extends React.Component {
         });
     }
     render (){
+        return(
+            <div>
+            {this.state.friends.map((data) => {
+                return (
+                    <h2>{data.friend}</h2>
+                )
+            })}
+                </div>
+        );
     }
 }
 export default FriendView

@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "3eb8a695378110c07a00"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d5e3d34827a7fb668d03"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -32694,7 +32694,19 @@
 	        }
 	    }, {
 	        key: 'render',
-	        value: function render() {}
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                this.state.friends.map(function (data) {
+	                    return _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        data.friend
+	                    );
+	                })
+	            );
+	        }
 	    }]);
 	
 	    return FriendView;
