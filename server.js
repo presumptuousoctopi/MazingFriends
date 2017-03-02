@@ -231,11 +231,10 @@ io.on('connection', function(socket){
       }
       var username = finalTime[playerRoom[socket.id]].user;
       var finishTime = finalTime[playerRoom[socket.id]].time;
-      setTimeout( () => {
-        io.in(playerRoom[socket.id]).emit('timer', finishTime);      
-      }, 100);
+      io.in(playerRoom[socket.id]).emit('gameoverlisten', finishTime);
+      io.in(playerRoom[socket.id]).emit('timer', finishTime);
       io.in(playerRoom[socket.id]).emit('receiveFinalTime', finishTime);      
-      io.in(playerRoom[socket.id]).emit('gameoverlisten', finishTime);      
+
       var integerTime = 0;
       if ( finishTime.includes(':') ) {
         var newTime = finishTime.split(':');

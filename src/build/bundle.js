@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c40a63329b3f331dbf32"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "181d73658e8b352bbf98"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28751,8 +28751,7 @@
 				socket.on('gameoverlisten', function (time) {
 					context.setState({
 						gameover: true,
-						time: time,
-						timer: null
+						time: time
 					});
 					console.log('gameover!');
 				});
@@ -28761,6 +28760,7 @@
 					context.setState({
 						timer: timer
 					});
+					console.log(timer);
 				});
 			}
 		}, {
@@ -28777,7 +28777,7 @@
 					'div',
 					{ className: 'Game' },
 					_react2.default.createElement(_ProgressBar2.default, null),
-					_react2.default.createElement(_ChatView2.default, { timer: this.state.timer, time: this.state.time, controlsClickHandler: this.controlsClickHandler.bind(this) }),
+					_react2.default.createElement(_ChatView2.default, { timer: this.state.timer, controlsClickHandler: this.controlsClickHandler.bind(this) }),
 					this.state.gameover ? _react2.default.createElement(_GameOver2.default, { time: this.state.time }) : '',
 					this.state.controls ? _react2.default.createElement(_Controls2.default, { controlsClickHandler: this.controlsClickHandler.bind(this) }) : ''
 				);
@@ -28890,9 +28890,9 @@
 	            null,
 	            this.props.timer
 	          ) : _react2.default.createElement(
-	            'h2',
+	            'p',
 	            null,
-	            this.props.time
+	            'waiting for second player...'
 	          ),
 	          _react2.default.createElement(
 	            'button',
