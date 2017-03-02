@@ -70,8 +70,8 @@ socket.on('secondPlayer', function(secondPlayer) {
   socket.emit('sendPlayer', window.camera.position);
   console.log('secondPlayer');
   engine.runRenderLoop(function(){
-    outputplane.position = new BABYLON.Vector3(-35 + camera.position.x, 35 +camera.position.y, 35 + camera.position.z);
-    outputplane2.position = new BABYLON.Vector3(20 + camera.position.x, 20 +camera.position.y, 20 + camera.position.z);
+    window.outputplane.position = new BABYLON.Vector3(-35 + camera.position.x, 35 +camera.position.y, 35 + camera.position.z);
+    window.outputplane2.position = new BABYLON.Vector3(20 + camera.position.x, 20 +camera.position.y, 20 + camera.position.z);
 
     var currentCameraPosition = camera.position.x+camera.position.y+camera.position.z;
     if ( currentCameraPosition !== previousCameraPosition ) {
