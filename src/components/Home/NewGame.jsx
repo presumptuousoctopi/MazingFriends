@@ -1,7 +1,6 @@
 import React from 'react';
 import Title from './../TitleView.jsx'
 import { Link, browserHistory } from 'react-router'
-import Controls from './../Game/Controls.jsx'
 
 class Home extends React.Component {
 	constructor() {
@@ -47,7 +46,7 @@ class Home extends React.Component {
     return (
       <div className="NewGame">
         <h3>Create New Game</h3>
-        <form>
+        <form className="NewGameForm">
           Room Name:<input onChange={this.handleChange} name="createRoomName"></input> <br/>
           Level:
            <select onChange={this.handleChange} value={this.state.gameLevel}  name="gameLevel" required>
@@ -56,8 +55,8 @@ class Home extends React.Component {
              <option value="3">Hard</option>
            </select>
          <br/>
-          Invite <input type="text" placeholder="optional" /> <br/>
-          <Link to="/game"><button className="Play" onClick={this.createRoomButton}>Create Game</button></Link>
+          Invite: <input type="text" placeholder="optional" /> <br/>
+          <Link to="/game"><button className="newGameButton" onClick={this.createRoomButton}>Create Game</button></Link>
         </form>
       </div>
     );
