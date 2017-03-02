@@ -330,7 +330,7 @@ window.createGhost = function() {
         // console.log('Number of bullets : ', bullets.length);
         bullets.forEach( (bullet) => {
             if ( window.didCollide(bullet, sphere) ) {
-                sphere.position = new BABYLON.Vector3(100 * Math.random(), 2, 100 * Math.random());
+                sphere.position = new BABYLON.Vector3(50 * Math.random(), 2, 50 * Math.random());
             };
         });
 

@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "55cc8dd41753f8b9badd"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "fc5eedd14a32a9b527dc"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28776,7 +28776,7 @@
 					'div',
 					{ className: 'Game' },
 					_react2.default.createElement(_ProgressBar2.default, null),
-					_react2.default.createElement(_ChatView2.default, { timer: this.state.timer, controlsClickHandler: this.controlsClickHandler.bind(this) }),
+					_react2.default.createElement(_ChatView2.default, { timer: this.state.time, controlsClickHandler: this.controlsClickHandler.bind(this) }),
 					this.state.gameover ? _react2.default.createElement(_GameOver2.default, { time: this.state.time }) : '',
 					this.state.controls ? _react2.default.createElement(_Controls2.default, { controlsClickHandler: this.controlsClickHandler.bind(this) }) : ''
 				);
@@ -28883,10 +28883,10 @@
 	            null,
 	            'Mazing Friends'
 	          ),
-	          this.props.timer ? _react2.default.createElement(
+	          this.props.time ? _react2.default.createElement(
 	            'h2',
 	            null,
-	            this.props.timer
+	            this.props.time
 	          ) : _react2.default.createElement(
 	            'p',
 	            null,
@@ -30632,7 +30632,7 @@
 	          _react2.default.createElement(
 	            'form',
 	            { onSubmit: this.sendMessage.bind(this) },
-	            _react2.default.createElement('input', { type: 'text', className: 'chatBar', value: this.state.message, onChange: this.updateInput.bind(this) }),
+	            _react2.default.createElement('input', { type: 'text', className: 'chatBar', onFocus: this.onFocus.bind(this), onBlur: this.onBlur.bind(this), value: this.state.message, onChange: this.updateInput.bind(this) }),
 	            _react2.default.createElement('input', { type: 'submit', value: 'Submit', className: 'chatBtn' })
 	          )
 	        )
@@ -31111,7 +31111,7 @@
 	                remoteVideo.src = null;
 	                document.getElementById("canvas").remove();
 	                _reactRouter.browserHistory.push({
-	                    pathname: '/home'
+	                    pathname: '/'
 	                });
 	                location.reload();
 	            }
