@@ -187,6 +187,7 @@ socket.on("receiveWorldRecord", function (data){
   var seconds = data.time % 60;
   var minutes = Math.floor( data.time / 60 );
   var stringTime = !!minutes ? minutes + ':' + seconds : seconds;
+  console.log('Receive world record : ', data);
   window.outputplaneTexture2.drawText( "BEST : " + stringTime + ' by ' + data.user, null, 280, "bold 25px verdana", "white", "#0000AA");
 });
 
