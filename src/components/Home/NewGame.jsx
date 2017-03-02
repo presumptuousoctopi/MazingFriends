@@ -27,7 +27,12 @@ class Home extends React.Component {
   }
 
 	createRoomButton() {
-    window.socket.emit('createRoom', this.state.createRoomName);
+     var roomInfo = {
+       roomname: this.state.createRoomName,
+       level: this.state.gameLevel
+     };
+ 
+     window.socket.emit('createRoom', roomInfo);
     console.log('room created: ', this.state.createRoomName)
 	}
 
@@ -45,6 +50,11 @@ class Home extends React.Component {
         <form>
           Room Name:<input onChange={this.handleChange} name="createRoomName"></input> <br/>
           Level:
+           <select onChange={this.handleChange} value={this.state.gameLevel}  name="gameLevel" required>
+             <option value="1">Easy</option>
+             <option value="2">Normal</option>
+             <option value="3">Hard</option>
+           </select>
          <br/>
           Invite <input type="text" placeholder="optional" /> <br/>
           <Link to="/game"><button className="Play" onClick={this.createRoomButton}>Create Game</button></Link>

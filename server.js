@@ -99,6 +99,7 @@ io.on('connection', function(socket){
   // Listen for createRoom
   socket.on('createRoom', function (roomInfo) {
     var roomName = roomInfo.roomname;
+    console.log('roomName in server: ', roomName)
     // If no empty room exists, make a new room and put user into it
     if (!rooms[roomName]) {
       // Save game level for second player
