@@ -376,6 +376,7 @@ io.on('connection', function(socket){
               usernames[socket.id] = username;
               usernames[username] = username;
               socket.emit('signupResponse', null);
+              socket.emit('currentUser', username);
             }
           })
         });
@@ -409,6 +410,7 @@ io.on('connection', function(socket){
                 usernames[socket.id] = username;
                 usernames[username] = username;
                 socket.emit('signinResponse', {username: username});
+                socket.emit('currentUser', username);
               }
             });
           }

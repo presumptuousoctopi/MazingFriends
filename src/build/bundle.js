@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c571058be7b3f3104334"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b345bdd7c35964d5484a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -32021,7 +32021,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32051,28 +32051,57 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Profile = function (_React$Component) {
-	  _inherits(Profile, _React$Component);
+		_inherits(Profile, _React$Component);
 	
-	  function Profile() {
-	    _classCallCheck(this, Profile);
+		function Profile() {
+			_classCallCheck(this, Profile);
 	
-	    return _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).apply(this, arguments));
-	  }
+			var _this = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this));
 	
-	  _createClass(Profile, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'Profile' },
-	        _react2.default.createElement(_FriendSearch2.default, null),
-	        _react2.default.createElement(_UserStats2.default, null),
-	        _react2.default.createElement(_FriendView2.default, null)
-	      );
-	    }
-	  }]);
+			_this.state = {
+				currentUser: null
+			};
+			return _this;
+		}
 	
-	  return Profile;
+		_createClass(Profile, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				var context = this;
+				socket.on('currentUser', function (user) {
+					context.setState({
+						currentUser: user
+					});
+				});
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					{ className: 'Profile' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'profileHeader' },
+						_react2.default.createElement(
+							'h1',
+							null,
+							'Mazing Friends '
+						),
+						_react2.default.createElement(
+							'h2',
+							null,
+							this.state.currentUser
+						)
+					),
+					_react2.default.createElement(_FriendSearch2.default, null),
+					_react2.default.createElement(_UserStats2.default, null),
+					_react2.default.createElement(_FriendView2.default, null)
+				);
+			}
+		}]);
+	
+		return Profile;
 	}(_react2.default.Component);
 	
 	exports.default = Profile;
@@ -32551,28 +32580,6 @@
 	
 	  return Home;
 	}(_react2.default.Component);
-	
-	/*
-	      <div classNameName={this.state.view}>
-	        <div className="NewView">
-	          <button className="homeButtons" onClick={this.newButtonClick}>New Game</button>
-	          <div className={this.state.new}>
-	          Room Name:
-	          <input onChange={this.handleChange} name="createRoomName"></input>
-	          <Link to="/game"><button className="Play" onClick={this.createRoomButton}>Create Room</button></Link>
-	          </div>
-	        </div>
-	        <div className="JoinView">
-	          <button className="homeButtons" onClick={this.joinButtonClick}>Join Game</button>
-	          <div className={this.state.join}>
-	          Room Name:
-	          <input onChange={this.handleChange} name="joinRoomName"></input>
-	        <Link to="/game"><button className="Play" onClick={this.joinRoomButton}>Join Room</button></Link>
-	          </div>
-	          <br/>
-	        </div>
-	      </div>
-	*/
 	
 	exports.default = Home;
 	
