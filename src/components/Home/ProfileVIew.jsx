@@ -1,6 +1,7 @@
 import React from 'react';
 import UserStats from './UserStats.jsx'
 import FriendSearch from './FriendSearch.jsx'
+import FriendView from './FriendView.jsx'
 
 
 class Profile extends React.Component {
@@ -9,6 +10,7 @@ class Profile extends React.Component {
       <div className="Profile">
      	  <FriendSearch/>
       	<UserStats />
+        <FriendView/>
       </div>
     );
   }

@@ -1,5 +1,4 @@
 import React from 'react';
-import FriendSearch from './FriendSearch.jsx'
 
 class Lobby extends React.Component {
     constructor() {
@@ -8,11 +7,12 @@ class Lobby extends React.Component {
             rooms: {},
             roomNames: []
         }
+     this.joinRoomButton = this.joinRoomButton.bind(this);
     }
 
     componentDidMount() {
         var context = this;
-        console.log("component did mount");
+        console.log("component did mount in joinGame");
         var context = this;
         socket.on("receiveRooms", function(data) {
             console.log("CURRENT DATA:", data);
@@ -36,13 +36,18 @@ class Lobby extends React.Component {
         })
         socket.emit("getRooms");
     }
+
+    joinRoomButton(room) {
+         window.socket.emit('joinRoom', room);
+    }
+
     render() {
         return (
             <div className="TableContainer">
                 <table className="LobbyTable">
+                    <tbody>
                     <tr>
                         <td>Roomname</td>
-                        <td>User</td>
                         <td>Capacity</td>
                         <td>Join</td>
                     </tr>
@@ -52,12 +57,13 @@ class Lobby extends React.Component {
                     <tr>
                     <td>{key}</td>
                     <td>{this.state.rooms[key]}/2</td>
-                    <td>{this.state.rooms[key] === 2 ? <p>Room Full</p> : <button>Join Game</button>}</td>
+                    <td>{this.state.rooms[key] === 2 ? <p>Room Full</p> : <Link to="/game"><button className="Play" onClick={this.joinRoomButton.bind(null, key)}>Join Room</button></Link> } </td>
                     </tr>
                     )
                 })}
-                </table>
-            </div>
+                </tbody>
+            </table>
+        </div>
         );
     }
 }

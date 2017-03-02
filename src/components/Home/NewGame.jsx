@@ -7,17 +7,12 @@ class Home extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			view: 'Home',
-			join: 'vanish',
-			new: 'vanish',
+			//view: 'Home',
       createRoomName: '',
       joinRoomName: '',
       controlsView: false
 		}
     this.createRoomButton = this.createRoomButton.bind(this);
-    this.joinRoomButton = this.joinRoomButton.bind(this);
-    this.newButtonClick = this.newButtonClick.bind(this);
-    this.joinButtonClick = this.joinButtonClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
 	}
 
@@ -27,36 +22,16 @@ class Home extends React.Component {
       browserHistory.push({
         pathname: '/home'
       });
-      // context.setState({
-      //   view: 'Home'
-      // });
       alert(message);
     });
   }
+
 	createRoomButton() {
-    window.socket.emit('createRoom', this.state.createRoomName);
-		this.setState({
-			view: 'vanish'
-		})
-	}
-
-  joinRoomButton() {
-    window.socket.emit('joinRoom', this.state.joinRoomName);
-    this.setState({
-      view: 'vanish'
-    })
-  }
-
-	newButtonClick() {
-		this.setState({
-			new: 'NewView'
-		})
-	}
-
-	joinButtonClick() {
-		this.setState({
-			join: 'JoinView'
-		})
+    window.socket.emit('createRoom', {
+      roomname: this.state.createRoomName,
+      level: 1
+    });
+    console.log('room created: ', this.state.createRoomName)
 	}
 
   handleChange(e) {
@@ -71,11 +46,11 @@ class Home extends React.Component {
       <div className="NewGame">
         <h3>Create New Game</h3>
         <form>
-          Room Name: <input type="text"/> <br/>
+          Room Name:<input onChange={this.handleChange} name="createRoomName"></input> <br/>
           Level:
          <br/>
           Invite <input type="text" placeholder="optional" /> <br/>
-          <button>Create Game</button>
+          <Link to="/game"><button className="Play" onClick={this.createRoomButton}>Create Game</button></Link>
         </form>
       </div>
     );

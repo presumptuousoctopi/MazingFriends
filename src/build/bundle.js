@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "75dcfaec6a5c57b726e4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3eb8a695378110c07a00"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -32035,6 +32035,10 @@
 	
 	var _FriendSearch2 = _interopRequireDefault(_FriendSearch);
 	
+	var _FriendView = __webpack_require__(/*! ./FriendView.jsx */ 296);
+	
+	var _FriendView2 = _interopRequireDefault(_FriendView);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32059,7 +32063,8 @@
 	        'div',
 	        { className: 'Profile' },
 	        _react2.default.createElement(_FriendSearch2.default, null),
-	        _react2.default.createElement(_UserStats2.default, null)
+	        _react2.default.createElement(_UserStats2.default, null),
+	        _react2.default.createElement(_FriendView2.default, null)
 	      );
 	    }
 	  }]);
@@ -32175,10 +32180,17 @@
 	            searchResult: ""
 	        };
 	        _this.updateFriend = _this.updateFriend.bind(_this);
+	        _this.addFriend = _this.addFriend.bind(_this);
 	        return _this;
 	    }
 	
 	    _createClass(FriendSearch, [{
+	        key: "componentWillMount",
+	        value: function componentWillMount() {}
+	    }, {
+	        key: "componentDidMount",
+	        value: function componentDidMount() {}
+	    }, {
 	        key: "searchForFriends",
 	        value: function searchForFriends(event) {
 	            var context = this;
@@ -32203,11 +32215,15 @@
 	        }
 	    }, {
 	        key: "addFriend",
-	        value: function addFriend() {}
+	        value: function addFriend() {
+	            console.log("adding friend:", this.state.friend);
+	            socket.emit("addFriend", { user: sessionStorage.getItem('user'), friend: this.state.friend });
+	        }
 	    }, {
 	        key: "render",
 	        value: function render() {
 	            var button = null;
+	            var context = this;
 	            return _react2.default.createElement(
 	                "div",
 	                null,
@@ -32228,7 +32244,7 @@
 	                ),
 	                this.state.searchResult !== "" && _react2.default.createElement(
 	                    "button",
-	                    { onClick: this.addFriend },
+	                    { onClick: context.addFriend },
 	                    "Add"
 	                )
 	            );
@@ -32359,17 +32375,12 @@
 	    var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this));
 	
 	    _this.state = {
-	      view: 'Home',
-	      join: 'vanish',
-	      new: 'vanish',
+	      //view: 'Home',
 	      createRoomName: '',
 	      joinRoomName: '',
 	      controlsView: false
 	    };
 	    _this.createRoomButton = _this.createRoomButton.bind(_this);
-	    _this.joinRoomButton = _this.joinRoomButton.bind(_this);
-	    _this.newButtonClick = _this.newButtonClick.bind(_this);
-	    _this.joinButtonClick = _this.joinButtonClick.bind(_this);
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    return _this;
 	  }
@@ -32382,41 +32393,17 @@
 	        _reactRouter.browserHistory.push({
 	          pathname: '/home'
 	        });
-	        // context.setState({
-	        //   view: 'Home'
-	        // });
 	        alert(message);
 	      });
 	    }
 	  }, {
 	    key: 'createRoomButton',
 	    value: function createRoomButton() {
-	      window.socket.emit('createRoom', this.state.createRoomName);
-	      this.setState({
-	        view: 'vanish'
+	      window.socket.emit('createRoom', {
+	        roomname: this.state.createRoomName,
+	        level: 1
 	      });
-	    }
-	  }, {
-	    key: 'joinRoomButton',
-	    value: function joinRoomButton() {
-	      window.socket.emit('joinRoom', this.state.joinRoomName);
-	      this.setState({
-	        view: 'vanish'
-	      });
-	    }
-	  }, {
-	    key: 'newButtonClick',
-	    value: function newButtonClick() {
-	      this.setState({
-	        new: 'NewView'
-	      });
-	    }
-	  }, {
-	    key: 'joinButtonClick',
-	    value: function joinButtonClick() {
-	      this.setState({
-	        join: 'JoinView'
-	      });
+	      console.log('room created: ', this.state.createRoomName);
 	    }
 	  }, {
 	    key: 'handleChange',
@@ -32438,8 +32425,8 @@
 	        _react2.default.createElement(
 	          'form',
 	          null,
-	          'Room Name: ',
-	          _react2.default.createElement('input', { type: 'text' }),
+	          'Room Name:',
+	          _react2.default.createElement('input', { onChange: this.handleChange, name: 'createRoomName' }),
 	          ' ',
 	          _react2.default.createElement('br', null),
 	          'Level:',
@@ -32449,9 +32436,13 @@
 	          ' ',
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
-	            'button',
-	            null,
-	            'Create Game'
+	            _reactRouter.Link,
+	            { to: '/game' },
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'Play', onClick: this.createRoomButton },
+	              'Create Game'
+	            )
 	          )
 	        )
 	      );
@@ -32497,7 +32488,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-loader/~/react-hot-api/modules/index.js */ 2), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 10), ReactMount = __webpack_require__(/*! react-dom/lib/ReactMount */ 12), React = __webpack_require__(/*! react */ 103); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -32508,10 +32499,6 @@
 	var _react = __webpack_require__(/*! react */ 103);
 	
 	var _react2 = _interopRequireDefault(_react);
-	
-	var _FriendSearch = __webpack_require__(/*! ./FriendSearch.jsx */ 292);
-	
-	var _FriendSearch2 = _interopRequireDefault(_FriendSearch);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -32533,14 +32520,15 @@
 	            rooms: {},
 	            roomNames: []
 	        };
+	        _this.joinRoomButton = _this.joinRoomButton.bind(_this);
 	        return _this;
 	    }
 	
 	    _createClass(Lobby, [{
-	        key: 'componentDidMount',
+	        key: "componentDidMount",
 	        value: function componentDidMount() {
 	            var context = this;
-	            console.log("component did mount");
+	            console.log("component did mount in joinGame");
 	            var context = this;
 	            socket.on("receiveRooms", function (data) {
 	                console.log("CURRENT DATA:", data);
@@ -32563,71 +32551,80 @@
 	            socket.emit("getRooms");
 	        }
 	    }, {
-	        key: 'render',
+	        key: "joinRoomButton",
+	        value: function joinRoomButton(room) {
+	            window.socket.emit('joinRoom', room);
+	        }
+	    }, {
+	        key: "render",
 	        value: function render() {
 	            var _this2 = this;
 	
 	            return _react2.default.createElement(
-	                'div',
-	                { className: 'TableContainer' },
+	                "div",
+	                { className: "TableContainer" },
 	                _react2.default.createElement(
-	                    'table',
-	                    { className: 'LobbyTable' },
+	                    "table",
+	                    { className: "LobbyTable" },
 	                    _react2.default.createElement(
-	                        'tr',
+	                        "tbody",
 	                        null,
 	                        _react2.default.createElement(
-	                            'td',
-	                            null,
-	                            'Roomname'
-	                        ),
-	                        _react2.default.createElement(
-	                            'td',
-	                            null,
-	                            'User'
-	                        ),
-	                        _react2.default.createElement(
-	                            'td',
-	                            null,
-	                            'Capacity'
-	                        ),
-	                        _react2.default.createElement(
-	                            'td',
-	                            null,
-	                            'Join'
-	                        )
-	                    ),
-	                    this.state.roomNames.map(function (key, index) {
-	                        console.log(key);
-	                        return _react2.default.createElement(
-	                            'tr',
+	                            "tr",
 	                            null,
 	                            _react2.default.createElement(
-	                                'td',
+	                                "td",
 	                                null,
-	                                key
+	                                "Roomname"
 	                            ),
 	                            _react2.default.createElement(
-	                                'td',
+	                                "td",
 	                                null,
-	                                _this2.state.rooms[key],
-	                                '/2'
+	                                "Capacity"
 	                            ),
 	                            _react2.default.createElement(
-	                                'td',
+	                                "td",
 	                                null,
-	                                _this2.state.rooms[key] === 2 ? _react2.default.createElement(
-	                                    'p',
-	                                    null,
-	                                    'Room Full'
-	                                ) : _react2.default.createElement(
-	                                    'button',
-	                                    null,
-	                                    'Join Game'
-	                                )
+	                                "Join"
 	                            )
-	                        );
-	                    })
+	                        ),
+	                        this.state.roomNames.map(function (key, index) {
+	                            console.log(key);
+	                            return _react2.default.createElement(
+	                                "tr",
+	                                null,
+	                                _react2.default.createElement(
+	                                    "td",
+	                                    null,
+	                                    key
+	                                ),
+	                                _react2.default.createElement(
+	                                    "td",
+	                                    null,
+	                                    _this2.state.rooms[key],
+	                                    "/2"
+	                                ),
+	                                _react2.default.createElement(
+	                                    "td",
+	                                    null,
+	                                    _this2.state.rooms[key] === 2 ? _react2.default.createElement(
+	                                        "p",
+	                                        null,
+	                                        "Room Full"
+	                                    ) : _react2.default.createElement(
+	                                        Link,
+	                                        { to: "/game" },
+	                                        _react2.default.createElement(
+	                                            "button",
+	                                            { className: "Play", onClick: _this2.joinRoomButton.bind(null, key) },
+	                                            "Join Room"
+	                                        )
+	                                    ),
+	                                    " "
+	                                )
+	                            );
+	                        })
+	                    )
 	                )
 	            );
 	        }
@@ -32639,6 +32636,73 @@
 	exports.default = Lobby;
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 278); if (makeExportsHot(module, __webpack_require__(/*! react */ 103))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "JoinGame.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../~/webpack/buildin/module.js */ 1)(module)))
+
+/***/ },
+/* 296 */
+/*!********************************************!*\
+  !*** ./src/components/Home/FriendView.jsx ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-loader/~/react-hot-api/modules/index.js */ 2), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 10), ReactMount = __webpack_require__(/*! react-dom/lib/ReactMount */ 12), React = __webpack_require__(/*! react */ 103); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 103);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var FriendView = function (_React$Component) {
+	    _inherits(FriendView, _React$Component);
+	
+	    function FriendView() {
+	        _classCallCheck(this, FriendView);
+	
+	        var _this = _possibleConstructorReturn(this, (FriendView.__proto__ || Object.getPrototypeOf(FriendView)).call(this));
+	
+	        _this.state = {
+	            friends: []
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(FriendView, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var context = this;
+	            socket.emit("getFriends", sessionStorage.getItem('user'));
+	            socket.on("friendData", function (data) {
+	                context.setState({
+	                    friends: data
+	                });
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {}
+	    }]);
+	
+	    return FriendView;
+	}(_react2.default.Component);
+	
+	exports.default = FriendView;
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 278); if (makeExportsHot(module, __webpack_require__(/*! react */ 103))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "FriendView.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../~/webpack/buildin/module.js */ 1)(module)))
 
 /***/ }
