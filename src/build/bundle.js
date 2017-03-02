@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ac20b2e4842e40707fae"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "967893e08a0479b8fea2"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31077,6 +31077,7 @@
 	            function handleRemoteStreamAdded(event) {
 	                console.log('Remote stream added.');
 	                remoteVideo.src = window.URL.createObjectURL(event.stream);
+	
 	                remoteStream = event.stream;
 	            }
 	
@@ -32220,7 +32221,7 @@
 	            var context = this;
 	            console.log("component did mount");
 	            var context = this;
-	            socket.on("receive", function (data) {
+	            socket.on("receiveRooms", function (data) {
 	                console.log("CURRENT DATA:", data);
 	                for (var key in data) {
 	                    if (data[key] === 0) {
@@ -32236,7 +32237,7 @@
 	                    rooms: data,
 	                    roomNames: Object.keys(data)
 	                }, function (data) {});
-	                context.forceUpdate();
+	                //context.forceUpdate();
 	            });
 	            socket.emit("getRooms");
 	        }

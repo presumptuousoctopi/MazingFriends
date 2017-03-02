@@ -292,6 +292,7 @@ webpackHotUpdate(0,{
 	            function handleRemoteStreamAdded(event) {
 	                console.log('Remote stream added.');
 	                remoteVideo.src = window.URL.createObjectURL(event.stream);
+	
 	                remoteStream = event.stream;
 	            }
 	
@@ -430,4 +431,4 @@ webpackHotUpdate(0,{
 /***/ }
 
 })
-//# sourceMappingURL=0.f9e4ba851848455e27c0.hot-update.js.map
+//# sourceMappingURL=0.1ac51d822fd10bc3a73c.hot-update.js.map

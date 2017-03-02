@@ -7,7 +7,7 @@ class VideoChat extends React.Component {
         this.state = {
             isChannelReady: false,
             isInitiator: false,
-            isStarted: false,
+            isStarted: false
         }
     }
     componentDidMount() {
@@ -263,6 +263,7 @@ class VideoChat extends React.Component {
         function handleRemoteStreamAdded(event) {
             console.log('Remote stream added.');
             remoteVideo.src = window.URL.createObjectURL(event.stream);
+
             remoteStream = event.stream;
         }
 
