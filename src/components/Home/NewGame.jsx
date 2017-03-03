@@ -3,10 +3,9 @@ import Title from './../TitleView.jsx'
 import { Link, browserHistory } from 'react-router'
 
 class Home extends React.Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
-			//view: 'Home',
       createRoomName: '',
       joinRoomName: '',
       controlsView: false,
@@ -27,9 +26,12 @@ class Home extends React.Component {
   }
 
 	createRoomButton() {
+    console.log('currentuser in props: ', this.props.currentUser)
+
      var roomInfo = {
        roomname: this.state.createRoomName,
-       level: this.state.gameLevel
+       level: this.state.gameLevel,
+       user: this.props.currentUser
      };
  
      window.socket.emit('createRoom', roomInfo);
