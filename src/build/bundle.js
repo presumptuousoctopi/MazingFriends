@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "a23ee63785afc924a51b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c8ab8241ad6fbb46f4fd"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -32222,6 +32222,7 @@
 	    }, {
 	        key: "componentDidMount",
 	        value: function componentDidMount() {
+	            var context = this;
 	            socket.on("alreadyAdded", function () {
 	                alert("That user is already in your friend database");
 	            });
@@ -32344,6 +32345,7 @@
 	            var context = this;
 	            socket.emit("getFriends", sessionStorage.getItem('user'));
 	            socket.on("friendData", function (data) {
+	                console.log(data);
 	                context.setState({
 	                    friends: data
 	                });
