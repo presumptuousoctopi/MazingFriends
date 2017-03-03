@@ -20,7 +20,7 @@ class UserStats extends React.Component {
     return (
       <div className="UserStats">
       	<h1>User Stats</h1>
-        <table>
+        <table className="table">
           <tr>
             <th>Played with</th>
             <th>Time</th>

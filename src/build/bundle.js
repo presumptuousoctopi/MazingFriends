@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "dc5102768fe3ea036e48"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "71aff737be881e4f4011"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -32176,7 +32176,7 @@
 	        ),
 	        _react2.default.createElement(
 	          'table',
-	          null,
+	          { className: 'table' },
 	          _react2.default.createElement(
 	            'tr',
 	            null,
@@ -32420,6 +32420,11 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
+	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    'My Friends'
+	                ),
 	                this.state.friends.map(function (data) {
 	                    return _react2.default.createElement(
 	                        'h2',
