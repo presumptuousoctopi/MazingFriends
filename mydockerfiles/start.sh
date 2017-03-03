@@ -1,0 +1,2 @@
+cd MazingFriends;
+npm start;

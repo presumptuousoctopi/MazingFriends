@@ -331,9 +331,9 @@ io.on('connection', function(socket){
         username: username,
         time: integerTime,
         level: Number(roomLevel[playerRoom[socket.id]])
-      }).then( (data) => {
+      }).then( function(data) {
         console.log('Saved : ', data);
-      }) ;
+      });
     }
   });
 
