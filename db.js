@@ -70,7 +70,7 @@ var Friends = sequelize.define('friends', {
 
 User.sync();
 Leaderboard.sync();
-Friends.sync();
+Friends.sync({force: true});
 // var consoleLater = function() {
 //   User.findAll({
 //     order: [

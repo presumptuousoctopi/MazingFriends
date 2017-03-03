@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c8ab8241ad6fbb46f4fd"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9bba9b1199432c67282e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -32254,7 +32254,10 @@
 	        key: "addFriend",
 	        value: function addFriend() {
 	            console.log("adding friend:", this.state.friend);
-	            socket.emit("addFriend", { user: sessionStorage.getItem('user'), friend: this.state.friend });
+	            socket.emit("addFriend", { user: sessionStorage.getItem('user'), friend: this.state.searchResult });
+	            this.setState({
+	                searchResult: ""
+	            });
 	        }
 	    }, {
 	        key: "render",
