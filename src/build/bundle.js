@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9bba9b1199432c67282e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "dc5102768fe3ea036e48"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -32118,7 +32118,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-loader/~/react-hot-api/modules/index.js */ 2), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 10), ReactMount = __webpack_require__(/*! react-dom/lib/ReactMount */ 12), React = __webpack_require__(/*! react */ 103); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -32144,19 +32144,79 @@
 	  function UserStats() {
 	    _classCallCheck(this, UserStats);
 	
-	    return _possibleConstructorReturn(this, (UserStats.__proto__ || Object.getPrototypeOf(UserStats)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (UserStats.__proto__ || Object.getPrototypeOf(UserStats)).call(this));
+	
+	    _this.state = {
+	      userStats: []
+	    };
+	    return _this;
 	  }
 	
 	  _createClass(UserStats, [{
-	    key: "render",
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var context = this;
+	      socket.emit("getUserStats", sessionStorage.getItem('user'));
+	      socket.on("userStats", function (data) {
+	        context.setState({
+	          userStats: data
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        "div",
-	        { className: "UserStats" },
+	        'div',
+	        { className: 'UserStats' },
 	        _react2.default.createElement(
-	          "h1",
+	          'h1',
 	          null,
-	          "User Stats"
+	          'User Stats'
+	        ),
+	        _react2.default.createElement(
+	          'table',
+	          null,
+	          _react2.default.createElement(
+	            'tr',
+	            null,
+	            _react2.default.createElement(
+	              'th',
+	              null,
+	              'Played with'
+	            ),
+	            _react2.default.createElement(
+	              'th',
+	              null,
+	              'Time'
+	            ),
+	            _react2.default.createElement(
+	              'th',
+	              null,
+	              'Level'
+	            )
+	          ),
+	          this.state.userStats.map(function (userStatObj) {
+	            return _react2.default.createElement(
+	              'tr',
+	              null,
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                userStatObj.friend
+	              ),
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                userStatObj.time
+	              ),
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                userStatObj.level
+	              )
+	            );
+	          })
 	        )
 	      );
 	    }

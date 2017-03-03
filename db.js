@@ -35,6 +35,7 @@ var User = sequelize.define('user', {
 
 var Leaderboard = sequelize.define('leaderboard', {
   username: Sequelize.STRING,
+  friend: Sequelize.STRING,
   time: Sequelize.FLOAT,
   level: Sequelize.INTEGER
 }, {freezeTableName:true});
@@ -70,7 +71,7 @@ var Friends = sequelize.define('friends', {
 
 User.sync();
 Leaderboard.sync();
-Friends.sync({force: true});
+Friends.sync();
 // var consoleLater = function() {
 //   User.findAll({
 //     order: [
