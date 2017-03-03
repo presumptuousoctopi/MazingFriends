@@ -45,6 +45,11 @@ var Gamestate = sequelize.define('gamestate', {
   level: Sequelize.INTEGER
 });
 
+var Friends = sequelize.define('friends', {
+  user: Sequelize.STRING,
+  friend: Sequelize.STRING
+}, {freezeTableName:true});
+
 // User.sync({force: true}).then( function() {
 //   User.create({
 //     username: 'DJ',
@@ -65,6 +70,7 @@ var Gamestate = sequelize.define('gamestate', {
 
 User.sync();
 Leaderboard.sync();
+Friends.sync({force: true});
 // var consoleLater = function() {
 //   User.findAll({
 //     order: [
@@ -82,5 +88,6 @@ Leaderboard.sync();
 module.exports = {
   User: User,
   Leaderboard: Leaderboard,
-  Gamestate: Gamestate
+  Gamestate: Gamestate,
+  Friends: Friends
 }

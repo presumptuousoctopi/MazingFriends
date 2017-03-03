@@ -22,8 +22,7 @@ class Game extends React.Component {
 		socket.on('gameoverlisten', function(time) {
 				context.setState({
 					gameover: true,
-					time: time,
-          timer: null
+					time: time
 				})
 		console.log('gameover!')
 			});
@@ -32,6 +31,7 @@ class Game extends React.Component {
 				context.setState({
 					timer: timer
 				})
+			console.log(timer);
 			});
   }
 

@@ -9,6 +9,16 @@ class FriendSearch extends React.Component {
             searchResult: ""
         };
         this.updateFriend = this.updateFriend.bind(this);
+        this.addFriend = this.addFriend.bind(this);
+    }
+    componentWillMount() {
+    }
+    componentDidMount() {
+        let context = this;
+        socket.on("alreadyAdded", function(){
+            alert("That user is already in your friend database");
+        });
+
     }
     searchForFriends(event) {
         var context = this;
@@ -31,10 +41,15 @@ class FriendSearch extends React.Component {
         })
     }
     addFriend () {
-
+        console.log("adding friend:", this.state.friend);
+        socket.emit("addFriend", {user: sessionStorage.getItem('user'), friend: this.state.searchResult});
+        this.setState({
+            searchResult: ""
+        });
     }
     render() {
         let button = null;
+        let context = this;
         return (
             <div>
             <form>
@@ -43,7 +58,7 @@ class FriendSearch extends React.Component {
             </form>
             <h4>{this.state.searchResult}</h4>
                 {this.state.searchResult !== "" &&
-                    <button onClick={this.addFriend}>Add</button>
+                    <button onClick={context.addFriend}>Add</button>
                 }
             </div>
         );
