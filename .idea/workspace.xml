@@ -2,10 +2,81 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d5e261e-c9b1-4037-a6a8-f719ca933c1e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/FriendView.jsx" afterPath="$PROJECT_DIR$/src/components/Home/FriendView.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/UserStats.jsx" afterPath="$PROJECT_DIR$/src/components/Home/UserStats.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/build/bundle.js.map" afterPath="$PROJECT_DIR$/src/build/bundle.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/build/bundle.js" afterPath="$PROJECT_DIR$/src/build/bundle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Home/FriendsView.jsx" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.0c76d3fdd497de946b06.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.0c76d3fdd497de946b06.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.21b3fad8076932393e1b.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.21b3fad8076932393e1b.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.2ad3bd2f048be3a900c6.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.2ad3bd2f048be3a900c6.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.404c5c1d6588cdf4f063.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.404c5c1d6588cdf4f063.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.46972f8625acadb33670.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.46972f8625acadb33670.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.4aaa5f2b4c5bbb008b37.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.4aaa5f2b4c5bbb008b37.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.4ebcee7c3a2a2ea5d8a7.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.4ebcee7c3a2a2ea5d8a7.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.563e1140165054314eb7.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.563e1140165054314eb7.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.6b8c4eba3a9cc27e6830.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.6b8c4eba3a9cc27e6830.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.8c21bd7e44757155e749.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.8c21bd7e44757155e749.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.9bba9b1199432c67282e.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.9bba9b1199432c67282e.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.a23ee63785afc924a51b.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.a23ee63785afc924a51b.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.b0b2ae4cb7915bba4871.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.b0b2ae4cb7915bba4871.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.b1d83ad574cbf04cf10f.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.b1d83ad574cbf04cf10f.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.b345bdd7c35964d5484a.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.b345bdd7c35964d5484a.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c2d29ba110edefee439a.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c2d29ba110edefee439a.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c2f88eb63859bc608466.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c2f88eb63859bc608466.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c7d8e86842067c79951c.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c7d8e86842067c79951c.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c8ab8241ad6fbb46f4fd.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c8ab8241ad6fbb46f4fd.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.cbb5ae847b920cf606e6.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.cbb5ae847b920cf606e6.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.dc5102768fe3ea036e48.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.dc5102768fe3ea036e48.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.f778db13b2bd77a7f166.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.f778db13b2bd77a7f166.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0c76d3fdd497de946b06.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/21b3fad8076932393e1b.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/2ad3bd2f048be3a900c6.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/404c5c1d6588cdf4f063.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/46972f8625acadb33670.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/4aaa5f2b4c5bbb008b37.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/4ebcee7c3a2a2ea5d8a7.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/563e1140165054314eb7.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/6b8c4eba3a9cc27e6830.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/8c21bd7e44757155e749.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/9bba9b1199432c67282e.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/a23ee63785afc924a51b.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/b0b2ae4cb7915bba4871.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/b1d83ad574cbf04cf10f.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/b345bdd7c35964d5484a.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/bundle.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/bundle.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/c2d29ba110edefee439a.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/c2f88eb63859bc608466.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/c7d8e86842067c79951c.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/c8ab8241ad6fbb46f4fd.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/cbb5ae847b920cf606e6.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/dc5102768fe3ea036e48.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/f778db13b2bd77a7f166.hot-update.json" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/HomeView.jsx" afterPath="$PROJECT_DIR$/src/components/Home/HomeView.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/JoinGame.jsx" afterPath="$PROJECT_DIR$/src/components/Home/JoinGame.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/LobbyView.jsx" afterPath="$PROJECT_DIR$/src/components/Home/LobbyView.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/NewGame.jsx" afterPath="$PROJECT_DIR$/src/components/Home/NewGame.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/ProfileVIew.jsx" afterPath="$PROJECT_DIR$/src/components/Home/ProfileVIew.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/style.css" afterPath="$PROJECT_DIR$/src/style.css" />
     </list>
     <ignored path="MazingFriends.iws" />
@@ -31,7 +102,7 @@
         <entry file="file://$PROJECT_DIR$/src/components/Home/LobbyView.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -50,8 +121,8 @@
       <file leaf-file-name="JoinGame.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Home/JoinGame.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.333333">
-              <caret line="15" column="14" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="14" />
+            <state vertical-scroll-proportion="-8.888889">
+              <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -81,7 +152,7 @@
         <entry file="file://$PROJECT_DIR$/src/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="1.6456953">
-              <caret line="375" column="1" selection-start-line="375" selection-start-column="1" selection-end-line="375" selection-end-column="1" />
+              <caret line="386" column="1" selection-start-line="386" selection-start-column="1" selection-end-line="386" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -101,7 +172,7 @@
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-93.666664">
-              <caret line="343" column="23" selection-start-line="343" selection-start-column="23" selection-end-line="343" selection-end-column="23" />
+              <caret line="347" column="23" selection-start-line="347" selection-start-column="23" selection-end-line="347" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -441,9 +512,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12708499" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12708499" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -803,7 +874,7 @@
     <entry file="file://$PROJECT_DIR$/src/components/Home/LobbyView.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -859,7 +930,7 @@
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-93.666664">
-          <caret line="343" column="23" selection-start-line="343" selection-start-column="23" selection-end-line="343" selection-end-column="23" />
+          <caret line="347" column="23" selection-start-line="347" selection-start-column="23" selection-end-line="347" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -874,8 +945,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Home/JoinGame.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.333333">
-          <caret line="15" column="14" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="14" />
+        <state vertical-scroll-proportion="-8.888889">
+          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -899,7 +970,7 @@
     <entry file="file://$PROJECT_DIR$/src/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.6456953">
-          <caret line="375" column="1" selection-start-line="375" selection-start-column="1" selection-end-line="375" selection-end-column="1" />
+          <caret line="386" column="1" selection-start-line="386" selection-start-column="1" selection-end-line="386" selection-end-column="1" />
           <folding />
         </state>
       </provider>

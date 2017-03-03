@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "71aff737be881e4f4011"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9c420469d261009e8e58"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31955,7 +31955,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31981,27 +31981,40 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Home = function (_React$Component) {
-	  _inherits(Home, _React$Component);
+		_inherits(Home, _React$Component);
 	
-	  function Home() {
-	    _classCallCheck(this, Home);
+		function Home() {
+			_classCallCheck(this, Home);
 	
-	    return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
-	  }
+			var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this));
 	
-	  _createClass(Home, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'Home' },
-	        _react2.default.createElement(_ProfileView2.default, null),
-	        _react2.default.createElement(_LobbyView2.default, null)
-	      );
-	    }
-	  }]);
+			_this.state = {};
+			return _this;
+		}
 	
-	  return Home;
+		_createClass(Home, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				var context = this;
+				socket.on('currentUser', function (user) {
+					context.setState({
+						currentUser: user
+					});
+				});
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					{ className: 'Home' },
+					_react2.default.createElement(_ProfileView2.default, { currentUser: this.state.currentUser }),
+					_react2.default.createElement(_LobbyView2.default, { currentUser: this.state.currentUser })
+				);
+			}
+		}]);
+	
+		return Home;
 	}(_react2.default.Component);
 	
 	exports.default = Home;
@@ -32021,7 +32034,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32051,57 +32064,47 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Profile = function (_React$Component) {
-		_inherits(Profile, _React$Component);
+	  _inherits(Profile, _React$Component);
 	
-		function Profile() {
-			_classCallCheck(this, Profile);
+	  function Profile(props) {
+	    _classCallCheck(this, Profile);
 	
-			var _this = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this));
+	    var _this = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this, props));
 	
-			_this.state = {
-				currentUser: null
-			};
-			return _this;
-		}
+	    _this.state = {
+	      currentUser: null
+	    };
+	    return _this;
+	  }
 	
-		_createClass(Profile, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				var context = this;
-				socket.on('currentUser', function (user) {
-					context.setState({
-						currentUser: user
-					});
-				});
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					{ className: 'Profile' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'profileHeader' },
-						_react2.default.createElement(
-							'h1',
-							null,
-							'Mazing Friends '
-						),
-						_react2.default.createElement(
-							'h2',
-							null,
-							this.state.currentUser
-						)
-					),
-					_react2.default.createElement(_FriendSearch2.default, null),
-					_react2.default.createElement(_UserStats2.default, null),
-					_react2.default.createElement(_FriendView2.default, null)
-				);
-			}
-		}]);
+	  _createClass(Profile, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'Profile' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'profileHeader' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Mazing Friends '
+	          ),
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            this.props.currentUser
+	          )
+	        ),
+	        _react2.default.createElement(_FriendSearch2.default, null),
+	        _react2.default.createElement(_UserStats2.default, null),
+	        _react2.default.createElement(_FriendView2.default, null)
+	      );
+	    }
+	  }]);
 	
-		return Profile;
+	  return Profile;
 	}(_react2.default.Component);
 	
 	exports.default = Profile;
@@ -32496,7 +32499,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'Lobby' },
-	        _react2.default.createElement(_NewGame2.default, null),
+	        _react2.default.createElement(_NewGame2.default, { currentUser: this.props.currentUser }),
 	        _react2.default.createElement(_JoinGame2.default, null)
 	      );
 	    }
@@ -32550,13 +32553,12 @@
 	var Home = function (_React$Component) {
 	  _inherits(Home, _React$Component);
 	
-	  function Home() {
+	  function Home(props) {
 	    _classCallCheck(this, Home);
 	
-	    var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this));
+	    var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
 	
 	    _this.state = {
-	      //view: 'Home',
 	      createRoomName: '',
 	      joinRoomName: '',
 	      controlsView: false,
@@ -32581,9 +32583,12 @@
 	  }, {
 	    key: 'createRoomButton',
 	    value: function createRoomButton() {
+	      console.log('currentuser in props: ', this.props.currentUser);
+	
 	      var roomInfo = {
 	        roomname: this.state.createRoomName,
-	        level: this.state.gameLevel
+	        level: this.state.gameLevel,
+	        user: this.props.currentUser
 	      };
 	
 	      window.socket.emit('createRoom', roomInfo);
@@ -32701,7 +32706,9 @@
 	
 	        _this.state = {
 	            rooms: {},
-	            roomNames: []
+	            roomNames: [],
+	            levels: {},
+	            users: {}
 	        };
 	        _this.joinRoomButton = _this.joinRoomButton.bind(_this);
 	        return _this;
@@ -32712,26 +32719,39 @@
 	        value: function componentDidMount() {
 	            var context = this;
 	            console.log("component did mount in joinGame");
-	            var context = this;
 	            socket.on("receiveRooms", function (data) {
 	                console.log("CURRENT DATA:", data);
-	                for (var key in data) {
-	                    if (data[key] === 0) {
-	                        delete data[key];
+	                for (var key in data.rooms) {
+	                    if (data.rooms[key] === 0) {
+	                        delete data.rooms[key];
 	                    }
 	                    //this might be hacky- check why the server is storing a null value
-	                    if (data[key] === null) {
-	                        delete data[key];
+	                    if (data.rooms[key] === null) {
+	                        delete data.rooms[key];
 	                    }
 	                }
-	                delete data[undefined];
+	                delete data.rooms[undefined];
+	
+	                for (var key in data.levels) {
+	                    if (data.levels[key] == 1) {
+	                        data.levels[key] = 'Easy';
+	                    }
+	                    if (data.levels[key] == 2) {
+	                        data.levels[key] = 'Normal';
+	                    }
+	                    if (data.levels[key] == 3) {
+	                        data.levels[key] = 'Hard';
+	                    }
+	                }
+	
 	                context.setState({
-	                    rooms: data,
-	                    roomNames: Object.keys(data)
-	                }, function (data) {});
-	                //context.forceUpdate();
+	                    rooms: data.rooms,
+	                    roomNames: Object.keys(data.rooms),
+	                    levels: data.levels,
+	                    users: data.users
+	                });
 	            });
-	            socket.emit("getRooms");
+	            socket.emit("getRoomInfo");
 	        }
 	    }, {
 	        key: 'joinRoomButton',
@@ -32754,16 +32774,21 @@
 	                        null,
 	                        _react2.default.createElement(
 	                            'tr',
-	                            null,
+	                            { className: 'LobbyHeaders' },
 	                            _react2.default.createElement(
 	                                'td',
 	                                null,
-	                                'Roomname'
+	                                'Room'
 	                            ),
 	                            _react2.default.createElement(
 	                                'td',
 	                                null,
-	                                'Capacity'
+	                                'User'
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                'Level'
 	                            ),
 	                            _react2.default.createElement(
 	                                'td',
@@ -32771,7 +32796,7 @@
 	                                'Join'
 	                            )
 	                        ),
-	                        this.state.roomNames.map(function (key, index) {
+	                        this.state.roomNames.map(function (key) {
 	                            console.log(key);
 	                            return _react2.default.createElement(
 	                                'tr',
@@ -32784,26 +32809,29 @@
 	                                _react2.default.createElement(
 	                                    'td',
 	                                    null,
-	                                    _this2.state.rooms[key],
-	                                    '/2'
+	                                    _this2.state.users[key]
 	                                ),
 	                                _react2.default.createElement(
 	                                    'td',
 	                                    null,
-	                                    _this2.state.rooms[key] === 2 ? _react2.default.createElement(
-	                                        'p',
-	                                        null,
-	                                        'Room Full'
-	                                    ) : _react2.default.createElement(
+	                                    _this2.state.levels[key]
+	                                ),
+	                                _this2.state.rooms[key] === 2 ? _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    'Room Full'
+	                                ) : _react2.default.createElement(
+	                                    'td',
+	                                    null,
+	                                    _react2.default.createElement(
 	                                        _reactRouter.Link,
 	                                        { to: '/game' },
 	                                        _react2.default.createElement(
 	                                            'button',
-	                                            { className: 'Play', onClick: _this2.joinRoomButton.bind(null, key) },
+	                                            { onClick: _this2.joinRoomButton.bind(null, key) },
 	                                            'Join Room'
 	                                        )
-	                                    ),
-	                                    ' '
+	                                    )
 	                                )
 	                            );
 	                        })
