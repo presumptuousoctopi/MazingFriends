@@ -6,17 +6,15 @@ class Home extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-
+			currentUser: null
 		}
 	}
 
 	componentDidMount() {
 		var context = this;
-		socket.on('currentUser', function(user) {
 			context.setState({
-				currentUser: user
+				currentUser: window.sessionStorage.getItem('user')
 			});
-		});
 	}
 
   render() {
