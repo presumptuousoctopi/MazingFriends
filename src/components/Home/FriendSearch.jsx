@@ -42,7 +42,10 @@ class FriendSearch extends React.Component {
     }
     addFriend () {
         console.log("adding friend:", this.state.friend);
-        socket.emit("addFriend", {user: sessionStorage.getItem('user'), friend: this.state.friend});
+        socket.emit("addFriend", {user: sessionStorage.getItem('user'), friend: this.state.searchResult});
+        this.setState({
+            searchResult: ""
+        });
     }
     render() {
         let button = null;
