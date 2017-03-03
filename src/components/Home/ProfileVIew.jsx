@@ -26,7 +26,7 @@ class Profile extends React.Component {
           <Link to="/"><button onClick={this.logout}>Logout</button></Link>
       	</div>
      	  <FriendSearch/>
-      	<UserStats />
+      	<UserStats/>
         <FriendView/>
       </div>
     );
