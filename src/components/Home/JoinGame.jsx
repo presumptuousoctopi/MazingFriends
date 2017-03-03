@@ -6,7 +6,9 @@ class Lobby extends React.Component {
         super();
         this.state =  {
             rooms: {},
-            roomNames: []
+            roomNames: [],
+            levels: {},
+            users: {}
         }
      this.joinRoomButton = this.joinRoomButton.bind(this);
     }
@@ -14,29 +16,41 @@ class Lobby extends React.Component {
     componentDidMount() {
         var context = this;
         console.log("component did mount in joinGame");
-        var context = this;
-        socket.on("receiveRooms", function(data) {
-            console.log("CURRENT DATA:", data);
-            for (var key in data) {
-                if (data[key] === 0) {
-                    delete data[key];
+         socket.on("receiveRooms", function(data) {
+              console.log("CURRENT DATA:", data);
+            for (var key in data.rooms) {
+                if (data.rooms[key] === 0) {
+                    delete data.rooms[key];
                 }
                 //this might be hacky- check why the server is storing a null value
-                if (data[key] === null) {
-                    delete data[key];
+                if (data.rooms[key] === null) {
+                    delete data.rooms[key];
                 }
             }
-            delete data[undefined];
-            context.setState({
-                rooms: data,
-                roomNames: Object.keys(data)
-            }, function (data) {
+            delete data.rooms[undefined]
 
-            })
-            //context.forceUpdate();
-        })
-        socket.emit("getRooms");
+            for(var key in data.levels) {
+                if(data.levels[key] == 1) {
+                    data.levels[key] = 'Easy';
+                }
+                if(data.levels[key] == 2) {
+                    data.levels[key] = 'Normal';
+                }
+                if(data.levels[key] == 3) {
+                    data.levels[key] = 'Hard';
+                }
+            }
+            
+            context.setState({
+                rooms: data.rooms,
+                roomNames: Object.keys(data.rooms),
+                levels: data.levels,
+                users: data.users
+             })
+         });
+        socket.emit("getRoomInfo");
     }
+
 
     joinRoomButton(room) {
          window.socket.emit('joinRoom', room);
@@ -47,18 +61,20 @@ class Lobby extends React.Component {
             <div className="TableContainer">
                 <table className="LobbyTable">
                     <tbody>
-                    <tr>
-                        <td>Roomname</td>
-                        <td>Capacity</td>
+                    <tr className="LobbyHeaders">
+                        <td>Room</td>
+                        <td>User</td>
+                        <td>Level</td>
                         <td>Join</td>
                     </tr>
-                    {this.state.roomNames.map((key, index) => {
+                    {this.state.roomNames.map((key) => {
                         console.log(key);
                     return (
                     <tr>
                     <td>{key}</td>
-                    <td>{this.state.rooms[key]}/2</td>
-                    <td>{this.state.rooms[key] === 2 ? <p>Room Full</p> : <Link to="/game"><button className="Play" onClick={this.joinRoomButton.bind(null, key)}>Join Room</button></Link> } </td>
+                    <td>{this.state.users[key]}</td>
+                    <td>{this.state.levels[key]}</td>
+                    {this.state.rooms[key] === 2 ? <td>Room Full</td> : <td><Link to="/game"><button onClick={this.joinRoomButton.bind(null, key)}>Join Room</button></Link></td> }
                     </tr>
                     )
                 })}
@@ -68,4 +84,5 @@ class Lobby extends React.Component {
         );
     }
 }
+
 export default Lobby

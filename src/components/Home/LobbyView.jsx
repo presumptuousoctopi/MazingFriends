@@ -6,7 +6,7 @@ class Lobby extends React.Component {
   render() {
     return (
       <div className="Lobby">
-      	<NewGame />
+      	<NewGame currentUser={this.props.currentUser}/>
       	<JoinGame />
       </div>
     );

@@ -107,6 +107,12 @@ html, body {
   margin: 20px;
 }
 
+.profileHeader {
+  text-align: left;
+  margin: 30px;
+  line-height: 15px;
+}
+
 .ChatBox {
   position: absolute;
   bottom: 0;
@@ -167,12 +173,17 @@ table {
 }
 
 .LobbyTable {
-  font-size: 20px;
-  width: 85%;
+  font-size: 15px;
+  width: 95%;
   top: 0;
   left: 0;
   margin: auto;
-  text-align: left;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.LobbyHeaders {
+  font-size: 20px;
 }
 
 .NewGame {

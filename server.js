@@ -51,6 +51,8 @@ var newRoom = [];
 var usernames = {};
 var roomLevel = {};
 var finalTime = {};
+var roomUser = {};
+var roomInfo = {rooms: rooms, levels: roomLevel, users: roomUser}
 // Start socket.io server
 
 
@@ -99,11 +101,13 @@ io.on('connection', function(socket){
   // Listen for createRoom
   socket.on('createRoom', function (roomInfo) {
     var roomName = roomInfo.roomname;
-    console.log('roomName in server: ', roomName)
+    console.log('room info in server: ', roomInfo)
     // If no empty room exists, make a new room and put user into it
     if (!rooms[roomName]) {
       // Save game level for second player
       roomLevel[roomName] = roomInfo.level;
+      // Save creating user for lobby
+      roomUser[roomName] = roomInfo.user;
       // Create/save room and increment room count
       rooms[roomName] = 1;
       roomCount++;
@@ -206,9 +210,9 @@ io.on('connection', function(socket){
 
   
   // Listen for user request for rooms for lobby view
-  socket.on("getRooms", function() {
+  socket.on("getRoomInfo", function() {
     // Send room information back to user
-    socket.emit("receiveRooms", rooms);
+    socket.emit("receiveRooms", roomInfo);
   });
 
   // Receive a user's message and return all messages posted in the room
