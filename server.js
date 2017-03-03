@@ -379,9 +379,9 @@ io.on('connection', function(socket){
         friend: friend,
         time: integerTime,
         level: Number(roomLevel[playerRoom[socket.id]])
-      }).then( (data) => {
+      }).then( function(data) {
         console.log('Saved : ', data);
-      }) ;
+      });
     }
   });
 
