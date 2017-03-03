@@ -71,10 +71,13 @@ class Lobby extends React.Component {
                         console.log(key);
                     return (
                     <tr>
-                    <td>{key}</td>
-                    <td>{this.state.users[key]}</td>
-                    <td>{this.state.levels[key]}</td>
-                    {this.state.rooms[key] === 2 ? <td>Room Full</td> : <td><Link to="/game"><button onClick={this.joinRoomButton.bind(null, key)}>Join Room</button></Link></td> }
+                        <td>{key}</td>
+                        <td>{this.state.users[key]}</td>
+                        <td>{this.state.levels[key]}</td>
+                        {this.state.rooms[key] === 2 ? <td>Room Full</td> : 
+                        <td><Link to={"/game/" + key}>
+                        <button onClick={this.joinRoomButton.bind(null, key)}>Join Room</button>
+                        </Link></td> }
                     </tr>
                     )
                 })}

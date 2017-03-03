@@ -59,7 +59,7 @@ class Home extends React.Component {
            </select>
          <br/>
           Invite: <input type="text" placeholder="optional" /> <br/>
-          <Link to="/game"><button className="newGameButton" onClick={this.createRoomButton}>Create Game</button></Link>
+          <Link to={"/game/" + this.state.createRoomName}><button className="newGameButton" onClick={this.createRoomButton}>Create Game</button></Link>
         </form>
       </div>
     );

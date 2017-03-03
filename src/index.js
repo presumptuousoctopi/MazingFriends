@@ -10,7 +10,7 @@ import { IndexRedirect } from 'react-router'
 render((
   <Router history={browserHistory}>
       <Route path="/" component={Login} onEnter={checkState}/>
-      <Route path="/game" component={Game} />
+      <Route path="/game/:roomname" component={Game} />
 		<Route path="/home" component={Home} onEnter={requireAuth}/>
     <Route path="*" component={Login} />
 	</Router>
