@@ -12,6 +12,7 @@ class FriendView extends React.Component {
         let context = this;
         socket.emit("getFriends", sessionStorage.getItem('user'));
         socket.on("friendData", function(data){
+            console.log(data);
             context.setState({
                 friends: data
             })

@@ -55,8 +55,8 @@ var finalTime = {};
 
 
 io.on('connection', function(socket){
-  socket.on("getFriends", function(user) {
 
+  socket.on("getFriends", function(user) {
     db.Friends.findAll({
       where: {
         user: user
@@ -64,12 +64,35 @@ io.on('connection', function(socket){
     }).then(function(data){
       socket.emit("friendData", data);
     });
-  })
+  });
   socket.on("addFriend", function(data){
-   db.Friends.create({
-     user: data.user,
-     friend: data.friend
-   })
+    db.Friends.find({
+      where: {
+        user: data.user,
+        friend: data.friend
+      }
+    }).then(function(response){
+      if (response) {
+        console.log("already added");
+        socket.emit("alreadyAdded");
+      }
+      else {
+        console.log("Adding friend", data.friend);
+        db.Friends.create({
+          user: data.user,
+          friend: data.friend
+        }).then(function(){
+          db.Friends.findAll({
+            where: {
+              user: data.user
+            }
+          }).then(function(data){
+            console.log(data);
+            socket.emit("friendData", data);
+          });
+        })
+      }
+    })
   });
   socket.on("getRooms", function() {
     console.log("request to get all rooms");
