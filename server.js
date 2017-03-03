@@ -64,12 +64,24 @@ io.on('connection', function(socket){
     }).then(function(data){
       socket.emit("friendData", data);
     });
-  })
+  });
   socket.on("addFriend", function(data){
-   db.Friends.create({
-     user: data.user,
-     friend: data.friend
-   })
+    db.Friends.find({
+      where: {
+        user: data.user,
+        friend: data.friend
+      }
+    }).then(function(data){
+      if (data) {
+        socket.emit("alreadyAdded");
+      }
+      else {
+        db.Friends.create({
+          user: data.user,
+          friend: data.friend
+        })
+      }
+    })
   });
   socket.on("getRooms", function() {
     console.log("request to get all rooms");

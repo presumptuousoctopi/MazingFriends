@@ -14,6 +14,9 @@ class FriendSearch extends React.Component {
     componentWillMount() {
     }
     componentDidMount() {
+        socket.on("alreadyAdded", function(){
+            alert("That user is already in your friend database");
+        });
     }
     searchForFriends(event) {
         var context = this;

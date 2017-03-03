@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b345bdd7c35964d5484a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a23ee63785afc924a51b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -32221,7 +32221,11 @@
 	        value: function componentWillMount() {}
 	    }, {
 	        key: "componentDidMount",
-	        value: function componentDidMount() {}
+	        value: function componentDidMount() {
+	            socket.on("alreadyAdded", function () {
+	                alert("That user is already in your friend database");
+	            });
+	        }
 	    }, {
 	        key: "searchForFriends",
 	        value: function searchForFriends(event) {
