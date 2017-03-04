@@ -2,6 +2,9 @@ var Sequelize = require('sequelize');
 
 var sequelize;
 if (process.env.DATABASE_URL) {
+  if ( process.env.DATABASE_URL === 'dj' ) {
+    process.env.DATABASE_URL = 'mazingfriends1.cnjizs4c47ml.us-west-1.rds.amazonaws.com:5432'
+  }
   console.log('Inside DATABASE_URL sequelize :');
   console.log('Here is process.env : ', process.env);
   console.log('Here is prcoess.env.DATABASE_URL : ', process.env.DATABASE_URL)
