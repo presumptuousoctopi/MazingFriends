@@ -11,6 +11,9 @@ if (process.env.DATABASE_URL) {
   })
 } else {
   console.log('Inside local host sequelize');
+  console.log('Here is process : ', process);
+  console.log('Here is process.env : ', process.env);
+  console.log('Here is prcoess.env.DATABASE_URL : ', process.env.DATABASE_URL)
   // the application is executed on the local machine ... use mysql
   sequelize = new Sequelize('postgres', 'postgres',  'kim0243', {
     host: 'localhost',
