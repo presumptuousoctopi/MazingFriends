@@ -6,16 +6,13 @@ if (process.env.DATABASE_URL) {
   console.log('Here is process.env : ', process.env);
   console.log('Here is prcoess.env.DATABASE_URL : ', process.env.DATABASE_URL)
   if ( process.env.DATABASE_URL === 'dj' ) {
-    var sequelize = new Sequelize('postgres', 'ehdwn1212', 'kim0243kim0243', {
+    sequelize = new Sequelize('postgres', 'ehdwn1212', 'kim0243kim0243', {
       host: 'postgres.cnjizs4c47ml.us-west-1.rds.amazonaws.com',
       port: 5432,
-      logging: console.log,
-      maxConcurrentQueries: 100,
-      dialectOptions: {
-        ssl:'Amazon RDS'
-      },
-      pool: { maxConnections: 5, maxIdleTime: 30},
-      language: 'en'
+      dialect: 'postgres',
+      protocol: 'postgres',
+      logging: true,
+      timestamps: false
     })
   } else {
     // the application is executed on Heroku ... use the postgres database
