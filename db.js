@@ -2,11 +2,15 @@ var Sequelize = require('sequelize');
 
 var sequelize;
 if (process.env.DATABASE_URL) {
+  console.log('Inside DATABASE_URL sequelize :');
+  console.log('Here is process.env : ', process.env);
+  console.log('Here is prcoess.env.DATABASE_URL : ', process.env.DATABASE_URL)
   // the application is executed on Heroku ... use the postgres database
   sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect:  'postgres'
   })
 } else {
+  console.log('Inside local host sequelize');
   // the application is executed on the local machine ... use mysql
   sequelize = new Sequelize('postgres', 'postgres',  'kim0243', {
     host: 'localhost',
