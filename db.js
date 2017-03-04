@@ -6,13 +6,13 @@ if (process.env.DATABASE_URL) {
   console.log('Here is process.env : ', process.env);
   console.log('Here is prcoess.env.DATABASE_URL : ', process.env.DATABASE_URL)
   if ( process.env.DATABASE_URL === 'dj' ) {
-    var sequelize = new Sequelize('', 'ehdwn1212', '', {
+    var sequelize = new Sequelize('mazingfriends1', 'ehdwn1212', 'kim0243kim0243', {
       host: 'mazingfriends1.cnjizs4c47ml.us-west-1.rds.amazonaws.com',
       port: 5432,
       logging: console.log,
       maxConcurrentQueries: 100,
       dialectOptions: {
-      ssl:'Amazon RDS'
+        ssl:'Amazon RDS'
       },
       pool: { maxConnections: 5, maxIdleTime: 30},
       language: 'en'
