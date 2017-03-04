@@ -15,10 +15,9 @@ html, body {
 } 
 
 .Home, .Login {
-  opacity: 0.9;
   width: 80%;
   height: 80%;
-  background-color: darkred;
+  background-color: rgba(150, 0, 0, 0.9);
   position: absolute;
   top: 0;
   bottom: 0;
@@ -26,6 +25,24 @@ html, body {
   right: 0;
   text-align: center;
   margin: auto;
+}
+
+.LoginBox {
+  margin: auto;
+  width: 20%;
+  height: 40%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  background-color: darkred;
+  border-radius: 5px;
+}
+
+.loginForm {
+  margin: 50px;
+  text-align: left;
 }
 
  .GameOver {

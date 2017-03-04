@@ -44,21 +44,21 @@ class Signup extends React.Component {
 
   render() {
     return (
-		<form onSubmit={this.signUp.bind(this)}>
-    	Username:
-    	<input ref="username" required="true" />
-      <br/>
-      <br/>
-    	Password:
-    	<input type="password" ref="password" required="true" />
-      <br/>
-      <br/>
-      Confirm Password:
-      <input type="password" ref="confirmPassword" required="true"/>
-      <br/>
-      <br/>
-    	<button type="submit">Sign up</button>
-    </form>
+  		<form className="loginForm" onSubmit={this.signUp.bind(this)}>
+      	Username: 
+      	<input ref="username" required="true" />
+        <br/>
+        <br/>
+      	Password: 
+      	<input type="password" ref="password" required="true" />
+        <br/>
+        <br/>
+        Confirm Password: 
+        <input type="password" ref="confirmPassword" required="true"/>
+        <br/>
+        <br/>
+      	<button type="submit">Sign up</button>
+      </form>
     );
   }
 }
