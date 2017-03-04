@@ -2,16 +2,27 @@ var Sequelize = require('sequelize');
 
 var sequelize;
 if (process.env.DATABASE_URL) {
-  if ( process.env.DATABASE_URL === 'dj' ) {
-    process.env.DATABASE_URL = 'mazingfriends1.cnjizs4c47ml.us-west-1.rds.amazonaws.com:5432'
-  }
   console.log('Inside DATABASE_URL sequelize :');
   console.log('Here is process.env : ', process.env);
   console.log('Here is prcoess.env.DATABASE_URL : ', process.env.DATABASE_URL)
-  // the application is executed on Heroku ... use the postgres database
-  sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect:  'postgres'
-  })
+  if ( process.env.DATABASE_URL === 'dj' ) {
+    var sequelize = new Sequelize('', 'ehdwn1212', '', {
+      host: 'mazingfriends1.cnjizs4c47ml.us-west-1.rds.amazonaws.com',
+      port: 5432,
+      logging: console.log,
+      maxConcurrentQueries: 100,
+      dialectOptions: {
+      ssl:'Amazon RDS'
+      },
+      pool: { maxConnections: 5, maxIdleTime: 30},
+      language: 'en'
+    })
+  } else {
+    // the application is executed on Heroku ... use the postgres database
+    sequelize = new Sequelize(process.env.DATABASE_URL, {
+      dialect:  'postgres'
+    })
+  }
 } else {
   console.log('Inside local host sequelize');
   console.log('Here is process : ', process);
