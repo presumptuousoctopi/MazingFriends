@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 # usage: file_env VAR [DEFAULT]
@@ -127,5 +127,7 @@ if [ "$1" = 'postgres' ]; then
     echo
   fi
 fi
+
+docker run --name postgres -e POSTGRES_PASSWORD=kim0243 -d -p 5432:5432 postgres
 
 exec "$@"
