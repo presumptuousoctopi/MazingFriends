@@ -71,7 +71,8 @@ class Home extends React.Component {
            </select>
          <br/>
           Invite: <input type="text" onChange={this.changeEmail} placeholder="enter an email" /> <button type="submit" onClick={this.invite.bind(this)}>Send</button> <br/>
-          <Link to="/game"><button className="newGameButton" onClick={this.createRoomButton}>Create Game</button></Link>
+          <Link to={"/game/" + this.state.createRoomName}><button className="newGameButton" onClick={this.createRoomButton}>Create Game</button></Link>
+
         </form>
       </div>
     );

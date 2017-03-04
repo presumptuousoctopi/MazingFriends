@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "3f0c27572b5f8c5e3cac"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "56e900309cbb65f5cf0b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -616,7 +616,7 @@
 	  _reactRouter.Router,
 	  { history: _reactRouter.browserHistory },
 	  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _LoginView2.default, onEnter: checkState }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/game', component: _GameView2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/game/:roomname', component: _GameView2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/home', component: _HomeView2.default, onEnter: requireAuth }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '*', component: _LoginView2.default })
 	), document.getElementById('app'));
@@ -31552,11 +31552,6 @@
 	              " F : fire"
 	            )
 	          )
-	        ),
-	        _react2.default.createElement(
-	          "button",
-	          { onClick: this.props.close },
-	          "Close"
 	        )
 	      );
 	    }
@@ -31988,7 +31983,9 @@
 	
 			var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this));
 	
-			_this.state = {};
+			_this.state = {
+				currentUser: null
+			};
 			return _this;
 		}
 	
@@ -31996,10 +31993,8 @@
 			key: 'componentDidMount',
 			value: function componentDidMount() {
 				var context = this;
-				socket.on('currentUser', function (user) {
-					context.setState({
-						currentUser: user
-					});
+				context.setState({
+					currentUser: window.sessionStorage.getItem('user')
 				});
 			}
 		}, {
@@ -32043,6 +32038,8 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRouter = __webpack_require__(/*! react-router */ 194);
+	
 	var _UserStats = __webpack_require__(/*! ./UserStats.jsx */ 291);
 	
 	var _UserStats2 = _interopRequireDefault(_UserStats);
@@ -32071,13 +32068,17 @@
 	
 	    var _this = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this, props));
 	
-	    _this.state = {
-	      currentUser: null
-	    };
+	    _this.logout = _this.logout.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(Profile, [{
+	    key: 'logout',
+	    value: function logout() {
+	      window.sessionStorage.removeItem('user', this.props.currentUser);
+	      console.log('Logged out');
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -32095,6 +32096,15 @@
 	            'h2',
 	            null,
 	            this.props.currentUser
+	          ),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/' },
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.logout },
+	              'Logout'
+	            )
 	          )
 	        ),
 	        _react2.default.createElement(_FriendSearch2.default, null),
@@ -32671,7 +32681,7 @@
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: '/game' },
+	            { to: "/game/" + this.state.createRoomName },
 	            _react2.default.createElement(
 	              'button',
 	              { className: 'newGameButton', onClick: this.createRoomButton },
@@ -32851,7 +32861,7 @@
 	                                    null,
 	                                    _react2.default.createElement(
 	                                        _reactRouter.Link,
-	                                        { to: '/game' },
+	                                        { to: "/game/" + key },
 	                                        _react2.default.createElement(
 	                                            'button',
 	                                            { onClick: _this2.joinRoomButton.bind(null, key) },
