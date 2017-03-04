@@ -1,6 +1,7 @@
 import React from 'react';
 import Title from './../TitleView.jsx'
 import { Link, browserHistory } from 'react-router'
+import axios from 'axios'
 
 class Home extends React.Component {
 	constructor(props) {
@@ -9,10 +10,12 @@ class Home extends React.Component {
       createRoomName: '',
       joinRoomName: '',
       controlsView: false,
-      gameLevel: 2
-		}
+      gameLevel: 2,
+      email: ""
+        }
     this.createRoomButton = this.createRoomButton.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.changeEmail = this.changeEmail.bind(this);
 	}
 
   componentDidMount() {
@@ -44,7 +47,16 @@ class Home extends React.Component {
     })
     console.log(this.state);
   }
-
+  changeEmail(e) {
+      this.setState({
+            email: e.target.value
+      });
+  }
+  invite(e) {
+      let context = this;
+      e.preventDefault();
+      socket.emit("invite", {user: sessionStorage.getItem('user'), email: context.state.email});
+  }
   render() {
     return (
       <div className="NewGame">
@@ -58,7 +70,7 @@ class Home extends React.Component {
              <option value="3">Hard</option>
            </select>
          <br/>
-          Invite: <input type="text" placeholder="optional" /> <br/>
+          Invite: <input type="text" onChange={this.changeEmail} placeholder="enter an email" /> <button type="submit" onClick={this.invite.bind(this)}>Send</button> <br/>
           <Link to="/game"><button className="newGameButton" onClick={this.createRoomButton}>Create Game</button></Link>
         </form>
       </div>

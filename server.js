@@ -12,6 +12,7 @@ var fs = require('fs');
 var BinaryServer = require('binaryjs').BinaryServer;
 var binaryServer = new BinaryServer({ server:http, path: '/binary'});
 var calculateDistance = require('./calculateDistance');
+var expressMail = require('express-mail');
 http.listen(port, function () {
   console.log('Example app listening on port 3000!');
 });
@@ -38,6 +39,23 @@ app.get('*', function (request, response){
 });
 
 /*************************************************************************************************
+Express Mail
+ *************************************************************************************************/
+var mailConfig = {
+  transport: 'SMTP',
+  config: {
+    service: 'Gmail',
+    auth: {
+      user: 'hr53greenfield@gmail.com',
+      pass: 'hackreactor'
+    }
+  },
+  defaults: {
+    from: 'hr53greenfield@gmail.com'
+  }
+}
+app.use(expressMail(mailConfig));
+/*************************************************************************************************
  Socket.io
 *************************************************************************************************/
 
@@ -58,6 +76,27 @@ var roomInfo = {rooms: rooms, levels: roomLevel, users: roomUser}
 
 io.on('connection', function(socket){
 
+  socket.on("invite", function(data){
+    console.log(data);
+//    // Setup email data.
+//    var mailOptions = {
+//      to: data.email,
+//      subject: 'Mazing Friends',
+//      locals: {
+//        title: 'Hello',
+//        message: data.user + 'would like to invite you to sign up for Mazing Friends!'
+//      }
+//    }
+//
+//// Send email.
+//    app.send('mail', mailOptions, function (error, response) {
+//      if (error) {
+//        console.log(error);
+//      } else {
+//        console.log('Message sent: ' + response.message);
+//      }
+//    });
+  });
   socket.on("getUserStats", function(user){
     console.log("trying to get user stats");
     db.Leaderboard.findAll({

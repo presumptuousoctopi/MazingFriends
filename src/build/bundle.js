@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9c420469d261009e8e58"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3f0c27572b5f8c5e3cac"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -32540,6 +32540,10 @@
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 194);
 	
+	var _axios = __webpack_require__(/*! axios */ 252);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -32562,10 +32566,12 @@
 	      createRoomName: '',
 	      joinRoomName: '',
 	      controlsView: false,
-	      gameLevel: 2
+	      gameLevel: 2,
+	      email: ""
 	    };
 	    _this.createRoomButton = _this.createRoomButton.bind(_this);
 	    _this.handleChange = _this.handleChange.bind(_this);
+	    _this.changeEmail = _this.changeEmail.bind(_this);
 	    return _this;
 	  }
 	
@@ -32599,6 +32605,20 @@
 	    value: function handleChange(e) {
 	      this.setState(_defineProperty({}, e.target.name, e.target.value));
 	      console.log(this.state);
+	    }
+	  }, {
+	    key: 'changeEmail',
+	    value: function changeEmail(e) {
+	      this.setState({
+	        email: e.target.value
+	      });
+	    }
+	  }, {
+	    key: 'invite',
+	    value: function invite(e) {
+	      var context = this;
+	      e.preventDefault();
+	      socket.emit("invite", { user: sessionStorage.getItem('user'), email: context.state.email });
 	    }
 	  }, {
 	    key: 'render',
@@ -32640,7 +32660,13 @@
 	          ),
 	          _react2.default.createElement('br', null),
 	          'Invite: ',
-	          _react2.default.createElement('input', { type: 'text', placeholder: 'optional' }),
+	          _react2.default.createElement('input', { type: 'text', onChange: this.changeEmail, placeholder: 'enter an email' }),
+	          ' ',
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'submit', onClick: this.invite.bind(this) },
+	            'Send'
+	          ),
 	          ' ',
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
