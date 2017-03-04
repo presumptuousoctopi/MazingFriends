@@ -73,6 +73,7 @@
     "easystarjs": "^0.3.1",
     "enzyme": "^2.7.1",
     "express": "^4.14.1",
+    "express-mail": "0.0.1",
     "fs": "0.0.1-security",
     "mock-socket": "^6.0.4",
     "mysql": "^2.13.0",
