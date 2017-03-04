@@ -2,56 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d5e261e-c9b1-4037-a6a8-f719ca933c1e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cfg/base.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cfg/defaults.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cfg/dev.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cfg/dist.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cfg/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.210de248bbcccbf18427.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.210de248bbcccbf18427.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.31219ac1f86fa5394ff4.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.31219ac1f86fa5394ff4.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.37cf50d6aea2231a61df.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.37cf50d6aea2231a61df.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.50c624e567a4bd1b3328.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.50c624e567a4bd1b3328.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.54a2b9f09ac705709d51.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.54a2b9f09ac705709d51.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.891db4b83d2562b0d337.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.891db4b83d2562b0d337.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.a3ce01c43715b70c49b1.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.a3ce01c43715b70c49b1.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.ada0de4d5b964d124c40.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.ada0de4d5b964d124c40.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.bee5b2e501bfc9b35346.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.bee5b2e501bfc9b35346.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c49cf0c703e7a78099e4.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c49cf0c703e7a78099e4.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.e1c0f843ed441c78859f.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.e1c0f843ed441c78859f.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.fb9e42fcf7beec831421.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.fb9e42fcf7beec831421.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/210de248bbcccbf18427.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/31219ac1f86fa5394ff4.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/37cf50d6aea2231a61df.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/50c624e567a4bd1b3328.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/54a2b9f09ac705709d51.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/891db4b83d2562b0d337.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/a3ce01c43715b70c49b1.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/ada0de4d5b964d124c40.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/bee5b2e501bfc9b35346.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/bundle.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/c49cf0c703e7a78099e4.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/e1c0f843ed441c78859f.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/fb9e42fcf7beec831421.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/Game/AddButton.jsx" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/Controls.jsx" afterPath="$PROJECT_DIR$/src/components/Game/Controls.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/HomeView.jsx" afterPath="$PROJECT_DIR$/src/components/Home/HomeView.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/JoinGame.jsx" afterPath="$PROJECT_DIR$/src/components/Home/JoinGame.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/NewGame.jsx" afterPath="$PROJECT_DIR$/src/components/Home/NewGame.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/ProfileVIew.jsx" afterPath="$PROJECT_DIR$/src/components/Home/ProfileVIew.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
     </list>
     <ignored path="MazingFriends.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -82,10 +34,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NewGame.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NewGame.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Home/NewGame.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5778146">
+            <state vertical-scroll-proportion="0.0">
               <caret line="71" column="14" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
               <folding />
             </state>
@@ -118,8 +70,18 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0555556">
-              <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
+            <state vertical-scroll-proportion="-24.444445">
+              <caret line="88" column="7" selection-start-line="88" selection-start-column="7" selection-end-line="88" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4465517">
+              <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -162,7 +124,6 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/config/test.js" />
         <option value="$PROJECT_DIR$/test/loadtests.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/karma.conf.js" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/src/components/Game/ProgressBar.js" />
@@ -199,8 +160,9 @@
         <option value="$PROJECT_DIR$/src/components/Home/UserStats.jsx" />
         <option value="$PROJECT_DIR$/src/components/Home/FriendView.jsx" />
         <option value="$PROJECT_DIR$/src/style.css" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/src/components/Home/NewGame.jsx" />
+        <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -371,6 +333,86 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nodemailer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nodemailer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nodemailer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mailer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -624,13 +666,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.041667">
-          <caret line="75" column="23" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/TitleView.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25641027">
@@ -874,14 +909,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.592592">
-          <caret line="72" column="17" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/util.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.333333">
@@ -901,18 +928,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Home/NewGame.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0555556">
-          <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="14" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home/NewGame.jsx">
+    <entry file="file://$PROJECT_DIR$/db.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5778146">
-          <caret line="71" column="14" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
+        <state vertical-scroll-proportion="-18.592592">
+          <caret line="72" column="17" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/nodemailer/lib/mailer/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.444445">
+          <caret line="88" column="7" selection-start-line="88" selection-start-column="7" selection-end-line="88" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4465517">
+          <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
           <folding />
         </state>
       </provider>
