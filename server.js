@@ -78,6 +78,7 @@ io.on('connection', function(socket){
       from: 'hr53greenfield@hackreactor.com', // sender address
       to: data.email, // list of receivers
       subject: 'Sign up for Mazing Friends!', // Subject line
+      html: '<a href="https://mazingfriends.herokuapp.com">Play Mazing Friends!</a>' // html body
     };
 
 // send mail with defined transport object
