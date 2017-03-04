@@ -2,10 +2,56 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d5e261e-c9b1-4037-a6a8-f719ca933c1e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/FriendSearch.jsx" afterPath="$PROJECT_DIR$/src/components/Home/FriendSearch.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/build/bundle.js.map" afterPath="$PROJECT_DIR$/src/build/bundle.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/build/bundle.js" afterPath="$PROJECT_DIR$/src/build/bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.js" afterPath="$PROJECT_DIR$/db.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cfg/base.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cfg/defaults.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cfg/dev.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cfg/dist.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cfg/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.210de248bbcccbf18427.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.210de248bbcccbf18427.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.31219ac1f86fa5394ff4.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.31219ac1f86fa5394ff4.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.37cf50d6aea2231a61df.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.37cf50d6aea2231a61df.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.50c624e567a4bd1b3328.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.50c624e567a4bd1b3328.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.54a2b9f09ac705709d51.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.54a2b9f09ac705709d51.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.891db4b83d2562b0d337.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.891db4b83d2562b0d337.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.a3ce01c43715b70c49b1.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.a3ce01c43715b70c49b1.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.ada0de4d5b964d124c40.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.ada0de4d5b964d124c40.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.bee5b2e501bfc9b35346.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.bee5b2e501bfc9b35346.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c49cf0c703e7a78099e4.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.c49cf0c703e7a78099e4.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.e1c0f843ed441c78859f.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.e1c0f843ed441c78859f.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.fb9e42fcf7beec831421.hot-update.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.fb9e42fcf7beec831421.hot-update.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/210de248bbcccbf18427.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/31219ac1f86fa5394ff4.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/37cf50d6aea2231a61df.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/50c624e567a4bd1b3328.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/54a2b9f09ac705709d51.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/891db4b83d2562b0d337.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/a3ce01c43715b70c49b1.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/ada0de4d5b964d124c40.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/bee5b2e501bfc9b35346.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/bundle.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/bundle.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/c49cf0c703e7a78099e4.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/e1c0f843ed441c78859f.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/fb9e42fcf7beec831421.hot-update.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/Game/AddButton.jsx" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/Controls.jsx" afterPath="$PROJECT_DIR$/src/components/Game/Controls.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/HomeView.jsx" afterPath="$PROJECT_DIR$/src/components/Home/HomeView.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/JoinGame.jsx" afterPath="$PROJECT_DIR$/src/components/Home/JoinGame.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/NewGame.jsx" afterPath="$PROJECT_DIR$/src/components/Home/NewGame.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/ProfileVIew.jsx" afterPath="$PROJECT_DIR$/src/components/Home/ProfileVIew.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
     </list>
     <ignored path="MazingFriends.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,16 +72,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="HomeView.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Home/HomeView.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GameOver.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Game/GameOver.jsx">
           <provider selected="true" editor-type-id="text-editor">
@@ -46,65 +82,54 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server.js">
+      <file leaf-file-name="NewGame.jsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/Home/NewGame.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.2777777">
-              <caret line="67" column="17" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.5778146">
+              <caret line="71" column="14" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/db.js">
+      <file leaf-file-name="JoinGame.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Home/JoinGame.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.60264903">
-              <caret line="72" column="28" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Controls.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Game/Controls.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+            <state vertical-scroll-proportion="-8.333333">
+              <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
               <folding>
-                <marker date="1488307790000" expanded="true" signature="101:1064" placeholder="&lt;xml/&gt;" />
-                <marker date="1488307790000" expanded="true" signature="163:578" placeholder="&lt;xml/&gt;" />
-                <marker date="1488307790000" expanded="true" signature="224:278" placeholder="&lt;xml/&gt;" />
-                <marker date="1488307790000" expanded="true" signature="291:346" placeholder="&lt;xml/&gt;" />
-                <marker date="1488307790000" expanded="true" signature="359:416" placeholder="&lt;xml/&gt;" />
-                <marker date="1488307790000" expanded="true" signature="429:487" placeholder="&lt;xml/&gt;" />
-                <marker date="1488307790000" expanded="true" signature="500:561" placeholder="&lt;xml/&gt;" />
-                <marker date="1488307790000" expanded="true" signature="589:993" placeholder="&lt;xml/&gt;" />
-                <marker date="1488307790000" expanded="true" signature="650:705" placeholder="&lt;xml/&gt;" />
-                <marker date="1488307790000" expanded="true" signature="718:774" placeholder="&lt;xml/&gt;" />
-                <marker date="1488307790000" expanded="true" signature="787:840" placeholder="&lt;xml/&gt;" />
-                <marker date="1488307790000" expanded="true" signature="853:908" placeholder="&lt;xml/&gt;" />
-                <marker date="1488307790000" expanded="true" signature="921:976" placeholder="&lt;xml/&gt;" />
+                <marker date="1488587689000" expanded="true" signature="2121:2706" placeholder="{...}" />
+                <marker date="1488587689000" expanded="true" signature="2214:2666" placeholder="&lt;xml/&gt;" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FriendView.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Home/FriendView.jsx">
+      <file leaf-file-name="db.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+            <state vertical-scroll-proportion="-18.592592">
+              <caret line="72" column="17" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FriendSearch.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Home/FriendSearch.jsx">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
+            <state vertical-scroll-proportion="-3.0555556">
+              <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="util.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/util.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.333333">
+              <caret line="460" column="30" selection-start-line="460" selection-start-column="30" selection-end-line="460" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -142,13 +167,11 @@
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/src/components/Game/ProgressBar.js" />
         <option value="$PROJECT_DIR$/coverage/PhantomJS 2.1.1 (Mac OS X 0.0.0)/base.css" />
-        <option value="$PROJECT_DIR$/src/util.js" />
         <option value="$PROJECT_DIR$/src/gameSocket.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/components/Game/Lobby.js" />
         <option value="$PROJECT_DIR$/src/components/TitleView.jsx" />
         <option value="$PROJECT_DIR$/src/bootstrap.css" />
-        <option value="$PROJECT_DIR$/src/style.css" />
         <option value="$PROJECT_DIR$/src/components/Game/ProgressBar.jsx" />
         <option value="$PROJECT_DIR$/src/components/Home/HomeView.jsx" />
         <option value="$PROJECT_DIR$/test/components/ServerGameSocketTest.js" />
@@ -166,15 +189,18 @@
         <option value="$PROJECT_DIR$/src/music.js" />
         <option value="$PROJECT_DIR$/src/components/Home/FriendView.js" />
         <option value="$PROJECT_DIR$/src/components/Home/ProfileVIew.jsx" />
-        <option value="$PROJECT_DIR$/src/components/Home/NewGame.jsx" />
         <option value="$PROJECT_DIR$/src/components/Login/Signup.jsx" />
         <option value="$PROJECT_DIR$/src/components/Login/Login.jsx" />
         <option value="$PROJECT_DIR$/src/components/Game/VideoChat.jsx" />
         <option value="$PROJECT_DIR$/src/components/Game/TextChat.jsx" />
-        <option value="$PROJECT_DIR$/src/components/Home/FriendView.jsx" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/src/components/Home/FriendSearch.jsx" />
+        <option value="$PROJECT_DIR$/src/util.js" />
         <option value="$PROJECT_DIR$/db.js" />
+        <option value="$PROJECT_DIR$/src/components/Home/UserStats.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Home/FriendView.jsx" />
+        <option value="$PROJECT_DIR$/src/style.css" />
+        <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/src/components/Home/NewGame.jsx" />
       </list>
     </option>
   </component>
@@ -323,6 +349,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MazingFriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -597,13 +645,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="190" column="19" selection-start-line="190" selection-start-column="19" selection-end-line="190" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/components/WebRTCTest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8509934">
@@ -643,14 +684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="430" column="5" selection-start-line="430" selection-start-column="1" selection-end-line="430" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/game.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -683,66 +716,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/AddButton.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Login/LoginView.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home/UserStats.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home/ProfileVIew.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home/NewGame.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home/LobbyView.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home/Leaderboard.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home/HomeView.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -771,26 +748,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/GameView.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="26" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Game/ChatView.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="36" column="77" selection-start-line="36" selection-start-column="75" selection-end-line="36" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home/JoinGame.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -816,20 +777,76 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
           <folding>
-            <marker date="1488307790000" expanded="true" signature="101:1064" placeholder="&lt;xml/&gt;" />
-            <marker date="1488307790000" expanded="true" signature="163:578" placeholder="&lt;xml/&gt;" />
-            <marker date="1488307790000" expanded="true" signature="224:278" placeholder="&lt;xml/&gt;" />
-            <marker date="1488307790000" expanded="true" signature="291:346" placeholder="&lt;xml/&gt;" />
-            <marker date="1488307790000" expanded="true" signature="359:416" placeholder="&lt;xml/&gt;" />
-            <marker date="1488307790000" expanded="true" signature="429:487" placeholder="&lt;xml/&gt;" />
-            <marker date="1488307790000" expanded="true" signature="500:561" placeholder="&lt;xml/&gt;" />
-            <marker date="1488307790000" expanded="true" signature="589:993" placeholder="&lt;xml/&gt;" />
-            <marker date="1488307790000" expanded="true" signature="650:705" placeholder="&lt;xml/&gt;" />
-            <marker date="1488307790000" expanded="true" signature="718:774" placeholder="&lt;xml/&gt;" />
-            <marker date="1488307790000" expanded="true" signature="787:840" placeholder="&lt;xml/&gt;" />
-            <marker date="1488307790000" expanded="true" signature="853:908" placeholder="&lt;xml/&gt;" />
-            <marker date="1488307790000" expanded="true" signature="921:976" placeholder="&lt;xml/&gt;" />
+            <marker date="1488587689000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1488587689000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1488587689000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1488587689000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1488587689000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1488587689000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1488587689000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1488587689000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1488587689000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1488587689000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1488587689000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1488587689000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1488587689000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home/FriendSearch.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home/ProfileVIew.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.205298">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home/HomeView.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27317882">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home/Leaderboard.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="386" column="1" selection-start-line="386" selection-start-column="1" selection-end-line="386" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home/LobbyView.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.024834437">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/GameView.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.205298">
+          <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -843,32 +860,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Home/FriendView.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.571192">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home/FriendSearch.jsx">
+    <entry file="file://$PROJECT_DIR$/src/components/Home/UserStats.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.2777777">
-          <caret line="67" column="17" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.57192373">
+          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60264903">
-          <caret line="72" column="28" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="28" />
+        <state vertical-scroll-proportion="-18.592592">
+          <caret line="72" column="17" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.333333">
+          <caret line="460" column="30" selection-start-line="460" selection-start-column="30" selection-end-line="460" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home/JoinGame.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.333333">
+          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+          <folding>
+            <marker date="1488587689000" expanded="true" signature="2121:2706" placeholder="{...}" />
+            <marker date="1488587689000" expanded="true" signature="2214:2666" placeholder="&lt;xml/&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0555556">
+          <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home/NewGame.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5778146">
+          <caret line="71" column="14" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
           <folding />
         </state>
       </provider>
