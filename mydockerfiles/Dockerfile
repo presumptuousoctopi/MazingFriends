@@ -12,6 +12,9 @@ RUN apt-get install -y vim
 RUN apt-get install -y build-essential
 RUN apt-get install -y nodejs
 
+# Install Docker Compose
+RUN curl -L https://github.com/docker/compose/releases/download/1.11.1/run.sh > /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
 
 # Download node
 RUN   \
@@ -23,11 +26,12 @@ RUN   \
   ln -s /opt/node/bin/* . && \
   rm -f /opt/node-v0.10.28-linux-x64.tar.gz
 
-RUN git clone https://github.com/ehdwn1212/MazingFriends
-RUN cd MazingFriends && npm install
+RUN git clone https://github.com/ehdwn1212/MazingFriends;
+RUN cd MazingFriends && npm install;
 
 COPY start.sh /MazingFriends
 
+EXPOSE 3000
 
 RUN chmod +x /MazingFriends/start.sh
 CMD /MazingFriends/start.sh
