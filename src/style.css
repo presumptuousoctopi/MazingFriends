@@ -385,3 +385,17 @@ th {
 .table .table {
     background-color: #fff;
 }
+
+.profilePic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /*don't forget prefixes*/
+    background-position: center center;
+    /* as mentioned by Vad: */
+    background-size: cover;
+    float: right;
+    position: absolute;
+    top: 40px;
+    right: 480px;
+    border: 2px solid black;
+}
