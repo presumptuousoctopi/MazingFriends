@@ -39,7 +39,7 @@ app.get('/favicon.ico', function(request, response) {
   response.sendFile(path.join(__dirname, './src/favicon.ico'));
 });
 
-app.get('*', function (request, response){
+app.get('*', (request, response) => {
   response.sendFile(path.resolve(__dirname, './src/index.html'));
 });
 
@@ -373,7 +373,7 @@ io.on('connection', function(socket){
       io.in(playerRoom[socket.id]).emit('receiveFinalTime', finishTime);      
 
       var integerTime = 0;
-      if ( finishTime.includes(':') ) {
+      if ( finishTime.split(':').length > 1 ) {
         var newTime = finishTime.split(':');
         integerTime = Number(newTime[0] * 60) + Number(newTime[1]);
       } else {
@@ -533,3 +533,5 @@ binaryServer.on('connection', function(client) {
   client.send(jumpStream);
   client.send(shootStream);
 });
+
+
