@@ -1,19 +1,24 @@
 var os = require('os');
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
+var https = require('https');
+var fs = require('fs');
+var options = {
+  cert: fs.readFileSync('cert.crt'),
+  key: fs.readFileSync('private.key')
+};
+https = https.createServer(options, app);
 var path = require('path');
-var io = require('socket.io')(http);
+var io = require('socket.io')(https);
 var port = process.env.PORT || 3000;
 var mazes = require('./src/customMazes');
 var db = require('./db.js');
 var bcrypt = require('bcryptjs');
-var fs = require('fs');
 var BinaryServer = require('binaryjs').BinaryServer;
-var binaryServer = new BinaryServer({ server:http, path: '/binary'});
+var binaryServer = new BinaryServer({ server:https, path: '/binary'});
 var calculateDistance = require('./calculateDistance');
 var nodemailer = require('nodemailer');
-http.listen(port, function () {
+https.listen(port, function () {
   console.log('Example app listening on port 3000!');
 });
 
@@ -82,7 +87,7 @@ io.on('connection', function(socket){
     };
 
 // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
+    transporter.sendMail(mailOptions, function(error, info) {
       if (error) {
         return console.log(error);
       }
@@ -368,7 +373,7 @@ io.on('connection', function(socket){
       io.in(playerRoom[socket.id]).emit('receiveFinalTime', finishTime);      
 
       var integerTime = 0;
-      if ( finishTime.includes(':') ) {
+      if ( finishTime.split(':').length > 1 ) {
         var newTime = finishTime.split(':');
         integerTime = Number(newTime[0] * 60) + Number(newTime[1]);
       } else {
@@ -379,9 +384,9 @@ io.on('connection', function(socket){
         friend: friend,
         time: integerTime,
         level: Number(roomLevel[playerRoom[socket.id]])
-      }).then( (data) => {
+      }).then( function(data) {
         console.log('Saved : ', data);
-      }) ;
+      });
     }
   });
 
