@@ -51,7 +51,7 @@ class FriendSearch extends React.Component {
         let button = null;
         let context = this;
         return (
-            <div>
+            <div className="FriendSearch">
             <form>
                 <input type="text" value={this.state.friend} onChange={this.updateFriend} placeholder="search for friends"></input>
                 <button type="submit" onClick={this.searchForFriends.bind(this)}>Search</button>

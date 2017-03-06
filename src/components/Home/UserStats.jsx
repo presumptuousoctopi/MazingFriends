@@ -19,16 +19,17 @@ class UserStats extends React.Component {
   render() {
     return (
       <div className="UserStats">
-      	<h1>User Stats</h1>
-        <table className="table">
-          <tr>
-            <th>Played with</th>
-            <th>Time</th>
+        <table className="statsTable">
+          <tr className="statsHeaders">
+            <th>Rank</th>
+            <th>Teammate</th>
             <th>Level</th>
+            <th>Time</th>
           </tr>
           {this.state.userStats.map((userStatObj) => {
             return (
                 <tr>
+                <td>{userStatObj.id}</td>
                 <td>{userStatObj.friend}</td>
                 <td>{userStatObj.time}</td>
                 <td>{userStatObj.level}</td>

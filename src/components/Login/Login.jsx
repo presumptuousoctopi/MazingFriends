@@ -37,17 +37,17 @@ class Login extends React.Component {
 
   render() {
     return (
-		<form onSubmit={this.signIn.bind(this)}>
-    	Username:
-    	<input ref="username" required="true"/>
-      <br/>
-      <br/>
-    	Password:
-    	<input type="password" ref="password" required="true"/>
-      <br/>
-      <br/>
-      <button type="submit">Log in</button>
-    </form>
+    	<form className="loginForm" onSubmit={this.signIn.bind(this)}>
+      	Username: 
+      	<input ref="username" required="true"/>
+        <br/>
+        <br/>
+      	Password:
+      	<input type="password" ref="password" required="true"/>
+        <br/>
+        <br/>
+        <button type="submit">Log in</button>
+      </form>
     );
   }
 }
