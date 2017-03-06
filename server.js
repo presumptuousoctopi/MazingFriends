@@ -373,7 +373,7 @@ io.on('connection', function(socket){
       io.in(playerRoom[socket.id]).emit('receiveFinalTime', finishTime);      
 
       var integerTime = 0;
-      if ( finishTime.includes(':') ) {
+      if ( finishTime.split(':').length > 1 ) {
         var newTime = finishTime.split(':');
         integerTime = Number(newTime[0] * 60) + Number(newTime[1]);
       } else {
