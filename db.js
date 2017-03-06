@@ -1,23 +1,50 @@
 var Sequelize = require('sequelize');
 
 var sequelize;
-if (process.env.DATABASE_URL) {
-  // the application is executed on Heroku ... use the postgres database
-  sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect:  'postgres'
-  })
-} else {
-  // the application is executed on the local machine ... use mysql
-  sequelize = new Sequelize('postgres', 'postgres',  'kim0243', {
-    host: 'localhost',
-    dialect: 'postgres',
-    pool: {
-      max: 5,
-      min: 0,
-      idle: 10000
-    },
-  });
-}
+// if (process.env.DATABASE_URL) {
+//   console.log('Inside DATABASE_URL sequelize :');
+//   console.log('Here is process.env : ', process.env);
+//   console.log('Here is prcoess.env.DATABASE_URL : ', process.env.DATABASE_URL)
+//   if ( process.env.DATABASE_URL === 'dj' ) {
+//     sequelize = new Sequelize('postgres', 'ehdwn1212', 'kim0243kim0243', {
+//       host: 'postgres.cnjizs4c47ml.us-west-1.rds.amazonaws.com',
+//       port: 5432,
+//       dialect: 'postgres',
+//       protocol: 'postgres',
+//       logging: true,
+//       timestamps: false
+//     })
+//   } else {
+//     // the application is executed on Heroku ... use the postgres database
+//     sequelize = new Sequelize(process.env.DATABASE_URL, {
+//       dialect:  'postgres'
+//     })
+//   }
+// } else {
+//   console.log('Inside local host sequelize');
+//   console.log('Here is process : ', process);
+//   console.log('Here is process.env : ', process.env);
+//   console.log('Here is prcoess.env.DATABASE_URL : ', process.env.DATABASE_URL)
+//   // the application is executed on the local machine ... use mysql
+//   sequelize = new Sequelize('postgres', 'postgres',  'kim0243', {
+//     host: 'localhost',
+//     dialect: 'postgres',
+//     pool: {
+//       max: 5,
+//       min: 0,
+//       idle: 10000
+//     },
+//   });
+// }
+
+sequelize = new Sequelize('postgres', 'ehdwn1212', 'kim0243kim0243', {
+  host: 'postgres.cnjizs4c47ml.us-west-1.rds.amazonaws.com',
+  port: 5432,
+  dialect: 'postgres',
+  protocol: 'postgres',
+  logging: true,
+  timestamps: false
+})
 
 sequelize
   .authenticate()
