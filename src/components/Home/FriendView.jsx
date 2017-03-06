@@ -1,5 +1,5 @@
 import React from 'react';
-
+import FriendSearch from './FriendSearch'
 
 class FriendView extends React.Component {
     constructor() {
@@ -18,16 +18,17 @@ class FriendView extends React.Component {
             })
         });
     }
-    render (){
+    render () {
         return(
-            <div>
-            <h2>My Friends</h2>
-            {this.state.friends.map((data) => {
-                return (
-                    <h2>{data.friend}</h2>
-                )
-            })}
+            <div className="FriendView">
+                <div className="friendTable">
+                    {this.state.friends.map((data) => {
+                        return (
+                            <p className="friend">{data.friend}</p>
+                        )
+                    })}
                 </div>
+            </div>
         );
     }
 }
