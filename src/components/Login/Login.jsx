@@ -1,9 +1,10 @@
 import React from 'react'; 
-import { Link, browserHistory } from 'react-router'
+import { Link, browserHistory } from 'react-router';
+import AlertContainer from 'react-alert';
 
 class Login extends React.Component {
-  constructor() {
-    super();
+  constructor(props){
+    super(props);
   }
 
   componentDidMount() {
@@ -11,10 +12,10 @@ class Login extends React.Component {
     var context = this;
     socket.on('signinResponse', function(obj) {
       if (window.sessionStorage.getItem('user')) {
-        alert("Youre already logged in!");
+        context.showAlert("Youre already logged in!");
       }
       if ( obj.message ) {
-        alert(obj.message);
+        context.showAlert(obj.message);
       } else {
         window.sessionStorage.setItem('user', obj.username);
         browserHistory.push({ pathname: '/home'});
@@ -37,17 +38,19 @@ class Login extends React.Component {
 
   render() {
     return (
-    	<form className="loginForm" onSubmit={this.signIn.bind(this)}>
-      	Username: 
-      	<input ref="username" required="true"/>
-        <br/>
-        <br/>
-      	Password:
-      	<input type="password" ref="password" required="true"/>
-        <br/>
-        <br/>
-        <button type="submit">Log in</button>
-      </form>
+      <div>
+      	<form className="loginForm" onSubmit={this.signIn.bind(this)}>
+        	Username: 
+        	<input ref="username" required="true"/>
+          <br/>
+          <br/>
+        	Password:
+        	<input type="password" ref="password" required="true"/>
+          <br/>
+          <br/>
+          <button type="submit">Log in</button>
+        </form>
+      </div>
     );
   }
 }
