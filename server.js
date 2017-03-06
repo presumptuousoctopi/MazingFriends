@@ -83,10 +83,10 @@ io.on('connection', function(socket){
     console.log(data);
 // setup email data with unicode symbols
     var mailOptions = {
-      from: 'hr53greenfield@hackreactor.com', // sender address
+      from: 'mazingfriendsgame@hackreactor.com', // sender address
       to: data.email, // list of receivers
       subject: 'Sign up for Mazing Friends!', // Subject line
-      html: '<a href="https://mazingfriends.herokuapp.com">Play Mazing Friends!</a>' // html body
+      html: '<a href="https://mazingfriends.net">Play Mazing Friends!</a>' // html body
     };
 
 // send mail with defined transport object
