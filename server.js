@@ -9,13 +9,13 @@ var options = {
 };
 https = https.createServer(options, app);
 var path = require('path');
-var io = require('socket.io')(http);
+var io = require('socket.io')(https);
 var port = process.env.PORT || 3000;
 var mazes = require('./src/customMazes');
 var db = require('./db.js');
 var bcrypt = require('bcryptjs');
 var BinaryServer = require('binaryjs').BinaryServer;
-var binaryServer = new BinaryServer({ server:http, path: '/binary'});
+var binaryServer = new BinaryServer({ server:https, path: '/binary'});
 var calculateDistance = require('./calculateDistance');
 https.listen(port, function () {
   console.log('Example app listening on port 3000!');
