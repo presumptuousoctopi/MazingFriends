@@ -2,6 +2,7 @@ var os = require('os');
 var express = require('express');
 var app = express();
 var https = require('https');
+var fs = require('fs');
 var options = {
   cert: fs.readFileSync('cert.crt'),
   key: fs.readFileSync('private.key')
@@ -13,7 +14,6 @@ var port = process.env.PORT || 3000;
 var mazes = require('./src/customMazes');
 var db = require('./db.js');
 var bcrypt = require('bcryptjs');
-var fs = require('fs');
 var BinaryServer = require('binaryjs').BinaryServer;
 var binaryServer = new BinaryServer({ server:http, path: '/binary'});
 var calculateDistance = require('./calculateDistance');
