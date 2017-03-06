@@ -1,7 +1,12 @@
 var os = require('os');
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
+var https = require('https');
+var options = {
+  cert: fs.readFileSync('cert.crt'),
+  key: fs.readFileSync('private.key')
+};
+https = https.createServer(options, app);
 var path = require('path');
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
@@ -13,7 +18,7 @@ var BinaryServer = require('binaryjs').BinaryServer;
 var binaryServer = new BinaryServer({ server:http, path: '/binary'});
 var calculateDistance = require('./calculateDistance');
 var nodemailer = require('nodemailer');
-http.listen(port, function () {
+https.listen(port, function () {
   console.log('Example app listening on port 3000!');
 });
 
