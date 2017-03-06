@@ -71,6 +71,9 @@ var roomInfo = {rooms: rooms, levels: roomLevel, users: roomUser}
 
 io.on('connection', function(socket){
 
+  socket.on("saveImage", function(data){
+    console.log(data);
+  })
   socket.on("invite", function(data){
     console.log(data);
 // setup email data with unicode symbols

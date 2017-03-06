@@ -5,7 +5,7 @@ class ImageUpload extends React.Component {
         super(props);
         this.state = {
             file: '',
-            imagePreviewUrl: '',
+            imagePreviewUrl: ''
         };
     }
 
@@ -14,6 +14,10 @@ class ImageUpload extends React.Component {
         // TODO: do something with -> this.state.file
         //console.log('handle uploading-', this.state.imagePreviewUrl);
         this.props.loadImage(this.state.imagePreviewUrl);
+        socket.emit("saveImage", this.state.imagePreviewUrl);
+        this.setState({
+            imagePreviewUrl: ''
+        });
     }
 
     _handleImageChange(e) {
