@@ -32,7 +32,7 @@ app.use( function(req, res, next) {
   next();
 });
 
-app.use(favicon(__dirname + '/src/favicon.ico'));
+app.use(favicon(path.join(__dirname, 'src', 'favicon.ico')))
 app.use('/', express.static(__dirname + '/src'));
 app.use('/js', express.static(__dirname + '/src/js'));
 app.use('/build', express.static(__dirname + '/src/build'));
