@@ -20,7 +20,6 @@ var BinaryServer = require('binaryjs').BinaryServer;
 var binaryServer = new BinaryServer({ server:https, path: '/binary'});
 var calculateDistance = require('./calculateDistance');
 var nodemailer = require('nodemailer');
-var favicon = require('serve-favicon');
 https.listen(port, function () {
   console.log('Example app listening on port 3000!');
 });
@@ -33,7 +32,7 @@ app.use( function(req, res, next) {
   console.log('current serving ', req.method, ' @ ', req.url);
   next();
 });
-app.use(favicon(__dirname + '/src/favicon.ico'));
+
 app.use('/', express.static(__dirname + '/src'));
 app.use('/js', express.static(__dirname + '/src/js'));
 app.use('/build', express.static(__dirname + '/src/build'));
