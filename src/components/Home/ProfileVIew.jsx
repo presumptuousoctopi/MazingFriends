@@ -38,10 +38,14 @@ class Profile extends React.Component {
             <Image imageUrl={this.state.imageUrl}/>
           <Link to="/"><button onClick={this.logout}>Logout</button></Link>
       	</div>
-     	  <FriendSearch/>
-      	<UserStats/>
-        <FriendView/>
+        <div className="profileContent">
+          <h1>{this.props.currentUser}'s Friends</h1>
+          <FriendSearch/>
+          <FriendView/>
+          <h1>{this.props.currentUser}'s Stats</h1>
+        	<UserStats/>
         <ImageUpload loadImage={this.imageStateChangeCallback}/>
+          </div>
       </div>
     );
   }

@@ -61,29 +61,29 @@ class Lobby extends React.Component {
             <div className="TableContainer">
                 <table className="LobbyTable">
                     <tbody>
-                    <tr className="LobbyHeaders">
-                        <td>Room</td>
-                        <td>User</td>
-                        <td>Level</td>
-                        <td>Join</td>
-                    </tr>
-                    {this.state.roomNames.map((key) => {
-                        console.log(key);
-                    return (
-                    <tr>
-                        <td>{key}</td>
-                        <td>{this.state.users[key]}</td>
-                        <td>{this.state.levels[key]}</td>
-                        {this.state.rooms[key] === 2 ? <td>Room Full</td> : 
-                        <td><Link to={"/game/" + key}>
-                        <button onClick={this.joinRoomButton.bind(null, key)}>Join Room</button>
-                        </Link></td> }
-                    </tr>
-                    )
-                })}
-                </tbody>
-            </table>
-        </div>
+                        <tr className="LobbyHeaders">
+                            <td>Room</td>
+                            <td>User</td>
+                            <td>Level</td>
+                            <td>Join</td>
+                        </tr>
+                        {this.state.roomNames.map((key) => {
+                            console.log(key);
+                        return (
+                        <tr>
+                            <td>{key}</td>
+                            <td>{this.state.users[key]}</td>
+                            <td>{this.state.levels[key]}</td>
+                            {this.state.rooms[key] === 2 ? <td>Room Full</td> : 
+                            <td><Link to={"/game/" + key}>
+                            <button onClick={this.joinRoomButton.bind(null, key)}>Join Room</button>
+                            </Link></td> }
+                        </tr>
+                        )
+                        })}
+                    </tbody>
+                </table>
+            </div>
         );
     }
 }

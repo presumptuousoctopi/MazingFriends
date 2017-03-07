@@ -1,19 +1,24 @@
 var os = require('os');
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
+var https = require('https');
+var fs = require('fs');
+var options = {
+  cert: fs.readFileSync('cert.crt'),
+  key: fs.readFileSync('private.key')
+};
+https = https.createServer(options, app);
 var path = require('path');
-var io = require('socket.io')(http);
+var io = require('socket.io')(https);
 var port = process.env.PORT || 3000;
 var mazes = require('./src/customMazes');
 var db = require('./db.js');
 var bcrypt = require('bcryptjs');
-var fs = require('fs');
 var BinaryServer = require('binaryjs').BinaryServer;
-var binaryServer = new BinaryServer({ server:http, path: '/binary'});
+var binaryServer = new BinaryServer({ server:https, path: '/binary'});
 var calculateDistance = require('./calculateDistance');
 var nodemailer = require('nodemailer');
-http.listen(port, function () {
+https.listen(port, function () {
   console.log('Example app listening on port 3000!');
 });
 
@@ -65,7 +70,7 @@ var usernames = {};
 var roomLevel = {};
 var finalTime = {};
 var roomUser = {};
-var roomInfo = {rooms: rooms, levels: roomLevel, users: roomUser}
+var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser}
 // Start socket.io server
 
 
@@ -85,7 +90,7 @@ io.on('connection', function(socket){
     };
 
 // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
+    transporter.sendMail(mailOptions, function(error, info) {
       if (error) {
         return console.log(error);
       }
@@ -211,31 +216,32 @@ io.on('connection', function(socket){
         maze: mazes[roomLevel[roomName]],
         mazeLevel: roomLevel[roomName]
       });
-      // Find best record from database
-      //db.Leaderboard.findAll({
-      //  where: {
-      //    level: Number(roomLevel[playerRoom[socket.id]])
-      //  },
-      //  order: [['time', 'ASC']]
-      //}).then(function(data){
-      //  if ( data.length === 0 ) {
-      //    return;
-      //  }
-      //  var newData = {
-      //    time: data[0].dataValues.time,
-      //    user: data[0].dataValues.username
-      //  };
-      //  // Send best record back to users
-      //  var roomName = playerRoom[socket.id];
-      //  console.log('Send back world record to users in ', roomName);
-      //  io.sockets.in(roomName).emit('receiveWorldRecord', newData);
-      //});
+       //Find best record from database
+      db.Leaderboard.findAll({
+        where: {
+          level: Number(roomLevel[playerRoom[socket.id]])
+        },
+        order: [['time', 'ASC']]
+      }).then(function(data){
+        if ( data.length === 0 ) {
+          return;
+        }
+        var newData = {
+          time: data[0].dataValues.time,
+          user: data[0].dataValues.username
+        };
+        // Send best record back to users
+        var roomName = playerRoom[socket.id];
+        console.log('Send back world record to users in ', roomName);
+        io.sockets.in(roomName).emit('receiveWorldRecord', newData);
+      });
     } else {
       // Send error message back to user
       socket.emit('roomJoinError', 'roomAlreadyExsits');
     }
+    console.log(rooms);
     // Update rooms in lobby view
-    io.sockets.emit("receiveRooms", rooms);
+    io.sockets.emit("receiveRooms", roomInformation);
   });
 
   socket.on('joinRoom', function(roomName) {
@@ -297,7 +303,7 @@ io.on('connection', function(socket){
   // Listen for user request for rooms for lobby view
   socket.on("getRoomInfo", function() {
     // Send room information back to user
-    socket.emit("receiveRooms", roomInfo);
+    io.sockets.emit("receiveRooms", roomInformation);
   });
 
   // Receive a user's message and return all messages posted in the room
@@ -371,7 +377,7 @@ io.on('connection', function(socket){
       io.in(playerRoom[socket.id]).emit('receiveFinalTime', finishTime);      
 
       var integerTime = 0;
-      if ( finishTime.includes(':') ) {
+      if ( finishTime.split(':').length > 1 ) {
         var newTime = finishTime.split(':');
         integerTime = Number(newTime[0] * 60) + Number(newTime[1]);
       } else {
@@ -382,9 +388,9 @@ io.on('connection', function(socket){
         friend: friend,
         time: integerTime,
         level: Number(roomLevel[playerRoom[socket.id]])
-      }).then( (data) => {
+      }).then( function(data) {
         console.log('Saved : ', data);
-      }) ;
+      });
     }
   });
 

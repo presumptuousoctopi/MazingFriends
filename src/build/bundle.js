@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "14a5e5737c0b2b20280b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "8f30fd4d707b5b481258"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31636,16 +31636,20 @@
 	        'div',
 	        { className: 'Login' },
 	        _react2.default.createElement(_TitleView2.default, null),
-	        this.state.login ? _react2.default.createElement(_Login2.default, null) : _react2.default.createElement(_Signup2.default, null),
 	        _react2.default.createElement(
-	          'p',
-	          null,
-	          this.state.login ? 'New?' : "Already have an account?",
-	          ' ',
+	          'div',
+	          { className: 'LoginBox' },
+	          this.state.login ? _react2.default.createElement(_Login2.default, null) : _react2.default.createElement(_Signup2.default, null),
 	          _react2.default.createElement(
-	            'a',
-	            { onClick: this.switchPage.bind(this) },
-	            this.state.login ? "Sign up!" : "Log-in!"
+	            'p',
+	            null,
+	            this.state.login ? 'New?' : "Already have an account?",
+	            ' ',
+	            _react2.default.createElement(
+	              'a',
+	              { onClick: this.switchPage.bind(this) },
+	              this.state.login ? "Sign up!" : "Log-in!"
+	            )
 	          )
 	        )
 	      );
@@ -31797,7 +31801,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'form',
-	        { onSubmit: this.signIn.bind(this) },
+	        { className: 'loginForm', onSubmit: this.signIn.bind(this) },
 	        'Username:',
 	        _react2.default.createElement('input', { ref: 'username', required: 'true' }),
 	        _react2.default.createElement('br', null),
@@ -31908,7 +31912,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'form',
-	        { onSubmit: this.signUp.bind(this) },
+	        { className: 'loginForm', onSubmit: this.signUp.bind(this) },
 	        'Username:',
 	        _react2.default.createElement('input', { ref: 'username', required: 'true' }),
 	        _react2.default.createElement('br', null),
@@ -32129,10 +32133,26 @@
 	            )
 	          )
 	        ),
-	        _react2.default.createElement(_FriendSearch2.default, null),
-	        _react2.default.createElement(_UserStats2.default, null),
-	        _react2.default.createElement(_FriendView2.default, null),
-	        _react2.default.createElement(_ImageUpload2.default, { loadImage: this.imageStateChangeCallback })
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'profileContent' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            this.props.currentUser,
+	            '\'s Friends'
+	          ),
+	          _react2.default.createElement(_FriendSearch2.default, null),
+	          _react2.default.createElement(_FriendView2.default, null),
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            this.props.currentUser,
+	            '\'s Stats'
+	          ),
+	          _react2.default.createElement(_UserStats2.default, null),
+	          _react2.default.createElement(_ImageUpload2.default, { loadImage: this.imageStateChangeCallback })
+	        )
 	      );
 	    }
 	  }]);
@@ -32206,36 +32226,41 @@
 	        'div',
 	        { className: 'UserStats' },
 	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'User Stats'
-	        ),
-	        _react2.default.createElement(
 	          'table',
-	          { className: 'table' },
+	          { className: 'statsTable' },
 	          _react2.default.createElement(
 	            'tr',
-	            null,
+	            { className: 'statsHeaders' },
 	            _react2.default.createElement(
 	              'th',
 	              null,
-	              'Played with'
+	              'Rank'
 	            ),
 	            _react2.default.createElement(
 	              'th',
 	              null,
-	              'Time'
+	              'Teammate'
 	            ),
 	            _react2.default.createElement(
 	              'th',
 	              null,
 	              'Level'
+	            ),
+	            _react2.default.createElement(
+	              'th',
+	              null,
+	              'Time'
 	            )
 	          ),
 	          this.state.userStats.map(function (userStatObj) {
 	            return _react2.default.createElement(
 	              'tr',
 	              null,
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                userStatObj.id
+	              ),
 	              _react2.default.createElement(
 	                'td',
 	                null,
@@ -32362,7 +32387,7 @@
 	            var context = this;
 	            return _react2.default.createElement(
 	                "div",
-	                null,
+	                { className: "FriendSearch" },
 	                _react2.default.createElement(
 	                    "form",
 	                    null,
@@ -32416,6 +32441,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _FriendSearch = __webpack_require__(/*! ./FriendSearch */ 292);
+	
+	var _FriendSearch2 = _interopRequireDefault(_FriendSearch);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32455,19 +32484,18 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                null,
+	                { className: 'FriendView' },
 	                _react2.default.createElement(
-	                    'h2',
-	                    null,
-	                    'My Friends'
-	                ),
-	                this.state.friends.map(function (data) {
-	                    return _react2.default.createElement(
-	                        'h2',
-	                        null,
-	                        data.friend
-	                    );
-	                })
+	                    'div',
+	                    { className: 'friendTable' },
+	                    this.state.friends.map(function (data) {
+	                        return _react2.default.createElement(
+	                            'p',
+	                            { className: 'friend' },
+	                            data.friend
+	                        );
+	                    })
+	                )
 	            );
 	        }
 	    }]);
