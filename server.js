@@ -20,7 +20,6 @@ var BinaryServer = require('binaryjs').BinaryServer;
 var binaryServer = new BinaryServer({ server:https, path: '/binary'});
 var calculateDistance = require('./calculateDistance');
 var nodemailer = require('nodemailer');
-var favicon = require('serve-favicon');
 https.listen(port, function () {
   console.log('Example app listening on port 3000!');
 });
