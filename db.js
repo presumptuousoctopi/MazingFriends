@@ -97,7 +97,7 @@ var Friends = sequelize.define('friends', {
 // });
 
 User.sync();
-Leaderboard.sync({ force: true });
+Leaderboard.sync();
 Friends.sync();
 // var consoleLater = function() {
 //   User.findAll({
