@@ -23,7 +23,7 @@ class Profile extends React.Component {
       	<div className="profileHeader">
 	      	<h1>Mazing Friends </h1>
 	      	<h2>{this.props.currentUser}</h2> 
-          <Link to="/"><button onClick={this.logout} className="logoutButton">Logout</button></Link>
+          <Link className="Link" to="/"><button onClick={this.logout} className="logoutButton">Logout</button></Link>
       	</div>
         <div className="profileContent">
           <h1>{this.props.currentUser}'s Friends</h1>
