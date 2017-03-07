@@ -33,6 +33,7 @@ app.use( function(req, res, next) {
   console.log('current serving ', req.method, ' @ ', req.url);
   next();
 });
+
 app.use('/', express.static(__dirname + '/src'));
 app.use('/js', express.static(__dirname + '/src/js'));
 app.use('/build', express.static(__dirname + '/src/build'));
