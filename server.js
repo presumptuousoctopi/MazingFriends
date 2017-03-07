@@ -36,9 +36,17 @@ app.use('/', express.static(__dirname + '/src'));
 app.use('/js', express.static(__dirname + '/src/js'));
 app.use('/build', express.static(__dirname + '/src/build'));
 
-// app.get('/game/favicon.ico', function(request, response) {
-//   response.sendFile(path.join(__dirname, './src/favicon.ico'));
-// });
+app.get('/favicon.ico', function(request, response) {
+  response.sendFile(path.join(__dirname, './src/favicon.ico'));
+});
+
+app.get('/home/favicon.ico', function(request, response) {
+  response.sendFile(path.join(__dirname, './src/favicon.ico'));
+});
+
+app.get('/game/favicon.ico', function(request, response) {
+  response.sendFile(path.join(__dirname, './src/favicon.ico'));
+});
 
 app.get('/home/favicon.ico', function(request, response) {
   response.sendFile(path.join(__dirname, './src/favicon.ico'));
