@@ -33,11 +33,14 @@ app.use( function(req, res, next) {
   console.log('current serving ', req.method, ' @ ', req.url);
   next();
 });
-
-app.use(favicon(path.join(__dirname, 'src', 'favicon.ico')))
+app.use(favicon(__dirname + '/src/favicon.ico'));
 app.use('/', express.static(__dirname + '/src'));
 app.use('/js', express.static(__dirname + '/src/js'));
 app.use('/build', express.static(__dirname + '/src/build'));
+
+app.get('/game/favicon.ico', function(request, response) {
+  response.sendFile(path.join(__dirname, './src/favicon.ico'));
+});
 
 app.get('*', function (request, response){
   response.sendFile(path.resolve(__dirname, './src/index.html'));
