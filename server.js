@@ -1,5 +1,5 @@
 "use strict"
-
+require('ssl-root-cas').inject();
 var os = require('os');
 var express = require('express');
 var app = express();
