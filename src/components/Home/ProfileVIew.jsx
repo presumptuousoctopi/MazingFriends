@@ -8,8 +8,8 @@ import Image from './Image.jsx'
 
 
 class Profile extends React.Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
     this.state = {
         imageUrl: ''
@@ -17,7 +17,7 @@ class Profile extends React.Component {
 
     this.logout = this.logout.bind(this);
     this.imageStateChangeCallback = this.imageStateChangeCallback.bind(this);
-	}
+  }
     imageStateChangeCallback(data) {
       this.setState({
         imageUrl: data
@@ -32,18 +32,18 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="Profile">
-      	<div className="profileHeader">
-	      	<h1>Mazing Friends </h1>
-	      	<h2>{this.props.currentUser}</h2>
+        <div className="profileHeader">
+          <h1>Mazing Friends </h1>
+          <h2>{this.props.currentUser}</h2>
             <Image imageUrl={this.state.imageUrl}/>
           <Link to="/"><button onClick={this.logout}>Logout</button></Link>
-      	</div>
+        </div>
         <div className="profileContent">
           <h1>{this.props.currentUser}'s Friends</h1>
           <FriendSearch/>
           <FriendView/>
           <h1>{this.props.currentUser}'s Stats</h1>
-        	<UserStats/>
+          <UserStats/>
         <ImageUpload loadImage={this.imageStateChangeCallback}/>
           </div>
       </div>
