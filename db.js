@@ -38,7 +38,7 @@ var sequelize;
 // }
 
 sequelize = new Sequelize('postgres', config.dbUsername, config.dbPassword, {
-  host: dbHost,
+  host: config.dbHost,
   port: 5432,
   dialect: 'postgres',
   protocol: 'postgres',
