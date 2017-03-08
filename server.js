@@ -84,12 +84,16 @@ var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser}
 // Start socket.io server
 
 var AWS = require('aws-sdk');
-
+var BucketCredentials = require('./config.json');
+AWS.config.update(BucketCredentials)
+// AWS.config.loadFromPath('./config.json');
 var s3 = new AWS.S3();
 
 // Bucket names must be unique across all S3 users
+var myBucket = 'mazingfriends1'
 
-var myBucket = 'mazingfriends';
+// console.log('@@@@@ Here is BucketCredentials : ', BucketCredentials);
+
 
 io.on('connection', function(socket){
 
