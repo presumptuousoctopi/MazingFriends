@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-
+var config = require('./config');
 var sequelize;
 // if (process.env.DATABASE_URL) {
 //   console.log('Inside DATABASE_URL sequelize :');
@@ -37,8 +37,8 @@ var sequelize;
 //   });
 // }
 
-sequelize = new Sequelize('postgres', 'ehdwn1212', 'kim0243kim0243', {
-  host: 'postgres.cnjizs4c47ml.us-west-1.rds.amazonaws.com',
+sequelize = new Sequelize('postgres', config.dbUsername, config.dbPassword, {
+  host: dbHost,
   port: 5432,
   dialect: 'postgres',
   protocol: 'postgres',
