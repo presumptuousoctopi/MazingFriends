@@ -89,7 +89,7 @@ var s3 = new AWS.S3();
 
 // Bucket names must be unique across all S3 users
 
-var myBucket = 'mazingfriends';
+var myBucket = 'mazingfriends1';
 
 io.on('connection', function(socket){
 
