@@ -41,6 +41,14 @@ app.get('/favicon.ico', function(request, response) {
   response.sendFile(path.join(__dirname, './src/favicon.ico'));
 });
 
+app.get('/home/favicon.ico', function(request, response) {
+  response.sendFile(path.join(__dirname, './src/favicon.ico'));
+});
+
+app.get('/game/favicon.ico', function(request, response) {
+  response.sendFile(path.join(__dirname, './src/favicon.ico'));
+});
+
 app.get('*', function (request, response){
   response.sendFile(path.resolve(__dirname, './src/index.html'));
 });
@@ -52,8 +60,8 @@ Node Mail
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'hr53greenfield@gmail.com',
-    pass: 'reactorhack'
+    user: 'mazingfriendsgame@gmail.com',
+    pass: 'anukuldjsavy'
   }
 });
 
@@ -121,10 +129,10 @@ io.on('connection', function(socket){
     console.log(data);
 // setup email data with unicode symbols
     var mailOptions = {
-      from: 'hr53greenfield@hackreactor.com', // sender address
+      from: 'mazingfriendsgame@hackreactor.com', // sender address
       to: data.email, // list of receivers
       subject: 'Sign up for Mazing Friends!', // Subject line
-      html: '<a href="https://mazingfriends.herokuapp.com">Play Mazing Friends!</a>' // html body
+      html: '<a href="https://mazingfriends.net">Play Mazing Friends!</a>' // html body
     };
 
 // send mail with defined transport object

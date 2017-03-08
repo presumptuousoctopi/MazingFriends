@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "032c31585092101f7b03"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "fba776095cc24e5eba2f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -35452,9 +35452,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ProfileView = __webpack_require__(/*! ./ProfileView.jsx */ 305);
+	var _ProfileVIew = __webpack_require__(/*! ./ProfileVIew.jsx */ 305);
 	
-	var _ProfileView2 = _interopRequireDefault(_ProfileView);
+	var _ProfileVIew2 = _interopRequireDefault(_ProfileVIew);
 	
 	var _LobbyView = __webpack_require__(/*! ./LobbyView.jsx */ 311);
 	
@@ -35496,7 +35496,7 @@
 				return _react2.default.createElement(
 					'div',
 					{ className: 'Home' },
-					_react2.default.createElement(_ProfileView2.default, { currentUser: this.state.currentUser }),
+					_react2.default.createElement(_ProfileVIew2.default, { currentUser: this.state.currentUser }),
 					_react2.default.createElement(_LobbyView2.default, { currentUser: this.state.currentUser })
 				);
 			}
@@ -35513,7 +35513,7 @@
 /***/ },
 /* 305 */
 /*!*********************************************!*\
-  !*** ./src/components/Home/ProfileView.jsx ***!
+  !*** ./src/components/Home/ProfileVIew.jsx ***!
   \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -35661,7 +35661,7 @@
 	
 	exports.default = Profile;
 	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 278); if (makeExportsHot(module, __webpack_require__(/*! react */ 103))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ProfileView.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 278); if (makeExportsHot(module, __webpack_require__(/*! react */ 103))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ProfileVIew.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../~/webpack/buildin/module.js */ 1)(module)))
 
 /***/ },
