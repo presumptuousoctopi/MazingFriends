@@ -86,7 +86,7 @@ var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser}
 var AWS = require('aws-sdk');
 // var BucketCredentials = require('./config.json');
 // AWS.config.update(BucketCredentials)
-AWS.config.loadFromPath('./config.json');
+// AWS.config.loadFromPath('./config.json');
 var s3 = new AWS.S3();
 
 // Bucket names must be unique across all S3 users
