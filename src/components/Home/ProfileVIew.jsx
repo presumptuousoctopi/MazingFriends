@@ -18,6 +18,14 @@ class Profile extends React.Component {
     this.logout = this.logout.bind(this);
     this.imageStateChangeCallback = this.imageStateChangeCallback.bind(this);
 	}
+    componentDidMount() {
+        let context = this;
+        socket.on("setProfileImage", function(data){
+            context.setState({
+                imageUrl: data
+            })
+        });
+    }
     imageStateChangeCallback(data) {
       this.setState({
         imageUrl: data
@@ -34,14 +42,9 @@ class Profile extends React.Component {
       <div className="Profile">
       	<div className="profileHeader">
 	      	<h1>Mazing Friends </h1>
-<<<<<<< HEAD
-	      	<h2>{this.props.currentUser}</h2> 
-          <Link className="Link" to="/"><button onClick={this.logout} className="logoutButton">Logout</button></Link>
-=======
 	      	<h2>{this.props.currentUser}</h2>
             <Image imageUrl={this.state.imageUrl}/>
           <Link to="/"><button onClick={this.logout}>Logout</button></Link>
->>>>>>> 0311a6c9004b788f1a5e4423857bf6c601ca918e
       	</div>
         <div className="profileContent">
           <h1>{this.props.currentUser}'s Friends</h1>
