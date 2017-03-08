@@ -19,9 +19,9 @@ html, body {
 }
 
 .Home, .Login {
-  width: 80%;
-  height: 80%;
-  background-color: rgba(150, 0, 0, 0.9);
+  width: 90%;
+  height: 90%;
+  background-color: darkred;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -29,20 +29,21 @@ html, body {
   right: 0;
   text-align: center;
   margin: auto;
+  color: black;
 }
 
 .LoginBox {
   margin: auto;
-  margin-top: 18%;
   width: 30%;
-  height: 60%;
+  height: 65%;
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
   top: 0;
-  background-color: darkred;
   border-radius: 5px;
+  border: solid;
+  background: maroon;
 }
 
 .loginForm {
@@ -56,7 +57,7 @@ html, body {
 	opacity: 0.9;
   width: 600px;
   height: 600px;
-  background-color: darkred;
+  background-color: maroon;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -91,8 +92,8 @@ html, body {
   margin-bottom: 15px;
   padding: 10px;
   opacity: 0.9;
-  border: solid 5px darkred;
-  background-color: darkred;
+  border: solid 5px maroon;
+  background-color: maroon;
 }
 
 .TextChat {
@@ -110,18 +111,19 @@ html, body {
 }
 
 .TableContainer {
-  height: 70%;
+  height: 65%;
   width: 90%;
-  right: 0;
+  top: 0;
   left: 0;
-  margin: auto;
+  margin: 5%;
   overflow-y: scroll;
   vertical-align: bottom;
-  background-color: rgba(255,255,255, 0.2);
+  background-color: whitesmoke;
 }
 
 .Profile {
   border: solid;
+  background-color: maroon;
   width: 64%;
   height: 90%;
   top: 0;
@@ -132,12 +134,32 @@ html, body {
   float: left;
 }
 
+.profilePic {
+  height: 140px;
+  width: 140px;
+  border: solid;
+  margin: 5px; 
+}
+
 .profileHeader {
   text-align: left;
-  margin: 30px;
+  margin: 10px;
   margin-bottom: 0px;
-  line-height: 15px;
-  width: 70%;
+  width: 95%;
+  display: inline-block;
+}
+
+.headersRight {
+  display: inline-block;
+  width: 50%;
+  float: right;
+  text-align: right;
+}
+
+.headersLeft {
+  display: inline-block;
+  width: 50%;
+  float: left;
 }
 
 .profileContent {
@@ -151,7 +173,7 @@ html, body {
 }
 
 .UserStats, .FriendView {
-  background: rgba(255,255,255, 0.2);
+  background: whitesmoke;
   width: 80%;
   max-height: 100px;
   top: 0;
@@ -218,6 +240,7 @@ table {
 }
 
 .Lobby {
+  background-color: maroon;
   width: 27%;
   margin-right: 20px;
   border: solid;
@@ -254,9 +277,21 @@ table {
 }
 
 .NewGameForm {
-  text-align: center;
+  text-align: left;
   width: 90%;
+  top: 0;
+  left: 0;
+  margin: auto;
 }
+
+select, .roomInput {
+  width: 68%;
+}
+
+label {
+  padding-right: 5px;
+}
+
 
 .newGameButton {
   width: 100%;

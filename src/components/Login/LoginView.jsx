@@ -21,10 +21,10 @@ class LoginView extends React.Component {
   render() {
     return (
       <div className="Login">
-        <Title/>
         <div className="LoginBox">
+          <Title/>
           {this.state.login ? (<Login/>) : (<Signup/>)}
-          <p>{this.state.login ? 'New?' : "Already have an account?"} <a onClick={this.switchPage.bind(this)}>{this.state.login ? "Sign up!" : "Log-in!"}</a></p>
+          <p>{this.state.login ? 'New?' : "Already have an account?"} <a className="Link" onClick={this.switchPage.bind(this)}>{this.state.login ? "Sign up!" : "Log-in!"}</a></p>
         </div>
       </div>
     );

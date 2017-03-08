@@ -12,7 +12,7 @@ class Profile extends React.Component {
 		super(props);
 
     this.state = {
-        imageUrl: ''
+        imageUrl: './../placeholder.jpg'
     }
 
     this.logout = this.logout.bind(this);
@@ -33,15 +33,14 @@ class Profile extends React.Component {
     return (
       <div className="Profile">
       	<div className="profileHeader">
-	      	<h1>Mazing Friends </h1>
-<<<<<<< HEAD
-	      	<h2>{this.props.currentUser}</h2> 
-          <Link className="Link" to="/"><button onClick={this.logout} className="logoutButton">Logout</button></Link>
-=======
-	      	<h2>{this.props.currentUser}</h2>
-            <Image imageUrl={this.state.imageUrl}/>
-          <Link to="/"><button onClick={this.logout}>Logout</button></Link>
->>>>>>> 0311a6c9004b788f1a5e4423857bf6c601ca918e
+          <div className="headersLeft">
+  	      	<h1>Mazing Friends </h1>
+  	      	<h2>{this.props.currentUser}</h2> 
+            <Link className="Link" to="/"><button onClick={this.logout} className="logoutButton">Logout</button></Link>
+          </div>
+          <div className="headersRight">
+            <Image className="profilePic" imageUrl={this.state.imageUrl}/>
+          </div>
       	</div>
         <div className="profileContent">
           <h1>{this.props.currentUser}'s Friends</h1>
