@@ -575,8 +575,7 @@ binaryServer.on('connection', function(client) {
   var songFilePath = path.join(__dirname, '/songs/main.mp3');
   var jumpFilePath = path.join(__dirname, '/songs/jump.mp3');
   var shootFilePath = path.join(__dirname, '/songs/shoot.mp3');
-  var files = [songFilePath, jumpFilePath, shootFilePath];
-
+  
   // Create file read streams
   var songStream = fs.createReadStream.call(this, songFilePath);
   var jumpStream = fs.createReadStream.call(this, jumpFilePath);
