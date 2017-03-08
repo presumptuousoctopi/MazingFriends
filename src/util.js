@@ -384,7 +384,7 @@ window.createGhost = function() {
         ghostPosition.z += dz;
         
         sphere.position =  ghostPosition;
-    }.bind(this), 500 / window.mazeLevel );
+    }.bind(this), 200 / (window.mazeLevel) + 300 );
 };
 
 /*******************************************************
