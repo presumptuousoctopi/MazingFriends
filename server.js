@@ -89,8 +89,12 @@ var s3 = new AWS.S3();
 
 AWS.config.loadFromPath('./config.json');
 // Bucket names must be unique across all S3 users
+var myBucket = {
+   Bucket : process.argv[2]
+};  
 
-var myBucket = 'mazingfriends1';
+console.log('@@@@@ Here are process.argv : ', process.argv);
+console.log('@@@@@ Here is myBucket : ', myBucket);
 
 io.on('connection', function(socket){
 
