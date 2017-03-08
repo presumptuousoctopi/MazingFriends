@@ -99,10 +99,11 @@ io.on('connection', function(socket){
     s3.getObject(params, function(err, data){
       if (err) {
         console.log(err);
+        socket.emit("setProfileImage", "");
       } else{
         console.log(data);
+        socket.emit("setProfileImage", data.Body.toString());
       }
-      socket.emit("setProfileImage", data.Body.toString());
           })
   })
   socket.on("saveImage", function(data){

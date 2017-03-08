@@ -24,7 +24,7 @@ class FriendView extends React.Component {
                 <div className="friendTable">
                     {this.state.friends.map((data) => {
                         return (
-                            <p className="friend">{data.friend}</p>
+                            <a href="#" className="friend">{data.friend}</a>
                         )
                     })}
                 </div>
