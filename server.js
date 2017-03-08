@@ -1,5 +1,5 @@
 "use strict"
-require('ssl-root-cas').inject();
+
 var os = require('os');
 var express = require('express');
 var app = express();
@@ -84,8 +84,9 @@ var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser}
 // Start socket.io server
 
 var AWS = require('aws-sdk');
-var BucketCredentials = require('./config.json');
-AWS.config.update(BucketCredentials)
+// var BucketCredentials = require('./config.json');
+// AWS.config.update(BucketCredentials)
+AWS.config.loadFromPath('./config.json');
 var s3 = new AWS.S3();
 
 // Bucket names must be unique across all S3 users
