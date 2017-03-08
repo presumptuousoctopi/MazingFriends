@@ -1,5 +1,5 @@
 import React from 'react';
-import Profile from './ProfileView.jsx'
+import Profile from './ProfileVIew.jsx'
 import Lobby from './LobbyView.jsx'
 
 class Home extends React.Component {
