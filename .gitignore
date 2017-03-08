@@ -3,4 +3,3 @@ node_modules
 cert.crt
 private.key
 ./build
-bundle.js
