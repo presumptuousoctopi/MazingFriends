@@ -1,3 +1,5 @@
+"use strict"
+
 var os = require('os');
 var express = require('express');
 var app = express();
@@ -39,6 +41,14 @@ app.get('/favicon.ico', function(request, response) {
   response.sendFile(path.join(__dirname, './src/favicon.ico'));
 });
 
+app.get('/home/favicon.ico', function(request, response) {
+  response.sendFile(path.join(__dirname, './src/favicon.ico'));
+});
+
+app.get('/game/favicon.ico', function(request, response) {
+  response.sendFile(path.join(__dirname, './src/favicon.ico'));
+});
+
 app.get('*', function (request, response){
   response.sendFile(path.resolve(__dirname, './src/index.html'));
 });
@@ -50,8 +60,8 @@ Node Mail
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'hr53greenfield@gmail.com',
-    pass: 'reactorhack'
+    user: 'mazingfriendsgame@gmail.com',
+    pass: 'anukuldjsavy'
   }
 });
 
@@ -73,20 +83,55 @@ var roomUser = {};
 var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser}
 // Start socket.io server
 
+var AWS = require('aws-sdk');
+
+var s3 = new AWS.S3();
+
+// Bucket names must be unique across all S3 users
+
+var myBucket = 'mazingfriends';
 
 io.on('connection', function(socket){
 
+  socket.on("getProfileImage", function(data){
+    console.log("trying to get user image");
+    let params = {Bucket: myBucket, Key: data.user};
+    s3.getObject(params, function(err, data){
+      if (err) {
+        console.log(err);
+      } else{
+        console.log(data);
+      }
+      socket.emit("setProfileImage", data.Body.toString());
+          })
+  })
   socket.on("saveImage", function(data){
-    console.log(data);
+    let myKey = data.user;
+
+     let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
+
+        s3.putObject(params, function(err, data) {
+
+          if (err) {
+
+            console.log(err)
+
+          } else {
+
+            console.log("Successfully uploaded data to myBucket/myKey");
+
+          }
+
+        });
   })
   socket.on("invite", function(data){
     console.log(data);
 // setup email data with unicode symbols
     var mailOptions = {
-      from: 'hr53greenfield@hackreactor.com', // sender address
+      from: 'mazingfriendsgame@hackreactor.com', // sender address
       to: data.email, // list of receivers
       subject: 'Sign up for Mazing Friends!', // Subject line
-      html: '<a href="https://mazingfriends.herokuapp.com">Play Mazing Friends!</a>' // html body
+      html: '<a href="https://mazingfriends.net">Play Mazing Friends!</a>' // html body
     };
 
 // send mail with defined transport object

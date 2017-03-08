@@ -8,8 +8,8 @@ import Image from './Image.jsx'
 
 
 class Profile extends React.Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
     this.state = {
         imageUrl: './../placeholder.jpg'
@@ -18,6 +18,14 @@ class Profile extends React.Component {
     this.logout = this.logout.bind(this);
     this.imageStateChangeCallback = this.imageStateChangeCallback.bind(this);
 	}
+    componentDidMount() {
+        let context = this;
+        socket.on("setProfileImage", function(data){
+            context.setState({
+                imageUrl: data
+            })
+        });
+    }
     imageStateChangeCallback(data) {
       this.setState({
         imageUrl: data
@@ -47,7 +55,7 @@ class Profile extends React.Component {
           <FriendSearch/>
           <FriendView/>
           <h1>{this.props.currentUser}'s Stats</h1>
-        	<UserStats/>
+          <UserStats/>
         <ImageUpload loadImage={this.imageStateChangeCallback}/>
           </div>
       </div>
