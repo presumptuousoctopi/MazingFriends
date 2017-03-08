@@ -2,42 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d5e261e-c9b1-4037-a6a8-f719ca933c1e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.18db6a88f5df3303a1ca.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.2ba8b43e513cd626180b.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.31d65d82a2afe3940529.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.38ebf1fdb8e3b079ddf0.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.38ebf1fdb8e3b079ddf0.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.49b425e3b1aaa5719f77.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.6ddee308f1e81da3b52f.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.795b658b355a94e77ee8.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.795b658b355a94e77ee8.hot-update.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.821368941675bb3143f2.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.99a2295dd1517f3f5806.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.a1432320e8e8590c1604.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.b808abb921d518376dfa.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.d06c8380ae8587ab9a08.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.db3f9cf84842482da6a5.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/0.fb780dd23fb60e373061.hot-update.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/18db6a88f5df3303a1ca.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/2ba8b43e513cd626180b.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/31d65d82a2afe3940529.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/38ebf1fdb8e3b079ddf0.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/49b425e3b1aaa5719f77.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/6ddee308f1e81da3b52f.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/795b658b355a94e77ee8.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/821368941675bb3143f2.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/99a2295dd1517f3f5806.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/a1432320e8e8590c1604.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/b808abb921d518376dfa.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/bundle.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/d06c8380ae8587ab9a08.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/db3f9cf84842482da6a5.hot-update.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/build/fb780dd23fb60e373061.hot-update.json" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/Image.jsx" afterPath="$PROJECT_DIR$/src/components/Home/Image.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/FriendView.jsx" afterPath="$PROJECT_DIR$/src/components/Home/FriendView.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/ImageUpload.jsx" afterPath="$PROJECT_DIR$/src/components/Home/ImageUpload.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Home/ProfileVIew.jsx" afterPath="$PROJECT_DIR$/src/components/Home/ProfileVIew.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/build/bundle.js.map" afterPath="$PROJECT_DIR$/src/build/bundle.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/build/bundle.js" afterPath="$PROJECT_DIR$/src/build/bundle.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/style.css" afterPath="$PROJECT_DIR$/src/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -61,21 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JoinGame.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Home/JoinGame.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.703704">
-              <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.1666665">
-              <caret line="96" column="59" selection-start-line="96" selection-start-column="59" selection-end-line="96" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.32181817">
+              <caret line="96" column="61" selection-start-line="96" selection-start-column="61" selection-end-line="96" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -101,31 +59,54 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="LoginView.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Login/LoginView.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Signup.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Login/Signup.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ImageUpload.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Home/ImageUpload.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state vertical-scroll-proportion="-14.703704">
+              <caret line="58" column="22" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Image.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Home/Image.jsx">
+      <file leaf-file-name="FriendView.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Home/FriendView.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="79" selection-start-line="7" selection-start-column="79" selection-end-line="7" selection-end-column="79" />
-              <folding />
+              <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+              <folding>
+                <marker date="1489010861000" expanded="true" signature="551:883" placeholder="&lt;xml/&gt;" />
+                <marker date="1489010861000" expanded="true" signature="596:864" placeholder="&lt;xml/&gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProfileVIew.jsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/Home/ProfileVIew.jsx">
+      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webpack.config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.081125826">
-              <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -147,8 +128,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/webrtc.js" />
-        <option value="$PROJECT_DIR$/src/game.js" />
         <option value="$PROJECT_DIR$/src/config/test.js" />
         <option value="$PROJECT_DIR$/test/loadtests.js" />
         <option value="$PROJECT_DIR$/karma.conf.js" />
@@ -182,7 +161,6 @@
         <option value="$PROJECT_DIR$/src/components/Home/FriendSearch.jsx" />
         <option value="$PROJECT_DIR$/src/util.js" />
         <option value="$PROJECT_DIR$/src/components/Home/UserStats.jsx" />
-        <option value="$PROJECT_DIR$/src/components/Home/FriendView.jsx" />
         <option value="$PROJECT_DIR$/src/components/Home/NewGame.jsx" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/components/Home/Image.js" />
@@ -193,11 +171,14 @@
         <option value="$PROJECT_DIR$/src/components/Home/JoinGame.jsx" />
         <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/build/bundle.js" />
-        <option value="$PROJECT_DIR$/src/style.css" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/src/components/Home/Image.jsx" />
-        <option value="$PROJECT_DIR$/src/components/Home/ImageUpload.jsx" />
         <option value="$PROJECT_DIR$/src/components/Home/ProfileVIew.jsx" />
+        <option value="$PROJECT_DIR$/src/style.css" />
+        <option value="$PROJECT_DIR$/src/components/Common/Modal.js" />
+        <option value="$PROJECT_DIR$/src/components/Common/Modal.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Home/ImageUpload.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Home/FriendView.jsx" />
+        <option value="$PROJECT_DIR$/server.js" />
       </list>
     </option>
   </component>
@@ -549,13 +530,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/TitleView.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25641027">
@@ -634,14 +608,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Login/LoginView.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Game/VideoChat.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25476602">
@@ -662,14 +628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34768212">
           <caret line="14" column="22" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Login/Signup.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -784,34 +742,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/ChatView.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47847682">
-          <caret line="36" column="77" selection-start-line="36" selection-start-column="75" selection-end-line="36" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.703704">
           <caret line="99" column="17" selection-start-line="99" selection-start-column="17" selection-end-line="99" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home/FriendView.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.571192">
-          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home/HomeView.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27317882">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -829,58 +763,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82615894">
-          <caret line="456" column="0" selection-start-line="456" selection-start-column="0" selection-end-line="456" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home/JoinGame.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.703704">
-          <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Home/FriendSearch.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Login/Login.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.375">
-          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.1666665">
-          <caret line="96" column="59" selection-start-line="96" selection-start-column="59" selection-end-line="96" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home/ImageUpload.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -893,10 +779,109 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home/JoinGame.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.703704">
+          <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Home/ProfileVIew.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.081125826">
+        <state vertical-scroll-proportion="0.0">
           <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/ChatView.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47847682">
+          <caret line="36" column="77" selection-start-line="36" selection-start-column="75" selection-end-line="36" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Login/Signup.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33275563">
+          <caret line="122" column="5" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.375">
+          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Login/Login.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Login/LoginView.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home/HomeView.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home/FriendView.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+          <folding>
+            <marker date="1489010861000" expanded="true" signature="551:883" placeholder="&lt;xml/&gt;" />
+            <marker date="1489010861000" expanded="true" signature="596:864" placeholder="&lt;xml/&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home/ImageUpload.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.703704">
+          <caret line="58" column="22" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32181817">
+          <caret line="96" column="61" selection-start-line="96" selection-start-column="61" selection-end-line="96" selection-end-column="61" />
           <folding />
         </state>
       </provider>

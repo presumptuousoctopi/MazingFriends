@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8af3463a1cabffa8695b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "032c31585092101f7b03"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -35989,8 +35989,8 @@
 	                    { className: 'friendTable' },
 	                    this.state.friends.map(function (data) {
 	                        return _react2.default.createElement(
-	                            'p',
-	                            { className: 'friend' },
+	                            'a',
+	                            { href: '#', className: 'friend' },
 	                            data.friend
 	                        );
 	                    })
@@ -36090,7 +36090,7 @@
 	
 	            var $imagePreview = null;
 	            if (imagePreviewUrl) {
-	                $imagePreview = _react2.default.createElement('img', { src: imagePreviewUrl });
+	                $imagePreview = _react2.default.createElement('img', { className: 'preview', src: imagePreviewUrl });
 	            } else {
 	                $imagePreview = _react2.default.createElement(
 	                    'div',
