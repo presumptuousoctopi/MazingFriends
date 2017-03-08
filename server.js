@@ -94,8 +94,9 @@ console.log('@@@@@ Here are process.argv : ', process.argv);
 console.log('@@@@@ Here is process : ', process);
 console.log('@@@@@ Here is process.arg : ', process.arg);
 console.log('@@@@@ Here is process.env : ', process.env);
-
 console.log('@@@@@ Here is myBucket : ', myBucket);
+console.log('@@@@@ Here is BucketCredentials : ', BucketCredentials);
+
 
 io.on('connection', function(socket){
 
