@@ -87,6 +87,7 @@ var AWS = require('aws-sdk');
 
 var s3 = new AWS.S3();
 
+AWS.config.loadFromPath('./config.json');
 // Bucket names must be unique across all S3 users
 
 var myBucket = 'mazingfriends1';
