@@ -8,7 +8,7 @@
     "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist",
     "dist": "npm run copy & webpack --env=dist",
     "lint": "eslint ./src",
-    "start": "forever -o out.log -e err.log start server.js",
+    "start": "node server.js",
     "test": "karma start",
     "test:watch": "karma start --autoWatch=true --singleRun=false",
     "dev": "webpack -d --progress --colors --watch",
