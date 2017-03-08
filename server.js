@@ -84,8 +84,8 @@ var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser}
 // Start socket.io server
 
 var AWS = require('aws-sdk');
-// var BucketCredentials = require('./config.json');
-// AWS.config.update(BucketCredentials)
+var BucketCredentials = require('./config.json');
+AWS.config.update(BucketCredentials)
 // AWS.config.loadFromPath('./config.json');
 var s3 = new AWS.S3();
 
