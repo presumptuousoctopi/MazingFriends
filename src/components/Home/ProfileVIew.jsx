@@ -8,8 +8,8 @@ import Image from './Image.jsx'
 
 
 class Profile extends React.Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
     this.state = {
         imageUrl: ''
@@ -51,7 +51,7 @@ class Profile extends React.Component {
           <FriendSearch/>
           <FriendView/>
           <h1>{this.props.currentUser}'s Stats</h1>
-        	<UserStats/>
+          <UserStats/>
         <ImageUpload loadImage={this.imageStateChangeCallback}/>
           </div>
       </div>
