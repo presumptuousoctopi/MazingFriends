@@ -92,7 +92,7 @@ var s3 = new AWS.S3();
 // Bucket names must be unique across all S3 users
 var myBucket = 'mazingfriends1'
 
-console.log('@@@@@ Here is BucketCredentials : ', BucketCredentials);
+// console.log('@@@@@ Here is BucketCredentials : ', BucketCredentials);
 
 
 io.on('connection', function(socket){
