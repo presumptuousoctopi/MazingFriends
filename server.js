@@ -1,3 +1,5 @@
+"use strict"
+
 var os = require('os');
 var express = require('express');
 var app = express();
@@ -81,11 +83,46 @@ var roomUser = {};
 var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser}
 // Start socket.io server
 
+var AWS = require('aws-sdk');
+
+var s3 = new AWS.S3();
+
+// Bucket names must be unique across all S3 users
+
+var myBucket = 'mazingfriends';
 
 io.on('connection', function(socket){
 
+  socket.on("getProfileImage", function(data){
+    console.log("trying to get user image");
+    let params = {Bucket: myBucket, Key: data.user};
+    s3.getObject(params, function(err, data){
+      if (err) {
+        console.log(err);
+      } else{
+        console.log(data);
+      }
+      socket.emit("setProfileImage", data.Body.toString());
+          })
+  })
   socket.on("saveImage", function(data){
-    console.log(data);
+    let myKey = data.user;
+
+     let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
+
+        s3.putObject(params, function(err, data) {
+
+          if (err) {
+
+            console.log(err)
+
+          } else {
+
+            console.log("Successfully uploaded data to myBucket/myKey");
+
+          }
+
+        });
   })
   socket.on("invite", function(data){
     console.log(data);
