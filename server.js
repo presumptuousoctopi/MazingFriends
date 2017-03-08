@@ -85,16 +85,12 @@ var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser}
 
 var AWS = require('aws-sdk');
 var BucketCredentials = require('./config.json');
-var s3 = new AWS.S3(BucketCredentials);
+AWS.config.update(BucketCredentials)
+var s3 = new AWS.S3();
 
 // Bucket names must be unique across all S3 users
-var myBucket = process.argv[2]
+var myBucket = 'mazingfriends1'
 
-console.log('@@@@@ Here are process.argv : ', process.argv);
-console.log('@@@@@ Here is process : ', process);
-console.log('@@@@@ Here is process.arg : ', process.arg);
-console.log('@@@@@ Here is process.env : ', process.env);
-console.log('@@@@@ Here is myBucket : ', myBucket);
 console.log('@@@@@ Here is BucketCredentials : ', BucketCredentials);
 
 
