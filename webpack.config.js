@@ -46,7 +46,7 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({minimize: true}),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new CompressionPlugin({ 
       asset: "[path].gz[query]",
       algorithm: "gzip",
