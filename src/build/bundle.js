@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c034f9f5043433c0d65d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d79da706037dcbc89d38"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -56709,7 +56709,7 @@
 	    }
 	  }, {
 	    key: 'createRoomButton',
-	    value: function createRoomButton() {
+	    value: function createRoomButton(e) {
 	      console.log('currentuser in props: ', this.props.currentUser);
 	
 	      var roomInfo = {
@@ -56717,8 +56717,11 @@
 	        level: this.state.gameLevel,
 	        user: this.props.currentUser
 	      };
-	
-	      window.socket.emit('createRoom', roomInfo);
+	      if (!roomInfo.roomname || !roomInfo.level) {
+	        e.preventDefault();
+	      } else {
+	        window.socket.emit('createRoom', roomInfo);
+	      }
 	      console.log('room created: ', this.state.createRoomName);
 	    }
 	  }, {
