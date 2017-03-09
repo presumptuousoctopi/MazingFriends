@@ -52,10 +52,12 @@ app.get('/game/favicon.ico', function(request, response) {
 app.get('*.js', function (req, res, next) {
   req.url = req.url + '.gz';
   res.set('Content-Encoding', 'gzip');
+  console.log('Inside gzip!')
   next();
 });
 
 app.get('*', function (request, response){
+  console.log('Sending index.html!')
   response.sendFile(path.resolve(__dirname, './src/index.html'));
 });
 
