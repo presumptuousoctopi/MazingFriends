@@ -84,29 +84,34 @@ var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser}
 // Start socket.io server
 
 var AWS = require('aws-sdk');
-
+var BucketCredentials = require('./config.json');
+AWS.config.update(BucketCredentials)
+// AWS.config.loadFromPath('./config.json');
 var s3 = new AWS.S3();
 
 // Bucket names must be unique across all S3 users
+var myBucket = 'mazingfriends1'
 
-var myBucket = 'mazingfriends';
+// console.log('@@@@@ Here is BucketCredentials : ', BucketCredentials);
+
 
 io.on('connection', function(socket){
 
-  // socket.on("getProfileImage", function(data){
-  //   console.log("trying to get user image");
-  //   let params = {Bucket: myBucket, Key: data.user};
-  //   s3.getObject(params, function(err, data){
-  //     if (err) {
-  //       console.log(err);
-  //     } else{
-  //       console.log(data);
-  //     }
-  //     socket.emit("setProfileImage", data.Body.toString());
-  //         })
-  // })
-  // socket.on("saveImage", function(data){
-  //   let myKey = data.user;
+  socket.on("getProfileImage", function(data){
+    console.log("trying to get user image");
+    let params = {Bucket: myBucket, Key: data.user};
+    s3.getObject(params, function(err, data){
+      if (err) {
+        console.log(err);
+        socket.emit("setProfileImage", "");
+      } else{
+        console.log(data);
+        socket.emit("setProfileImage", data.Body.toString());
+      }
+          })
+  })
+  socket.on("saveImage", function(data){
+    let myKey = data.user;
 
   //    let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
 
