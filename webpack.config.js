@@ -2,7 +2,7 @@
 var webpack = require('webpack');
 var path = require('path');
 // var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-var CompressionPlugin = require('./compression-webpack-plugin.js');
+var CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   devtool: 'inline-source-map',
