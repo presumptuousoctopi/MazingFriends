@@ -29,7 +29,6 @@
     "bower-webpack-plugin": "^0.1.9",
     "chai": "^3.2.0",
     "chai-spies": "^0.7.1",
-    "compression-webpack-plugin": "^0.3.2",
     "copyfiles": "^1.0.0",
     "css-loader": "^0.23.0",
     "enzyme": "^2.7.1",
