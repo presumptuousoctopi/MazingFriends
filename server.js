@@ -80,7 +80,8 @@ var usernames = {};
 var roomLevel = {};
 var finalTime = {};
 var roomUser = {};
-var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser}
+var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser};
+
 // Start socket.io server
 
 var AWS = require('aws-sdk');
@@ -162,9 +163,27 @@ io.on('connection', function(socket){
         user: user
       }
     }).then(function(data){
-      socket.emit("friendData", data);
-    });
+      var friends = [];
+      for(var i = 0; i < data.length; i++) {
+        friends.push(data[i].dataValues);
+      }
+      friends.forEach(function(obj) {
+        let params = {Bucket: myBucket, Key: obj.friend};
+        s3.getObject(params, function(err, data){
+          if (err) {
+            console.log("THIS IS THE ERROR:", err);
+            obj.image = "";
+          } else{
+            console.log("THIS IS THE DATA", data);
+            obj.image = data.Body.toString();
+          }
+          console.log("FRIENDS", friends);
+          socket.emit("friendData", friends);
+        })
+      });
+      });
   });
+  //MODIFY THIS
   socket.on("addFriend", function(data){
     db.Friends.find({
       where: {
@@ -187,8 +206,24 @@ io.on('connection', function(socket){
               user: data.user
             }
           }).then(function(data){
-            console.log(data);
-            socket.emit("friendData", data);
+            var friends = [];
+            for(var i = 0; i < data.length; i++) {
+              friends.push(data[i].dataValues);
+            }
+            friends.forEach(function(obj) {
+              let params = {Bucket: myBucket, Key: obj.friend};
+              s3.getObject(params, function(err, data){
+                if (err) {
+                  console.log("THIS IS THE ERROR:", err);
+                  obj.image = "";
+                } else{
+                  console.log("THIS IS THE DATA", data);
+                  obj.image = data.Body.toString();
+                }
+                console.log("FRIENDS", friends);
+                socket.emit("friendData", friends);
+              })
+            });
           });
         })
       }

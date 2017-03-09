@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d79da706037dcbc89d38"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1c00ef7fb5c150270d1a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -35976,6 +35976,10 @@
 	
 	var _FriendSearch2 = _interopRequireDefault(_FriendSearch);
 	
+	var _Modal = __webpack_require__(/*! ./../Shared/Modal.jsx */ 311);
+	
+	var _Modal2 = _interopRequireDefault(_Modal);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -35993,7 +35997,10 @@
 	        var _this = _possibleConstructorReturn(this, (FriendView.__proto__ || Object.getPrototypeOf(FriendView)).call(this));
 	
 	        _this.state = {
-	            friends: []
+	            friends: [],
+	            friend: '',
+	            image: '',
+	            modalShow: false
 	        };
 	        return _this;
 	    }
@@ -36015,8 +36022,20 @@
 	        value: function getFriend(i, e) {
 	            var context = this;
 	            e.preventDefault();
-	            console.log(context.state.friends);
+	            console.log(this.state.friends[i]);
+	            context.setState({
+	                modalShow: true,
+	                friend: this.state.friends[i].friend,
+	                image: this.state.friends[i].image
+	            });
 	            console.log(i);
+	        }
+	    }, {
+	        key: 'modalClose',
+	        value: function modalClose() {
+	            this.setState({
+	                modalShow: false
+	            });
 	        }
 	    }, {
 	        key: 'render',
@@ -36030,10 +36049,16 @@
 	                    'div',
 	                    { className: 'friendTable' },
 	                    this.state.friends.map(function (data, index) {
+	                        console.log(data);
 	                        return _react2.default.createElement(
-	                            'a',
-	                            { href: '', 'data-key': index, onClick: _this2.getFriend.bind(_this2, index), className: 'friend' },
-	                            data.friend
+	                            'div',
+	                            null,
+	                            _react2.default.createElement(
+	                                'a',
+	                                { href: '', 'data-key': index, onClick: _this2.getFriend.bind(_this2, index), className: 'friend' },
+	                                data.friend
+	                            ),
+	                            _react2.default.createElement(_Modal2.default, { show: _this2.state.modalShow, onHide: _this2.modalClose.bind(_this2), content: _this2.state.friend, title: _react2.default.createElement('img', { className: 'modalImage', src: _this2.state.image }) })
 	                        );
 	                    })
 	                )
