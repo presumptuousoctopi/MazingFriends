@@ -49,6 +49,12 @@ app.get('/game/favicon.ico', function(request, response) {
   response.sendFile(path.join(__dirname, './src/favicon.ico'));
 });
 
+// app.get('*.js', function (req, res, next) {
+//   req.url = req.url + '.gz';
+//   res.set('Content-Encoding', 'gzip');
+//   next();
+// });
+
 app.get('*', function (request, response){
   response.sendFile(path.resolve(__dirname, './src/index.html'));
 });
@@ -575,8 +581,7 @@ binaryServer.on('connection', function(client) {
   var songFilePath = path.join(__dirname, '/songs/main.mp3');
   var jumpFilePath = path.join(__dirname, '/songs/jump.mp3');
   var shootFilePath = path.join(__dirname, '/songs/shoot.mp3');
-  var files = [songFilePath, jumpFilePath, shootFilePath];
-
+  
   // Create file read streams
   var songStream = fs.createReadStream.call(this, songFilePath);
   var jumpStream = fs.createReadStream.call(this, jumpFilePath);
