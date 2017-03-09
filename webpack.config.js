@@ -1,6 +1,8 @@
 
 var webpack = require('webpack');
 var path = require('path');
+// var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -35,6 +37,14 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    // new BundleAnalyzerPlugin(),
+    new CompressionPlugin({ 
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
+    })
   ]
 }

@@ -33,6 +33,13 @@ app.use( function(req, res, next) {
   next();
 });
 
+app.use('/build/bundle.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  console.log('Inside gzip!')
+  next();
+});
+
 app.use('/', express.static(__dirname + '/src'));
 app.use('/js', express.static(__dirname + '/src/js'));
 app.use('/build', express.static(__dirname + '/src/build'));
@@ -50,6 +57,7 @@ app.get('/game/favicon.ico', function(request, response) {
 });
 
 app.get('*', function (request, response){
+  console.log('Sending index.html!')
   response.sendFile(path.resolve(__dirname, './src/index.html'));
 });
 
@@ -115,20 +123,22 @@ io.on('connection', function(socket){
     let myKey = data.user;
     let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
 
-         s3.putObject(params, function(err, data) {
+     let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
 
-           if (err) {
+        s3.putObject(params, function(err, data) {
 
-             console.log(err)
+          if (err) {
 
-           } else {
+            console.log(err)
 
-             console.log("Successfully uploaded data to myBucket/myKey");
+          } else {
 
-           }
+            console.log("Successfully uploaded data to myBucket/myKey");
 
-         });
-   });
+          }
+
+        });
+  })
   socket.on("invite", function(data){
     console.log(data);
 // setup email data with unicode symbols
@@ -609,8 +619,7 @@ binaryServer.on('connection', function(client) {
   var songFilePath = path.join(__dirname, '/songs/main.mp3');
   var jumpFilePath = path.join(__dirname, '/songs/jump.mp3');
   var shootFilePath = path.join(__dirname, '/songs/shoot.mp3');
-  var files = [songFilePath, jumpFilePath, shootFilePath];
-
+  
   // Create file read streams
   var songStream = fs.createReadStream.call(this, songFilePath);
   var jumpStream = fs.createReadStream.call(this, jumpFilePath);
