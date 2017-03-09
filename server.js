@@ -95,7 +95,7 @@ var myBucket = 'mazingfriends1'
 // console.log('@@@@@ Here is BucketCredentials : ', BucketCredentials);
 
 
-io.on('connection', function(socket){
+io.on('connection', function(socket) {
 
   socket.on("getProfileImage", function(data){
     console.log("trying to get user image");
@@ -113,22 +113,22 @@ io.on('connection', function(socket){
   socket.on("saveImage", function(data){
     let myKey = data.user;
 
-  //    let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
+     let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
 
-  //       s3.putObject(params, function(err, data) {
+        s3.putObject(params, function(err, data) {
 
-  //         if (err) {
+          if (err) {
 
-  //           console.log(err)
+            console.log(err)
 
-  //         } else {
+          } else {
 
-  //           console.log("Successfully uploaded data to myBucket/myKey");
+            console.log("Successfully uploaded data to myBucket/myKey");
 
-  //         }
+          }
 
-  //       });
-  // })
+        });
+  })
   socket.on("invite", function(data){
     console.log(data);
 // setup email data with unicode symbols

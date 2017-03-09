@@ -2,3 +2,4 @@ node_modules
 ./ideaweb
 cert.crt
 private.key
+config.json

@@ -65,7 +65,7 @@ class Profile extends React.Component {
           </div>
           <div className="headersRight">
             <Image className="profilePic" imageUrl={this.state.imageUrl}/> <br/>
-            <Glyphicon glyph="pencil" onClick={this.modalOpen.bind(this)} className="clickable"/>
+            <div className="edit" onClick={this.modalOpen.bind(this)} ><Glyphicon bsSize="large" glyph="pencil" className="clickable"/></div>
           </div>
       	</div>
         <div className="profileContent">

@@ -83,31 +83,34 @@ html, body {
 }
 
 .Chat {
-  width: 25%;
-  height: 94%;
+  width: 27%;
+  height: 97%;
   right: 0;
   position: absolute;
   display: inline-block;
   margin-right: 15px;
   margin-bottom: 15px;
   padding: 10px;
-  opacity: 0.9;
   border: solid 5px maroon;
   background-color: maroon;
+  color: black;
 }
 
 .TextChat {
-	margin: 20px;
+  margin: 20px;
+  height: 55%;
 }
 
 .ChatContainer {
-  height: 50%;
-  width: 80%;
-  position: absolute;
+  height: 100%;
+  width: 90%;
+  position: relative;
   overflow-y: scroll;
-  vertical-align: bottom;
-  background-color: rgba(255,255,255, 0.2);
+  background-color: whitesmoke;
   padding: 15px;
+  top: 0;
+  left: 0;
+  margin: auto;
 }
 
 .TableContainer {
@@ -200,11 +203,9 @@ html, body {
 .ChatBox {
   position: absolute;
   bottom: 0;
-  opacity: 1.0;
-  height: 470px;
   padding-bottom: 20px;
-  overflow-y: scroll;
   width: 95%;
+  height: 100%;
 }
 
 .TextInput {
@@ -221,9 +222,10 @@ html, body {
 }
 
 .Options {
-	text-align: center;
-	border: dotted 2px black;
-	padding-bottom: 10px;
+  text-align: center;
+  border: dotted 2px black;
+  padding-bottom: 10px;
+  background-color: maroon;
 }
 
 .optionButtons {
@@ -293,6 +295,10 @@ select, .roomInput {
   width: 68%;
 }
 
+.inviteInput {
+  width: 57%;
+}
+
 label {
   padding-right: 5px;
 }
@@ -355,6 +361,10 @@ label {
   width: 45%;
   float: center;
   padding-left: 5px;
+}
+
+.edit {
+  padding-left: 75%;
 }
 
 .clickable {
