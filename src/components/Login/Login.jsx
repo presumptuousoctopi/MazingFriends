@@ -40,12 +40,12 @@ class Login extends React.Component {
     return (
       <div>
       	<form className="loginForm" onSubmit={this.signIn.bind(this)}>
-        	Username: 
-        	<input ref="username" required="true"/>
+        	<label>Username: </label> 
+        	<input ref="username" required="true" className="loginInput"/>
           <br/>
           <br/>
-        	Password:
-        	<input type="password" ref="password" required="true"/>
+        	<label>Password: </label> 
+        	<input type="password" ref="password" required="true" className="loginInput"/>
           <br/>
           <br/>
           <button type="submit">Log in</button>

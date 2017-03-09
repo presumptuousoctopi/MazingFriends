@@ -7,6 +7,7 @@ import ImageUpload from './ImageUpload.jsx';
 import Image from './Image.jsx'
 import Popup from './../Shared/Modal.jsx'
 import { Glyphicon } from 'react-bootstrap'
+import Title from '../TitleView.jsx'
 
 class Profile extends React.Component {
   constructor(props) {
@@ -59,7 +60,7 @@ class Profile extends React.Component {
       <div className="Profile">
       	<div className="profileHeader">
           <div className="headersLeft">
-  	      	<h1>Mazing Friends </h1>
+  	      	<Title/>
   	      	<h2>{this.props.currentUser}</h2> 
             <Link className="Link" to="/"><button onClick={this.logout} className="logoutButton">Logout</button></Link>
           </div>
