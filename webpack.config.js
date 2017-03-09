@@ -38,14 +38,6 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production'),
-      },
-    }),
-    new webpack.optimize.UglifyJsPlugin({minimize: true}),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
     // new BundleAnalyzerPlugin(),
     new CompressionPlugin({ 
       asset: "[path].gz[query]",
