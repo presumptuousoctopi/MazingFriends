@@ -5,7 +5,8 @@ class ImageUpload extends React.Component {
         super(props);
         this.state = {
             file: '',
-            imagePreviewUrl: ''
+            imagePreviewUrl: '',
+            uploaded: false
         };
     }
 
@@ -17,6 +18,10 @@ class ImageUpload extends React.Component {
         socket.emit("saveImage", {imageUrl: this.state.imagePreviewUrl, user: sessionStorage.getItem('user')});
         this.setState({
             imagePreviewUrl: ''
+        });
+
+        this.setState({
+            uploaded: true
         });
     }
 
@@ -45,6 +50,8 @@ class ImageUpload extends React.Component {
         }
 
         return (
+            <div>
+            {this.state.uploaded ? <h1>New image set!</h1> :
             <div className="previewComponent">
                 <form onSubmit={(e)=>this._handleSubmit(e)}>
                     <input className="fileInput"
@@ -57,6 +64,8 @@ class ImageUpload extends React.Component {
                 <div className="imgPreview">
                     {$imagePreview}
                 </div>
+            </div>
+            }
             </div>
         )
     }

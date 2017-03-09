@@ -5,36 +5,53 @@ import FriendSearch from './FriendSearch.jsx';
 import FriendView from './FriendView.jsx';
 import ImageUpload from './ImageUpload.jsx';
 import Image from './Image.jsx'
-
+import Popup from './../Shared/Modal.jsx'
+import { Glyphicon } from 'react-bootstrap'
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-        imageUrl: './../placeholder.jpg'
+        imageUrl: './../placeholder.jpg',
+        modalShow: false
     }
 
     this.logout = this.logout.bind(this);
     this.imageStateChangeCallback = this.imageStateChangeCallback.bind(this);
 	}
-    componentDidMount() {
-        let context = this;
-        socket.on("setProfileImage", function(data){
-            context.setState({
-                imageUrl: data
-            })
-        });
-    }
-    imageStateChangeCallback(data) {
-      this.setState({
-        imageUrl: data
+
+  componentDidMount() {
+      let context = this;
+      socket.on("setProfileImage", function(data){
+          context.setState({
+              imageUrl: data
+          })
       });
-      console.log(this.state.imageUrl);
-    }
+  }
+
+  imageStateChangeCallback(data) {
+    this.setState({
+      imageUrl: data
+    });
+    console.log(this.state.imageUrl);
+  }
+
   logout() {
     window.sessionStorage.removeItem('user', this.props.currentUser);
-    console.log('Logged out')
+    console.log('Logged out');
+  }
+
+  modalClose() {
+    this.setState({
+      modalShow: false
+    });
+  }
+
+  modalOpen() {
+    this.setState({
+      modalShow: true
+    });
   }
 
   render() {
@@ -47,7 +64,8 @@ class Profile extends React.Component {
             <Link className="Link" to="/"><button onClick={this.logout} className="logoutButton">Logout</button></Link>
           </div>
           <div className="headersRight">
-            <Image className="profilePic" imageUrl={this.state.imageUrl}/>
+            <Image className="profilePic" imageUrl={this.state.imageUrl}/> <br/>
+            <Glyphicon glyph="pencil" onClick={this.modalOpen.bind(this)} className="clickable"/>
           </div>
       	</div>
         <div className="profileContent">
@@ -56,8 +74,8 @@ class Profile extends React.Component {
           <FriendView/>
           <h1>{this.props.currentUser}'s Stats</h1>
           <UserStats/>
-        <ImageUpload loadImage={this.imageStateChangeCallback}/>
           </div>
+        <Popup show={this.state.modalShow} onHide={this.modalClose.bind(this)} content={<ImageUpload loadImage={this.imageStateChangeCallback} />} title="Upload Profile Pic" />
       </div>
     );
   }
