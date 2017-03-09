@@ -40,7 +40,6 @@ addSkyBox();
 // Create player
 window.camera = addPlayer();
 addPlayerObj(window.camera);
-window.randomSphereInAir = addSphere();
 window.bullets = [];
 window.makeTimerBoard();
 window.makeLeaderBoard();
