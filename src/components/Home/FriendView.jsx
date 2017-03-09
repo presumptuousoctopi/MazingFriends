@@ -18,10 +18,11 @@ class FriendView extends React.Component {
             })
         });
     }
-    getFriend(e) {
+    getFriend(i, e) {
+        let context = this;
         e.preventDefault();
-       console.log(e.target.innerHTML);
-        // send data to back end and get this users data;
+       console.log(context.state.friends);
+        console.log(i);
     }
     render () {
         return(
@@ -29,7 +30,7 @@ class FriendView extends React.Component {
                 <div className="friendTable">
                     {this.state.friends.map((data, index) => {
                         return (
-                            <a href="" onClick={this.getFriend} className="friend">{data.friend}</a>
+                            <a href="" data-key={index} onClick={this.getFriend.bind(this, index)} className="friend">{data.friend}</a>
                         )
                     })}
                 </div>

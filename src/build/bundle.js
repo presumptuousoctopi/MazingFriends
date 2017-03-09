@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ab62871c19202835b536"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "37fdea198aee6bbabe2a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -35980,10 +35980,11 @@
 	        }
 	    }, {
 	        key: 'getFriend',
-	        value: function getFriend(e) {
+	        value: function getFriend(i, e) {
+	            var context = this;
 	            e.preventDefault();
-	            console.log(e.target.innerHTML);
-	            // send data to back end and get this users data;
+	            console.log(context.state.friends);
+	            console.log(i);
 	        }
 	    }, {
 	        key: 'render',
@@ -35999,7 +36000,7 @@
 	                    this.state.friends.map(function (data, index) {
 	                        return _react2.default.createElement(
 	                            'a',
-	                            { href: '', onClick: _this2.getFriend, className: 'friend' },
+	                            { href: '', 'data-key': index, onClick: _this2.getFriend.bind(_this2, index), className: 'friend' },
 	                            data.friend
 	                        );
 	                    })
