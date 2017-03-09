@@ -18,13 +18,18 @@ class FriendView extends React.Component {
             })
         });
     }
+    getFriend(e) {
+        e.preventDefault();
+       console.log(e.target.innerHTML);
+        // send data to back end and get this users data;
+    }
     render () {
         return(
             <div className="FriendView">
                 <div className="friendTable">
-                    {this.state.friends.map((data) => {
+                    {this.state.friends.map((data, index) => {
                         return (
-                            <a href="#" className="friend">{data.friend}</a>
+                            <a href="" onClick={this.getFriend} className="friend">{data.friend}</a>
                         )
                     })}
                 </div>

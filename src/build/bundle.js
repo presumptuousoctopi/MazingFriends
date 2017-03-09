@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "fba776095cc24e5eba2f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ab62871c19202835b536"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -35979,18 +35979,27 @@
 	            });
 	        }
 	    }, {
+	        key: 'getFriend',
+	        value: function getFriend(e) {
+	            e.preventDefault();
+	            console.log(e.target.innerHTML);
+	            // send data to back end and get this users data;
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+	
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'FriendView' },
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'friendTable' },
-	                    this.state.friends.map(function (data) {
+	                    this.state.friends.map(function (data, index) {
 	                        return _react2.default.createElement(
 	                            'a',
-	                            { href: '#', className: 'friend' },
+	                            { href: '', onClick: _this2.getFriend, className: 'friend' },
 	                            data.friend
 	                        );
 	                    })
