@@ -123,8 +123,6 @@ io.on('connection', function(socket){
     let myKey = data.user;
     let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
 
-     let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
-
         s3.putObject(params, function(err, data) {
 
           if (err) {
