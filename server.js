@@ -33,6 +33,13 @@ app.use( function(req, res, next) {
   next();
 });
 
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  console.log('Inside gzip!')
+  next();
+});
+
 app.use('/', express.static(__dirname + '/src'));
 app.use('/js', express.static(__dirname + '/src/js'));
 app.use('/build', express.static(__dirname + '/src/build'));
@@ -47,13 +54,6 @@ app.get('/home/favicon.ico', function(request, response) {
 
 app.get('/game/favicon.ico', function(request, response) {
   response.sendFile(path.join(__dirname, './src/favicon.ico'));
-});
-
-app.get('*.js', function (req, res, next) {
-  req.url = req.url + '.gz';
-  res.set('Content-Encoding', 'gzip');
-  console.log('Inside gzip!')
-  next();
 });
 
 app.get('*', function (request, response){
