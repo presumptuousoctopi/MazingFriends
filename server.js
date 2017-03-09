@@ -33,7 +33,7 @@ app.use( function(req, res, next) {
   next();
 });
 
-app.get('*.js', function (req, res, next) {
+app.use('/build/bundle.js', function (req, res, next) {
   req.url = req.url + '.gz';
   res.set('Content-Encoding', 'gzip');
   console.log('Inside gzip!')
