@@ -88,17 +88,18 @@ var usernames = {};
 var roomLevel = {};
 var finalTime = {};
 var roomUser = {};
-var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser}
+var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser};
+
 // Start socket.io server
 
 var AWS = require('aws-sdk');
 var BucketCredentials = require('./config.json');
-AWS.config.update(BucketCredentials)
+AWS.config.update(BucketCredentials);
 // AWS.config.loadFromPath('./config.json');
 var s3 = new AWS.S3();
 
 // Bucket names must be unique across all S3 users
-var myBucket = 'mazingfriends1'
+var myBucket = 'mazingfriends1';
 
 // console.log('@@@@@ Here is BucketCredentials : ', BucketCredentials);
 
@@ -117,9 +118,10 @@ io.on('connection', function(socket){
         socket.emit("setProfileImage", data.Body.toString());
       }
           })
-  })
+  });
   socket.on("saveImage", function(data){
     let myKey = data.user;
+    let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
 
      let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
 
@@ -171,9 +173,27 @@ io.on('connection', function(socket){
         user: user
       }
     }).then(function(data){
-      socket.emit("friendData", data);
-    });
+      var friends = [];
+      for(var i = 0; i < data.length; i++) {
+        friends.push(data[i].dataValues);
+      }
+      friends.forEach(function(obj) {
+        let params = {Bucket: myBucket, Key: obj.friend};
+        s3.getObject(params, function(err, data){
+          if (err) {
+            console.log("THIS IS THE ERROR:", err);
+            obj.image = "";
+          } else{
+            console.log("THIS IS THE DATA", data);
+            obj.image = data.Body.toString();
+          }
+          console.log("FRIENDS", friends);
+          socket.emit("friendData", friends);
+        })
+      });
+      });
   });
+  //MODIFY THIS
   socket.on("addFriend", function(data){
     db.Friends.find({
       where: {
@@ -196,8 +216,24 @@ io.on('connection', function(socket){
               user: data.user
             }
           }).then(function(data){
-            console.log(data);
-            socket.emit("friendData", data);
+            var friends = [];
+            for(var i = 0; i < data.length; i++) {
+              friends.push(data[i].dataValues);
+            }
+            friends.forEach(function(obj) {
+              let params = {Bucket: myBucket, Key: obj.friend};
+              s3.getObject(params, function(err, data){
+                if (err) {
+                  console.log("THIS IS THE ERROR:", err);
+                  obj.image = "";
+                } else{
+                  console.log("THIS IS THE DATA", data);
+                  obj.image = data.Body.toString();
+                }
+                console.log("FRIENDS", friends);
+                socket.emit("friendData", friends);
+              })
+            });
           });
         })
       }
