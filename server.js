@@ -85,12 +85,12 @@ var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser}
 
 var AWS = require('aws-sdk');
 var BucketCredentials = require('./config.json');
-AWS.config.update(BucketCredentials)
+AWS.config.update(BucketCredentials);
 // AWS.config.loadFromPath('./config.json');
 var s3 = new AWS.S3();
 
 // Bucket names must be unique across all S3 users
-var myBucket = 'mazingfriends1'
+var myBucket = 'mazingfriends1';
 
 // console.log('@@@@@ Here is BucketCredentials : ', BucketCredentials);
 
@@ -109,26 +109,25 @@ io.on('connection', function(socket){
         socket.emit("setProfileImage", data.Body.toString());
       }
           })
-  })
+  });
   socket.on("saveImage", function(data){
     let myKey = data.user;
+    let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
 
-     let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
+         s3.putObject(params, function(err, data) {
 
-        s3.putObject(params, function(err, data) {
+           if (err) {
 
-          if (err) {
+             console.log(err)
 
-            console.log(err)
+           } else {
 
-          } else {
+             console.log("Successfully uploaded data to myBucket/myKey");
 
-            console.log("Successfully uploaded data to myBucket/myKey");
+           }
 
-          }
-
-        });
-  })
+         });
+   });
   socket.on("invite", function(data){
     console.log(data);
 // setup email data with unicode symbols
