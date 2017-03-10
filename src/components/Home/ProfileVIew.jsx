@@ -84,7 +84,7 @@ class Profile extends React.Component {
           <h1>{this.props.currentUser}'s Friends <div className="addFriend" onClick={this.modalAddFriend.bind(this)}></div> </h1> 
           <FriendView/>
           <h1>{this.props.currentUser}'s Stats</h1>
-          <UserStats/>
+          <UserStats user={sessionStorage.getItem('user')}/>
           </div>
         <Popup show={this.state.modalShow} onHide={this.modalClose.bind(this)} content={this.state.content} title={this.state.title} />
       </div>

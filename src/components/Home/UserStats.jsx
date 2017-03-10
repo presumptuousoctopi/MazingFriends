@@ -9,7 +9,7 @@ class UserStats extends React.Component {
   }
   componentDidMount() {
     let context = this;
-    socket.emit("getUserStats", sessionStorage.getItem('user'));
+    socket.emit("getUserStats", this.props.user);
     socket.on("userStats", function(data){
       console.log(data);
       context.setState({
@@ -32,10 +32,10 @@ class UserStats extends React.Component {
                 <tr>
                 <td>{userStatObj.id}</td>
                 <td>{userStatObj.friend}</td>
-                <td>{userStatObj.time}</td>
                 <td>{userStatObj.level}</td>
+                <td>{userStatObj.time}</td>
                 </tr>
-            )
+              )
           })}
         </table>
       </div>
