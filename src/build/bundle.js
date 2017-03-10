@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "16eadc7ab1e1dc3d5763"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "fc8ebe912ce698e6d73a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -36022,13 +36022,15 @@
 	        value: function getFriend(i, e) {
 	            var context = this;
 	            e.preventDefault();
-	            console.log(this.state.friends[i]);
-	            context.setState({
-	                modalShow: true,
-	                friend: this.state.friends[i].friend,
-	                image: this.state.friends[i].image
+	            socket.emit("getFriendStatus", context.state.friends[i].friend);
+	            socket.on("receiveFriendStatus", function (data) {
+	                console.log(context.state.friends[i].friend + " is " + data);
+	                context.setState({
+	                    modalShow: true,
+	                    friend: context.state.friends[i].friend,
+	                    image: context.state.friends[i].image
+	                });
 	            });
-	            console.log(i);
 	        }
 	    }, {
 	        key: 'modalClose',

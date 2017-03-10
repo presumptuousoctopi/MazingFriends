@@ -26,13 +26,15 @@ class FriendView extends React.Component {
     getFriend(i, e) {
         let context = this;
         e.preventDefault();
-        console.log(this.state.friends[i]);
-        context.setState({
-            modalShow: true,
-            friend: this.state.friends[i].friend,
-            image: this.state.friends[i].image
+        socket.emit("getFriendStatus", context.state.friends[i].friend);
+        socket.on("receiveFriendStatus", function(data) {
+            console.log(context.state.friends[i].friend  +" is " + data)
+            context.setState({
+                modalShow: true,
+                friend: context.state.friends[i].friend,
+                image: context.state.friends[i].image
+            });
         });
-        console.log(i);
     }
     modalClose() {
         this.setState({
