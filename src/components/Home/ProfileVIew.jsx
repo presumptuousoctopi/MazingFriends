@@ -76,8 +76,8 @@ class Profile extends React.Component {
             <Link className="Link" to="/"><button onClick={this.logout} className="logoutButton">Logout</button></Link>
           </div>
           <div className="headersRight">
+            <Image className="profilePic" imageUrl={this.state.imageUrl}/> 
             <div className="edit" onClick={this.modalChangePic.bind(this)}></div>
-            <Image className="profilePic" imageUrl={this.state.imageUrl}/> <br/>
           </div>
       	</div>
         <div className="profileContent">
