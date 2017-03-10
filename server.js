@@ -109,10 +109,10 @@ io.on('connection', function(socket){
   //get friend status for friend profile
   socket.on("getFriendStatus", function(data){
     if (usernames[data]){
-      socket.emit("receiveFriendStatus", "online");
+      socket.emit("receiveFriendStatus", true);
     }
     else {
-      socket.emit("receiveFriendStatus", "offline");
+      socket.emit("receiveFriendStatus", false);
     }
   });
   socket.on("getProfileImage", function(data){
