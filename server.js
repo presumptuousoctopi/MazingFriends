@@ -33,6 +33,13 @@ app.use( function(req, res, next) {
   next();
 });
 
+app.use('/build/bundle.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  console.log('Inside gzip!')
+  next();
+});
+
 app.use('/', express.static(__dirname + '/src'));
 app.use('/js', express.static(__dirname + '/src/js'));
 app.use('/build', express.static(__dirname + '/src/build'));
@@ -49,13 +56,8 @@ app.get('/game/favicon.ico', function(request, response) {
   response.sendFile(path.join(__dirname, './src/favicon.ico'));
 });
 
-// app.get('*.js', function (req, res, next) {
-//   req.url = req.url + '.gz';
-//   res.set('Content-Encoding', 'gzip');
-//   next();
-// });
-
 app.get('*', function (request, response){
+  console.log('Sending index.html!')
   response.sendFile(path.resolve(__dirname, './src/index.html'));
 });
 
@@ -86,23 +88,33 @@ var usernames = {};
 var roomLevel = {};
 var finalTime = {};
 var roomUser = {};
-var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser}
+var roomInformation = {rooms: rooms, levels: roomLevel, users: roomUser};
+
 // Start socket.io server
 
 var AWS = require('aws-sdk');
 var BucketCredentials = require('./config.json');
-AWS.config.update(BucketCredentials)
+AWS.config.update(BucketCredentials);
 // AWS.config.loadFromPath('./config.json');
 var s3 = new AWS.S3();
 
 // Bucket names must be unique across all S3 users
-var myBucket = 'mazingfriends1'
+var myBucket = 'mazingfriends1';
 
 // console.log('@@@@@ Here is BucketCredentials : ', BucketCredentials);
 
 
 io.on('connection', function(socket) {
 
+  //get friend status for friend profile
+  socket.on("getFriendStatus", function(data){
+    if (usernames[data]){
+      socket.emit("receiveFriendStatus", true);
+    }
+    else {
+      socket.emit("receiveFriendStatus", false);
+    }
+  });
   socket.on("getProfileImage", function(data){
     console.log("trying to get user image");
     let params = {Bucket: myBucket, Key: data.user};
@@ -115,11 +127,10 @@ io.on('connection', function(socket) {
         socket.emit("setProfileImage", data.Body.toString());
       }
           })
-  })
+  });
   socket.on("saveImage", function(data){
     let myKey = data.user;
-
-     let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
+    let params = {Bucket: myBucket, Key: myKey, Body: data.imageUrl};
 
         s3.putObject(params, function(err, data) {
 
@@ -169,9 +180,27 @@ io.on('connection', function(socket) {
         user: user
       }
     }).then(function(data){
-      socket.emit("friendData", data);
-    });
+      var friends = [];
+      for(var i = 0; i < data.length; i++) {
+        friends.push(data[i].dataValues);
+      }
+      friends.forEach(function(obj) {
+        let params = {Bucket: myBucket, Key: obj.friend};
+        s3.getObject(params, function(err, data){
+          if (err) {
+            console.log("THIS IS THE ERROR:", err);
+            obj.image = "";
+          } else{
+            console.log("THIS IS THE DATA", data);
+            obj.image = data.Body.toString();
+          }
+          console.log("FRIENDS", friends);
+          socket.emit("friendData", friends);
+        })
+      });
+      });
   });
+  //MODIFY THIS
   socket.on("addFriend", function(data){
     db.Friends.find({
       where: {
@@ -194,8 +223,24 @@ io.on('connection', function(socket) {
               user: data.user
             }
           }).then(function(data){
-            console.log(data);
-            socket.emit("friendData", data);
+            var friends = [];
+            for(var i = 0; i < data.length; i++) {
+              friends.push(data[i].dataValues);
+            }
+            friends.forEach(function(obj) {
+              let params = {Bucket: myBucket, Key: obj.friend};
+              s3.getObject(params, function(err, data){
+                if (err) {
+                  console.log("THIS IS THE ERROR:", err);
+                  obj.image = "";
+                } else{
+                  console.log("THIS IS THE DATA", data);
+                  obj.image = data.Body.toString();
+                }
+                console.log("FRIENDS", friends);
+                socket.emit("friendData", friends);
+              })
+            });
           });
         })
       }
@@ -239,7 +284,10 @@ io.on('connection', function(socket) {
     io.sockets.emit("receiveRooms", rooms);
     console.log('user disconnected! Current user count : ', userCount);
   });
-
+  socket.on('quit', function(data){
+    delete usernames[socket.id];
+    delete usernames[data];
+  });
   /*************************************************************************************************
    Game Rooms / Messages Sockets
   *************************************************************************************************/

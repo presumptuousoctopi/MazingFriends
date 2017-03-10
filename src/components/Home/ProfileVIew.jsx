@@ -39,7 +39,8 @@ class Profile extends React.Component {
   }
 
   logout() {
-    window.sessionStorage.removeItem('user', this.props.currentUser);
+    socket.emit("quit", window.sessionStorage.getItem('user'));
+    window.sessionStorage.removeItem('user');
     console.log('Logged out');
   }
 

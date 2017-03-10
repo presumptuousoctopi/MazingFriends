@@ -509,7 +509,10 @@ label {
     position: absolute;
     top: 100px;
 }
-
+.modalImage {
+    height: 50px;
+    width: 50px;
+}
 /*table {
     border-spacing: 0;
     border-collapse: collapse;

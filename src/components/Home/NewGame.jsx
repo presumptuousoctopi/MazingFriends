@@ -29,7 +29,7 @@ class Home extends React.Component {
     });
   }
 
-	createRoomButton() {
+	createRoomButton(e) {
     console.log('currentuser in props: ', this.props.currentUser)
 
      var roomInfo = {
@@ -37,8 +37,12 @@ class Home extends React.Component {
        level: this.state.gameLevel,
        user: this.props.currentUser
      };
- 
-     window.socket.emit('createRoom', roomInfo);
+        if (!roomInfo.roomname || !roomInfo.level) {
+            e.preventDefault();
+        }
+        else {
+            window.socket.emit('createRoom', roomInfo);
+        }
     console.log('room created: ', this.state.createRoomName)
 	}
 
