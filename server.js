@@ -456,46 +456,54 @@ io.on('connection', function(socket) {
   });
 
   socket.on('gameover', function(data) {
+    console.log("GAME OVER FINISH TIMES", playerRoom[socket.id]);
+    var socketIds = Object.keys(io.in(playerRoom[socket.id])['adapter'].rooms[playerRoom[socket.id]]['sockets']);
+    var friend = socketIds[0] === socket.id ? usernames[socketIds[1]] : usernames[socketIds[0]];
+    var integerTime = 0;
+
     if ( !finalTime[playerRoom[socket.id]] ) {
       finalTime[playerRoom[socket.id]] = {
         time: data.time,
         user: data.user,
+        friend: friend,
         id: socket.id
       };
-    } else if ( finalTime[playerRoom[socket.id]]['id'] !== socket.id ) {
-      var finalTimeData = finalTime[playerRoom[socket.id]];
-      if ( finalTimeData.time < data.time ) {
-        finalTime[playerRoom[socket.id]] = {
-          time: data.time,
-          user: finalTime[playerRoom[socket.id]].user,
-          friend: data.user
-        };
-      } else {
-        finalTime[playerRoom[socket.id]]['friend'] = data.user;
-      }
-      var username = finalTime[playerRoom[socket.id]].user;
-      var friend = finalTime[playerRoom[socket.id]].friend;
       var finishTime = finalTime[playerRoom[socket.id]].time;
-      io.in(playerRoom[socket.id]).emit('gameoverlisten', finishTime);
-      io.in(playerRoom[socket.id]).emit('timer', finishTime);
-      io.in(playerRoom[socket.id]).emit('receiveFinalTime', finishTime);      
-
-      var integerTime = 0;
       if ( finishTime.split(':').length > 1 ) {
         var newTime = finishTime.split(':');
         integerTime = Number(newTime[0] * 60) + Number(newTime[1]);
       } else {
         integerTime = Number(finishTime);
       }
-      db.Leaderboard.create({
-        username: username,
+    } else if ( finalTime[playerRoom[socket.id]]['id'] !== socket.id ) {
+      var finalTimeData = finalTime[playerRoom[socket.id]];
+      finalTime[playerRoom[socket.id]] = {
+        time: finalTime[playerRoom[socket.id]]['time'],
+        user: data.user,
         friend: friend,
-        time: integerTime,
-        level: Number(roomLevel[playerRoom[socket.id]])
-      }).then( function(data) {
-        console.log('Saved : ', data);
-      });
+        id: socket.id
+      };
+      var friendSocketId = socketIds[0] === socket.id ? socketIds[1] : socketIds[0];
+      var finishTime = finalTime[playerRoom[friendSocketId]].time;
+      if ( finishTime.split(':').length > 1 ) {
+        var newTime = finishTime.split(':');
+        integerTime = Number(newTime[0] * 60) + Number(newTime[1]);
+      } else {
+        integerTime = Number(finishTime);
+      }
+      io.in(playerRoom[socket.id]).emit('gameoverlisten', finishTime);
+      io.in(playerRoom[socket.id]).emit('timer', finishTime);
+      io.in(playerRoom[socket.id]).emit('receiveFinalTime', finishTime);      
+
     }
+    db.Leaderboard.create({
+      username: finalTime[playerRoom[socket.id]].user,
+      friend: finalTime[playerRoom[socket.id]].friend,
+      time: integerTime,
+      level: Number(roomLevel[playerRoom[socket.id]])
+    }).then( function(data) {
+      console.log('Saved : ', data);
+    });
   });
 
 
