@@ -11,6 +11,7 @@ class UserStats extends React.Component {
     let context = this;
     socket.emit("getUserStats", sessionStorage.getItem('user'));
     socket.on("userStats", function(data){
+      console.log(data);
       context.setState({
         userStats: data
       })

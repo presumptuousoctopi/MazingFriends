@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "175f3f2475e0292dd9b4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "be3cadfa8498f040b06a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -35743,6 +35743,7 @@
 	      var context = this;
 	      socket.emit("getUserStats", sessionStorage.getItem('user'));
 	      socket.on("userStats", function (data) {
+	        console.log(data);
 	        context.setState({
 	          userStats: data
 	        });
