@@ -37,6 +37,29 @@ html, body {
   margin-left: 75%;
 }
 
+.OnlineIcon {
+  display: inherit;
+    padding: 3px;
+}
+
+.online {
+  background-image: url(../images/online.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 10px;
+  width: 10px;
+  display: inline-block;
+}
+
+.offline {
+  background-image: url(../images/offline.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 10px;
+  width: 10px;
+  display: inline-block;
+}
+
 .Home {
   width: 90%;
   height: 90%;
