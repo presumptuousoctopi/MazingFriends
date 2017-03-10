@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b0826daed2e087e74d48"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "175f3f2475e0292dd9b4"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31775,10 +31775,6 @@
 	      var socket = window.socket;
 	      var context = this;
 	      socket.on('signinResponse', function (obj) {
-	        if (window.sessionStorage.getItem('user')) {
-	          console.log(window.sessionStorage.getItem('user'));
-	          alert("Youre already logged in!");
-	        }
 	        if (obj.message) {
 	          alert(obj.message);
 	        } else {
