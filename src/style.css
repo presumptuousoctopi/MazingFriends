@@ -1,5 +1,5 @@
 html, body {
-	background-image: url(maze-background.jpg);
+	background-image: url(./images/maze-background.jpg);
 	background-size: cover;
 	overflow: hidden;
 	height: 100%;
@@ -14,6 +14,26 @@ html, body {
 
 .Link {
   color: black;
+}
+
+.addFriend {
+  background-image: url(../images/add-friend.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 40px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.edit {
+  background-image: url(../images/edit.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 40px;
+  position: absolute;
+  cursor: pointer;
 }
 
 .Home {

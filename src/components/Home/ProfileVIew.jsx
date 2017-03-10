@@ -14,7 +14,7 @@ class Profile extends React.Component {
     super(props);
 
     this.state = {
-        imageUrl: './../placeholder.jpg',
+        imageUrl: './../images/placeholder.jpg',
         modalShow: false
     }
 
@@ -49,9 +49,19 @@ class Profile extends React.Component {
     });
   }
 
-  modalOpen() {
+  modalChangePic() {
     this.setState({
-      modalShow: true
+      modalShow: true,
+      content: <ImageUpload loadImage={this.imageStateChangeCallback} />,
+      title: "Upload Profile Pic"
+    });
+  }
+
+  modalAddFriend() {
+    this.setState({
+      modalShow: true,
+      content: <FriendSearch />,
+      title: "Add Friend"
     });
   }
 
@@ -65,18 +75,17 @@ class Profile extends React.Component {
             <Link className="Link" to="/"><button onClick={this.logout} className="logoutButton">Logout</button></Link>
           </div>
           <div className="headersRight">
+            <div className="edit" onClick={this.modalChangePic.bind(this)}></div>
             <Image className="profilePic" imageUrl={this.state.imageUrl}/> <br/>
-            <div className="edit" onClick={this.modalOpen.bind(this)} ><Glyphicon bsSize="large" glyph="pencil" className="clickable"/></div>
           </div>
       	</div>
         <div className="profileContent">
-          <h1>{this.props.currentUser}'s Friends</h1>
-          <FriendSearch/>
+          <h1>{this.props.currentUser}'s Friends <div className="addFriend" onClick={this.modalAddFriend.bind(this)}></div> </h1> 
           <FriendView/>
           <h1>{this.props.currentUser}'s Stats</h1>
           <UserStats/>
           </div>
-        <Popup show={this.state.modalShow} onHide={this.modalClose.bind(this)} content={<ImageUpload loadImage={this.imageStateChangeCallback} />} title="Upload Profile Pic" />
+        <Popup show={this.state.modalShow} onHide={this.modalClose.bind(this)} content={this.state.content} title={this.state.title} />
       </div>
     );
   }
