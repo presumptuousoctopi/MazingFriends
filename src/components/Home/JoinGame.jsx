@@ -76,7 +76,7 @@ class Lobby extends React.Component {
                             <td>{this.state.levels[key]}</td>
                             {this.state.rooms[key] === 2 ? <td>Room Full</td> : 
                             <td><Link className="Link" to={"/game/" + key}>
-                            <button onClick={this.joinRoomButton.bind(null, key)}>Join Room</button>
+                            <button className="joinButton" onClick={this.joinRoomButton.bind(null, key)}>Join Room</button>
                             </Link></td> }
                         </tr>
                         )

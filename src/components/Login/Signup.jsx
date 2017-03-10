@@ -45,16 +45,16 @@ class Signup extends React.Component {
   render() {
     return (
   		<form className="loginForm" onSubmit={this.signUp.bind(this)}>
-      	Username: 
-      	<input ref="username" required="true" />
+      	<label>Username: </label> 
+      	<input ref="username" required="true" className="loginInput"/>
         <br/>
         <br/>
-      	Password: 
-      	<input type="password" ref="password" required="true" />
+      	<label>Password: </label>
+      	<input type="password" ref="password" required="true" className="loginInput"/>
         <br/>
         <br/>
-        Confirm Password: 
-        <input type="password" ref="confirmPassword" required="true"/>
+        <label>Confirm Password: </label> 
+        <input type="password" ref="confirmPassword" required="true" className="loginInput"/>
         <br/>
         <br/>
       	<button type="submit">Sign up</button>

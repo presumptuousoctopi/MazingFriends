@@ -7,13 +7,14 @@ import ImageUpload from './ImageUpload.jsx';
 import Image from './Image.jsx'
 import Popup from './../Shared/Modal.jsx'
 import { Glyphicon } from 'react-bootstrap'
+import Title from '../TitleView.jsx'
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-        imageUrl: './../placeholder.jpg',
+        imageUrl: './../images/placeholder.jpg',
         modalShow: false
     }
 
@@ -49,9 +50,19 @@ class Profile extends React.Component {
     });
   }
 
-  modalOpen() {
+  modalChangePic() {
     this.setState({
-      modalShow: true
+      modalShow: true,
+      content: <ImageUpload loadImage={this.imageStateChangeCallback} />,
+      title: "Upload Profile Pic"
+    });
+  }
+
+  modalAddFriend() {
+    this.setState({
+      modalShow: true,
+      content: <FriendSearch />,
+      title: "Add Friend"
     });
   }
 
@@ -60,23 +71,22 @@ class Profile extends React.Component {
       <div className="Profile">
       	<div className="profileHeader">
           <div className="headersLeft">
-  	      	<h1>Mazing Friends </h1>
+  	      	<Title/>
   	      	<h2>{this.props.currentUser}</h2> 
             <Link className="Link" to="/"><button onClick={this.logout} className="logoutButton">Logout</button></Link>
           </div>
           <div className="headersRight">
-            <Image className="profilePic" imageUrl={this.state.imageUrl}/> <br/>
-            <Glyphicon glyph="pencil" onClick={this.modalOpen.bind(this)} className="clickable"/>
+            <Image className="profilePic" imageUrl={this.state.imageUrl}/> 
+            <div className="edit" onClick={this.modalChangePic.bind(this)}></div>
           </div>
       	</div>
         <div className="profileContent">
-          <h1>{this.props.currentUser}'s Friends</h1>
-          <FriendSearch/>
+          <h1>{this.props.currentUser}'s Friends <div className="addFriend" onClick={this.modalAddFriend.bind(this)}></div> </h1> 
           <FriendView/>
           <h1>{this.props.currentUser}'s Stats</h1>
           <UserStats/>
           </div>
-        <Popup show={this.state.modalShow} onHide={this.modalClose.bind(this)} content={<ImageUpload loadImage={this.imageStateChangeCallback} />} title="Upload Profile Pic" />
+        <Popup show={this.state.modalShow} onHide={this.modalClose.bind(this)} content={this.state.content} title={this.state.title} />
       </div>
     );
   }
