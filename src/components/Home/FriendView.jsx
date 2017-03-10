@@ -2,6 +2,7 @@ import React from 'react';
 import FriendSearch from './FriendSearch'
 import Popup from './../Shared/Modal.jsx'
 import UserStats from './UserStats.jsx'
+import OnlineIcon from './OnlineIcon.jsx'
 
 
 class FriendView extends React.Component {
@@ -33,7 +34,8 @@ class FriendView extends React.Component {
             context.setState({
                 modalShow: true,
                 friend: context.state.friends[i].friend,
-                image: context.state.friends[i].image
+                image: context.state.friends[i].image,
+                online: data
             });
         });
     }
@@ -52,7 +54,7 @@ class FriendView extends React.Component {
                         console.log(data);
                         return (
                             <div>
-                            <a href="" data-key={index} onClick={this.getFriend.bind(this, index)} className="friend">{data.friend}</a>
+                            <a href="" data-key={index} onClick={this.getFriend.bind(this, index)} className="friend">{data.friend}<OnlineIcon online={this.state.online}/></a>
                                 <Popup show={this.state.modalShow} onHide={this.modalClose.bind(this)} content={<UserStats user={this.state.friend}/>}
                                 title={<h1><img className="modalImage" src={this.state.image}/>{this.state.friend}</h1>} />
                             </div>
