@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "be3cadfa8498f040b06a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d3fb284a988a7d3ab361"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28777,7 +28777,7 @@
 					'div',
 					{ className: 'Game' },
 					_react2.default.createElement(_ProgressBar2.default, null),
-					_react2.default.createElement(_ChatView2.default, { timer: this.state.timer, controlsClickHandler: this.controlsClickHandler.bind(this) }),
+					_react2.default.createElement(_ChatView2.default, { gameover: this.state.gameover, timer: this.state.timer, controlsClickHandler: this.controlsClickHandler.bind(this) }),
 					this.state.gameover ? _react2.default.createElement(_GameOver2.default, { time: this.state.time }) : '',
 					this.state.controls ? _react2.default.createElement(_Controls2.default, { controlsClickHandler: this.controlsClickHandler.bind(this) }) : ''
 				);
@@ -28885,14 +28885,14 @@
 	            null,
 	            'Mazing Friends'
 	          ),
-	          this.props.timer ? _react2.default.createElement(
+	          this.props.gameover === false ? _react2.default.createElement(
 	            'h2',
-	            null,
+	            { id: 'timer' },
 	            this.props.timer
 	          ) : _react2.default.createElement(
 	            'p',
 	            null,
-	            'waiting for second player...'
+	            '\'\''
 	          ),
 	          _react2.default.createElement(
 	            'button',
