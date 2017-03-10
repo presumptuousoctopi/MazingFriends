@@ -104,7 +104,7 @@ var myBucket = 'mazingfriends1';
 // console.log('@@@@@ Here is BucketCredentials : ', BucketCredentials);
 
 
-io.on('connection', function(socket){
+io.on('connection', function(socket) {
 
   //get friend status for friend profile
   socket.on("getFriendStatus", function(data){
