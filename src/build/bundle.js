@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "fc8ebe912ce698e6d73a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b0826daed2e087e74d48"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -31776,6 +31776,7 @@
 	      var context = this;
 	      socket.on('signinResponse', function (obj) {
 	        if (window.sessionStorage.getItem('user')) {
+	          console.log(window.sessionStorage.getItem('user'));
 	          alert("Youre already logged in!");
 	        }
 	        if (obj.message) {
@@ -35606,7 +35607,8 @@
 	  }, {
 	    key: 'logout',
 	    value: function logout() {
-	      window.sessionStorage.removeItem('user', this.props.currentUser);
+	      socket.emit("quit", window.sessionStorage.getItem('user'));
+	      window.sessionStorage.removeItem('user');
 	      console.log('Logged out');
 	    }
 	  }, {
