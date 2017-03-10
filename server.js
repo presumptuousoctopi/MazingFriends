@@ -284,7 +284,10 @@ io.on('connection', function(socket){
     io.sockets.emit("receiveRooms", rooms);
     console.log('user disconnected! Current user count : ', userCount);
   });
-
+  socket.on('quit', function(data){
+    delete usernames[socket.id];
+    delete usernames[data];
+  });
   /*************************************************************************************************
    Game Rooms / Messages Sockets
   *************************************************************************************************/
