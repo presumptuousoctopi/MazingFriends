@@ -1,6 +1,7 @@
 import React from 'react';
 import FriendSearch from './FriendSearch'
 import Popup from './../Shared/Modal.jsx'
+import UserStats from './UserStats.jsx'
 
 
 class FriendView extends React.Component {
@@ -52,7 +53,8 @@ class FriendView extends React.Component {
                         return (
                             <div>
                             <a href="" data-key={index} onClick={this.getFriend.bind(this, index)} className="friend">{data.friend}</a>
-                                <Popup show={this.state.modalShow} onHide={this.modalClose.bind(this)} content={this.state.friend} title={<img className="modalImage" src={this.state.image}/>} />
+                                <Popup show={this.state.modalShow} onHide={this.modalClose.bind(this)} content={<UserStats user={this.state.friend}/>}
+                                title={<h1><img className="modalImage" src={this.state.image}/>{this.state.friend}</h1>} />
                             </div>
                         )
                     })}
