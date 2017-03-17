@@ -28,6 +28,7 @@ class UserStats extends React.Component {
             <th>Time</th>
           </tr>
           {this.state.userStats.map((userStatObj) => {
+            console.log(userStatObj);
             return (
                 <tr>
                 <td>{userStatObj.id}</td>

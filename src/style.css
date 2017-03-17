@@ -54,8 +54,8 @@ html, body {
 
 .Login {
   margin: auto;
-  width: 45%;
-  height: 55%;
+  width: 65%;
+  height: 75%;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -94,6 +94,7 @@ html, body {
   text-align: center;
   width: 100%;
   margin-bottom: 5%;
+
 }
 
 .loginInput {
