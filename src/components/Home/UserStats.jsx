@@ -1,8 +1,9 @@
 import React from 'react';
+import OnlineIcon from './OnlineIcon.jsx';
 
 class UserStats extends React.Component {
-  constructor () {
-    super ()
+  constructor (props) {
+    super (props)
     this.state = {
       userStats: []
     }
@@ -40,6 +41,7 @@ class UserStats extends React.Component {
           })}
         </table>
       </div>
+          
     );
   }
 }

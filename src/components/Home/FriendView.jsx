@@ -12,7 +12,8 @@ class FriendView extends React.Component {
             friends: [],
             friend: '',
             image: '',
-            modalShow: false
+            modalShow: false,
+            online: false
         }
     }
     componentDidMount() {
@@ -30,7 +31,7 @@ class FriendView extends React.Component {
         e.preventDefault();
         socket.emit("getFriendStatus", context.state.friends[i].friend);
         socket.on("receiveFriendStatus", function(data) {
-            console.log(context.state.friends[i].friend  +" is " + data)
+            console.log(context.state.friends[i].friend  +" is " + data);
             context.setState({
                 modalShow: true,
                 friend: context.state.friends[i].friend,
@@ -54,8 +55,8 @@ class FriendView extends React.Component {
                         console.log(data);
                         return (
                             <div>
-                            <a href="" data-key={index} onClick={this.getFriend.bind(this, index)} className="friend">{data.friend}<OnlineIcon online={this.state.online}/></a>
-                                <Popup show={this.state.modalShow} onHide={this.modalClose.bind(this)} content={<UserStats user={this.state.friend}/>}
+                            <a href="" data-key={index} onClick={this.getFriend.bind(this, index)} className="friend">{data.friend}</a>
+                                <Popup show={this.state.modalShow} onHide={this.modalClose.bind(this)} content={<div><OnlineIcon online={this.state.online}/><UserStats user={this.state.friend}/></div>}
                                 title={<h1><img className="modalImage" src={this.state.image}/>{this.state.friend}</h1>} />
                             </div>
                         )
