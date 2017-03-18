@@ -1,15 +1,15 @@
 html, body {
-	background-image: url(./images/maze-background.jpg);
-	background-size: cover;
-	overflow: hidden;
-	height: 100%;
-	width: 100%;
-	border: 0;
-	padding: 0;
+  background-image: url(./images/maze-background.jpg);
+  background-size: cover;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  border: 0;
+  padding: 0;
 }
 
 .Title {
-	font-size: 60px;
+  font-size: 60px;
 } 
 
 .Link {
@@ -124,7 +124,7 @@ html, body {
 }
 
  .GameOver {
-	opacity: 0.9;
+  opacity: 0.9;
   width: 600px;
   height: 600px;
   background-color: maroon;
@@ -138,18 +138,18 @@ html, body {
  }
 
 .vanish {
-	display: none;
+  display: none;
 }
 
 .homeButtons {
-	width: 500px;
-	height: 50px;
-	margin: 10px;
+  width: 500px;
+  height: 50px;
+  margin: 10px;
 }
 
 .App {
-	height: 100%;
-	width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .Chat {
@@ -300,8 +300,8 @@ html, body {
 }
 
 .chatBar {
-	width: 70%;
-	margin-right: 5px;   
+  width: 70%;
+  margin-right: 5px;   
   margin-bottom: 20px;
 }
 
@@ -313,21 +313,21 @@ html, body {
 }
 
 .optionButtons {
-	width: 150px;
-	height: 25px;
-	margin-right: 5px;
-	margin-left: 5px;
+  width: 150px;
+  height: 25px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 a {
-	cursor: pointer;
-	text-decoration: underline;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 table {
-	font-size: xx-large;
-	text-align: left;
-	margin: 10px;
+  font-size: xx-large;
+  text-align: left;
+  margin: 10px;
 }
 
 .Lobby {
@@ -420,13 +420,13 @@ label {
 }
 
 .Move {
-	float: left;
-	position: relative;
+  float: left;
+  position: relative;
 }
 
 .Look {
-	float: right;
-	position: relative;
+  float: right;
+  position: relative;
 }
 
 #canvas {
@@ -437,7 +437,7 @@ label {
 }
 
 #videos {
-	padding: 5px 5px 0px 5px;
+  padding: 5px 5px 0px 5px;
   margin: 5px 5px 0px 5px;
   width: 100%;
 }
