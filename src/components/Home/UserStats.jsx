@@ -41,7 +41,7 @@ class UserStats extends React.Component {
           })}
         </table>
       </div>
-          
+
     );
   }
 }
