@@ -108,6 +108,8 @@ io.on('connection', function(socket) {
 
   //get friend status for friend profile
   socket.on("getFriendStatus", function(data){
+    console.log("USER", data);
+    console.log("USERNAMES", usernames);
     if (usernames[data]){
       socket.emit("receiveFriendStatus", true);
     }

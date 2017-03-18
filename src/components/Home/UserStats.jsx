@@ -1,8 +1,9 @@
 import React from 'react';
+import OnlineIcon from './OnlineIcon.jsx';
 
 class UserStats extends React.Component {
-  constructor () {
-    super ()
+  constructor (props) {
+    super (props)
     this.state = {
       userStats: []
     }
@@ -28,6 +29,7 @@ class UserStats extends React.Component {
             <th>Time</th>
           </tr>
           {this.state.userStats.map((userStatObj) => {
+            console.log(userStatObj);
             return (
                 <tr>
                 <td>{userStatObj.id}</td>
@@ -39,6 +41,7 @@ class UserStats extends React.Component {
           })}
         </table>
       </div>
+
     );
   }
 }
